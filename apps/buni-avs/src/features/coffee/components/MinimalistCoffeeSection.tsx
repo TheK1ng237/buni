@@ -20,7 +20,7 @@ import { usePayment } from '../payment/hooks/usePayment';
 import { PaymentModal } from '../payment/components/PaymentModal';
 import { CommunityGivingAnimation } from './CommunityGivingAnimation';
 import { CoffeePouringAnimation } from './CoffeePouringAnimation';
-import { Button, Badge, Input } from '@buni/ui';
+import { Button, Input } from '@buni/ui';
 
 // Messages prédéfinis accompagnés d'icônes lucide au lieu d'émojis
 const PRESET_MESSAGES = [
@@ -75,290 +75,289 @@ export function MinimalistCoffeeSection() {
   };
 
   return (
-    <section className="relative min-h-[calc(100vh-4rem)] flex items-center justify-center p-4 sm:p-6 md:p-12 bg-dark-bg text-dark-text overflow-hidden selection:bg-avs-primary selection:text-white">
-      {/* Background Cultural Pattern Overlay (Design System Motif Ndop) */}
-      <div className="avs-pattern-ndop-sultan pointer-events-none absolute inset-0 opacity-[0.04]" />
+    <section className="flex min-h-[calc(100vh-4rem)] items-stretch bg-avs-secondary">
+      {/* ══ LEFT — Décoratif avec pattern et GIF ════════════════════════════════════════ */}
+      <div className="relative hidden w-[45%] overflow-hidden lg:block">
+        <div className="avs-pattern-ndop-sultan absolute inset-0" />
+        {/* Multi-stop gradient */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(135deg, rgba(10,8,6,0.94) 0%, rgba(26,18,8,0.88) 100%)',
+          }}
+        />
+        {/* Radial halo */}
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              'radial-gradient(ellipse 65% 70% at 40% 45%, rgba(192,87,62,0.20) 0%, transparent 70%)',
+          }}
+          aria-hidden
+        />
+        {/* Fine grid */}
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            backgroundImage:
+              'linear-gradient(rgba(245,235,224,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(245,235,224,.04) 1px, transparent 1px)',
+            backgroundSize: '48px 48px',
+          }}
+          aria-hidden
+        />
 
-      {/* Dynamic Ambient Glow Background */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-40 transition-opacity duration-700"
-        style={{
-          background: `radial-gradient(circle at 50% 25%, var(--color-avs-primary, #C0573E) 0%, var(--color-avs-kente, #D4A017) 20%, transparent 70%)`,
-          filter: 'blur(80px)',
-        }}
-      />
+        {/* Content layer - GIF Animation (occupant toute la largeur) */}
+        <div className="relative flex h-full w-full items-center justify-center p-4 lg:p-6">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="w-full h-full flex items-center justify-center"
+          >
+            <CoffeePouringAnimation isPouring={true} cupCount={coffeesCount} className="h-full w-full" />
+          </motion.div>
+        </div>
+      </div>
 
-      <div className="relative z-10 w-full max-w-4xl space-y-6">
-        {/* Switcher de mode de vue : Offrir ou Visualiser la Communauté */}
-        <div className="flex justify-center">
-          <div className="inline-flex rounded-2xl border border-avs-primary/20 bg-dark-surface/90 p-1.5 backdrop-blur-xl shadow-avs-md">
-            <button
-              type="button"
-              onClick={() => setActiveTab('support')}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                activeTab === 'support'
-                  ? 'bg-avs-primary text-white shadow-md'
-                  : 'text-dark-text/70 hover:text-dark-text hover:bg-avs-primary/10'
-              }`}
-            >
-              <Coffee className="h-4 w-4" />
-              <span>Offrir un café</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => setActiveTab('community')}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                activeTab === 'community'
-                  ? 'bg-avs-primary text-white shadow-md'
-                  : 'text-dark-text/70 hover:text-dark-text hover:bg-avs-primary/10'
-              }`}
-            >
-              <Sparkles className="h-4 w-4 text-avs-kente" />
-              <span>Animation Communauté</span>
-            </button>
+      {/* ══ RIGHT — Formulaire et informations ═══════════════════════════════════════════ */}
+      <div className="bg-avs-secondary flex flex-1 items-center justify-center px-4 py-12 sm:px-8 lg:px-14">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55 }}
+          className="w-full max-w-md space-y-8"
+        >
+        {/* Heading */}
+        <div className="mb-6">
+          <div className="mb-2 flex items-center gap-2">
+            <div className="bg-avs-primary h-px w-6" aria-hidden />
+            <span className="text-avs-primary font-mono text-[10px] tracking-[0.2em] uppercase font-bold">
+              Soutien direct
+            </span>
           </div>
+          <h1
+            className="font-display text-avs-accent leading-tight font-extrabold"
+            style={{ fontSize: 'clamp(1.5rem, 3.5vw, 2.25rem)', letterSpacing: '-0.02em' }}
+          >
+            Un café pour nourrir <span className="text-avs-primary">une vision</span>
+          </h1>
+          <p className="text-avs-accent/60 mt-1.5 text-xs leading-relaxed">
+            Chaque tasse alimente la création open-source et la valorisation du patrimoine visuel africain.
+          </p>
+        </div>
+
+        {/* Switcher de mode de vue (Segmented Control élégant) */}
+        <div className="inline-flex p-1 rounded-xl bg-avs-accent/5 border border-avs-accent/10 mb-6 w-full">
+          <button
+            type="button"
+            onClick={() => setActiveTab('support')}
+            className={`flex-1 flex items-center justify-center gap-2 py-2 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+              activeTab === 'support'
+                ? 'bg-avs-primary text-avs-secondary shadow-xs'
+                : 'text-avs-accent/60 hover:text-avs-accent'
+            }`}
+          >
+            <Coffee className="h-3.5 w-3.5" />
+            <span>Offrir un café</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => setActiveTab('community')}
+            className={`flex-1 flex items-center justify-center gap-2 py-2 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+              activeTab === 'community'
+                ? 'bg-avs-primary text-avs-secondary shadow-xs'
+                : 'text-avs-accent/60 hover:text-avs-accent'
+            }`}
+          >
+            <Sparkles className="h-3.5 w-3.5" />
+            <span>Animation Communauté</span>
+          </button>
+        </div>
+
+        {/* Mobile GIF Animation */}
+        <div className="lg:hidden mb-6 w-full">
+          <CoffeePouringAnimation isPouring={true} cupCount={coffeesCount} className="h-52 w-full" />
         </div>
 
         {/* CONTENU EN TAB 1 : SUPPORT PRINCIPAL */}
         {activeTab === 'support' && (
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.4 }}
-            className="grid gap-6 lg:grid-cols-12 items-start"
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3 }}
+            className="space-y-6"
           >
-            {/* Carte Principale de Don */}
-            <div className="lg:col-span-7 relative overflow-hidden rounded-3xl border border-avs-primary/20 bg-dark-surface/90 backdrop-blur-2xl p-6 sm:p-8 shadow-avs-lg">
-              {/* Top Highlight line */}
-              <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-avs-primary to-transparent opacity-80" />
-
-              {/* Header & Emotional Tagline */}
-              <div className="text-center space-y-3 mb-6">
-                <Badge variant="outline" className="border-avs-kente/40 bg-avs-kente/10 text-avs-kente gap-2 py-1 px-3">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-avs-kente opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-avs-kente"></span>
-                  </span>
-                  <span>L'Art du Soutien • Warmth & Code</span>
-                </Badge>
-
-                <h1 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-dark-text leading-tight">
-                  Un café pour nourrir <span className="bg-gradient-to-r from-avs-primary via-avs-raffia to-avs-kente bg-clip-text text-transparent">une vision.</span>
-                </h1>
-
-                <p className="text-xs sm:text-sm text-dark-text/75 max-w-md mx-auto leading-relaxed">
-                  Chaque tasse alimente directement la création, le code open-source et la valorisation du patrimoine visuel africain.
-                </p>
-              </div>
-
-              {/* Dynamic Interactive Coffee Cup Display */}
-              <div className="my-5 rounded-2xl bg-dark-bg/80 border border-avs-primary/15 p-5 text-center space-y-4 backdrop-blur-md">
-                <div className="flex items-center justify-center gap-2 min-h-[48px]">
-                  <AnimatePresence mode="popLayout">
-                    {Array.from({ length: Math.min(coffeesCount, 7) }).map((_, idx) => (
-                      <motion.div
-                        key={idx}
-                        initial={{ scale: 0, y: 15, rotate: -15 }}
-                        animate={{ scale: 1, y: 0, rotate: 0 }}
-                        exit={{ scale: 0, opacity: 0 }}
-                        transition={{ type: 'spring', stiffness: 350, damping: 22, delay: idx * 0.04 }}
-                        className="relative select-none flex items-center justify-center"
-                      >
-                        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-avs-primary/20 border border-avs-primary/30 text-avs-primary shadow-sm">
-                          <Coffee className="h-5 w-5 text-avs-kente" />
-                        </div>
-                        <motion.span
-                          animate={{ y: [-2, -8, -2], opacity: [0.2, 0.8, 0] }}
-                          transition={{ repeat: Infinity, duration: 2, delay: idx * 0.3 }}
-                          className="absolute -top-3 left-1/2 -translate-x-1/2 text-[10px] text-avs-kente font-mono opacity-60 pointer-events-none"
-                        >
-                          ~
-                        </motion.span>
-                      </motion.div>
-                    ))}
-                    {coffeesCount > 7 && (
-                      <motion.span
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        className="text-sm font-bold text-avs-kente ml-2 flex items-center gap-1"
-                      >
-                        +{coffeesCount - 7} <Coffee className="h-4 w-4" />
-                      </motion.span>
-                    )}
-                  </AnimatePresence>
-                </div>
-
-                {/* Stepper Controls */}
-                <div className="flex items-center justify-center gap-3 pt-1">
-                  <button
-                    type="button"
-                    onClick={() => setCoffeesCount((c) => Math.max(1, c - 1))}
-                    aria-label="Diminuer le nombre de cafés"
-                    className="w-9 h-9 rounded-full border border-avs-primary/30 bg-dark-surface text-dark-text hover:bg-avs-primary/20 hover:border-avs-primary transition-all flex items-center justify-center active:scale-95 cursor-pointer"
-                  >
-                    <Minus className="h-4 w-4" />
-                  </button>
-
-                  <div className="flex items-center gap-2">
-                    {[1, 3, 5].map((preset) => (
-                      <button
-                        key={preset}
-                        type="button"
-                        onClick={() => handlePresetSelect(preset)}
-                        className={`relative px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 border cursor-pointer ${
-                          coffeesCount === preset
-                            ? 'bg-avs-primary text-white border-avs-primary shadow-md scale-105'
-                            : 'bg-dark-surface/80 text-dark-text/80 border-avs-primary/20 hover:bg-avs-primary/10'
-                        }`}
-                      >
-                        {preset} {preset === 1 ? 'tasse' : 'tasses'} (${preset * coffeePrice})
-                        {preset === 3 && (
-                          <span className="absolute -top-2 right-0 px-1.5 py-0.2 rounded-full bg-avs-kente text-dark-bg text-[8px] font-bold uppercase tracking-wider">
-                            Populaire
-                          </span>
-                        )}
-                      </button>
-                    ))}
-                  </div>
-
-                  <button
-                    type="button"
-                    onClick={() => setCoffeesCount((c) => c + 1)}
-                    aria-label="Augmenter le nombre de cafés"
-                    className="w-9 h-9 rounded-full border border-avs-primary/30 bg-dark-surface text-dark-text hover:bg-avs-primary/20 hover:border-avs-primary transition-all flex items-center justify-center active:scale-95 cursor-pointer"
-                  >
-                    <Plus className="h-4 w-4" />
-                  </button>
-                </div>
-
-                <p className="text-xs text-dark-text/60 italic pt-1">
-                  {coffeesCount === 1 && '“Une jolie étincelle de concentration et un sourire en plus.”'}
-                  {coffeesCount === 2 && '“De quoi booster une session intense de création.”'}
-                  {coffeesCount === 3 && '“Alimente ~6 heures de code ininterrompu & café d\'exception.”'}
-                  {coffeesCount >= 4 && `“Formidable ! Vous offrez ${coffeesCount} cafés — une vraie journée d'inspiration dédiée.”`}
-                </p>
-              </div>
-
-              {/* Tag Messages */}
-              <div className="space-y-2 mb-5">
-                <label className="block text-[11px] font-semibold uppercase tracking-wider text-dark-text/60">
-                  Associer une pensée créative
-                </label>
-
-                <div className="flex flex-wrap gap-2">
-                  {PRESET_MESSAGES.map((msg) => {
-                    const IconComp = msg.icon;
-                    return (
-                      <button
-                        key={msg.id}
-                        type="button"
-                        onClick={() => handleTagClick(msg.label)}
-                        className={`flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg border transition-all duration-200 cursor-pointer ${
-                          selectedTag === msg.label
-                            ? 'bg-avs-kente/20 text-avs-kente border-avs-kente'
-                            : 'bg-dark-bg/40 text-dark-text/70 border-avs-primary/15 hover:border-avs-primary/30 hover:text-dark-text'
-                        }`}
-                      >
-                        <IconComp className="h-3.5 w-3.5 text-avs-kente" />
-                        <span>{msg.label}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-
-                <Input
-                  type="text"
-                  value={customMessage}
-                  onChange={(e) => {
-                    setCustomMessage(e.target.value);
-                    if (e.target.value) setSelectedTag(null);
-                  }}
-                  placeholder="Ou écrivez un mot personnalisé..."
-                  className="mt-2 w-full rounded-xl bg-dark-bg/80 border-avs-primary/20 text-xs text-dark-text placeholder:text-dark-text/40"
-                />
-              </div>
-
-              {/* Moyen de Paiement */}
-              <div className="space-y-2 mb-6">
-                <span className="block text-[11px] font-semibold uppercase tracking-wider text-dark-text/60">
-                  Moyen de paiement rapide
+            {/* Carte de Sélection du Café (Épurée & Lisible) */}
+            <div className="rounded-2xl border border-avs-accent/10 bg-avs-accent/3 p-5 space-y-4">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold uppercase tracking-wider text-avs-accent/60">
+                  Combien de tasses ?
                 </span>
-                <div className="grid grid-cols-3 gap-2">
-                  {PAYMENT_PROVIDERS.map((provider) => (
+                <span className="text-xs font-bold text-avs-primary">
+                  ${coffeePrice} / tasse
+                </span>
+              </div>
+
+              {/* Affichage synthétique et épuré du montant */}
+              <div className="flex items-baseline justify-between py-1">
+                <div className="flex items-center gap-2">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-avs-primary/10 text-avs-primary">
+                    <Coffee className="h-5 w-5 text-avs-kente" />
+                  </div>
+                  <div>
+                    <span className="text-2xl font-black text-avs-accent">
+                      {coffeesCount} {coffeesCount === 1 ? 'tasse' : 'tasses'}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="text-right">
+                  <span className="text-2xl font-black text-avs-primary">
+                    ${totalAmount}
+                  </span>
+                </div>
+              </div>
+
+              {/* Contrôles d'ajustement (Pills + Stepper) */}
+              <div className="flex items-center gap-2 pt-1">
+                <button
+                  type="button"
+                  onClick={() => setCoffeesCount((c) => Math.max(1, c - 1))}
+                  aria-label="Moins de café"
+                  className="h-10 w-10 rounded-xl border border-avs-accent/15 flex items-center justify-center text-avs-accent/70 hover:border-avs-primary hover:text-avs-primary transition-all active:scale-95 cursor-pointer"
+                >
+                  <Minus className="h-4 w-4" />
+                </button>
+
+                <div className="grid grid-cols-4 gap-1.5 flex-1">
+                  {[1, 3, 5, 10].map((preset) => (
                     <button
-                      key={provider.id}
+                      key={preset}
                       type="button"
-                      onClick={() => setSelectedProvider(provider.id)}
-                      className={`flex items-center justify-center gap-2 py-2 px-3 rounded-xl text-xs font-medium border transition-all cursor-pointer ${
-                        selectedProvider === provider.id
-                          ? 'bg-avs-primary/20 text-avs-primary border-avs-primary'
-                          : 'bg-dark-bg/50 text-dark-text/60 border-avs-primary/10 hover:border-avs-primary/30 hover:text-dark-text'
+                      onClick={() => handlePresetSelect(preset)}
+                      className={`py-2 rounded-xl text-xs font-bold transition-all cursor-pointer border ${
+                        coffeesCount === preset
+                          ? 'bg-avs-primary text-avs-secondary border-avs-primary shadow-xs'
+                          : 'border-avs-accent/10 text-avs-accent/70 hover:border-avs-accent/30 hover:text-avs-accent'
                       }`}
                     >
-                      <i className={`pi ${provider.icon} text-xs`} />
-                      <span>{provider.name}</span>
+                      {preset} {preset === 1 ? 'tasse' : 'tasses'}
                     </button>
                   ))}
                 </div>
-              </div>
 
-              {/* Action Button CTA */}
-              <div className="space-y-3">
-                <Button
-                  onClick={handleDirectSupport}
-                  disabled={isProcessing}
-                  className="w-full h-12 rounded-xl bg-avs-primary hover:bg-avs-primary/90 text-white font-bold shadow-avs-md transition-all active:scale-[0.99] cursor-pointer flex items-center justify-center gap-2"
+                <button
+                  type="button"
+                  onClick={() => setCoffeesCount((c) => c + 1)}
+                  aria-label="Plus de café"
+                  className="h-10 w-10 rounded-xl border border-avs-accent/15 flex items-center justify-center text-avs-accent/70 hover:border-avs-primary hover:text-avs-primary transition-all active:scale-95 cursor-pointer"
                 >
-                  <Heart className="h-5 w-5 text-avs-kente fill-avs-kente animate-pulse" />
-                  <span>
-                    {isProcessing ? 'Traitement en cours...' : `Offrir ${coffeesCount} ${coffeesCount === 1 ? 'café' : 'cafés'} • $${totalAmount}`}
-                  </span>
-                  <ArrowRight className="h-4 w-4" />
-                </Button>
-
-                <div className="text-center">
-                  <button
-                    type="button"
-                    onClick={() => setIsPaymentModalOpen(true)}
-                    className="text-xs text-dark-text/50 hover:text-avs-kente transition-colors underline underline-offset-4 cursor-pointer"
-                  >
-                    Voir toutes les options & formules de soutien avancées →
-                  </button>
-                </div>
-              </div>
-
-              {/* Bottom Trust Bar */}
-              <div className="mt-6 pt-4 border-t border-avs-primary/15 flex flex-wrap items-center justify-between gap-2 text-[11px] text-dark-text/50">
-                <div className="flex items-center gap-1.5">
-                  <Heart className="h-3.5 w-3.5 text-avs-kente fill-avs-kente" />
-                  <span>100% direct aux créateurs</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <Lock className="h-3.5 w-3.5 text-avs-primary" />
-                  <span>Paiement sécurisé</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <Coffee className="h-3.5 w-3.5 text-avs-primary" />
-                  <span>348 tasses ce mois-ci</span>
-                </div>
+                  <Plus className="h-4 w-4" />
+                </button>
               </div>
             </div>
 
-            {/* Colonne Droite : ANIMATION 2 (Main versant du café) */}
-            <div className="lg:col-span-5 space-y-6">
-              <CoffeePouringAnimation isPouring={true} cupCount={coffeesCount} />
-              
-              {/* Carte explicative */}
-              <div className="rounded-2xl border border-avs-primary/15 bg-dark-surface/60 p-5 backdrop-blur-sm text-xs text-dark-text/70 space-y-2">
-                <div className="flex items-center gap-2 font-bold text-avs-kente">
-                  <ShieldCheck className="h-4 w-4 text-avs-kente" />
-                  <span>Transparence & Impact</span>
-                </div>
-                <p>
-                  Chaque geste soutient l'écosystème open-source et le développement d'outils numériques valorisant les cultures africaines.
-                </p>
+            {/* Pensée créative / Mot d'encouragement (Épuré) */}
+            <div className="space-y-2.5">
+              <label className="block text-xs font-semibold text-avs-accent/70">
+                Message d'encouragement <span className="font-normal text-avs-accent/40">(optionnel)</span>
+              </label>
+
+              <div className="flex flex-wrap gap-1.5">
+                {PRESET_MESSAGES.map((msg) => (
+                  <button
+                    key={msg.id}
+                    type="button"
+                    onClick={() => handleTagClick(msg.label)}
+                    className={`text-[11px] px-2.5 py-1 rounded-lg border transition-all cursor-pointer ${
+                      selectedTag === msg.label
+                        ? 'bg-avs-primary/10 border-avs-primary text-avs-primary font-semibold'
+                        : 'border-avs-accent/10 text-avs-accent/60 hover:border-avs-accent/25 hover:text-avs-accent'
+                    }`}
+                  >
+                    {msg.label}
+                  </button>
+                ))}
               </div>
+
+              <Input
+                type="text"
+                value={customMessage}
+                onChange={(e) => {
+                  setCustomMessage(e.target.value);
+                  if (e.target.value) setSelectedTag(null);
+                }}
+                placeholder="Ou écrivez votre propre message..."
+                className="w-full rounded-xl border-avs-accent/15 text-xs text-avs-accent placeholder:text-avs-accent/40 focus:border-avs-primary"
+              />
+            </div>
+
+            {/* Moyen de Paiement (Simplifié) */}
+            <div className="space-y-2">
+              <label className="block text-xs font-semibold text-avs-accent/70">
+                Moyen de paiement
+              </label>
+              <div className="grid grid-cols-3 gap-2">
+                {PAYMENT_PROVIDERS.map((provider) => (
+                  <button
+                    key={provider.id}
+                    type="button"
+                    onClick={() => setSelectedProvider(provider.id)}
+                    className={`flex items-center justify-center gap-1.5 py-2 px-2 rounded-xl text-xs font-medium border transition-all cursor-pointer ${
+                      selectedProvider === provider.id
+                        ? 'border-avs-primary bg-avs-primary/10 text-avs-primary font-bold'
+                        : 'border-avs-accent/10 text-avs-accent/60 hover:text-avs-accent hover:border-avs-accent/20'
+                    }`}
+                  >
+                    <i className={`pi ${provider.icon} text-xs`} />
+                    <span>{provider.name}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* CTA Principal */}
+            <div className="space-y-3 pt-2">
+              <Button
+                onClick={handleDirectSupport}
+                disabled={isProcessing}
+                className="group text-avs-secondary bg-avs-primary shadow-md relative w-full overflow-hidden rounded-xl py-3.5 text-sm font-extrabold transition-all duration-200 hover:opacity-95 active:scale-[0.99] disabled:opacity-60 cursor-pointer"
+              >
+                <span className="relative flex items-center justify-center gap-2">
+                  {isProcessing ? (
+                    <>Traitement en cours...</>
+                  ) : (
+                    <>
+                      Offrir {coffeesCount} {coffeesCount === 1 ? 'café' : 'cafés'} • ${totalAmount}
+                      <ArrowRight size={16} />
+                    </>
+                  )}
+                </span>
+              </Button>
+
+              <div className="text-center">
+                <button
+                  type="button"
+                  onClick={() => setIsPaymentModalOpen(true)}
+                  className="text-xs text-avs-accent/50 hover:text-avs-primary transition-colors cursor-pointer"
+                >
+                  Autres formules de soutien →
+                </button>
+              </div>
+            </div>
+
+            {/* Reassurance épurée */}
+            <div className="pt-2 flex items-center justify-between text-[11px] text-avs-accent/50 border-t border-avs-accent/10">
+              <span className="flex items-center gap-1">
+                <Heart className="h-3 w-3 text-avs-kente fill-avs-kente" /> 100% direct
+              </span>
+              <span className="flex items-center gap-1">
+                <Lock className="h-3 w-3" /> Sécurisé
+              </span>
+              <span className="flex items-center gap-1">
+                <Coffee className="h-3 w-3" /> 348 tasses ce mois-ci
+              </span>
             </div>
           </motion.div>
         )}
@@ -366,16 +365,17 @@ export function MinimalistCoffeeSection() {
         {/* CONTENU EN TAB 2 : ANIMATION 1 (COMMUNAUTÉ) */}
         {activeTab === 'community' && (
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.4 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3 }}
             className="space-y-6"
           >
             <CommunityGivingAnimation supporterCount={348} />
           </motion.div>
         )}
-      </div>
+      </motion.div>
+    </div>
 
       {/* Instant Thank-You Dialog Overlay (avec Animation 2 intégrée) */}
       <AnimatePresence>
@@ -395,7 +395,9 @@ export function MinimalistCoffeeSection() {
               className="relative z-10 w-full max-w-md rounded-3xl border border-avs-kente/40 bg-dark-surface p-6 sm:p-8 text-center shadow-avs-lg space-y-4"
             >
               {/* Animation 2 dans le modal de confirmation */}
-              <CoffeePouringAnimation isPouring={true} cupCount={coffeesCount} />
+              <div className="relative mb-4">
+                <CoffeePouringAnimation isPouring={true} cupCount={coffeesCount} className="h-40" />
+              </div>
 
               <h3 className="font-display text-2xl font-bold text-dark-text">Un immense merci !</h3>
               <p className="text-sm text-dark-text/80 leading-relaxed">
