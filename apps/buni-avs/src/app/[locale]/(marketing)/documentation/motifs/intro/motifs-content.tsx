@@ -17,25 +17,25 @@ export function MotifsWhy() {
 export function MotifsExplanation() {
   return (
     <>
-      <p>Des motifs africains générés entièrement en CSS — sans image, sans SVG. Utilisation instantanée via <code>className</code>.</p>
+      <p>Des motifs africains générés entièrement en CSS — sans image, sans SVG. Utilisation instantanée via <code>className</code> direct.</p>
 
       <h3>Catalogue</h3>
       <div className="my-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {[
-          { cls: 'avs-pattern-kente-royale', label: 'Kente', origin: 'Akan, Ghana', desc: 'Bandelettes entrelacées' },
-          { cls: 'avs-pattern-ndop-sultan', label: 'Ndop', origin: 'Bamoum, Cameroun', desc: 'Grille et cercles rituels' },
-          { cls: 'avs-pattern-bogolan-fanga', label: 'Bogolan', origin: 'Bambara, Mali', desc: 'Teintures à la boue' },
-          { cls: 'avs-pattern-wax-dakar', label: 'Wax', origin: 'Pan-africain', desc: 'Losanges et points' },
-          { cls: 'avs-pattern-adinkra-sankofa', label: 'Adinkra', origin: 'Asante, Ghana', desc: 'Symboles philosophiques' },
-          { cls: 'avs-pattern-kuba-kasai', label: 'Kuba', origin: 'Kasaï, Congo', desc: 'Géométrie entrelacée' },
-        ].map(({ cls, label, origin, desc }) => (
+          { cls: 'avs-pattern-kente-royale', short: 'kente', label: 'Kente', origin: 'Akan, Ghana', desc: 'Bandelettes entrelacées' },
+          { cls: 'avs-pattern-ndop-sultan', short: 'ndop', label: 'Ndop', origin: 'Bamoum, Cameroun', desc: 'Grille et cercles rituels' },
+          { cls: 'avs-pattern-bogolan-fanga', short: 'bogolan', label: 'Bogolan', origin: 'Bambara, Mali', desc: 'Teintures à la boue' },
+          { cls: 'avs-pattern-wax-dakar', short: 'wax', label: 'Wax', origin: 'Pan-africain', desc: 'Losanges et points' },
+          { cls: 'avs-pattern-adinkra-sankofa', short: 'adinkra', label: 'Adinkra', origin: 'Asante, Ghana', desc: 'Symboles philosophiques' },
+          { cls: 'avs-pattern-kuba-kasai', short: 'kuba', label: 'Kuba', origin: 'Kasaï, Congo', desc: 'Géométrie entrelacée' },
+        ].map(({ cls, short, label, origin, desc }) => (
           <div key={cls} className="overflow-hidden rounded-xl transition-all duration-300 hover:-translate-y-1" style={{ border: '1px solid var(--doc-border, rgba(29,29,27,0.09))', boxShadow: '0 2px 8px rgba(0,0,0,0.06)' }}>
             <div className={`${cls} h-20`} />
             <div className="p-3" style={{ background: 'var(--doc-surface, #ffffff)' }}>
               <p className="text-sm font-bold" style={{ color: 'var(--doc-text, #1D1D1B)', fontFamily: 'var(--font-display, Georgia, serif)' }}>{label}</p>
               <p className="mt-0.5 text-[10px] font-semibold" style={{ color: 'var(--doc-primary, #C0573E)' }}>{origin}</p>
               <p className="mt-0.5 text-[10px]" style={{ color: 'var(--doc-hint, rgba(29,29,27,0.32))' }}>{desc}</p>
-              <p className="mt-1 font-mono text-[9px]" style={{ color: 'var(--doc-hint, rgba(29,29,27,0.32))', opacity: 0.6 }}>.{cls}</p>
+              <p className="mt-1 font-mono text-[9px]" style={{ color: 'var(--doc-hint, rgba(29,29,27,0.32))', opacity: 0.6 }}>className="{short}"</p>
             </div>
           </div>
         ))}
@@ -64,29 +64,35 @@ export function MotifsExplanation() {
         </div>
       </LiveDemo>
 
-      <CodeBlock id="patterns-code" lang="tsx" code={`// Fond de section hero
-<section className="avs-pattern-ndop-sultan relative min-h-screen">
+      <CodeBlock id="patterns-code" lang="tsx" code={`// Utilisation directe avec Tailwind - très simple !
+<div className="ndop h-20 w-full" />
+<div className="kente h-32 w-32 rounded-full" />
+<div className="bogolan h-16 w-full opacity-20" />
+
+// Fond de section hero
+<section className="ndop relative min-h-screen">
   <div className="absolute inset-0 bg-avs-accent/80" />
   <div className="relative">{/* contenu */}</div>
 </section>
 
 // Avatar circulaire avec initiale
-<div className="avs-pattern-kente-royale h-10 w-10 rounded-full ring-2 ring-white">
+<div className="kente h-10 w-10 rounded-full ring-2 ring-white">
   <span className="font-display font-black text-white drop-shadow">A</span>
 </div>
 
 // Spinner animé
-<div className="avs-pattern-kente-royale h-10 w-10 animate-spin rounded-full" />
+<div className="kente h-10 w-10 rounded-full animate-spin" />
 
 // Bande décorative en tête de card
 <div className="rounded-2xl overflow-hidden">
-  <div className="avs-pattern-ndop-sultan h-1 w-full" />
+  <div className="ndop h-1 w-full" />
   <div className="p-5">{/* contenu */}</div>
 </div>`} />
 
       <Callout type="info">
         Les motifs CSS utilisent des <code>linear-gradient</code> et <code>radial-gradient</code> imbriqués,
-        définis dans <code>src/theme/patterns/patterns.css</code>.
+        définis dans <code>packages/patterns/src/theme/patterns.css</code>.
+        Utilisez-les directement avec <code>className="ndop h-20 w-full"</code>.
       </Callout>
     </>
   );

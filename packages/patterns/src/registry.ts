@@ -56,22 +56,24 @@ export type PatternLicense = typeof PATTERN_LICENSES[number];
 
 /**
  * CSS mapping (UI concern but stable registry)
+ * NOTE: Maintenant utilise les noms courts directs (kente, ndop, etc.)
+ * Les classes complètes (avs-pattern-*) sont toujours disponibles pour compatibilité
  */
 export const CSS_PATTERN_MAP = {
-  kente: 'avs-pattern-kente-royale',
-  bogolan: 'avs-pattern-bogolan-fanga',
-  adinkra: 'avs-pattern-adinkra-sankofa',
-  ndebele: 'avs-pattern-ndebele-amabhaxa',
-  ndop: 'avs-pattern-ndop-sultan',
-  wax: 'avs-pattern-wax-dakar',
-  kuba: 'avs-pattern-kuba-kasai',
-  berber: 'avs-pattern-berber-amazigh',
+  kente: 'kente',
+  bogolan: 'bogolan',
+  adinkra: 'adinkra',
+  ndebele: 'ndebele',
+  ndop: 'ndop',
+  wax: 'wax',
+  kuba: 'kuba',
+  berber: 'berber',
 } as const satisfies Record<PatternType, string>;
 
 /**
  * fallback safe class
  */
-export const FALLBACK_PATTERN_CSS = 'avs-pattern-wax-dakar';
+export const FALLBACK_PATTERN_CSS = 'wax';
 
 /**
  * helper runtime guard (important for monorepo stability)

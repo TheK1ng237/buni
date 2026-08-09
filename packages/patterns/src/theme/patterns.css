@@ -54,6 +54,11 @@
       48px 100%;
   }
 
+  /* Alias court pour utilisation Tailwind */
+  .kente {
+    @extend .avs-pattern-kente-royale;
+  }
+
   .avs-pattern-kente-etoile {
     background-color: #1a1208;
     background-image:
@@ -181,6 +186,11 @@
       12px 12px;
   }
 
+  /* Alias court pour utilisation Tailwind */
+  .ndop {
+    @extend .avs-pattern-ndop-sultan;
+  }
+
   /* ══════════════════════════════════════════════════════════════════════════════
      BOGOLAN (Mali · Bambara)
      Géométrie binaire terre/lumière
@@ -230,6 +240,11 @@
       14px 14px;
   }
 
+  /* Alias court pour utilisation Tailwind */
+  .bogolan {
+    @extend .avs-pattern-bogolan-fanga;
+  }
+
   /* ══════════════════════════════════════════════════════════════════════════════
      ADINKRA (Ghana · Akan)
      Symboles gravés et imprimés
@@ -259,6 +274,11 @@
       14px 14px;
   }
 
+  /* Alias court pour utilisation Tailwind */
+  .adinkra {
+    @extend .avs-pattern-adinkra-sankofa;
+  }
+
   /* ══════════════════════════════════════════════════════════════════════════════
      WAX (Pan-africain)
      ══════════════════════════════════════════════════════════════════════════════ */
@@ -279,6 +299,11 @@
         transparent 60%
       );
     background-size: 40px 40px;
+  }
+
+  /* Alias court pour utilisation Tailwind */
+  .wax {
+    @extend .avs-pattern-wax-dakar;
   }
 
   .avs-pattern-wax-lagos {
@@ -333,6 +358,11 @@
       100% 6px;
   }
 
+  /* Alias court pour utilisation Tailwind */
+  .kuba {
+    @extend .avs-pattern-kuba-kasai;
+  }
+
   /* ══════════════════════════════════════════════════════════════════════════════
      NDEBELE (Afrique du Sud · Zimbabwe)
      Peinture murale graphique
@@ -372,6 +402,11 @@
       100% 10px;
   }
 
+  /* Alias court pour utilisation Tailwind */
+  .ndebele {
+    @extend .avs-pattern-ndebele-amabhaxa;
+  }
+
   /* ══════════════════════════════════════════════════════════════════════════════
      BERBER (Maroc · Amazigh)
      Tapis losanges et chevrons
@@ -395,6 +430,11 @@
         transparent 8px
       );
     background-size: 8px 8px;
+  }
+
+  /* Alias court pour utilisation Tailwind */
+  .berber {
+    @extend .avs-pattern-berber-amazigh;
   }
 
   /* ══════════════════════════════════════════════════════════════════════════════
