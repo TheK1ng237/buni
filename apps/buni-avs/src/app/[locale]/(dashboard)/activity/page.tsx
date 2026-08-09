@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useQuery } from '@tanstack/react-query';
 import { useAuth } from '@buni/auth';
-import { useTranslations } from 'next-intl';
+import { useTranslations } from '@/i18n';
 import { formatNumber, timeAgo } from '@buni/utils';
 import { 
   Activity, Download, Eye, Heart, MessageSquare, 

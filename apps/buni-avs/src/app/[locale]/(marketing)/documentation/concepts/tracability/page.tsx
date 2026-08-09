@@ -1,3 +1,5 @@
+'use client';
+
 import type { Metadata } from 'next';
 import { DocPageTemplate, type DocTocEntry } from '../../doc-page-template';
 import { PropTable } from '../../doc-primitives';

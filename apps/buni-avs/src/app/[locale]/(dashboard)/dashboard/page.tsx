@@ -9,7 +9,7 @@ import {
   Sparkles, Zap, BarChart2, Clock, Star, Activity, CheckCircle2, AlertCircle,
 } from 'lucide-react';
 import { useAuth, useLogout } from '@buni/auth';
-import { useTranslations } from 'next-intl';
+import { useTranslations } from '@/i18n';
 import { timeAgo, formatNumber, formatDate } from '@buni/utils';
 import { useTheme } from 'next-themes';
 

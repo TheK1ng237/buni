@@ -24,7 +24,7 @@ import {
 } from 'lucide-react';
 import { formatDate, formatNumber } from '@buni/utils';
 import { useAuth } from '@buni/auth';
-import { useTranslations } from 'next-intl';
+import { useTranslations } from '@/i18n';
 
 import { Route } from 'next';
 import type { Pattern, PatternStatus, PatternSymbol } from '@buni/patterns';

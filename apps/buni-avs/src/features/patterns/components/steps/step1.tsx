@@ -1,7 +1,7 @@
 'use client';
 
 import type { Step1Data, FieldErrors } from '../../types';
-import { PATTERN_TYPES, REGIONS,  } from '@buni/patterns';
+import { PATTERN_TYPES, REGIONS } from '@buni/patterns';
 import { LICENSES } from '../../constants/pattern.constants';
 import { Field, PillBtn, SelectField, StepTitle } from '../Patternform.primitives';
 

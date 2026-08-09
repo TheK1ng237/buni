@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Shield, ShieldCheck, ShieldAlert, Search, Filter, LayoutGrid, Table, Users2, UserCheck, Clock, TrendingUp, ChevronRight } from 'lucide-react';
 import { useAuth } from '@buni/auth';
-import { useTranslations } from 'next-intl';
+import { useTranslations } from '@/i18n';
 import { userService } from '@/features/user/services/user.service';
 import { formatNumber } from '@buni/utils';
 

@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 
 import { BuniLoader } from '@buni/ui';
 import {CSS_PATTERN_MAP, FALLBACK_PATTERN_CSS } from '@buni/patterns';
-import {  FORM_STEPS } from '../constants/pattern.constants';
+import { FORM_STEPS } from '../constants/pattern.constants';
 import type { Pattern } from '@buni/patterns';
 
 import { Step1 } from './steps/step1';

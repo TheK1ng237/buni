@@ -8,7 +8,7 @@ import {
   AlertCircle, Monitor, Smartphone, ArrowRight,
 } from 'lucide-react';
 import { z } from 'zod';
-import { useTranslations } from 'next-intl';
+import { useTranslations } from '@/i18n';
 import { userService } from '@/features/user/services/user.service';
 import type { UserSettings } from '@/features/user/types/dto/settings.dto';
 

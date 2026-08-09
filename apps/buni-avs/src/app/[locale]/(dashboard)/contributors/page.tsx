@@ -8,7 +8,7 @@ import {
   Trophy, Medal, Check, X, ArrowRight,
 } from 'lucide-react';
 import { useAuth } from '@buni/auth';
-import { useTranslations } from 'next-intl';
+import { useTranslations } from '@/i18n';
 import { userService } from '@/features/user/services/user.service';
 
 // ─────────────────────────────────────────────────────────────────────────────

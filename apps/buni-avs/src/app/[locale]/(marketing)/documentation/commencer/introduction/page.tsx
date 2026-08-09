@@ -1,7 +1,9 @@
+'use client';
+
 import { DocPageTemplate } from '../../doc-page-template';
 import { useNavSpaces } from '../../nav-data';
 import { IntroductionExplanation, IntroductionWhy } from './introduction-content';
-import { useTranslations } from 'next-intl';
+import { useTranslations } from '@/i18n';
 
 export default function IntroductionPage() {
   const t = useTranslations('documentation.introduction');

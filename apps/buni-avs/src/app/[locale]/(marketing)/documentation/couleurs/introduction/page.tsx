@@ -1,3 +1,5 @@
+'use client';
+
 import { DocPageTemplate, type DocTocEntry } from '../../doc-page-template';
 import { useTranslations } from '@/i18n';
 import { useNavSpaces } from '../../nav-data';
