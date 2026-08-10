@@ -617,6 +617,61 @@
         "contact": "Contact",
         "support": "Soutenir"
       }
+    },
+    "minimalist": {
+      "presetMessages": {
+        "nextComponent": "Pour le prochain composant",
+        "beautifulDesign": "Pour l'amour du beau design",
+        "keepInspiring": "Continue d'inspirer !",
+        "communitySupport": "Soutien de la communauté",
+        "sayThanks": "Simplement pour dire merci"
+      },
+      "paymentProviders": {
+        "stripe": "Stripe / Carte",
+        "paypal": "PayPal",
+        "mobileMoney": "Mobile Money"
+      },
+      "header": {
+        "eyebrow": "Soutien direct",
+        "title": "Un café pour nourrir",
+        "titleHighlight": "une vision",
+        "description": "Chaque tasse alimente la création open-source et la valorisation du patrimoine visuel africain."
+      },
+      "tabs": {
+        "support": "Offrir un café",
+        "community": "Animation Communauté"
+      },
+      "coffeeSelection": {
+        "label": "Combien de tasses ?",
+        "pricePerCup": "/ tasse",
+        "cup": "tasse",
+        "cups": "tasses",
+        "lessCoffee": "Moins de café",
+        "moreCoffee": "Plus de café"
+      },
+      "message": {
+        "label": "Message d'encouragement",
+        "optional": "(optionnel)",
+        "placeholder": "Ou écrivez votre propre message..."
+      },
+      "payment": {
+        "label": "Moyen de paiement"
+      },
+      "cta": {
+        "processing": "Traitement en cours...",
+        "offerCoffee": "Offrir {count} {coffee, plural, one {café} other {cafés}} • ${amount}",
+        "otherOptions": "Autres formules de soutien →"
+      },
+      "reassurance": {
+        "direct": "100% direct",
+        "secure": "Sécurisé",
+        "cupsThisMonth": "348 tasses ce mois-ci"
+      },
+      "thankYou": {
+        "title": "Un immense merci !",
+        "message": "Votre soutien de ${amount} apporte une réelle chaleur à ce projet.",
+        "close": "Fermer & Continuer"
+      }
     }
   },
   "patterns": {
@@ -1836,39 +1891,8 @@
         "nameMin": "Minimum 2 caractères",
         "invalidUrl": "URL invalide"
       },
-      "tabs": {
-        "info": "Informations",
-        "social": "Réseaux sociaux"
-      },
-      "avatar": {
-        "fileTooLarge": "Fichier trop volumineux",
-        "fileTooLargeDesc": "L'image ne doit pas dépasser 5MB",
-        "unsupportedFormat": "Format non supporté",
-        "unsupportedFormatDesc": "Seuls JPEG, PNG, WebP et GIF sont acceptés",
-        "updated": "Avatar mis à jour",
-        "updatedDesc": "Votre photo de profil a été changée avec succès",
-        "error": "Erreur",
-        "errorDesc": "Impossible de télécharger l'avatar. Veuillez réessayer.",
-        "upload": "Modifier l'avatar",
-        "uploading": "Téléchargement…",
-        "online": "En ligne"
-      },
-      "social": {
-        "github": "GitHub",
-        "twitter": "Twitter / X",
-        "preview": "Aperçu des liens"
-      },
-      "loading": "Chargement du profil…",
       "memberSince": "Membre depuis",
-      "verified": "Vérifié",
-      "notVerified": "Non vérifié",
       "changeAvatar": "Modifier l'avatar",
-      "validationError": "Erreur de validation",
-      "validationErrorDesc": "Veuillez vérifier les champs du formulaire",
-      "saved": "Profil mis à jour",
-      "savedDesc": "Vos modifications ont été enregistrées avec succès",
-      "error": "Erreur",
-      "errorDesc": "Impossible de sauvegarder le profil. Veuillez réessayer.",
       "socialPreview": "Aperçu des liens",
       "toasts": {
         "fileTooLarge": "Fichier trop volumineux",

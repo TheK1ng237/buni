@@ -30,7 +30,7 @@ export function CoffeePouringAnimation({
         />
 
         {/* Overlay subtil avec lueur ambrée */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        <div className="pointer-events-none absolute inset-0 " />
 
         {/* Vapeur animée au-dessus de la tasse */}
         <div className="absolute top-2 left-1/2 -translate-x-1/2 z-20 flex gap-2 pointer-events-none">

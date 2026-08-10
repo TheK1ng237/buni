@@ -657,6 +657,61 @@
         "contact": "Contact",
         "support": "Support"
       }
+    },
+    "minimalist": {
+      "presetMessages": {
+        "nextComponent": "For the next component",
+        "beautifulDesign": "For the love of beautiful design",
+        "keepInspiring": "Keep inspiring!",
+        "communitySupport": "Community support",
+        "sayThanks": "Simply to say thanks"
+      },
+      "paymentProviders": {
+        "stripe": "Stripe / Card",
+        "paypal": "PayPal",
+        "mobileMoney": "Mobile Money"
+      },
+      "header": {
+        "eyebrow": "Direct support",
+        "title": "A coffee to fuel",
+        "titleHighlight": "a vision",
+        "description": "Each cup fuels open-source creation and the valorization of African visual heritage."
+      },
+      "tabs": {
+        "support": "Offer a coffee",
+        "community": "Community Animation"
+      },
+      "coffeeSelection": {
+        "label": "How many cups?",
+        "pricePerCup": "/ cup",
+        "cup": "cup",
+        "cups": "cups",
+        "lessCoffee": "Less coffee",
+        "moreCoffee": "More coffee"
+      },
+      "message": {
+        "label": "Message of encouragement",
+        "optional": "(optional)",
+        "placeholder": "Or write your own message..."
+      },
+      "payment": {
+        "label": "Payment method"
+      },
+      "cta": {
+        "processing": "Processing...",
+        "offerCoffee": "Offer {count} {coffee, plural, one {coffee} other {coffees}} • ${amount}",
+        "otherOptions": "Other support options →"
+      },
+      "reassurance": {
+        "direct": "100% direct",
+        "secure": "Secure",
+        "cupsThisMonth": "348 cups this month"
+      },
+      "thankYou": {
+        "title": "A huge thank you!",
+        "message": "Your support of ${amount} brings real warmth to this project.",
+        "close": "Close & Continue"
+      }
     }
   },
   "patterns": {
@@ -1876,39 +1931,8 @@
         "nameMin": "Minimum 2 characters",
         "invalidUrl": "Invalid URL"
       },
-      "tabs": {
-        "info": "Information",
-        "social": "Social networks"
-      },
-      "avatar": {
-        "fileTooLarge": "File too large",
-        "fileTooLargeDesc": "Image must not exceed 5MB",
-        "unsupportedFormat": "Format not supported",
-        "unsupportedFormatDesc": "Only JPEG, PNG, WebP and GIF are accepted",
-        "updated": "Avatar updated",
-        "updatedDesc": "Your profile photo has been changed successfully",
-        "error": "Error",
-        "errorDesc": "Unable to upload avatar. Please try again.",
-        "upload": "Change avatar",
-        "uploading": "Uploading…",
-        "online": "Online"
-      },
-      "social": {
-        "github": "GitHub",
-        "twitter": "Twitter / X",
-        "preview": "Link preview"
-      },
-      "loading": "Loading profile…",
       "memberSince": "Member since",
-      "verified": "Verified",
-      "notVerified": "Not verified",
       "changeAvatar": "Change avatar",
-      "validationError": "Validation error",
-      "validationErrorDesc": "Please check the form fields",
-      "saved": "Profile updated",
-      "savedDesc": "Your changes have been saved successfully",
-      "error": "Error",
-      "errorDesc": "Unable to save profile. Please try again.",
       "socialPreview": "Link preview",
       "toasts": {
         "fileTooLarge": "File too large",

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Coffee,
@@ -21,26 +21,13 @@ import { PaymentModal } from '../payment/components/PaymentModal';
 import { CommunityGivingAnimation } from './CommunityGivingAnimation';
 import { CoffeePouringAnimation } from './CoffeePouringAnimation';
 import { Button, Input } from '@buni/ui';
-
-// Messages prédéfinis accompagnés d'icônes lucide au lieu d'émojis
-const PRESET_MESSAGES = [
-  { id: 1, label: "Pour le prochain composant", icon: Lightbulb },
-  { id: 2, label: "Pour l'amour du beau design", icon: Palette },
-  { id: 3, label: "Continue d'inspirer !", icon: Rocket },
-  { id: 4, label: "Soutien de la communauté", icon: Globe },
-  { id: 5, label: "Simplement pour dire merci", icon: Coffee },
-];
-
-const PAYMENT_PROVIDERS = [
-  { id: 'stripe', name: 'Stripe / Carte', icon: 'pi-credit-card' },
-  { id: 'paypal', name: 'PayPal', icon: 'pi-paypal' },
-  { id: 'mobile-money', name: 'Mobile Money', icon: 'pi-mobile' },
-];
+import { useTranslations } from 'next-intl';
 
 export function MinimalistCoffeeSection() {
+  const t = useTranslations('coffee.minimalist');
   const [coffeesCount, setCoffeesCount] = useState<number>(3);
   const [customMessage, setCustomMessage] = useState<string>('');
-  const [selectedTag, setSelectedTag] = useState<string | null>(PRESET_MESSAGES[1]?.label ?? null);
+  const [selectedTag, setSelectedTag] = useState<string | null>(null);
   const [selectedProvider, setSelectedProvider] = useState<string>('stripe');
   const [activeTab, setActiveTab] = useState<'support' | 'community'>('support');
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState<boolean>(false);
@@ -49,6 +36,26 @@ export function MinimalistCoffeeSection() {
 
   const coffeePrice = 3;
   const totalAmount = coffeesCount * coffeePrice;
+
+  // Set default tag on mount
+  useEffect(() => {
+    setSelectedTag(t('presetMessages.beautifulDesign'));
+  }, [t]);
+
+  // Messages prédéfinis accompagnés d'icônes lucide au lieu d'émojis
+  const PRESET_MESSAGES = [
+    { id: 1, label: t('presetMessages.nextComponent'), icon: Lightbulb },
+    { id: 2, label: t('presetMessages.beautifulDesign'), icon: Palette },
+    { id: 3, label: t('presetMessages.keepInspiring'), icon: Rocket },
+    { id: 4, label: t('presetMessages.communitySupport'), icon: Globe },
+    { id: 5, label: t('presetMessages.sayThanks'), icon: Coffee },
+  ];
+
+  const PAYMENT_PROVIDERS = [
+    { id: 'stripe', name: t('paymentProviders.stripe'), icon: 'pi-credit-card' },
+    { id: 'paypal', name: t('paymentProviders.paypal'), icon: 'pi-paypal' },
+    { id: 'mobile-money', name: t('paymentProviders.mobileMoney'), icon: 'pi-mobile' },
+  ];
 
   const handlePresetSelect = (count: number) => {
     setCoffeesCount(count);
@@ -132,17 +139,17 @@ export function MinimalistCoffeeSection() {
           <div className="mb-2 flex items-center gap-2">
             <div className="bg-avs-primary h-px w-6" aria-hidden />
             <span className="text-avs-primary font-mono text-[10px] tracking-[0.2em] uppercase font-bold">
-              Soutien direct
+              {t('header.eyebrow')}
             </span>
           </div>
           <h1
             className="font-display text-avs-accent leading-tight font-extrabold"
             style={{ fontSize: 'clamp(1.5rem, 3.5vw, 2.25rem)', letterSpacing: '-0.02em' }}
           >
-            Un café pour nourrir <span className="text-avs-primary">une vision</span>
+            {t('header.title')} <span className="text-avs-primary">{t('header.titleHighlight')}</span>
           </h1>
           <p className="text-avs-accent/60 mt-1.5 text-xs leading-relaxed">
-            Chaque tasse alimente la création open-source et la valorisation du patrimoine visuel africain.
+            {t('header.description')}
           </p>
         </div>
 
@@ -158,7 +165,7 @@ export function MinimalistCoffeeSection() {
             }`}
           >
             <Coffee className="h-3.5 w-3.5" />
-            <span>Offrir un café</span>
+            <span>{t('tabs.support')}</span>
           </button>
           <button
             type="button"
@@ -170,7 +177,7 @@ export function MinimalistCoffeeSection() {
             }`}
           >
             <Sparkles className="h-3.5 w-3.5" />
-            <span>Animation Communauté</span>
+            <span>{t('tabs.community')}</span>
           </button>
         </div>
 
@@ -192,10 +199,10 @@ export function MinimalistCoffeeSection() {
             <div className="rounded-2xl border border-avs-accent/10 bg-avs-accent/3 p-5 space-y-4">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-bold uppercase tracking-wider text-avs-accent/60">
-                  Combien de tasses ?
+                  {t('coffeeSelection.label')}
                 </span>
                 <span className="text-xs font-bold text-avs-primary">
-                  ${coffeePrice} / tasse
+                  ${coffeePrice}{t('coffeeSelection.pricePerCup')}
                 </span>
               </div>
 
@@ -207,7 +214,7 @@ export function MinimalistCoffeeSection() {
                   </div>
                   <div>
                     <span className="text-2xl font-black text-avs-accent">
-                      {coffeesCount} {coffeesCount === 1 ? 'tasse' : 'tasses'}
+                      {coffeesCount} {coffeesCount === 1 ? t('coffeeSelection.cup') : t('coffeeSelection.cups')}
                     </span>
                   </div>
                 </div>
@@ -224,7 +231,7 @@ export function MinimalistCoffeeSection() {
                 <button
                   type="button"
                   onClick={() => setCoffeesCount((c) => Math.max(1, c - 1))}
-                  aria-label="Moins de café"
+                  aria-label={t('coffeeSelection.lessCoffee')}
                   className="h-10 w-10 rounded-xl border border-avs-accent/15 flex items-center justify-center text-avs-accent/70 hover:border-avs-primary hover:text-avs-primary transition-all active:scale-95 cursor-pointer"
                 >
                   <Minus className="h-4 w-4" />
@@ -242,7 +249,7 @@ export function MinimalistCoffeeSection() {
                           : 'border-avs-accent/10 text-avs-accent/70 hover:border-avs-accent/30 hover:text-avs-accent'
                       }`}
                     >
-                      {preset} {preset === 1 ? 'tasse' : 'tasses'}
+                      {preset} {preset === 1 ? t('coffeeSelection.cup') : t('coffeeSelection.cups')}
                     </button>
                   ))}
                 </div>
@@ -250,7 +257,7 @@ export function MinimalistCoffeeSection() {
                 <button
                   type="button"
                   onClick={() => setCoffeesCount((c) => c + 1)}
-                  aria-label="Plus de café"
+                  aria-label={t('coffeeSelection.moreCoffee')}
                   className="h-10 w-10 rounded-xl border border-avs-accent/15 flex items-center justify-center text-avs-accent/70 hover:border-avs-primary hover:text-avs-primary transition-all active:scale-95 cursor-pointer"
                 >
                   <Plus className="h-4 w-4" />
@@ -261,7 +268,7 @@ export function MinimalistCoffeeSection() {
             {/* Pensée créative / Mot d'encouragement (Épuré) */}
             <div className="space-y-2.5">
               <label className="block text-xs font-semibold text-avs-accent/70">
-                Message d'encouragement <span className="font-normal text-avs-accent/40">(optionnel)</span>
+                {t('message.label')} <span className="font-normal text-avs-accent/40">{t('message.optional')}</span>
               </label>
 
               <div className="flex flex-wrap gap-1.5">
@@ -288,7 +295,7 @@ export function MinimalistCoffeeSection() {
                   setCustomMessage(e.target.value);
                   if (e.target.value) setSelectedTag(null);
                 }}
-                placeholder="Ou écrivez votre propre message..."
+                placeholder={t('message.placeholder')}
                 className="w-full rounded-xl border-avs-accent/15 text-xs text-avs-accent placeholder:text-avs-accent/40 focus:border-avs-primary"
               />
             </div>
@@ -296,7 +303,7 @@ export function MinimalistCoffeeSection() {
             {/* Moyen de Paiement (Simplifié) */}
             <div className="space-y-2">
               <label className="block text-xs font-semibold text-avs-accent/70">
-                Moyen de paiement
+                {t('payment.label')}
               </label>
               <div className="grid grid-cols-3 gap-2">
                 {PAYMENT_PROVIDERS.map((provider) => (
@@ -326,10 +333,10 @@ export function MinimalistCoffeeSection() {
               >
                 <span className="relative flex items-center justify-center gap-2">
                   {isProcessing ? (
-                    <>Traitement en cours...</>
+                    <>{t('cta.processing')}</>
                   ) : (
                     <>
-                      Offrir {coffeesCount} {coffeesCount === 1 ? 'café' : 'cafés'} • ${totalAmount}
+                      {t('cta.offerCoffee', { count: coffeesCount, coffee: coffeesCount, amount: totalAmount })}
                       <ArrowRight size={16} />
                     </>
                   )}
@@ -342,7 +349,7 @@ export function MinimalistCoffeeSection() {
                   onClick={() => setIsPaymentModalOpen(true)}
                   className="text-xs text-avs-accent/50 hover:text-avs-primary transition-colors cursor-pointer"
                 >
-                  Autres formules de soutien →
+                  {t('cta.otherOptions')}
                 </button>
               </div>
             </div>
@@ -350,13 +357,13 @@ export function MinimalistCoffeeSection() {
             {/* Reassurance épurée */}
             <div className="pt-2 flex items-center justify-between text-[11px] text-avs-accent/50 border-t border-avs-accent/10">
               <span className="flex items-center gap-1">
-                <Heart className="h-3 w-3 text-avs-kente fill-avs-kente" /> 100% direct
+                <Heart className="h-3 w-3 text-avs-kente fill-avs-kente" /> {t('reassurance.direct')}
               </span>
               <span className="flex items-center gap-1">
-                <Lock className="h-3 w-3" /> Sécurisé
+                <Lock className="h-3 w-3" /> {t('reassurance.secure')}
               </span>
               <span className="flex items-center gap-1">
-                <Coffee className="h-3 w-3" /> 348 tasses ce mois-ci
+                <Coffee className="h-3 w-3" /> {t('reassurance.cupsThisMonth')}
               </span>
             </div>
           </motion.div>
@@ -399,9 +406,9 @@ export function MinimalistCoffeeSection() {
                 <CoffeePouringAnimation isPouring={true} cupCount={coffeesCount} className="h-40" />
               </div>
 
-              <h3 className="font-display text-2xl font-bold text-dark-text">Un immense merci !</h3>
+              <h3 className="font-display text-2xl font-bold text-dark-text">{t('thankYou.title')}</h3>
               <p className="text-sm text-dark-text/80 leading-relaxed">
-                Votre soutien de <span className="font-bold text-avs-kente">${totalAmount}</span> apporte une réelle chaleur à ce projet.{' '}
+                {t('thankYou.message', { amount: totalAmount })}{' '}
                 {selectedTag || customMessage ? `« ${selectedTag || customMessage} »` : ''}
               </p>
 
@@ -409,7 +416,7 @@ export function MinimalistCoffeeSection() {
                 onClick={() => setShowThankYou(false)}
                 className="w-full rounded-xl bg-avs-primary py-3 font-bold text-white hover:bg-avs-primary/80 transition-colors cursor-pointer"
               >
-                Fermer & Continuer
+                {t('thankYou.close')}
               </Button>
             </motion.div>
           </div>
