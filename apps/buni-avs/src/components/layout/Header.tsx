@@ -243,6 +243,12 @@ function getNavItems(t: any): NavItem[] {
     },
 
     {
+      href: '/pricing',
+      label: t('pricing'),
+      available: true,
+    },
+
+    {
       href: '/contact',
       label: t('contact'),
       available: true,

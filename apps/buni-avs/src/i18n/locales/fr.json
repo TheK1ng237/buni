@@ -28,7 +28,8 @@
     "settings": "Paramètres",
     "logout": "Déconnexion",
     "login": "Connexion",
-    "register": "Inscription"
+    "register": "Inscription",
+    "pricing": "Tarifs"
   },
   "auth": {
     "login": "Connexion",
@@ -2100,5 +2101,185 @@
         "description": "Seuls les administrateurs peuvent accéder à cette page."
       }
     }
+  },
+  "pricing": {
+    "badge": "Tarification Simple & Accessible",
+    "title": "Design africain pour tous les créateurs",
+    "subtitle": "Accédez aux motifs culturels AVS, aux design tokens et soutenez les artisans africains avec des tarifs adaptés au marché.",
+    "billing": {
+      "monthly": "Mensuel",
+      "annual": "Annuel",
+      "discount": "-20%"
+    },
+    "currency": "FCFA",
+    "perMonth": "/ mois",
+    "perYear": "/ an",
+    "popular": "Populaire",
+    "cta": {
+      "free": "Commencer",
+      "starter": "Essayer Starter",
+      "pro": "Choisir Pro",
+      "business": "Passer Business",
+      "enterprise": "Nous contacter"
+    },
+    "plans": {
+      "free": {
+        "name": "Gratuit",
+        "badge": "Découverte",
+        "description": "Pour découvrir AVS et utiliser les motifs de base dans vos projets personnels.",
+        "priceMonthly": "0",
+        "priceAnnual": "0",
+        "features": [
+          "50 motifs culturels en SVG",
+          "Exports PNG standards",
+          "Documentation complète",
+          "Support communautaire",
+          "Usage personnel uniquement"
+        ]
+      },
+      "starter": {
+        "name": "Starter",
+        "badge": "Indépendants",
+        "description": "Pour les freelances et créateurs qui utilisent régulièrement des motifs africains.",
+        "priceMonthly": "599",
+        "priceAnnual": "479",
+        "features": [
+          "500 motifs culturels en SVG",
+          "Exports vectoriels HD (SVG, EPS)",
+          "Design tokens Tailwind",
+          "Licence commerciale",
+          "Support email prioritaire",
+          "Attribution requise"
+        ]
+      },
+      "pro": {
+        "name": "Pro",
+        "badge": "Plus Populaire",
+        "description": "Pour les studios et agences qui intègrent AVS dans leurs projets clients.",
+        "priceMonthly": "1 999",
+        "priceAnnual": "1 599",
+        "features": [
+          "Motifs illimités SVG + PNG",
+          "Exports multi-formats (Figma, React)",
+          "Design tokens complets",
+          "Licence étendue sans attribution",
+          "3 utilisateurs inclus",
+          "Support dédié 24/7"
+        ]
+      },
+      "business": {
+        "name": "Business",
+        "badge": "Équipes",
+        "description": "Pour les entreprises qui intègrent AVS dans leur design system à grande échelle.",
+        "priceMonthly": "4 999",
+        "priceAnnual": "3 999",
+        "features": [
+          "Tous les motifs + exclusifs",
+          "API d'accès programmatique",
+          "15 utilisateurs inclus",
+          "Intégration design system",
+          "Formation équipe incluse",
+          "Account manager dédié"
+        ]
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "badge": "Sur-mesure",
+        "description": "Pour les grandes organisations avec des besoins spécifiques et volumétrie élevée.",
+        "priceMonthly": "Sur devis",
+        "priceAnnual": "Sur devis",
+        "features": [
+          "Utilisateurs illimités",
+          "Déploiement on-premise",
+          "Numérisation patrimoine propre",
+          "SLA garanti 99.9%",
+          "Formation sur site",
+          "Support VIP dédié"
+        ]
+      }
+    },
+    "matrix": {
+      "title": "Comparatif des fonctionnalités",
+      "subtitle": "Comparez les avantages de chaque plan pour trouver celui qui vous convient.",
+      "categories": {
+        "content": "Contenu & Motifs",
+        "export": "Exports & Tokens",
+        "license": "Licences & Utilisation",
+        "support": "Support & Équipe"
+      },
+      "options": {
+        "motifsCount": "Nombre de motifs",
+        "vectorExport": "Exports vectoriels",
+        "tailwindTokens": "Design tokens",
+        "figmaPlugin": "Intégration Figma",
+        "commercialLicense": "Licence commerciale",
+        "provenanceCheck": "Vérification provenance",
+        "multiUser": "Utilisateurs inclus",
+        "apiAccess": "Accès API",
+        "customDigitization": "Numérisation personnalisée",
+        "dedicatedSupport": "Support dédié"
+      }
+    },
+    "faq": {
+      "title": "Questions fréquentes",
+      "subtitle": "Les réponses aux questions qu'on nous pose souvent.",
+      "items": [
+        {
+          "q": "Comment payer en FCFA ?",
+          "a": "On accepte les cartes Visa/Mastercard et le Mobile Money (Orange, MTN, Wave, Moov) partout en Afrique de l'Ouest et Centrale."
+        },
+        {
+          "q": "Je peux changer de plan ?",
+          "a": "Oui, vous pouvez changer ou annuler n'importe quand depuis votre compte. Ça prend effet à la fin de la période en cours."
+        },
+        {
+          "q": "Les artisans sont payés ?",
+          "a": "Une partie de chaque abonnement va directement aux artisans qui documentent les motifs. C'est important pour nous."
+        },
+        {
+          "q": "Facture pour mon entreprise ?",
+          "a": "Oui, une facture conforme est envoyée automatiquement après chaque paiement."
+        },
+        {
+          "q": "Usage pour des produits physiques ?",
+          "a": "Les plans payants Starter, Pro et Business permettent l'usage commercial (textile, mode, design, etc.)."
+        }
+      ]
+    },
+    "banner": {
+      "title": "Un projet spécifique ?",
+      "subtitle": "Notre équipe peut vous aider à intégrer AVS dans vos projets ou à numériser vos propres motifs culturels.",
+      "button": "Discutons-en"
+    }
+  },
+  "upgrade": {
+    "badge": "Upgrade de compte",
+    "title": "Confirmez votre upgrade",
+    "subtitle": "Vous êtes sur le point de passer au plan {plan} avec une facturation {billing}.",
+    "billing": {
+      "title": "Facturation",
+      "annual": "Annuelle",
+      "monthly": "Mensuelle",
+      "annualDesc": "Facturation annuelle avec économie de 20%",
+      "monthlyDesc": "Facturation mensuelle flexible",
+      "savings": "Économisez 20%"
+    },
+    "features": {
+      "title": "Inclus dans ce plan :"
+    },
+    "security": {
+      "title": "Paiement sécurisé",
+      "encrypted": "Transactions chiffrées SSL",
+      "methods": "Cartes et Mobile Money acceptés",
+      "refund": "Remboursement 30 jours"
+    },
+    "support": {
+      "title": "Besoin d'aide ?",
+      "description": "Notre équipe est disponible pour répondre à vos questions.",
+      "contact": "Contacter le support"
+    },
+    "processing": "Traitement en cours...",
+    "confirm": "Confirmer l'upgrade",
+    "cancel": "Annuler"
   }
 }

@@ -28,7 +28,8 @@
     "settings": "Settings",
     "logout": "Logout",
     "login": "Login",
-    "register": "Register"
+    "register": "Register",
+    "pricing": "Pricing"
   },
   "auth": {
     "login": "Login",
@@ -2140,5 +2141,185 @@
         "description": "Only administrators can access this page."
       }
     }
+  },
+  "pricing": {
+    "badge": "Simple & Accessible Pricing",
+    "title": "African design for every creator",
+    "subtitle": "Access AVS cultural patterns, design tokens, and support African artisans with market-adapted pricing.",
+    "billing": {
+      "monthly": "Monthly",
+      "annual": "Annual",
+      "discount": "-20%"
+    },
+    "currency": "FCFA",
+    "perMonth": "/ month",
+    "perYear": "/ year",
+    "popular": "Popular",
+    "cta": {
+      "free": "Get Started",
+      "starter": "Try Starter",
+      "pro": "Choose Pro",
+      "business": "Go Business",
+      "enterprise": "Contact Us"
+    },
+    "plans": {
+      "free": {
+        "name": "Free",
+        "badge": "Discovery",
+        "description": "Perfect for discovering AVS and using basic patterns in your personal projects.",
+        "priceMonthly": "0",
+        "priceAnnual": "0",
+        "features": [
+          "50 cultural patterns in SVG",
+          "Standard PNG exports",
+          "Complete documentation",
+          "Community support",
+          "Personal use only"
+        ]
+      },
+      "starter": {
+        "name": "Starter",
+        "badge": "Freelancers",
+        "description": "For freelancers and creators who regularly use African patterns in their work.",
+        "priceMonthly": "599",
+        "priceAnnual": "479",
+        "features": [
+          "500 cultural patterns in SVG",
+          "HD vector exports (SVG, EPS)",
+          "Tailwind design tokens",
+          "Commercial license",
+          "Priority email support",
+          "Attribution required"
+        ]
+      },
+      "pro": {
+        "name": "Pro",
+        "badge": "Most Popular",
+        "description": "For studios and agencies integrating AVS into their client projects.",
+        "priceMonthly": "1,999",
+        "priceAnnual": "1,599",
+        "features": [
+          "Unlimited patterns SVG + PNG",
+          "Multi-format exports (Figma, React)",
+          "Complete design tokens",
+          "Extended license no attribution",
+          "3 users included",
+          "Dedicated 24/7 support"
+        ]
+      },
+      "business": {
+        "name": "Business",
+        "badge": "Teams",
+        "description": "For companies integrating AVS into their design system at scale.",
+        "priceMonthly": "4,999",
+        "priceAnnual": "3,999",
+        "features": [
+          "All patterns + exclusives",
+          "Programmatic API access",
+          "15 users included",
+          "Design system integration",
+          "Team training included",
+          "Dedicated account manager"
+        ]
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "badge": "Custom",
+        "description": "For large organizations with specific needs and high volume requirements.",
+        "priceMonthly": "Custom quote",
+        "priceAnnual": "Custom quote",
+        "features": [
+          "Unlimited users",
+          "On-premise deployment",
+          "Custom heritage digitization",
+          "Guaranteed 99.9% SLA",
+          "On-site training",
+          "VIP dedicated support"
+        ]
+      }
+    },
+    "matrix": {
+      "title": "Feature comparison",
+      "subtitle": "Compare the benefits of each plan to find the one that suits you.",
+      "categories": {
+        "content": "Content & Patterns",
+        "export": "Exports & Tokens",
+        "license": "Licenses & Usage",
+        "support": "Support & Team"
+      },
+      "options": {
+        "motifsCount": "Pattern count",
+        "vectorExport": "Vector exports",
+        "tailwindTokens": "Design tokens",
+        "figmaPlugin": "Figma integration",
+        "commercialLicense": "Commercial license",
+        "provenanceCheck": "Provenance verification",
+        "multiUser": "Included users",
+        "apiAccess": "API access",
+        "customDigitization": "Custom digitization",
+        "dedicatedSupport": "Dedicated support"
+      }
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "subtitle": "Answers to the questions we get asked often.",
+      "items": [
+        {
+          "q": "How to pay in FCFA?",
+          "a": "We accept Visa/Mastercard cards and Mobile Money (Orange, MTN, Wave, Moov) across West and Central Africa."
+        },
+        {
+          "q": "Can I change plans?",
+          "a": "Yes, you can upgrade or cancel anytime from your account. Changes take effect at the end of the current period."
+        },
+        {
+          "q": "Are artisans paid?",
+          "a": "A portion of every subscription goes directly to the artisans who document the patterns. This matters to us."
+        },
+        {
+          "q": "Invoice for my company?",
+          "a": "Yes, a compliant invoice is automatically sent after each payment."
+        },
+        {
+          "q": "Use for physical products?",
+          "a": "Paid plans Starter, Pro and Business allow commercial use (textile, fashion, design, etc.)."
+        }
+      ]
+    },
+    "banner": {
+      "title": "Specific project?",
+      "subtitle": "Our team can help you integrate AVS into your projects or digitize your own cultural patterns.",
+      "button": "Let's talk"
+    }
+  },
+  "upgrade": {
+    "badge": "Account upgrade",
+    "title": "Confirm your upgrade",
+    "subtitle": "You are about to upgrade to the {plan} plan with {billing} billing.",
+    "billing": {
+      "title": "Billing",
+      "annual": "Annual",
+      "monthly": "Monthly",
+      "annualDesc": "Annual billing with 20% savings",
+      "monthlyDesc": "Flexible monthly billing",
+      "savings": "Save 20%"
+    },
+    "features": {
+      "title": "Included in this plan:"
+    },
+    "security": {
+      "title": "Secure payment",
+      "encrypted": "SSL encrypted transactions",
+      "methods": "Cards and Mobile Money accepted",
+      "refund": "30-day refund policy"
+    },
+    "support": {
+      "title": "Need help?",
+      "description": "Our team is available to answer your questions.",
+      "contact": "Contact support"
+    },
+    "processing": "Processing...",
+    "confirm": "Confirm upgrade",
+    "cancel": "Cancel"
   }
 }
