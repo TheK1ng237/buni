@@ -17,52 +17,60 @@ import { Step4 } from './steps/step4';
 import { LivePreviewSidebar } from './Patternform.preview';
 import { usePatternForm } from '../hooks/Usepatternform';
 
+import { useTranslations } from '@/i18n';
+
 // ─────────────────────────────────────────────────────────────────────────────
 // STEPPER
 // ─────────────────────────────────────────────────────────────────────────────
 
 function Stepper({ currentStep }: { currentStep: number }) {
+  const t = useTranslations('patternForm');
+  const stepKeys = ['identity', 'description', 'colorsAssets', 'revision'] as const;
+
   return (
     <div className="mb-10 flex items-center">
-      {FORM_STEPS.map(({ label }, i) => (
-        <div key={label} className="flex flex-1 items-center">
-          <div className="flex flex-col items-center gap-2">
-            <motion.div
-              animate={i <= currentStep ? { scale: [1, 1.12, 1] } : {}}
-              transition={{ duration: 0.3 }}
-              className={`
-                flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold transition-all duration-300
-                ${i < currentStep
-                  ? 'bg-avs-primary text-avs-secondary'
-                  : i === currentStep
-                    ? 'bg-avs-primary text-avs-secondary ring-4 ring-avs-primary/15'
-                    : 'border border-avs-accent/15 bg-avs-secondary text-avs-accent/30'
-                }
-              `}
-            >
-              {i < currentStep ? <Check size={13} strokeWidth={3} /> : <span>{i + 1}</span>}
-            </motion.div>
-            <span
-              className={`
-                hidden sm:block font-mono text-[9px] font-bold uppercase tracking-[0.14em] whitespace-nowrap
-                ${i === currentStep ? 'text-avs-primary' : 'text-avs-accent/30'}
-              `}
-            >
-              {label}
-            </span>
-          </div>
-
-          {i < FORM_STEPS.length - 1 && (
-            <div className="relative mx-3 h-px flex-1 overflow-hidden bg-avs-accent/15">
+      {FORM_STEPS.map((_, i) => {
+        const label = t(`steps.${stepKeys[i] ?? 'identity'}`);
+        return (
+          <div key={i} className="flex flex-1 items-center">
+            <div className="flex flex-col items-center gap-2">
               <motion.div
-                className="absolute inset-y-0 left-0 rounded-full bg-avs-primary"
-                animate={{ width: i < currentStep ? '100%' : '0%' }}
-                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              />
+                animate={i <= currentStep ? { scale: [1, 1.12, 1] } : {}}
+                transition={{ duration: 0.3 }}
+                className={`
+                  flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold transition-all duration-300
+                  ${i < currentStep
+                    ? 'bg-avs-primary text-avs-secondary'
+                    : i === currentStep
+                      ? 'bg-avs-primary text-avs-secondary ring-4 ring-avs-primary/15'
+                      : 'border border-avs-accent/15 bg-avs-secondary text-avs-accent/30'
+                  }
+                `}
+              >
+                {i < currentStep ? <Check size={13} strokeWidth={3} /> : <span>{i + 1}</span>}
+              </motion.div>
+              <span
+                className={`
+                  hidden sm:block font-mono text-[9px] font-bold uppercase tracking-[0.14em] whitespace-nowrap
+                  ${i === currentStep ? 'text-avs-primary' : 'text-avs-accent/30'}
+                `}
+              >
+                {label}
+              </span>
             </div>
-          )}
-        </div>
-      ))}
+
+            {i < FORM_STEPS.length - 1 && (
+              <div className="relative mx-3 h-px flex-1 overflow-hidden bg-avs-accent/15">
+                <motion.div
+                  className="absolute inset-y-0 left-0 rounded-full bg-avs-primary"
+                  animate={{ width: i < currentStep ? '100%' : '0%' }}
+                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                />
+              </div>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 }
@@ -78,6 +86,9 @@ interface PatternFormProps {
 export function PatternForm({ initialPattern }: PatternFormProps) {
   const router = useRouter();
   const form   = usePatternForm(initialPattern);
+  const t      = useTranslations('patternForm');
+  const stepKeys = ['identity', 'description', 'colorsAssets', 'revision'] as const;
+  const descKeys = ['identityDesc', 'descriptionDesc', 'colorsAssetsDesc', 'revisionDesc'] as const;
 
   const {
     currentStep, loading, errors,
@@ -130,7 +141,7 @@ export function PatternForm({ initialPattern }: PatternFormProps) {
         <div className="mx-auto flex max-w-5xl items-center gap-4 px-4 py-4 sm:px-6 lg:px-8">
           <button
             onClick={() => router.back()}
-            aria-label="Retour"
+            aria-label={t('header.back')}
             className="flex h-9 w-9 items-center justify-center rounded-xl border border-avs-accent/15 text-avs-accent/40 transition-all duration-150 hover:border-avs-accent/25 hover:text-avs-accent"
           >
             <ArrowLeft size={16} />
@@ -139,7 +150,7 @@ export function PatternForm({ initialPattern }: PatternFormProps) {
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-2">
               <h1 className="font-display text-lg font-black tracking-tight text-avs-accent">
-                {initialPattern ? 'Modifier Motif' : 'Nouveau Motif'}
+                {initialPattern ? t('header.editTitle') : t('header.newTitle')}
               </h1>
               <AnimatePresence mode="wait">
                 <motion.span
@@ -150,12 +161,16 @@ export function PatternForm({ initialPattern }: PatternFormProps) {
                   transition={{ duration: 0.18 }}
                   className="rounded-lg border border-avs-primary/20 bg-avs-primary/10 px-2.5 py-1 font-mono text-[9px] font-bold uppercase tracking-[0.14em] text-avs-primary"
                 >
-                  {FORM_STEPS[currentStep]?.label}
+                  {t(`steps.${stepKeys[currentStep] ?? 'identity'}`)}
                 </motion.span>
               </AnimatePresence>
             </div>
             <p className="mt-0.5 text-[11px] text-avs-accent/40">
-              Étape {currentStep + 1} / {FORM_STEPS.length} — {FORM_STEPS[currentStep]?.desc}
+              {t('header.stepProgress', {
+                current: currentStep + 1,
+                total: FORM_STEPS.length,
+                desc: t(`steps.${descKeys[currentStep] ?? 'identityDesc'}`),
+              })}
             </p>
           </div>
 
@@ -232,7 +247,7 @@ export function PatternForm({ initialPattern }: PatternFormProps) {
                     disabled={currentStep === 0}
                     className="avs-btn-secondary flex items-center gap-2 disabled:pointer-events-none disabled:opacity-30"
                   >
-                    <ArrowLeft size={13} /> Précédent
+                    <ArrowLeft size={13} /> {t('actions.prev')}
                   </button>
 
                   {currentStep < FORM_STEPS.length - 1 ? (
@@ -245,7 +260,7 @@ export function PatternForm({ initialPattern }: PatternFormProps) {
                         className="pointer-events-none absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/15 to-transparent transition-transform duration-700 group-hover:translate-x-full"
                         aria-hidden
                       />
-                      Suivant <ArrowRight size={13} className="transition-transform group-hover:translate-x-0.5" />
+                      {t('actions.next')} <ArrowRight size={13} className="transition-transform group-hover:translate-x-0.5" />
                     </button>
                   ) : (
                     <button
@@ -262,11 +277,11 @@ export function PatternForm({ initialPattern }: PatternFormProps) {
                       {loading ? (
                         <>
                           <BuniLoader size={16} showText={false} theme="dark" />
-                          <span className="animate-pulse">Envoi en cours…</span>
+                          <span className="animate-pulse">{t('actions.submitting')}</span>
                         </>
                       ) : (
                         <>
-                          <Sparkles size={13} /> {initialPattern ? 'Mettre à jour le motif' : 'Soumettre pour révision'}
+                          <Sparkles size={13} /> {initialPattern ? t('actions.update') : t('actions.submit')}
                         </>
                       )}
                     </button>

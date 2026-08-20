@@ -2281,5 +2281,123 @@
     "processing": "Traitement en cours...",
     "confirm": "Confirmer l'upgrade",
     "cancel": "Annuler"
+  },
+  "patternForm": {
+    "header": {
+      "newTitle": "Nouveau Motif",
+      "editTitle": "Modifier Motif",
+      "back": "Retour",
+      "stepProgress": "Étape {current} / {total} — {desc}"
+    },
+    "steps": {
+      "identity": "Identité",
+      "identityDesc": "Nom & origine géographique",
+      "description": "Description",
+      "descriptionDesc": "Contexte & symbolisme",
+      "colorsAssets": "Couleurs & Assets",
+      "colorsAssetsDesc": "Palette & fichier SVG",
+      "revision": "Révision",
+      "revisionDesc": "Vérification avant envoi"
+    },
+    "actions": {
+      "prev": "Précédent",
+      "next": "Suivant",
+      "submit": "Soumettre pour révision",
+      "update": "Mettre à jour le motif",
+      "submitting": "Envoi en cours…"
+    },
+    "step1": {
+      "title": "Identité du motif",
+      "sub": "Étape 1",
+      "nameLocalLabel": "Nom local",
+      "nameLocalPlaceholder": "Ndop (Ndoup)",
+      "nameFrLabel": "Nom (français / principal)",
+      "nameFrPlaceholder": "Bamoum Royal Ndop",
+      "licenseLabel": "Licence",
+      "patternTypeLabel": "Type de motif",
+      "regionLabel": "Région",
+      "chooseRegion": "Choisir…",
+      "countryLabel": "Code pays (ISO 2)",
+      "countryHint": "Ex : CM pour Cameroun",
+      "chooseCountry": "Choisir un code…",
+      "peopleLabel": "Peuple / Ethnie",
+      "peoplePlaceholder": "Peuple Bamoum (Bamum)",
+      "flagLabel": "Drapeau (emoji)",
+      "chooseFlag": "Choisir un drapeau…",
+      "kingdomLabel": "Royaume",
+      "kingdomPlaceholder": "Sultanat Bamoum",
+      "eraLabel": "Époque",
+      "eraPlaceholder": "XVIIe siècle — présent",
+      "coordsLabel": "Coordonnées (latitude, longitude)"
+    },
+    "step2": {
+      "title": "Description & Symbolisme",
+      "sub": "Étape 2",
+      "summaryLabel": "Résumé",
+      "summaryPlaceholder": "Brève description utilisée dans les listes et aperçus…",
+      "historyLabel": "Histoire",
+      "historyPlaceholder": "Contexte historique détaillé, évolution au fil du temps…",
+      "techniqueLabel": "Technique de fabrication",
+      "techniquePlaceholder": "Matériaux, savoir-faire, étapes de fabrication…",
+      "symbolismMeaningLabel": "Signification symbolique",
+      "symbolismMeaningPlaceholder": "Royauté, spiritualité, protection contre les mauvais esprits…",
+      "symbolismUsageLabel": "Usage principal",
+      "symbolismUsagePlaceholder": "en quel évènement est-ce exactement utilisé…",
+      "ceremonialLabel": "Usage cérémoniel",
+      "ceremonialPlaceholder": "Contextes cérémoniels où le motif est utilisé…",
+      "keywordsLabel": "Mots-clés (1–{max})",
+      "keywordsPlaceholder": "Ajouter un mot-clé puis Entrée…",
+      "removeKeyword": "Supprimer {kw}"
+    },
+    "step3": {
+      "title": "Couleurs & Assets",
+      "sub": "Étape 3",
+      "colorPaletteLabel": "Palette de couleurs",
+      "colorHexPlaceholder": "#C0573E",
+      "colorNamePlaceholder": "Nom de la couleur",
+      "colorMeaningPlaceholder": "Signification",
+      "addColor": "+ Ajouter une couleur",
+      "svgUploadLabel": "Fichier SVG du motif",
+      "dragDropOrClick": "Glissez-déposez votre fichier SVG ou cliquez pour parcourir",
+      "maxSizeHint": "Format SVG uniquement (max 2 Mo)",
+      "changeSvg": "Remplacer le SVG",
+      "sourcesLabel": "Sources & Références",
+      "sourcePlaceholder": "https://... ou Référence bibliographique",
+      "addSource": "+ Ajouter une source",
+      "symbolsLabel": "Symboles & Motifs élémentaires",
+      "symbolNameLabel": "Nom du symbole",
+      "symbolNameFrLabel": "Nom français",
+      "symbolMeaningLabel": "Signification",
+      "symbolUsageLabel": "Usage",
+      "sacredSymbol": "Symbole sacré",
+      "addSymbol": "+ Ajouter un symbole"
+    },
+    "step4": {
+      "title": "Révision finale",
+      "sub": "Étape 4",
+      "labels": {
+        "nameEn": "Nom EN",
+        "nameLocal": "Nom Local",
+        "type": "Type",
+        "region": "Région",
+        "country": "Pays",
+        "people": "Peuple",
+        "kingdom": "Royaume",
+        "era": "Époque",
+        "usage": "Usage",
+        "license": "Licence",
+        "keywords": "Mots-clés",
+        "palette": "Palette"
+      },
+      "validationTitle": "Processus de validation",
+      "validationText": "Votre motif sera relu par un curateur AVS avant publication. Ce processus prend généralement",
+      "validationTime": "24–48h ouvrées."
+    },
+    "preview": {
+      "namePlaceholder": "Nom du motif",
+      "descriptionPlaceholder": "La description apparaîtra ici…",
+      "realtimeTitle": "Aperçu en temps réel",
+      "progress": "Progression"
+    }
   }
 }

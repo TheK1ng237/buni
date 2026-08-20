@@ -4,6 +4,7 @@ import { Check, Upload, X } from 'lucide-react';
 import { Field, StepTitle, AddRowBtn } from '../Patternform.primitives';
 import { FieldErrors, Step3Data } from '../../types';
 import { PatternColor, PatternSymbol } from '@buni/patterns';
+import { useTranslations } from '@/i18n';
 
 interface Step3Props {
   data: Partial<Step3Data>;
@@ -29,12 +30,14 @@ export function Step3({
   onUpdateSource, onAddSource, onRemoveSource,
   onUpdateSymbol, onAddSymbol, onRemoveSymbol,
 }: Step3Props) {
+  const t = useTranslations('patternForm.step3');
+
   return (
     <div className="space-y-6">
-      <StepTitle title="Couleurs & Assets" sub="Étape 3" />
+      <StepTitle title={t('title')} sub={t('sub')} />
 
       {/* ── Color Palette ─────────────────────────────────────────────────── */}
-      <Field label="Palette de couleurs" required error={errors['colors']}>
+      <Field label={t('colorPaletteLabel')} required error={errors['colors']}>
         <div className="space-y-3">
           {(data.colors ?? []).map((color, i) => (
             <div
@@ -59,7 +62,7 @@ export function Step3({
                   maxLength={7}
                   value={color.hex}
                   onChange={(e) => onUpdateColor(i, { hex: e.target.value })}
-                  placeholder="#C0573E"
+                  placeholder={t('colorHexPlaceholder')}
                 />
               </div>
 
@@ -68,13 +71,13 @@ export function Step3({
                   className="avs-input min-w-0 flex-1"
                   value={color.name}
                   onChange={(e) => onUpdateColor(i, { name: e.target.value })}
-                  placeholder="Nom de la couleur"
+                  placeholder={t('colorNamePlaceholder')}
                 />
                 <input
                   className="avs-input min-w-0 flex-1"
                   value={color.meaning}
                   onChange={(e) => onUpdateColor(i, { meaning: e.target.value })}
-                  placeholder="Signification"
+                  placeholder={t('colorMeaningPlaceholder')}
                 />
               </div>
 
@@ -97,7 +100,7 @@ export function Step3({
             </div>
           )}
 
-          <AddRowBtn label="+ Ajouter une couleur" onClick={onAddColor} />
+          <AddRowBtn label={t('addColor')} onClick={onAddColor} />
         </div>
       </Field>
 
@@ -112,7 +115,7 @@ export function Step3({
       </Field>
 
       {/* ── SVG upload ────────────────────────────────────────────────────── */}
-      <Field label="Fichier SVG du motif" hint="SVG uniquement · max 2 Mo · Optionnel">
+      <Field label={t('svgUploadLabel')} hint={t('maxSizeHint')}>
         <label
           className={`
             group flex cursor-pointer flex-col items-center gap-3 rounded-2xl border-2 border-dashed px-6 py-10 transition-all duration-200
@@ -143,8 +146,7 @@ export function Step3({
             </div>
           ) : (
             <p className="text-sm text-avs-accent/40">
-              Glisser-déposer ou{' '}
-              <span className="font-semibold text-avs-primary">parcourir</span>
+              {t('dragDropOrClick')}
             </p>
           )}
           <input
@@ -161,7 +163,7 @@ export function Step3({
             onClick={() => onSvgFileChange(null)}
             className="mt-2 flex items-center gap-1.5 text-xs text-avs-accent/40 transition-colors hover:text-red-500"
           >
-            <X size={11} /> Supprimer le fichier
+            <X size={11} /> {t('changeSvg')}
           </button>
         )}
       </Field>
@@ -212,7 +214,7 @@ export function Step3({
       </Field>
 
       {/* ── Sources ───────────────────────────────────────────────────────── */}
-      <Field label="Sources et références" required error={errors['sources']}>
+      <Field label={t('sourcesLabel')} required error={errors['sources']}>
         <div className="space-y-2">
           {(data.sources ?? []).map((src, i) => (
             <div key={i} className="flex gap-2">
@@ -220,7 +222,7 @@ export function Step3({
                 className="avs-input flex-1"
                 value={src}
                 onChange={(e) => onUpdateSource(i, e.target.value)}
-                placeholder="Livre, article, site web…"
+                placeholder={t('sourcePlaceholder')}
               />
               <button
                 type="button"
@@ -231,12 +233,12 @@ export function Step3({
               </button>
             </div>
           ))}
-          <AddRowBtn label="+ Ajouter une source" onClick={onAddSource} />
+          <AddRowBtn label={t('addSource')} onClick={onAddSource} />
         </div>
       </Field>
 
       {/* ── Symbols ───────────────────────────────────────────────────────── */}
-      <Field label="Symboles constitutifs" required error={errors['symbols']}>
+      <Field label={t('symbolsLabel')} required error={errors['symbols']}>
         <div className="space-y-4">
           {(data.symbols ?? []).map((sym, i) => (
             <SymbolCard
@@ -247,7 +249,7 @@ export function Step3({
               onRemove={() => onRemoveSymbol(i)}
             />
           ))}
-          <AddRowBtn label="+ Ajouter un symbole" onClick={onAddSymbol} />
+          <AddRowBtn label={t('addSymbol')} onClick={onAddSymbol} />
         </div>
       </Field>
     </div>
@@ -266,6 +268,8 @@ function SymbolCard({
   onChange: (patch: Partial<PatternSymbol>) => void;
   onRemove: () => void;
 }) {
+  const t = useTranslations('patternForm.step3');
+
   return (
     <div className="avs-card space-y-3 p-4">
       <div className="flex items-center justify-between">
@@ -286,13 +290,13 @@ function SymbolCard({
           className="avs-input"
           value={symbol.name}
           onChange={(e) => onChange({ name: e.target.value })}
-          placeholder="Symbol name (en)"
+          placeholder={t('symbolNameLabel')}
         />
         <input
           className="avs-input"
           value={symbol.nameFr}
           onChange={(e) => onChange({ nameFr: e.target.value })}
-          placeholder="Nom français"
+          placeholder={t('symbolNameFrLabel')}
         />
       </div>
 
@@ -308,7 +312,7 @@ function SymbolCard({
         className="avs-input resize-none"
         value={symbol.meaning}
         onChange={(e) => onChange({ meaning: e.target.value })}
-        placeholder="Signification du symbole…"
+        placeholder={t('symbolMeaningLabel')}
       />
 
       <textarea
@@ -316,7 +320,7 @@ function SymbolCard({
         className="avs-input resize-none"
         value={symbol.usage}
         onChange={(e) => onChange({ usage: e.target.value })}
-        placeholder="Usage du symbole…"
+        placeholder={t('symbolUsageLabel')}
       />
 
       <label className="flex cursor-pointer items-center gap-2 text-sm text-avs-accent/70">
@@ -326,7 +330,7 @@ function SymbolCard({
           onChange={(e) => onChange({ sacred: e.target.checked })}
           className="rounded accent-avs-primary"
         />
-        Symbole sacré
+        {t('sacredSymbol')}
       </label>
 
       {/* Symbol image upload */}

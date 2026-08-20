@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Check } from 'lucide-react';
 import { FORM_STEPS } from '../constants/pattern.constants';
 import type { Step1Data, Step2Data, Step3Data } from '../types';
+import { useTranslations } from '@/i18n';
 
 interface LivePreviewSidebarProps {
   currentStep: number;
@@ -18,6 +19,9 @@ interface LivePreviewSidebarProps {
 export function LivePreviewSidebar({
   currentStep, step1, step2, step3, previewCSS, svgFile, initialPattern,
 }: LivePreviewSidebarProps) {
+  const t = useTranslations('patternForm');
+  const stepKeys = ['identity', 'description', 'colorsAssets', 'revision'] as const;
+
   return (
     <div className="space-y-3 lg:sticky lg:top-24 lg:self-start">
 
@@ -88,7 +92,7 @@ export function LivePreviewSidebar({
 
           <p className="font-display text-sm font-bold leading-tight tracking-tight text-avs-accent">
             {step1.nameEn || (
-              <span className="text-avs-accent/30">Nom du motif</span>
+              <span className="text-avs-accent/30">{t('preview.namePlaceholder')}</span>
             )}
           </p>
 
@@ -102,7 +106,7 @@ export function LivePreviewSidebar({
 
           <p className="mt-2 line-clamp-3 text-xs leading-relaxed text-avs-accent/60">
             {step2.summary || (
-              <span className="text-avs-accent/25">Description apparaîtra ici…</span>
+              <span className="text-avs-accent/25">{t('preview.descriptionPlaceholder')}</span>
             )}
           </p>
 
@@ -122,35 +126,38 @@ export function LivePreviewSidebar({
       </div>
 
       <p className="text-center font-mono text-[9px] uppercase tracking-[0.2em] text-avs-accent/30">
-        Aperçu en temps réel
+        {t('preview.realtimeTitle')}
       </p>
 
       {/* Step progress mini */}
       <div className="avs-card p-4">
-        <p className="avs-label mb-3">Progression</p>
+        <p className="avs-label mb-3">{t('preview.progress')}</p>
         <div className="space-y-2">
-          {FORM_STEPS.map(({ label }, i) => (
-            <div key={label} className="flex items-center gap-2.5">
-              <div
-                className={`
-                  flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[9px] font-bold
-                  ${i < currentStep
-                    ? 'bg-avs-primary text-avs-secondary'
-                    : i === currentStep
-                      ? 'border border-avs-primary/20 bg-avs-primary/10 text-avs-primary'
-                      : 'border border-avs-accent/15 bg-avs-secondary text-avs-accent/30'
-                  }
-                `}
-              >
-                {i < currentStep ? <Check size={10} strokeWidth={3} /> : i + 1}
+          {FORM_STEPS.map((_, i) => {
+            const label = t(`steps.${stepKeys[i] ?? 'identity'}`);
+            return (
+              <div key={i} className="flex items-center gap-2.5">
+                <div
+                  className={`
+                    flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[9px] font-bold
+                    ${i < currentStep
+                      ? 'bg-avs-primary text-avs-secondary'
+                      : i === currentStep
+                        ? 'border border-avs-primary/20 bg-avs-primary/10 text-avs-primary'
+                        : 'border border-avs-accent/15 bg-avs-secondary text-avs-accent/30'
+                    }
+                  `}
+                >
+                  {i < currentStep ? <Check size={10} strokeWidth={3} /> : i + 1}
+                </div>
+                <span
+                  className={`text-[11px] font-medium ${i === currentStep ? 'text-avs-accent' : 'text-avs-accent/40'}`}
+                >
+                  {label}
+                </span>
               </div>
-              <span
-                className={`text-[11px] font-medium ${i === currentStep ? 'text-avs-accent' : 'text-avs-accent/40'}`}
-              >
-                {label}
-              </span>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>

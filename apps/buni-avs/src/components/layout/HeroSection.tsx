@@ -443,19 +443,10 @@ export function HeroSection() {
         style={{ background: 'var(--hp-bg)' }}
       >
         {/* ── Ambient background: grid + faint texture + bloom ── */}
-        {/* Motif de fond premium PNG (optionnel - commenter pour utiliser le motif CSS) */}
-        {/* <div
-          className="pointer-events-none absolute inset-0 opacity-20"
-          style={{
-            backgroundImage: `url(${theme === 'dark' ? '/motif_fond_noir.png' : '/motif_fond_blanc.png'})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-          aria-hidden
-        /> */}
+       
         {/* Motif CSS original */}
         <div
-          className="avs-pattern-kente-royale pointer-events-none absolute inset-0 opacity-[.02]"
+          className="avs-pattern-kente-royale pointer-events-none absolute inset-0 opacity-[10%]"
           aria-hidden
         />
         <div
@@ -476,9 +467,9 @@ export function HeroSection() {
         {/* ══════════════════════════════════════════
              Version ordinateur
           ══════════════════════════════════════════ */}
-        <div className="mx-auto hidden w-full px-4 pt-12 sm:px-6 sm:pt-14 md:flex lg:px-8">
-          <div className="flex w-full justify-center">
-            <div className="w-[60%]">
+        <div className="mx-auto hidden w-full px-4 pt-12 sm:px-6 sm:pt-14 md:flex lg:px-8  h-screen">
+          <div className="flex w-full justify-center  items-center">
+            <div className="w-[50%]">
               <motion.h1
                 id="hero-title"
                 initial={{ opacity: 0, y: 28 }}
@@ -550,16 +541,13 @@ export function HeroSection() {
               
             </div>
 
-            <div className="w-[40%]">
+            <div className="w-[50%]">
               <motion.div
                 initial={{ opacity: 0, x: 28 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.9, delay: 0.3, ease }}
                 className="relative order-1 lg:order-2 lg:col-span-1 lg:mt-0"
               >
-                
-
-                
 
                 <PatternInspector
                   active={active!}

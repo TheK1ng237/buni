@@ -2321,5 +2321,123 @@
     "processing": "Processing...",
     "confirm": "Confirm upgrade",
     "cancel": "Cancel"
+  },
+  "patternForm": {
+    "header": {
+      "newTitle": "New Pattern",
+      "editTitle": "Edit Pattern",
+      "back": "Back",
+      "stepProgress": "Step {current} / {total} — {desc}"
+    },
+    "steps": {
+      "identity": "Identity",
+      "identityDesc": "Name & geographic origin",
+      "description": "Description",
+      "descriptionDesc": "Context & symbolism",
+      "colorsAssets": "Colors & Assets",
+      "colorsAssetsDesc": "Palette & SVG file",
+      "revision": "Review",
+      "revisionDesc": "Verification before submission"
+    },
+    "actions": {
+      "prev": "Previous",
+      "next": "Next",
+      "submit": "Submit for review",
+      "update": "Update pattern",
+      "submitting": "Submitting…"
+    },
+    "step1": {
+      "title": "Pattern Identity",
+      "sub": "Step 1",
+      "nameLocalLabel": "Local name",
+      "nameLocalPlaceholder": "Ndop (Ndoup)",
+      "nameFrLabel": "Name (English / Main)",
+      "nameFrPlaceholder": "Bamoum Royal Ndop",
+      "licenseLabel": "License",
+      "patternTypeLabel": "Pattern type",
+      "regionLabel": "Region",
+      "chooseRegion": "Choose…",
+      "countryLabel": "Country code (ISO 2)",
+      "countryHint": "E.g. CM for Cameroon",
+      "chooseCountry": "Choose a code…",
+      "peopleLabel": "People / Ethnicity",
+      "peoplePlaceholder": "Bamoum People (Bamum)",
+      "flagLabel": "Flag (emoji)",
+      "chooseFlag": "Choose a flag…",
+      "kingdomLabel": "Kingdom",
+      "kingdomPlaceholder": "Bamoum Sultanate",
+      "eraLabel": "Era",
+      "eraPlaceholder": "17th century — present",
+      "coordsLabel": "Coordinates (latitude, longitude)"
+    },
+    "step2": {
+      "title": "Description & Symbolism",
+      "sub": "Step 2",
+      "summaryLabel": "Summary",
+      "summaryPlaceholder": "Brief description used in lists and previews…",
+      "historyLabel": "History",
+      "historyPlaceholder": "Detailed historical context, evolution over time…",
+      "techniqueLabel": "Crafting technique",
+      "techniquePlaceholder": "Materials, craftsmanship, manufacturing steps…",
+      "symbolismMeaningLabel": "Symbolic meaning",
+      "symbolismMeaningPlaceholder": "Royalty, spirituality, protection against evil spirits…",
+      "symbolismUsageLabel": "Main usage",
+      "symbolismUsagePlaceholder": "in which specific event is this used…",
+      "ceremonialLabel": "Ceremonial usage",
+      "ceremonialPlaceholder": "Ceremonial contexts where the pattern is used…",
+      "keywordsLabel": "Keywords (1–{max})",
+      "keywordsPlaceholder": "Add a keyword then press Enter…",
+      "removeKeyword": "Remove {kw}"
+    },
+    "step3": {
+      "title": "Colors & Assets",
+      "sub": "Step 3",
+      "colorPaletteLabel": "Color palette",
+      "colorHexPlaceholder": "#C0573E",
+      "colorNamePlaceholder": "Color name",
+      "colorMeaningPlaceholder": "Meaning",
+      "addColor": "+ Add color",
+      "svgUploadLabel": "Pattern SVG File",
+      "dragDropOrClick": "Drag & drop your SVG file or click to browse",
+      "maxSizeHint": "SVG format only (max 2MB)",
+      "changeSvg": "Replace SVG",
+      "sourcesLabel": "Sources & References",
+      "sourcePlaceholder": "https://... or Bibliographic reference",
+      "addSource": "+ Add source",
+      "symbolsLabel": "Symbols & Elementary Motifs",
+      "symbolNameLabel": "Symbol name",
+      "symbolNameFrLabel": "French name",
+      "symbolMeaningLabel": "Meaning",
+      "symbolUsageLabel": "Usage",
+      "sacredSymbol": "Sacred symbol",
+      "addSymbol": "+ Add symbol"
+    },
+    "step4": {
+      "title": "Final Review",
+      "sub": "Step 4",
+      "labels": {
+        "nameEn": "Name EN",
+        "nameLocal": "Local Name",
+        "type": "Type",
+        "region": "Region",
+        "country": "Country",
+        "people": "People",
+        "kingdom": "Kingdom",
+        "era": "Era",
+        "usage": "Usage",
+        "license": "License",
+        "keywords": "Keywords",
+        "palette": "Palette"
+      },
+      "validationTitle": "Validation Process",
+      "validationText": "Your pattern will be reviewed by an AVS curator before publication. This process usually takes",
+      "validationTime": "24–48 business hours."
+    },
+    "preview": {
+      "namePlaceholder": "Pattern name",
+      "descriptionPlaceholder": "Description will appear here…",
+      "realtimeTitle": "Real-time preview",
+      "progress": "Progress"
+    }
   }
 }
