@@ -23,6 +23,7 @@ import {
   X,
 } from 'lucide-react';
 import { formatDate, formatNumber } from '@buni/utils';
+import { KpiCard } from '@buni/ui';
 import { useAuth } from '@buni/auth';
 import { useTranslations } from '@/i18n';
 
@@ -561,15 +562,10 @@ export default function MyPatternsPage() {
         {/* ══ STAT CARDS — même patron que profil ════════════════════════════ */}
         {(isAdmin ) && (
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-            <StatCard label={t('stats.published')} value={stats.published} icon={CheckCircle2} color="#4A6741" />
-            <StatCard label={t('stats.draft')} value={stats.drafts} icon={FileText} color="#1D1D1B" />
-            <StatCard label={t('stats.review')} value={stats.review} icon={Hourglass} color="#D4A017" />
-            <StatCard
-              label={t('stats.totalViews')}
-              value={stats.totalViews}
-              icon={BarChart3}
-              color="#C0573E"
-            />
+            <KpiCard label={t('stats.published')} value={stats.published} icon={CheckCircle2} color="#4A6741" patternCss="avs-pattern-kente-royale" topAccent format={formatNumber} delay={0.1} />
+            <KpiCard label={t('stats.draft')} value={stats.drafts} icon={FileText} color="#8B5CF6" patternCss="avs-pattern-ndop-sultan" topAccent format={formatNumber} delay={0.17} />
+            <KpiCard label={t('stats.review')} value={stats.review} icon={Hourglass} color="#D4A017" patternCss="avs-pattern-bogolan-fanga" topAccent format={formatNumber} delay={0.24} />
+            <KpiCard label={t('stats.totalViews')} value={stats.totalViews} icon={BarChart3} color="#C0573E" patternCss="avs-pattern-adinkra-sankofa" topAccent format={formatNumber} delay={0.31} />
           </div>
         )}
 

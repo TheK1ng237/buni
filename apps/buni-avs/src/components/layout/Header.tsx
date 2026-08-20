@@ -599,7 +599,7 @@ function UserMenu({
                   <div className="min-w-0">
                     <p className="text-avs-accent truncate text-sm font-bold">{user.name}</p>
                     <p className="text-avs-accent/35 truncate text-[11px] capitalize">
-                      {user.role}
+                      {user.role?.replace('_', ' ')}
                     </p>
                   </div>
                   <span
@@ -1112,7 +1112,7 @@ export function Header() {
                               {authState.user.name || 'User'}
                             </p>
                             <p className="text-avs-accent/35 truncate text-xs capitalize">
-                              {authState.user.role}
+                              {authState.user.role?.replace('_', ' ')}
                             </p>
                           </div>
                           <span className="ml-auto h-2 w-2 shrink-0 rounded-full bg-emerald-500" />

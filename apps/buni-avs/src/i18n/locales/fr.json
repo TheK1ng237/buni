@@ -1917,10 +1917,26 @@
       "subtitle": "Gérer votre compte et vos préférences",
       "account": "Compte",
       "sections": {
+        "profile": "Profil",
         "notifications": "Notifications",
         "security": "Sécurité",
         "privacy": "Confidentialité",
         "danger": "Zone de danger"
+      },
+      "profileTab": {
+        "title": "Informations de profil",
+        "name": "Nom complet",
+        "bio": "Biographie",
+        "location": "Localisation",
+        "website": "Site Web",
+        "github": "Nom d'utilisateur GitHub",
+        "twitter": "Nom d'utilisateur Twitter",
+        "specialty": "Spécialité / Domaine",
+        "save": "Enregistrer le profil",
+        "saving": "Enregistrement…",
+        "saved": "Profil mis à jour !",
+        "avatar": "Changer d'avatar",
+        "avatarUploading": "Envoi en cours…"
       },
       "notifications": {
         "email": {
@@ -1976,14 +1992,22 @@
           "title": "Double authentification (2FA)",
           "description": "Ajoutez une couche de sécurité via une application TOTP (Google Authenticator, Authy).",
           "toggle": "Activer 2FA",
-          "setupRequired": "Configuration requise",
-          "scanQR": "Scannez le QR code avec votre application d'authentification pour terminer la configuration."
+          "setupRequired": "Configuration 2FA requise",
+          "scanQR": "Scannez le QR code avec votre application d'authentification puis saisissez le code à 6 chiffres.",
+          "secretKey": "Clé secrète d'activation :",
+          "codePlaceholder": "Code à 6 chiffres (ex: 123456)",
+          "verifyButton": "Vérifier & Activer",
+          "disabling": "Désactivation…",
+          "enabled": "2FA Actif",
+          "disable": "Désactiver la 2FA"
         },
         "sessions": {
           "title": "Sessions actives",
           "noSessions": "Aucune session active",
           "current": "Actuelle",
-          "revoke": "Révoquer"
+          "revoke": "Révoquer",
+          "revokeAll": "Déconnecter toutes les autres sessions",
+          "revokeAllConfirm": "Voulez-vous vraiment déconnecter toutes les autres sessions ?"
         }
       },
       "privacy": {
@@ -2017,14 +2041,18 @@
             "desc": "Aidez-nous à améliorer AVS de façon anonyme",
             "toggle": "Partager les analytics"
           },
-          "download": "Télécharger mes données (RGPD)"
+          "download": "Télécharger mes données (RGPD)",
+          "exporting": "Génération de l'export…"
         }
       },
       "danger": {
         "deactivate": {
           "title": "Désactiver le compte",
           "description": "Votre compte sera désactivé temporairement. Vos motifs restent accessibles mais vous ne pourrez plus vous connecter.",
-          "button": "Désactiver mon compte"
+          "button": "Désactiver mon compte",
+          "modalTitle": "Confirmer la désactivation",
+          "modalDesc": "Êtes-vous sûr de vouloir désactiver votre compte ? Vos sessions actives seront clôturées.",
+          "confirm": "Oui, désactiver"
         },
         "delete": {
           "title": "Supprimer le compte",
@@ -2032,7 +2060,11 @@
           "description": "Tous vos motifs, données et contributions seront définitivement supprimés.",
           "noteTitle": "Note importante",
           "note": "Cette action ne peut pas être annulée. Veuillez sauvegarder vos données avant de continuer.",
-          "button": "Supprimer le compte"
+          "button": "Supprimer le compte",
+          "modalTitle": "Suppression définitive du compte",
+          "modalDesc": "Pour confirmer la suppression, veuillez saisir « SUPPRIMER » ci-dessous :",
+          "confirmPlaceholder": "Tapez SUPPRIMER",
+          "confirmButton": "Supprimer définitivement"
         }
       },
       "validation": {
@@ -2083,14 +2115,52 @@
       "memberSince": "Membre depuis",
       "actions": {
         "verify": "Vérifier",
-        "revoke": "Révoquer"
+        "revoke": "Révoquer",
+        "invite": "Inviter un utilisateur",
+        "export": "Exporter CSV",
+        "details": "Détails",
+        "delete": "Supprimer"
       },
       "table": {
         "title": "Liste des utilisateurs",
         "user": "Utilisateur",
         "status": "Statut",
         "memberSince": "Membre depuis",
-        "role": "Rôle"
+        "role": "Rôle",
+        "actions": "Actions"
+      },
+      "modal": {
+        "invite": {
+          "title": "Inviter un utilisateur",
+          "subtitle": "Un e-mail d'accès sera transmis avec les identifiants.",
+          "email": "Adresse e-mail",
+          "name": "Nom complet (optionnel)",
+          "role": "Rôle attribué",
+          "send": "Envoyer l'invitation"
+        },
+        "delete": {
+          "title": "Supprimer l'utilisateur",
+          "warning": "Êtes-vous sûr de vouloir supprimer définitivement cet utilisateur ? Cette action est irréversible.",
+          "confirm": "Supprimer définitivement"
+        }
+      },
+      "drawer": {
+        "title": "Profil de l'utilisateur",
+        "overview": "Aperçu & rôle",
+        "activity": "Activité",
+        "stats": "Statistiques"
+      },
+      "pagination": {
+        "showing": "Affichage de {from} à {to} sur {total} utilisateurs",
+        "page": "Page {current} / {total}",
+        "prev": "Précédent",
+        "next": "Suivant"
+      },
+      "toasts": {
+        "roleUpdated": "Rôle mis à jour avec succès",
+        "verificationToggled": "Statut de vérification mis à jour",
+        "userInvited": "Invitation envoyée avec succès",
+        "userDeleted": "Utilisateur supprimé"
       },
       "empty": {
         "title": "Aucun utilisateur trouvé",

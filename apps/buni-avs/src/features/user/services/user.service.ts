@@ -1,6 +1,6 @@
 import { apiClient } from "@buni/api";
 import type { UserDto, UserStatsDto, UserPatternDto, UserActivityDto } from '../types';
-import type { UserSettings, UpdateSettingsDto, ChangePasswordDto } from '../types/dto/settings.dto';
+import type { UserSettings, UpdateSettingsDto, ChangePasswordDto, Setup2FAResponse } from '../types/dto/settings.dto';
 
 class UserService {
   private readonly baseUrl = '/api/v1/users';
@@ -136,6 +136,31 @@ class UserService {
   async revokeAllSessions(currentSessionId?: string): Promise<void> {
     await apiClient.post(`${this.baseUrl}/me/sessions/revoke-all`, { currentSessionId });
   }
+
+  async setup2FA(): Promise<Setup2FAResponse> {
+    const response = await apiClient.get<{ data: Setup2FAResponse; success: boolean }>(`${this.baseUrl}/me/2fa/setup`);
+    return response.data.data;
+  }
+
+  async verify2FA(code: string): Promise<void> {
+    await apiClient.post(`${this.baseUrl}/me/2fa/verify`, { code });
+  }
+
+  async disable2FA(): Promise<void> {
+    await apiClient.post(`${this.baseUrl}/me/2fa/disable`);
+  }
+
+  async exportData(): Promise<any> {
+    const response = await apiClient.get(`${this.baseUrl}/me/export`, {
+      responseType: 'json',
+    });
+    return response.data;
+  }
+
+  async deactivateAccount(): Promise<void> {
+    await apiClient.post(`${this.baseUrl}/me/deactivate`);
+  }
 }
 
 export const userService = new UserService();
+

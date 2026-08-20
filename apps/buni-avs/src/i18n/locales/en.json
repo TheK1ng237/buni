@@ -1957,10 +1957,26 @@
       "subtitle": "Manage your account and preferences",
       "account": "Account",
       "sections": {
+        "profile": "Profile",
         "notifications": "Notifications",
         "security": "Security",
         "privacy": "Privacy",
         "danger": "Danger zone"
+      },
+      "profileTab": {
+        "title": "Profile Information",
+        "name": "Full Name",
+        "bio": "Bio",
+        "location": "Location",
+        "website": "Website",
+        "github": "GitHub Username",
+        "twitter": "Twitter Username",
+        "specialty": "Specialty / Domain",
+        "save": "Save Profile",
+        "saving": "Saving…",
+        "saved": "Profile Updated!",
+        "avatar": "Change Avatar",
+        "avatarUploading": "Uploading…"
       },
       "notifications": {
         "email": {
@@ -2016,14 +2032,22 @@
           "title": "Two-factor authentication (2FA)",
           "description": "Add a security layer via a TOTP app (Google Authenticator, Authy).",
           "toggle": "Enable 2FA",
-          "setupRequired": "Configuration required",
-          "scanQR": "Scan the QR code with your authentication app to complete setup."
+          "setupRequired": "2FA Setup Required",
+          "scanQR": "Scan the QR code with your authentication app then enter the 6-digit code.",
+          "secretKey": "Secret activation key:",
+          "codePlaceholder": "6-digit code (e.g. 123456)",
+          "verifyButton": "Verify & Enable",
+          "disabling": "Disabling…",
+          "enabled": "2FA Enabled",
+          "disable": "Disable 2FA"
         },
         "sessions": {
           "title": "Active sessions",
           "noSessions": "No active sessions",
           "current": "Current",
-          "revoke": "Revoke"
+          "revoke": "Revoke",
+          "revokeAll": "Revoke all other sessions",
+          "revokeAllConfirm": "Are you sure you want to log out all other active sessions?"
         }
       },
       "privacy": {
@@ -2057,14 +2081,18 @@
             "desc": "Help us improve AVS anonymously",
             "toggle": "Share analytics"
           },
-          "download": "Download my data (GDPR)"
+          "download": "Download my data (GDPR)",
+          "exporting": "Generating export…"
         }
       },
       "danger": {
         "deactivate": {
           "title": "Deactivate account",
           "description": "Your account will be temporarily deactivated. Your patterns remain accessible but you will no longer be able to log in.",
-          "button": "Deactivate my account"
+          "button": "Deactivate my account",
+          "modalTitle": "Confirm Deactivation",
+          "modalDesc": "Are you sure you want to deactivate your account? Your active sessions will be terminated.",
+          "confirm": "Yes, deactivate"
         },
         "delete": {
           "title": "Delete account",
@@ -2072,7 +2100,11 @@
           "description": "All your patterns, data and contributions will be permanently deleted.",
           "noteTitle": "Important note",
           "note": "This action cannot be undone. Please backup your data before proceeding.",
-          "button": "Delete my account"
+          "button": "Delete my account",
+          "modalTitle": "Permanently Delete Account",
+          "modalDesc": "To confirm deletion, please type \"SUPPRIMER\" below:",
+          "confirmPlaceholder": "Type SUPPRIMER",
+          "confirmButton": "Permanently Delete"
         }
       },
       "validation": {
@@ -2123,14 +2155,52 @@
       "memberSince": "Member since",
       "actions": {
         "verify": "Verify",
-        "revoke": "Revoke"
+        "revoke": "Revoke",
+        "invite": "Invite User",
+        "export": "Export CSV",
+        "details": "Details",
+        "delete": "Delete"
       },
       "table": {
         "title": "User list",
         "user": "User",
         "status": "Status",
         "memberSince": "Member since",
-        "role": "Role"
+        "role": "Role",
+        "actions": "Actions"
+      },
+      "modal": {
+        "invite": {
+          "title": "Invite User",
+          "subtitle": "An email with login credentials will be sent.",
+          "email": "Email address",
+          "name": "Full name (optional)",
+          "role": "Assigned role",
+          "send": "Send Invitation"
+        },
+        "delete": {
+          "title": "Delete User",
+          "warning": "Are you sure you want to permanently delete this user? This action cannot be undone.",
+          "confirm": "Permanently Delete"
+        }
+      },
+      "drawer": {
+        "title": "User Profile",
+        "overview": "Overview & Role",
+        "activity": "Activity",
+        "stats": "Statistics"
+      },
+      "pagination": {
+        "showing": "Showing {from} to {to} of {total} users",
+        "page": "Page {current} of {total}",
+        "prev": "Previous",
+        "next": "Next"
+      },
+      "toasts": {
+        "roleUpdated": "Role updated successfully",
+        "verificationToggled": "Verification status updated",
+        "userInvited": "Invitation sent successfully",
+        "userDeleted": "User deleted successfully"
       },
       "empty": {
         "title": "No users found",

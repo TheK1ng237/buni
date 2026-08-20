@@ -38,3 +38,10 @@ export interface ChangePasswordDto {
   currentPassword: string;
   newPassword: string;
 }
+
+export interface Setup2FAResponse {
+  secret: string;
+  otpauthUrl: string;
+  qrCodeUrl: string;
+}
+

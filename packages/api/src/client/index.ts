@@ -1,7 +1,8 @@
 import axios, { type InternalAxiosRequestConfig, type AxiosError } from 'axios';
 import { useAuthStore } from '@buni/auth';
 
-const BASE = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000/api';
+const rawBase = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000';
+const BASE = rawBase.replace(/\/api(\/v1)?\/?$/, '');
 
 export const apiClient = axios.create({
   baseURL: BASE,
