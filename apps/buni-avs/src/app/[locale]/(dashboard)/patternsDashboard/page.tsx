@@ -80,64 +80,6 @@ function getStatusFilters(t: any): { value: PatternStatus | 'all'; label: string
   ];
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// STAT CARD  — même patron que profil : top-accent + glow
-// ─────────────────────────────────────────────────────────────────────────────
-
-function StatCard({
-  label,
-  value,
-  icon: Icon,
-  color,
-  sub,
-}: {
-  label: string;
-  value: string | number;
-  icon: typeof Layers;
-  color: string;
-  sub?: string;
-}) {
-  return (
-    <div
-      className="group border-avs-accent/9 bg-avs-secondary relative overflow-hidden rounded-2xl border p-5 transition-all duration-300 hover:-translate-y-0.5"
-      onMouseEnter={(e) => {
-        (e.currentTarget as HTMLElement).style.borderColor = `${color}35`;
-      }}
-      onMouseLeave={(e) => {
-        (e.currentTarget as HTMLElement).style.borderColor = '';
-      }}
-    >
-      <div
-        className="absolute inset-x-0 top-0 h-0.5 rounded-t-2xl"
-        style={{ background: color }}
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute -right-4 -bottom-4 h-16 w-16 rounded-full opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100"
-        style={{ background: `${color}25` }}
-        aria-hidden
-      />
-      <div className="relative">
-        <div
-          className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl"
-          style={{ background: `${color}12`, color }}
-        >
-          <Icon size={16} aria-hidden />
-        </div>
-        <p className="text-avs-accent/35 font-mono text-[9px] font-bold tracking-[0.18em] uppercase">
-          {label}
-        </p>
-        <p
-          className="font-display text-avs-accent mt-2 text-3xl leading-none font-black"
-          style={{ letterSpacing: '-0.025em' }}
-        >
-          {typeof value === 'number' ? formatNumber(value) : value}
-        </p>
-        {sub && <p className="text-avs-accent/35 mt-1.5 text-[11px]">{sub}</p>}
-      </div>
-    </div>
-  );
-}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // STATUS BADGE

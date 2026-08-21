@@ -448,7 +448,8 @@ export default function SettingsPage() {
 
     setRevokingAll(true);
     try {
-      await userService.revokeAllSessions();
+      const currentSession = sessions.find((s) => s.current);
+      await userService.revokeAllSessions(currentSession?.id);
       const sessionData = await userService.getSessions();
       setSessions(sessionData);
       addToast({ variant: 'success', title: 'Sessions révoquées', message: 'Toutes les autres sessions distantes ont été clôturées.' });
