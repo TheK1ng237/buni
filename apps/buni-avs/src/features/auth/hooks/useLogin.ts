@@ -3,6 +3,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { useAuthStore } from '@buni/auth';
 import { useRouter } from 'next/navigation';
+import { authService } from '../services/auth.service';
 import type { LoginDto } from '../types';
 
 interface LoginResponse {
@@ -23,19 +24,13 @@ export const useLogin = () => {
 
   const mutation = useMutation({
     mutationFn: async (data: LoginDto) => {
-      const res = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-        credentials: 'include',
-      });
+      const response = await authService.login(data);
 
-      if (!res.ok) {
-        const error = await res.json();
-        throw new Error(error.message || 'Login failed');
+      if (!response.success) {
+        throw new Error(response.message || 'Login failed');
       }
 
-      return res.json() as Promise<LoginResponse>;
+      return response as LoginResponse;
     },
     onSuccess: (data) => {
       setUser(data.data.user);

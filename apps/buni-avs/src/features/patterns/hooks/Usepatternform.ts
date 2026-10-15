@@ -2,9 +2,11 @@ import { useState, useCallback, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import type { ZodSchema } from 'zod';
 import { z } from 'zod';
+import { useToast } from '@buni/ui';
 
 import { Step1Schema, Step2Schema, Step3Schema } from '../schemas/create-pattern.schema';
 import { createPattern, CreatePatternError } from '../usecases/create-pattern.usecase';
+import { updatePattern, UpdatePatternError } from '../usecases/update-pattern.usecase';
 
 import { DEFAULT_COLORS, DEFAULT_SYMBOL } from '../constants/pattern.constants';
 
@@ -19,13 +21,15 @@ import type { Route } from 'next';
 const INITIAL_S1: Partial<Step1Data> = { license: 'cc-by' };
 
 const INITIAL_S2: Partial<Step2Data> = {
-  symbolKeywords: [],
-  symbolUsage: 'ceremonial',
+  symbolism: {
+    keywords: [],
+    usage: 'ceremonial',
+    meaning: '',
+  },
   summary: '',
   history: '',
   technique: '',
   ceremonial: '',
-  symbolMeaning: '',
 };
 
 const INITIAL_S3: Partial<Step3Data> = {
@@ -41,6 +45,7 @@ const INITIAL_S3: Partial<Step3Data> = {
 
 export function usePatternForm(initialPattern?: Pattern) {
   const router = useRouter();
+  const toast = useToast();
 
   const [currentStep, setCurrentStep] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -57,33 +62,37 @@ export function usePatternForm(initialPattern?: Pattern) {
     if (initialPattern) {
       setStep1({
         patternType: initialPattern.type,
-        nameFr: initialPattern.name || '',
         nameLocal: initialPattern.localName || '',
-        nameEn: initialPattern.nameEn || '',
+        nameEn: initialPattern.name || '',
         region: initialPattern.origin?.region || '',
         country: initialPattern.origin?.country || '',
         people: initialPattern.origin?.people,
         flag: initialPattern.origin?.flag,
         coords: initialPattern.origin?.coords,
-        license: initialPattern.license,
+        era: initialPattern.era || '',
+        kingdom: initialPattern.origin?.people,
+        license: (initialPattern.license === 'proprietary' ? 'cc-by' : initialPattern.license) as Step1Data['license'],
       });
 
       setStep2({
-        symbolKeywords: initialPattern.symbolism?.keywords || [],
-        symbolUsage: (initialPattern.symbolism?.usage || 'ceremonial') as any,
+        symbolism: {
+          keywords: initialPattern.symbolism?.keywords || [],
+          usage: initialPattern.symbolism?.usage || 'ceremonial',
+          meaning: initialPattern.symbolism?.meaning || '',
+        },
         summary: initialPattern.summary || '',
         history: initialPattern.history || '',
         technique: initialPattern.technique || '',
         ceremonial: initialPattern.ceremonial || '',
-        symbolMeaning: initialPattern.symbolism?.meaning || '',
-        descFr: '',
-        descEn: '',
       });
 
       setStep3({
         colors: initialPattern.colors || [...DEFAULT_COLORS],
         sources: initialPattern.sources || [],
-        symbols: (initialPattern.symbols || []) as any,
+        symbols: (initialPattern.symbols || []).map((sym) => ({
+          ...sym,
+          imageUrl: sym.imageUrl || undefined,
+        })) as any,
         svgPattern: initialPattern.svgPattern || '',
         artisanQuote: initialPattern.artisanQuote,
       });
@@ -109,9 +118,17 @@ export function usePatternForm(initialPattern?: Pattern) {
         return true;
       }
 
-      const fieldErrors: FieldErrors = {};
+            const fieldErrors: FieldErrors = {};
       result.error.issues.forEach((issue) => {
-        if (issue.path[0]) fieldErrors[String(issue.path[0])] = issue.message;
+        if (issue.path.length > 0) {
+          const path = issue.path.join('.');
+          fieldErrors[path] = issue.message;
+
+          const topKey = String(issue.path[0]);
+          if (!fieldErrors[topKey]) {
+            fieldErrors[topKey] = issue.message;
+          }
+        }
       });
       setErrors(fieldErrors);
       return false;
@@ -134,17 +151,28 @@ export function usePatternForm(initialPattern?: Pattern) {
 
   const addKeyword = useCallback(() => {
     const kw = newKeyword.trim().toLowerCase();
-    const existing = step2.symbolKeywords ?? [];
+    const existing = step2.symbolism?.keywords ?? [];
     if (kw && !existing.includes(kw) && existing.length < 10) {
-      setStep2((f) => ({ ...f, symbolKeywords: [...(f.symbolKeywords ?? []), kw] }));
+      setStep2((f) => ({
+        ...f,
+        symbolism: {
+          meaning: f.symbolism?.meaning ?? '',
+          usage: f.symbolism?.usage ?? '',
+          keywords: [...(f.symbolism?.keywords ?? []), kw],
+        },
+      }));
       setNewKeyword('');
     }
-  }, [newKeyword, step2.symbolKeywords]);
+  }, [newKeyword, step2.symbolism?.keywords]);
 
   const removeKeyword = useCallback((kw: string) => {
     setStep2((f) => ({
       ...f,
-      symbolKeywords: (f.symbolKeywords ?? []).filter((k) => k !== kw),
+      symbolism: {
+        meaning: f.symbolism?.meaning ?? '',
+        usage: f.symbolism?.usage ?? '',
+        keywords: (f.symbolism?.keywords ?? []).filter((k) => k !== kw),
+      },
     }));
   }, []);
 
@@ -241,21 +269,41 @@ export function usePatternForm(initialPattern?: Pattern) {
 
     setLoading(true);
     try {
-      const result = await createPattern(
-        step1 as Step1Data,
-        step2 as Step2Data,
-        step3 as Step3Data,
-        svgFile,
-        step3.symbols ?? []
-      );
+      let result: Pattern;
 
-      const destination = result.id
-        ? `/patternsDashboard/${result.id}?created=true`
-        : '/patternsDashboard?created=true';
+      if (initialPattern) {
+        // Update existing pattern
+        result = await updatePattern(
+          initialPattern.id,
+          step1 as Step1Data,
+          step2 as Step2Data,
+          step3 as Step3Data,
+          svgFile,
+          step3.symbols ?? [],
+          initialPattern.symbols ?? []
+        );
+      } else {
+        // Create new pattern
+        result = await createPattern(
+          step1 as Step1Data,
+          step2 as Step2Data,
+          step3 as Step3Data,
+          svgFile,
+          step3.symbols ?? []
+        );
+      }
 
+      const destination = `/patterns?pattern=${result.id}`;
+      
+      if (initialPattern) {
+        toast.add({ variant: 'success', title: 'Motif modifié', message: 'Le motif a été mis à jour avec succès' });
+      } else {
+        toast.add({ variant: 'success', title: 'Motif créé', message: 'Le nouveau motif a été créé avec succès' });
+      }
+      
       router.push(destination as Route);
     } catch (err) {
-      if (err instanceof CreatePatternError) {
+      if (err instanceof CreatePatternError || err instanceof UpdatePatternError) {
         setErrors({ submit: err.message, ...err.fieldErrors });
       } else {
         setErrors({ submit: 'Une erreur inattendue est survenue. Veuillez réessayer.' });
@@ -263,7 +311,7 @@ export function usePatternForm(initialPattern?: Pattern) {
     } finally {
       setLoading(false);
     }
-  }, [step1, step2, step3, svgFile, router]);
+  }, [step1, step2, step3, svgFile, router, initialPattern]);
 
   // ── Return ─────────────────────────────────────────────────────────────────
 

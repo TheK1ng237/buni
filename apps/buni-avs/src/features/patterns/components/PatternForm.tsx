@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ArrowLeft, ArrowRight, Check, Sparkles } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Check, Sparkles, CheckCircle2, FileText, Hourglass } from 'lucide-react';
 import { useEffect } from 'react';
 
 import { BuniLoader } from '@buni/ui';
@@ -110,12 +110,7 @@ export function PatternForm({ initialPattern }: PatternFormProps) {
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-center justify-center bg-avs-accent/60 backdrop-blur-sm"
           >
-            <div className="avs-card flex flex-col items-center gap-4 p-8">
-              <BuniLoader size={36} showText={false} />
-              <p className="animate-pulse font-mono text-[10px] uppercase tracking-[0.2em] text-avs-accent/40">
-                Envoi en cours…
-              </p>
-            </div>
+            <BuniLoader size={80} showText={false} theme="dark" />
           </motion.div>
         )}
       </AnimatePresence>
@@ -144,7 +139,7 @@ export function PatternForm({ initialPattern }: PatternFormProps) {
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-2">
               <h1 className="font-display text-lg font-black tracking-tight text-avs-accent">
-                Nouveau Motif
+                {initialPattern ? 'Modifier Motif' : 'Nouveau Motif'}
               </h1>
               <AnimatePresence mode="wait">
                 <motion.span
@@ -163,6 +158,7 @@ export function PatternForm({ initialPattern }: PatternFormProps) {
               Étape {currentStep + 1} / {FORM_STEPS.length} — {FORM_STEPS[currentStep]?.desc}
             </p>
           </div>
+
         </div>
       </header>
 
@@ -257,16 +253,22 @@ export function PatternForm({ initialPattern }: PatternFormProps) {
                       onClick={() => void submit()}
                       disabled={loading}
                       aria-busy={loading}
-                      className="avs-btn-primary group relative flex items-center gap-2 overflow-hidden disabled:cursor-not-allowed disabled:opacity-60"
+                      className="avs-btn-primary group relative flex items-center gap-2 overflow-hidden disabled:cursor-not-allowed disabled:opacity-70"
                     >
                       <span
                         className="pointer-events-none absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/15 to-transparent transition-transform duration-700 group-hover:translate-x-full"
                         aria-hidden
                       />
-                      {loading
-                        ? <><BuniLoader size={16} showText={false} /> Envoi…</>
-                        : <><Sparkles size={13} /> Soumettre pour révision</>
-                      }
+                      {loading ? (
+                        <>
+                          <BuniLoader size={16} showText={false} theme="dark" />
+                          <span className="animate-pulse">Envoi en cours…</span>
+                        </>
+                      ) : (
+                        <>
+                          <Sparkles size={13} /> {initialPattern ? 'Mettre à jour le motif' : 'Soumettre pour révision'}
+                        </>
+                      )}
                     </button>
                   )}
                 </div>
@@ -281,6 +283,8 @@ export function PatternForm({ initialPattern }: PatternFormProps) {
             step2={step2}
             step3={step3}
             previewCSS={previewCSS}
+            svgFile={svgFile}
+            initialPattern={initialPattern}
           />
         </div>
       </div>

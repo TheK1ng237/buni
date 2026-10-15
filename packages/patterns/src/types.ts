@@ -13,7 +13,7 @@ export interface PatternColor {
 export interface PatternSymbolism {
   meaning: string;
   keywords?: string[];
-  usage: 'ceremonial' | 'daily' | 'royal' | 'spiritual' | 'universal';
+  usage:string ;
 }
 
 export interface PatternSymbol {
@@ -55,7 +55,6 @@ export interface Pattern {
 
   name: string;
   localName?: string;
-  nameEn?: string;
 
   imgUrl: string;
   type: PatternType;
@@ -92,6 +91,7 @@ export interface Pattern {
 
   createdAt?: string;
   updatedAt?: string;
+  createdById?: string;
 }
 
 // ─────────────────────────────────────────────────────────────

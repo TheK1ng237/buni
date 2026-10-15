@@ -1,0 +1,324 @@
+'use client';
+
+import { useState, useEffect, useMemo } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useNavSpaces } from './nav-data';
+import { useTranslations } from '@/i18n';
+import { Route } from 'next';
+
+const FAVORITES_KEY = 'avs-docs-favorites';
+const HISTORY_KEY = 'avs-docs-history';
+const HISTORY_LIMIT = 5;
+
+function useLocalList(key: string) {
+  const [items, setItems] = useState<string[]>([]);
+  useEffect(() => {
+    try {
+      const raw = window.localStorage.getItem(key);
+      if (raw) setItems(JSON.parse(raw));
+    } catch {
+      /* ignore malformed storage */
+    }
+  }, [key]);
+  const persist = (next: string[]) => {
+    setItems(next);
+    try {
+      window.localStorage.setItem(key, JSON.stringify(next));
+    } catch {
+      /* storage unavailable */
+    }
+  };
+  return [items, persist] as const;
+}
+
+export function DocsSidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const t = useTranslations('documentation.nav.sidebar');
+  const pathname = usePathname();
+  const [expanded, setExpanded] = useState<Record<string, boolean>>({});
+  const [favorites, setFavorites] = useLocalList(FAVORITES_KEY);
+  const [history] = useLocalList(HISTORY_KEY);
+  const [tab, setTab] = useState<'nav' | 'favoris' | 'historique'>('nav');
+  const NAV_SPACES = useNavSpaces();
+
+  // Track visited pages for the "récemment consultés" list
+  useEffect(() => {
+    if (!pathname?.startsWith('/documentation')) return;
+    try {
+      const raw = window.localStorage.getItem(HISTORY_KEY);
+      const prev: string[] = raw ? JSON.parse(raw) : [];
+      const next = [pathname, ...prev.filter((p) => p !== pathname)].slice(0, HISTORY_LIMIT);
+      window.localStorage.setItem(HISTORY_KEY, JSON.stringify(next));
+    } catch {
+      /* storage unavailable */
+    }
+  }, [pathname]);
+
+  function toggleFavorite(href: string) {
+    setFavorites(
+      favorites.includes(href) ? favorites.filter((f) => f !== href) : [href, ...favorites]
+    );
+  }
+
+  const activeSpaceSlug = useMemo(() => pathname?.split('/')[2], [pathname]);
+
+  const content = (
+    <div className="flex h-full flex-col" style={{ background: 'var(--doc-sidebar, #faf8f5)' }}>
+      {/* Tabs */}
+      <div
+        className="flex gap-1 p-2"
+        style={{ borderBottom: '1px solid var(--doc-border, rgba(29,29,27,0.09))' }}
+      >
+        {(
+          [
+            ['nav', 'pi-list', t('tabs.nav')],
+            ['favoris', 'pi-star', t('tabs.favorites')],
+            ['historique', 'pi-clock', t('tabs.history')],
+          ] as const
+        ).map(([id, iconClass, label]) => (
+          <button
+            key={id}
+            onClick={() => setTab(id)}
+            aria-current={tab === id}
+            className="flex flex-1 items-center justify-center gap-1.5 rounded-lg py-2 text-[11px] font-semibold transition-colors"
+            style={
+              tab === id
+                ? {
+                    background: 'var(--doc-primary-10, rgba(192,87,62,0.10))',
+                    color: 'var(--doc-primary, #C0573E)',
+                  }
+                : { color: 'var(--doc-hint, rgba(29,29,27,0.32))' }
+            }
+            onMouseEnter={(e) => {
+              if (tab !== id) e.currentTarget.style.color = 'var(--doc-muted, rgba(29,29,27,0.52))';
+            }}
+            onMouseLeave={(e) => {
+              if (tab !== id) e.currentTarget.style.color = 'var(--doc-hint, rgba(29,29,27,0.32))';
+            }}
+          >
+            <i className={`pi ${iconClass}`} style={{ fontSize: '11px' }} aria-hidden />
+            <span className="hidden xl:inline">{label}</span>
+          </button>
+        ))}
+      </div>
+
+      <nav
+        className="doc-scroll bg-avs-secondary flex-1 overflow-y-auto p-3"
+        style={{
+          scrollbarWidth: 'thin',
+          scrollbarColor: 'var(--doc-border-md, rgba(29,29,27,0.14)) transparent',
+        }}
+        aria-label={t('aria.navigation')}
+      >
+        {tab === 'nav' &&
+          NAV_SPACES.map((space) => {
+            const isExpanded = expanded[space.slug] ?? space.slug === activeSpaceSlug;
+            return (
+              <div key={space.slug} className="mb-0.5">
+                <button
+                  onClick={() => setExpanded((e) => ({ ...e, [space.slug]: !isExpanded }))}
+                  className={`flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-left text-sm font-semibold transition-colors ${
+                    space.slug === activeSpaceSlug
+                      ? 'text-avs-primary'
+                      : 'text-avs-accent/60 hover:text-avs-accent'
+                  } `}
+                >
+                  <span
+                    className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md"
+                    style={{ background: `${space.color}14`, color: space.color }}
+                  >
+                    <i className={`pi pi-${space.icon}`} style={{ fontSize: '11px' }} />
+                  </span>
+                  <span className="flex-1 truncate">{space.label}</span>
+                  {/* <i
+                    className="pi pi-chevron-right transition-transform"
+                    style={{
+                      fontSize: '9px',
+                      color: 'var(--doc-hint, rgba(29,29,27,0.32))',
+                      transform: isExpanded ? 'rotate(90deg)' : 'none',
+                    }}
+                    aria-hidden
+                  /> */}
+                  <i
+                    className={`pi pi-chevron-right text-[9px] transition-transform ${
+                      isExpanded ? 'rotate-90' : 'none'
+                    }`}
+                    aria-hidden
+                  />
+                </button>
+
+                <AnimatePresence initial={false}>
+                  {isExpanded && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                      className="border-avs-accent/9 ml-9 overflow-hidden border-l-1 pl-3"
+                    >
+                      {space.pages.map((p) => {
+                        const href = `/documentation/${space.slug}/${p.slug}`;
+                        const isActive = pathname === href;
+                        return (
+                          <div key={p.slug} className="group flex items-center">
+                            <Link
+                              href={href as Route}
+                              className={`flex-1 truncate rounded-lg px-2 py-1.5 text-[13px] transition-colors ${
+                                isActive
+                                  ? 'text-avs-primary bg-avs-primary/10'
+                                  : 'text-avs-accent/60 hover:text-avs-accent'
+                              }`}
+                            >
+                              {p.title}
+                            </Link>
+                            <button
+                              onClick={() => toggleFavorite(href)}
+                              aria-label={
+                                favorites.includes(href)
+                                  ? t('aria.removeFromFavorites')
+                                  : t('aria.addToFavorites')
+                              }
+                              className="px-1.5 opacity-0 transition-opacity group-hover:opacity-100"
+                              style={
+                                favorites.includes(href)
+                                  ? { opacity: 1, color: 'var(--doc-primary, #C0573E)' }
+                                  : { color: 'var(--doc-hint, rgba(29,29,27,0.32))' }
+                              }
+                            >
+                              <i
+                                className={`pi pi-star${favorites.includes(href) ? '-fill' : ''}`}
+                                style={{ fontSize: '10px' }}
+                              />
+                            </button>
+                          </div>
+                        );
+                      })}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
+
+        {tab === 'favoris' &&
+          (favorites.length === 0 ? (
+            <p
+              className="px-3 py-6 text-center text-[13px]"
+              style={{ color: 'var(--doc-hint, rgba(29,29,27,0.32))' }}
+            >
+              {t('emptyFavorites')}
+            </p>
+          ) : (
+            favorites.map((href) => (
+              <SidebarLink key={href} href={href} active={pathname === href} />
+            ))
+          ))}
+
+        {tab === 'historique' &&
+          (history.length === 0 ? (
+            <p
+              className="px-3 py-6 text-center text-[13px]"
+              style={{ color: 'var(--doc-hint, rgba(29,29,27,0.32))' }}
+            >
+              {t('emptyHistory')}
+            </p>
+          ) : (
+            history.map((href) => <SidebarLink key={href} href={href} active={pathname === href} />)
+          ))}
+      </nav>
+
+      {/* Quick access footer */}
+      <div
+        className="space-y-0.5 p-3 border-t-1 border-avs-accent/9 bg-avs-secondary"
+        
+      >
+        {[
+          {
+            href: 'https://github.com/avs-standard',
+            label: t('quickAccess.github'),
+            icon: 'pi-github',
+            external: true,
+          },
+          { href: '/documentation/composants', label: t('quickAccess.components'), icon: 'pi-box' },
+          { href: '/documentation/icones', label: t('quickAccess.icons'), icon: 'pi-sun' },
+        ].map(({ href, label, icon, external }) => (
+          <a
+            key={href}
+            href={href}
+            target={external ? '_blank' : undefined}
+            rel={external ? 'noopener noreferrer' : undefined}
+            className="flex items-center gap-2 rounded-xl px-3 py-2 text-xs font-medium transition-colors hover:text-avs-primary text-avs-accent/32"
+            
+          >
+            <i className={`pi ${icon}`} style={{ fontSize: '12px' }} />
+            {label}
+            {external && (
+              <i className="pi pi-external-link ml-auto opacity-40" style={{ fontSize: '9px' }} />
+            )}
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+
+  return (
+    <>
+      {/* Desktop — persistent */}
+      <aside
+        className=" fixed top-0 left-0 hidden h-screen w-72 shrink-0 lg:block z-20"
+        style={{ borderRight: '1px solid var(--doc-border, rgba(29,29,27,0.09))' }}
+      >
+        {content}
+      </aside>
+
+      {/* Mobile — slide-over */}
+      <AnimatePresence>
+        {open && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-40 lg:hidden"
+              style={{ background: 'var(--doc-hint, rgba(29,29,27,0.32))' }}
+              onClick={onClose}
+              aria-hidden
+            />
+            <motion.aside
+              initial={{ x: '-100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '-100%' }}
+              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+              className="fixed inset-y-0 left-0 z-50 w-80 max-w-[85vw] lg:hidden"
+              style={{ borderRight: '1px solid var(--doc-border, rgba(29,29,27,0.09))' }}
+              role="dialog"
+              aria-modal="true"
+              aria-label={t('aria.navigation')}
+            >
+              {content}
+            </motion.aside>
+          </>
+        )}
+      </AnimatePresence>
+    </>
+  );
+}
+
+function SidebarLink({ href, active }: { href: string; active: boolean }) {
+  const title = href.split('/').pop()?.replace(/-/g, ' ') ?? href;
+  return (
+    <Link
+      href={href as Route}
+      className={`
+        block truncate rounded-lg px-3 py-2 text-[13px] capitalize transition-colors
+        ${active 
+          ? 'bg-[var(--doc-primary-10,rgba(192,87,62,0.10))] font-semibold text-[var(--doc-primary,#C0573E)]' 
+          : 'text-[var(--doc-muted,rgba(29,29,27,0.52))] hover:text-[var(--doc-text,#1D1D1B)]'
+        }
+      `}
+    >
+      {title}
+    </Link>
+  );
+}

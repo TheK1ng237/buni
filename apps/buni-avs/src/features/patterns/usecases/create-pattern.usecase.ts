@@ -1,6 +1,7 @@
 import { patternRepository } from '../repositories/pattern.repository';
 import { toFormData, toCreatePayload } from '../mappers/pattern.mapper';
-import type { Pattern, Step1Data, Step2Data, Step3Data, PatternSymbol } from '../types';
+import type { Pattern, Step1Data, Step2Data, Step3Data} from '../types';
+import { PatternSymbol } from '@buni/patterns';
 
 export class CreatePatternError extends Error {
   constructor(
@@ -22,8 +23,10 @@ export async function createPattern(
 ): Promise<Pattern> {
   try {
     const payload = toCreatePayload(step1, step2, step3);
+    console.log("payload....................",payload)
     const formData = toFormData(payload, svgFile, symbols);
 
+    console.log("formData....................",JSON.stringify(formData))
     return await patternRepository.create(formData);
   } catch (error) {
     console.error('Failed to create pattern:', error);

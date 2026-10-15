@@ -8,7 +8,7 @@ import type {
   Pattern,
   PatternDto,
 } from '../types';
-import { CSS_PATTERN_MAP, PatternOrigin, PatternSymbolism } from '@buni/patterns';
+import { CSS_PATTERN_MAP, PatternOrigin, PatternSymbolism, PatternSymbol } from '@buni/patterns';
 import type { UploadablePatternSymbol } from '../types/uploads/pattern.upload';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -22,13 +22,11 @@ import type { UploadablePatternSymbol } from '../types/uploads/pattern.upload';
 export function toCreatePayload(s1: Step1Data, s2: Step2Data, s3: Step3Data): CreatePatternPayload {
   return {
     // ── Step 1 ──────────────────────────────────────────────────────────────
-    nameFr: s1.nameFr,
-
     nameEn: s1.nameEn,
 
     nameLocal: s1.nameLocal,
 
-    type: s1.patternType,
+    patternType: s1.patternType,
 
     region: s1.region,
 
@@ -47,23 +45,15 @@ export function toCreatePayload(s1: Step1Data, s2: Step2Data, s3: Step3Data): Cr
     era: s1.era,
 
     // ── Step 2 ──────────────────────────────────────────────────────────────
-    descFr: s2.descFr,
-
-    descEn: s2.descEn,
-
     summary: s2.summary,
 
     history: s2.history,
 
     technique: s2.technique,
 
-    symbolMeaning: s2.symbolMeaning,
-
-    symbolUsage: s2.symbolUsage,
-
     ceremonial: s2.ceremonial,
 
-    symbolKeywords: s2.symbolKeywords,
+    symbolism: s2.symbolism,
 
     // ── Step 3 ──────────────────────────────────────────────────────────────
     colors: s3.colors,
@@ -74,9 +64,43 @@ export function toCreatePayload(s1: Step1Data, s2: Step2Data, s3: Step3Data): Cr
 
     artisanQuote: s3.artisanQuote,
 
-    // Remove File before serialization
-    symbols: s3.symbols.map(({ image: _image, ...rest }) => rest),
+    // Remove File and blob URLs before serialization
+    symbols: s3.symbols.map(({ image: _image, imageUrl: _imageUrl, ...rest }) => {
+      // Only keep imageUrl if it's a valid Supabase URL (not blob, not empty)
+      const validImageUrl = _imageUrl && !_imageUrl.startsWith('blob:') && _imageUrl.trim() !== '' ? _imageUrl : undefined;
+      return validImageUrl ? { ...rest, imageUrl: validImageUrl } : rest;
+    }),
   };
+}
+
+/**
+ * Converts validated form steps into
+ * a typed CreatePatternPayload for update,
+ * preserving existing symbol URLs.
+ */
+export function toUpdatePayload(
+  s1: Step1Data,
+  s2: Step2Data,
+  s3: Step3Data,
+  existingSymbols?: PatternSymbol[]
+): CreatePatternPayload {
+  const payload = toCreatePayload(s1, s2, s3);
+
+  // Preserve existing symbol URLs if no new image is provided
+  if (existingSymbols && existingSymbols.length > 0) {
+    payload.symbols = payload.symbols.map((symbol, index) => {
+      const existingSymbol = existingSymbols[index];
+      if (existingSymbol && existingSymbol.imageUrl) {
+        
+        if (!symbol.imageUrl || symbol.imageUrl.startsWith('blob:')) {
+          return { ...symbol, imageUrl: existingSymbol.imageUrl };
+        }
+      }
+      return symbol;
+    });
+  }
+
+  return payload;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -96,27 +120,19 @@ export function toFormData(
   // ── Scalar fields ────────────────────────────────────────────────────────
 
   const scalars: (keyof CreatePatternPayload)[] = [
-    'nameFr',
     'nameEn',
     'nameLocal',
 
-    'type',
+    'patternType',
 
     'region',
     'country',
 
     'license',
 
-    'symbolUsage',
-
-    'descFr',
-    'descEn',
-
     'summary',
     'history',
     'technique',
-
-    'symbolMeaning',
 
     'ceremonial',
 
@@ -135,10 +151,7 @@ export function toFormData(
     const value = payload[key];
 
     if (value !== undefined && value !== null) {
-      // backend compatibility
-      const fieldName = key === 'type' ? 'patternType' : key;
-
-      fd.append(fieldName, String(value));
+      fd.append(key, String(value));
     }
   }
 
@@ -148,7 +161,9 @@ export function toFormData(
     fd.append('coords', JSON.stringify(payload.coords));
   }
 
-  fd.append('symbolKeywords', JSON.stringify(payload.symbolKeywords));
+  if (payload.symbolism) {
+    fd.append('symbolism', JSON.stringify(payload.symbolism));
+  }
 
   fd.append('colors', JSON.stringify(payload.colors));
 

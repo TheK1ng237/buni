@@ -19,6 +19,13 @@ apiClient.interceptors.response.use(
   r => r,
   async (err: AxiosError) => {
     if (err.response?.status === 401) useAuthStore.getState().logout();
+
+    // Extract error message from backend response
+    const backendMessage = err.response?.data as { message?: string } | undefined;
+    if (backendMessage?.message) {
+      err.message = backendMessage.message;
+    }
+
     return Promise.reject(err);
   }
 );
@@ -38,7 +45,17 @@ export async function put<T, D = unknown>(url: string, data?: D): Promise<T> {
   return res.data;
 }
 
+export async function patch<T, D = unknown>(url: string, data?: D): Promise<T> {
+  const res = await apiClient.patch<T>(url, data);
+  return res.data;
+}
+
 export async function del<T>(url: string): Promise<T> {
   const res = await apiClient.delete<T>(url);
+  return res.data;
+}
+
+export async function download(url: string): Promise<Blob> {
+  const res = await apiClient.get(url, { responseType: 'blob' });
   return res.data;
 }

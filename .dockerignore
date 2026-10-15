@@ -1,0 +1,16 @@
+# Dépendances locales (Docker va installer les siennes)
+node_modules
+**/node_modules
+
+# Caches et builds locaux à ne pas envoyer
+.next
+**/.next
+dist
+build
+.turbo
+
+# Fichiers système et Git
+.git
+.gitignore
+.dockerignore
+README.md

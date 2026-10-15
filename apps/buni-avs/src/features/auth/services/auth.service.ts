@@ -5,6 +5,7 @@ import type { LoginDto, RegisterDto, User } from '../types';
 
 export interface AuthResponse {
   success: boolean;
+  message?: string;
   data: {
     user: User;
     tokens: {
@@ -35,6 +36,14 @@ export const authService = {
     } catch (err) {
       console.warn('Logout failed:', err);
     }
+  },
+
+  async googleLogin(accessToken: string) {
+    return post<AuthResponse>('/api/v1/auth/google', { accessToken });
+  },
+
+  async githubLogin(accessToken: string) {
+    return post<AuthResponse>('/api/v1/auth/github', { accessToken });
   },
 
   async getMe() {

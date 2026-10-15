@@ -1,6 +1,5 @@
 
-
-import { post, put, del, get } from '@buni/api';
+import { post, patch, del, get, download } from '@buni/api';
 
 import type {
   PatternDto,
@@ -44,7 +43,7 @@ export const patternService = {
     data: unknown
   ) {
 
-    return put<{ data: PatternDto }>(
+    return patch<{ data: PatternDto }>(
       `/api/v1/patterns/${id}`,
       data
     );
@@ -58,31 +57,27 @@ export const patternService = {
   },
 
   async feature(id: string) {
+    return patch<{ data: PatternDto }>(
+      `/api/v1/patterns/${id}/featured`,
+      { featured: true }
+    );
+  },
 
-  return post<{ data: PatternDto }>(
-    `/api/v1/patterns/${id}/feature`
-  );
-},
+  async unfeature(id: string) {
+    return patch<{ data: PatternDto }>(
+      `/api/v1/patterns/${id}/featured`,
+      { featured: false }
+    );
+  },
 
-async unfeature(id: string) {
+  async updateStatus(id: string, status: string) {
+    return patch<{ data: PatternDto }>(
+      `/api/v1/patterns/${id}/status`,
+      { status: status.toUpperCase() }
+    );
+  },
 
-  return post<{ data: PatternDto }>(
-    `/api/v1/patterns/${id}/unfeature`
-  );
-},
-
-async publish(id: string) {
-
-  return post<{ data: PatternDto }>(
-    `/api/v1/patterns/${id}/publish`
-  );
-},
-
-async unpublish(id: string) {
-
-  return post<{ data: PatternDto }>(
-    `/api/v1/patterns/${id}/unpublish`
-  );
-},
-
+  async download(id: string) {
+    return download(`/api/v1/patterns/${id}/download`);
+  },
 };

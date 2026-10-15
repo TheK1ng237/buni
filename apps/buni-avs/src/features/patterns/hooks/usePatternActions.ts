@@ -3,87 +3,17 @@
 // =============================================================================
 // Hook — usePatternActions
 // Gère les actions sur les patterns avec optimistic updates et notifications
-// - publish / unpublish
 // - feature / unfeature
 // - Gestion automatique des queries
 // =============================================================================
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import type { Pattern } from '../types';
+import type { Pattern, PatternStatus } from '../types';
 import {
-  publishPattern,
-  unpublishPattern,
   featurePattern,
   unfeaturePattern,
 } from '../usecases/pattern-actions.usecase';
 import { patternKeys } from './usePatterns';
-
-export function usePublishPattern() {
-  const qc = useQueryClient();
-
-  return useMutation({
-    mutationFn: publishPattern,
-    onMutate: async (id) => {
-      // Annuler les requêtes en cours
-      await qc.cancelQueries({ queryKey: patternKeys.all });
-
-      // Sauvegarder l'état précédent
-      const previousPatterns = qc.getQueryData<Pattern[]>(patternKeys.all);
-
-      // Mise à jour optimiste
-      qc.setQueryData(patternKeys.all, (old: Pattern[] | undefined) =>
-        old?.map((p) =>
-          p.id === id ? { ...p, isPublished: true, updatedAt: new Date().toISOString() } : p
-        )
-      );
-
-      return { previousPatterns };
-    },
-    onError: (_err, _id, context) => {
-      // Rollback en cas d'erreur
-      if (context?.previousPatterns) {
-        qc.setQueryData(patternKeys.all, context.previousPatterns);
-      }
-    },
-    onSuccess: () => {
-      // Invalider les queries pour forcer un refetch
-      void qc.invalidateQueries({ queryKey: patternKeys.all });
-      void qc.invalidateQueries({ queryKey: patternKeys.featured() });
-    },
-  });
-}
-
-/**
- * Hook pour dépublier un pattern
- */
-export function useUnpublishPattern() {
-  const qc = useQueryClient();
-
-  return useMutation({
-    mutationFn: unpublishPattern,
-    onMutate: async (id) => {
-      await qc.cancelQueries({ queryKey: patternKeys.all });
-      const previousPatterns = qc.getQueryData<Pattern[]>(patternKeys.all);
-
-      qc.setQueryData(patternKeys.all, (old: Pattern[] | undefined) =>
-        old?.map((p) =>
-          p.id === id ? { ...p, isPublished: false, updatedAt: new Date().toISOString() } : p
-        )
-      );
-
-      return { previousPatterns };
-    },
-    onError: (_err, _id, context) => {
-      if (context?.previousPatterns) {
-        qc.setQueryData(patternKeys.all, context.previousPatterns);
-      }
-    },
-    onSuccess: () => {
-      void qc.invalidateQueries({ queryKey: patternKeys.all });
-      void qc.invalidateQueries({ queryKey: patternKeys.featured() });
-    },
-  });
-}
 
 /**
  * Hook pour mettre en avant un pattern
@@ -150,28 +80,6 @@ export function useUnfeaturePattern() {
 }
 
 /**
- * Hook composé pour toggle publish/unpublish
- * Utilité : Au lieu de 2 hooks, un seul qui fait les 2
- */
-export function useTogglePublish() {
-  const publish = usePublishPattern();
-  const unpublish = useUnpublishPattern();
-
-  return {
-    mutate: (id: string, shouldPublish: boolean) => {
-      if (shouldPublish) {
-        return publish.mutate(id);
-      } else {
-        return unpublish.mutate(id);
-      }
-    },
-    isLoading: publish.isPending || unpublish.isPending,
-    isError: publish.isError || unpublish.isError,
-    error: publish.error || unpublish.error,
-  };
-}
-
-/**
  * Hook composé pour toggle feature/unfeature
  */
 export function useToggleFeature() {
@@ -190,4 +98,36 @@ export function useToggleFeature() {
     isError: feature.isError || unfeature.isError,
     error: feature.error || unfeature.error,
   };
+}
+
+/**
+ * Hook pour mettre à jour le statut d'un pattern
+ */
+export function useUpdateStatus() {
+  const qc = useQueryClient();
+  const { updatePatternStatus } = require('../usecases/pattern-actions.usecase');
+
+  return useMutation({
+    mutationFn: ({ id, status }: { id: string; status: PatternStatus }) => updatePatternStatus(id, status),
+    onMutate: async ({ id, status }) => {
+      await qc.cancelQueries({ queryKey: patternKeys.all });
+      const previousPatterns = qc.getQueryData<Pattern[]>(patternKeys.all);
+
+      qc.setQueryData(patternKeys.all, (old: Pattern[] | undefined) =>
+        old?.map((p) =>
+          p.id === id ? { ...p, status, updatedAt: new Date().toISOString() } : p
+        )
+      );
+
+      return { previousPatterns };
+    },
+    onError: (_err, _vars, context) => {
+      if (context?.previousPatterns) {
+        qc.setQueryData(patternKeys.all, context.previousPatterns);
+      }
+    },
+    onSuccess: () => {
+      void qc.invalidateQueries({ queryKey: patternKeys.all });
+    },
+  });
 }

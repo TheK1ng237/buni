@@ -1,0 +1,42 @@
+services:
+  # 🚀 1. MODE DÉVELOPPEMENT (Hot Reload + Fast Refresh)
+  web-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: installer # 💡 On s'arrête au stade où pnpm et les devDependencies sont prêts
+      args:
+        APP: "@buni/buni-avs"
+        APP_DIR: "buni-avs"
+        NODE_VERSION: 22.17.0
+    container_name: buni-web-dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules # Protège les packages installés dans le conteneur
+      - /app/apps/buni-avs/.next # Évite les conflits de cache Next.js local/conteneur
+    environment:
+      NODE_ENV: development
+      NEXT_PUBLIC_API_URL: http://host.docker.internal:4000
+      DEBUG: "*"
+    command: pnpm --filter @buni/buni-avs dev # 💡 Force l'exécution du serveur de dev
+    restart: on-failure
+
+  # 📦 2. MODE PROD LOCAL (Test de l'image standalone finale)
+  web-prod:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      # 💡 Pas de 'target' ici : on laisse le Dockerfile compiler le build standalone complet
+      args:
+        APP: "@buni/buni-avs"
+        APP_DIR: "buni-avs"
+        NODE_VERSION: 22.17.0
+    container_name: buni-web-prod
+    ports:
+      - "3001:3000" 
+    environment:
+      NODE_ENV: production
+      NEXT_PUBLIC_API_URL: http://host.docker.internal:4000
+    restart: on-failure
