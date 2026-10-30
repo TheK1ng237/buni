@@ -29,7 +29,8 @@ import { useTranslations } from '@/i18n';
 
 import { Route } from 'next';
 import type { Pattern, PatternStatus, PatternSymbol } from '@buni/patterns';
-import { useFeaturePattern, useToggleFeature, useUnfeaturePattern } from '@/features/patterns/hooks/usePatternActions';
+import { useFeaturePattern, useToggleFeature, useUnfeaturePattern, useDeletePattern } from '@/features/patterns/hooks/usePatternActions';
+import { usePatterns } from '@/features/patterns/hooks/usePatterns';
 import { mapPatternDtoToModel } from '@/features/patterns/mappers/pattern.mapper';
 import { patternService } from '@/features/patterns/services/pattern.service';
 
@@ -88,7 +89,7 @@ function getStatusFilters(t: any): { value: PatternStatus | 'all'; label: string
 function StatusBadge({ status, t }: { status: PatternStatus; t: any }) {
   const normalizedStatus = status?.toLowerCase() as PatternStatus;
 
-  const { label, dot, pill } = getStatusConfig(t)[normalizedStatus];
+  const { label, dot, pill } = getStatusConfig(t)[normalizedStatus] ?? getStatusConfig(t).draft;
   return (
     <span
       className={`inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1 font-mono text-[9px] font-black tracking-[0.14em] uppercase ${pill}`}
@@ -253,7 +254,9 @@ function EmptyState({ search, t }: { search: string; t: any }) {
 export default function MyPatternsPage() {
   const t = useTranslations('dashboard.patterns');
   const { user, isAdmin, isCurator } = useAuth();
-  const [patterns, setPatterns] = useState<Pattern[]>([]);
+  const { data: rawPatterns = [], isLoading } = usePatterns();
+  const deleteMutation = useDeletePattern();
+
   const [search, setSearch] = useState('');
   const [statusF, setStatusF] = useState<PatternStatus | 'all'>('all');
   const [sortKey, setSortKey] = useState<SortKey>('updatedAt');
@@ -286,38 +289,19 @@ export default function MyPatternsPage() {
         return 'draft';
     }
   };
-  useEffect(() => {
-    const loadPatterns = async () => {
-      try {
-        const response = await patternService.list();
-        const rawData = response.data.data;
-        
-        let allPatterns = rawData.map((p: any) => {
-          const pattern = mapPatternDtoToModel(p);
 
-          return {
-            ...pattern,
-            status: normalizeStatus(pattern.status),
-          };
-        });
+  const patterns = useMemo(() => {
+    let allPatterns = rawPatterns.map((p) => ({
+      ...p,
+      status: normalizeStatus(p.status),
+    }));
 
-        // Filtrer par utilisateur si pas admin
-        if (!isAdmin && user) {
-          allPatterns = allPatterns.filter((_: any, index: number) => {
-            const createdById = rawData[index]?.createdById;
-            return createdById === user.id;
-          });
-        }
+    if (!isAdmin && user) {
+      allPatterns = allPatterns.filter((p: any) => p.authorId === user.id || p.createdById === user.id);
+    }
 
-        setPatterns(allPatterns);
-      } catch (error) {
-        console.error(error);
-        // setPatterns(PATTERNS);
-      }
-    };
-
-    loadPatterns();
-  }, [isAdmin, isCurator, user]);
+    return allPatterns;
+  }, [rawPatterns, isAdmin, user]);
 
   const stats = useMemo(
     () => ({
@@ -374,13 +358,14 @@ export default function MyPatternsPage() {
   const confirmDelete = async () => {
     if (!deleteModal.patternId) return;
 
-    try {
-      await patternService.delete(deleteModal.patternId);
-      setPatterns((ps) => ps.filter((p) => p.id !== deleteModal.patternId));
-      setDeleteModal({ open: false, patternId: null, patternName: '' });
-    } catch (error) {
-      console.error('Erreur lors de la suppression:', error);
-    }
+    deleteMutation.mutate(deleteModal.patternId, {
+      onSuccess: () => {
+        setDeleteModal({ open: false, patternId: null, patternName: '' });
+      },
+      onError: (error) => {
+        console.error('Erreur lors de la suppression:', error);
+      },
+    });
   };
 
   const handleToggleFeatured = (id: string, shouldFeature: boolean) => {

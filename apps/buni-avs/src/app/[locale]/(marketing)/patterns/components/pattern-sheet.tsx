@@ -10,6 +10,8 @@ import { downloadPattern } from '@/features/patterns/usecases/download-pattern.u
 import { useToast, BuniLoader } from '@buni/ui';
 import { formatNumber } from '@buni/utils';
 
+import { patternRepository } from '@/features/patterns/repositories/pattern.repository';
+
 const SECTIONS = [
   { id: 'histoire', label: 'Histoire' },
   { id: 'technique', label: 'Technique' },
@@ -24,8 +26,16 @@ export function PatternSheet({ pattern }: { pattern: any }) {
   const [activeSymbol, setActiveSymbol] = useState<any>(null);
   const [activeSection, setActiveSection] = useState<SectionId>('histoire');
   const [isDownloading, setIsDownloading] = useState(false);
+  const [downloadCount, setDownloadCount] = useState<number>(pattern.downloads || 0);
+  const [viewCount, setViewCount] = useState<number>(pattern.views || 0);
+
   const contentRef = useRef<HTMLDivElement>(null);
   const { add } = useToast();
+
+  useEffect(() => {
+    setDownloadCount(pattern.downloads || 0);
+    setViewCount(pattern.views || 0);
+  }, [pattern.id, pattern.downloads, pattern.views]);
 
   const handleDownload = async (id: string, slug: string) => {
     if (isDownloading) return;
@@ -42,10 +52,12 @@ export function PatternSheet({ pattern }: { pattern: any }) {
       window.URL.revokeObjectURL(url);
       document.body.removeChild(a);
 
+      setDownloadCount((prev) => prev + 1);
+
       add({
         variant: 'success',
         title: 'Téléchargement réussi',
-        message: `Le pattern ${pattern.name} a été téléchargé avec succès.`,
+        message: `Le pattern ${pattern.name} a été téléchargé au format .SVG avec succès.`,
       });
     } catch (error) {
       console.error('Download failed:', error);
@@ -63,6 +75,16 @@ export function PatternSheet({ pattern }: { pattern: any }) {
     contentRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
     setActiveSymbol(null);
     setActiveSection('histoire');
+
+    // Dédoublonnage de vue avec sessionStorage
+    if (pattern?.id && typeof window !== 'undefined') {
+      const storageKey = `avs_viewed_${pattern.id}`;
+      if (!sessionStorage.getItem(storageKey)) {
+        sessionStorage.setItem(storageKey, 'true');
+        patternRepository.trackView(pattern.id).catch(() => null);
+        setViewCount((prev) => prev + 1);
+      }
+    }
   }, [pattern.id]);
 
   return (
@@ -95,10 +117,10 @@ export function PatternSheet({ pattern }: { pattern: any }) {
         <div className="absolute top-4 right-4 flex flex-col items-end gap-1.5 sm:top-6 sm:right-6 sm:gap-2">
           <span className="text-avs-secondary flex items-center gap-1.5 rounded-lg bg-black/30 px-2.5 py-1 font-mono text-[9px] font-semibold backdrop-blur-md sm:gap-2 sm:px-3 sm:py-1.5 sm:text-[10px]">
             <i className="pi pi-download" style={{ fontSize: '9px' }} />{' '}
-            {formatNumber(pattern.downloads)}
+            {formatNumber(downloadCount)}
           </span>
           <span className="text-avs-secondary flex items-center gap-1.5 rounded-lg bg-black/30 px-2.5 py-1 font-mono text-[9px] font-semibold backdrop-blur-md sm:gap-2 sm:px-3 sm:py-1.5 sm:text-[10px]">
-            <i className="pi pi-eye" style={{ fontSize: '9px' }} /> {formatNumber(pattern.views)}{' '}
+            <i className="pi pi-eye" style={{ fontSize: '9px' }} /> {formatNumber(viewCount)}{' '}
             vues
           </span>
         </div>

@@ -12,3 +12,7 @@ export async function unfeaturePattern(id: string): Promise<Pattern> {
 export async function updatePatternStatus(id: string, status: string): Promise<Pattern> {
   return patternRepository.updateStatus(id, status);
 }
+
+export async function deletePattern(id: string): Promise<void> {
+  return patternRepository.delete(id);
+}
