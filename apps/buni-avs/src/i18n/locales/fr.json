@@ -721,6 +721,18 @@
       "KUBA": "Kuba",
       "BERBER": "Berbère"
     },
+    "share": {
+      "button": "Partager",
+      "menuTitle": "Partager ce motif",
+      "copyLink": "Copier le lien",
+      "linkCopied": "Lien du motif copié.",
+      "copyError": "Impossible de copier le lien. Réessayez.",
+      "instagramDownloaded": "Image téléchargée. Vous pouvez maintenant la partager sur Instagram.",
+      "imageError": "Impossible de préparer l’image du motif. Réessayez.",
+      "preparingImage": "Préparation de l’image…",
+      "image": "Image",
+      "close": "Fermer"
+    },
     "sidebar": {
       "count": "{count} motif{count, plural, one {} other {s}}",
       "listLabel": "Liste des motifs",

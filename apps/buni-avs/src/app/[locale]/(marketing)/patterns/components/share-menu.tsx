@@ -3,178 +3,233 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useToast } from '@buni/ui';
+import { useLocale, useTranslations } from '@/i18n';
+import type { Pattern } from '@/features/patterns/types';
 
 interface ShareMenuProps {
-  pattern: any;
+  pattern: Pattern;
 }
 
-const SHARE_PLATFORMS = [
-  {
-    id: 'whatsapp',
-    name: 'WhatsApp',
-    icon: 'pi-whatsapp',
-    color: '#25D366',
-    hoverColor: '#128C7E',
-    isDirect: true,
-    getShareUrl: (url: string, pattern: any) => {
-      const message = `*${pattern.name}*\n\n${pattern.summary}\n\n ${pattern.origin.country} - ${pattern.origin.people}\n\n Découvrir ce motif: ${url}\n\n Image: ${pattern.imgUrl || url}`;
-      return `https://wa.me/?text=${encodeURIComponent(message)}`;
-    },
-  },
-  {
-    id: 'facebook',
-    name: 'Facebook',
-    icon: 'pi-facebook',
-    color: '#1877F2',
-    hoverColor: '#0D65D9',
-    isDirect: true,
-    getShareUrl: (url: string, pattern: any) => {
-      // Facebook utilise les métadonnées Open Graph de la page pour l'image
-      // Mais on peut ajouter un paramètre pour forcer le rafraîchissement du cache
-      const cacheBuster = `?fb_refresh=${Date.now()}`;
-      return `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url + cacheBuster)}&quote=${encodeURIComponent(`Découvrez ${pattern.name}, un magnifique motif ${pattern.origin.country}`)}`;
-    },
-  },
-  {
-    id: 'x',
-    name: 'X',
-    icon: 'pi-twitter',
-    color: '#000000',
-    hoverColor: '#333333',
-    isDirect: true,
-    getShareUrl: (url: string, pattern: any) => {
-      const hashtags = '#ArtAfricain #Culture #Patrimoine #TextileTraditionnel';
-      const text = `${pattern.name} - ${pattern.origin.country} ${pattern.origin.flag} ${hashtags}`;
-      // X utilise les métadonnées Twitter Card de la page pour l'image
-      return `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
-    },
-  },
-  {
-    id: 'instagram',
-    name: 'Instagram',
-    icon: 'pi-instagram',
-    color: '#E4405F',
-    hoverColor: '#C13584',
-    getShareUrl: () => null,
-    isDirect: false,
-  },
-] as const;
+type SocialPlatform = 'whatsapp' | 'facebook' | 'x' | 'instagram';
+
+const SOCIAL_PLATFORMS: Array<{
+  id: SocialPlatform;
+  name: string;
+  icon: string;
+  color: string;
+}> = [
+  { id: 'whatsapp', name: 'WhatsApp', icon: 'pi-whatsapp', color: '#25D366' },
+  { id: 'facebook', name: 'Facebook', icon: 'pi-facebook', color: '#1877F2' },
+  { id: 'x', name: 'X', icon: 'pi-twitter', color: '#000000' },
+  { id: 'instagram', name: 'Instagram', icon: 'pi-instagram', color: '#E4405F' },
+];
 
 export function ShareMenu({ pattern }: ShareMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isPreparingImage, setIsPreparingImage] = useState(false);
   const { add: addToast } = useToast();
-  const menuRef = useRef<HTMLDivElement>(null);
-
-  const url = `${typeof window !== 'undefined' ? window.location.origin : ''}/pattern/${pattern.id}`;
+  const { locale } = useLocale();
+  const t = useTranslations('patterns.share');
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
+  const slug = pattern.slug || pattern.id;
+  const path = `/${locale}/pattern/${encodeURIComponent(slug)}`;
+  const imagePath = `${path}/opengraph-image`;
+  const url = typeof window === 'undefined' ? '' : new URL(path, window.location.origin).toString();
 
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+    if (!isOpen) return;
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
         setIsOpen(false);
       }
     };
 
-    if (isOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-    }
-
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    closeRef.current?.focus();
+    document.addEventListener('keydown', handleEscape);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener('keydown', handleEscape);
+      triggerRef.current?.focus();
     };
   }, [isOpen]);
 
-  const handleShare = async (platform: typeof SHARE_PLATFORMS[number]) => {
-    if (platform.isDirect === false) {
-      addToast({
-        variant: 'info',
-        message: `Pour partager sur ${platform.name}, téléchargez l'image et utilisez l'application. Image: ${pattern.imgUrl}`,
+  const downloadShareImage = async () => {
+    const response = await fetch(imagePath);
+    if (!response.ok) throw new Error(`Image preview failed with status ${response.status}`);
+
+    const image = new File(
+      [await response.blob()],
+      `${slug}-buni.png`,
+      { type: 'image/png' },
+    );
+
+    if (navigator.canShare?.({ files: [image] }) && navigator.share) {
+      await navigator.share({
+        title: pattern.name,
+        text: pattern.summary,
+        url,
+        files: [image],
       });
-      setIsOpen(false);
       return;
     }
 
-    const shareUrl = platform.getShareUrl(url, pattern);
-    if (shareUrl) {
-      window.open(shareUrl, '_blank', 'width=600,height=400');
+    const objectUrl = URL.createObjectURL(image);
+    const anchor = document.createElement('a');
+    anchor.href = objectUrl;
+    anchor.download = image.name;
+    document.body.appendChild(anchor);
+    anchor.click();
+    anchor.remove();
+    window.setTimeout(() => URL.revokeObjectURL(objectUrl), 60_000);
+    addToast({ variant: 'info', message: t('instagramDownloaded') });
+  };
+
+  const handleShare = async (platform: SocialPlatform) => {
+    if (platform === 'instagram') {
+      setIsPreparingImage(true);
+      try {
+        await downloadShareImage();
+        setIsOpen(false);
+      } catch (error) {
+        if (!(error instanceof DOMException && error.name === 'AbortError')) {
+          console.error('Unable to prepare the pattern image for sharing:', error);
+          addToast({ variant: 'error', message: t('imageError') });
+        }
+      } finally {
+        setIsPreparingImage(false);
+      }
+      return;
     }
+
+    const message = `${pattern.name} — ${pattern.origin.country}`;
+    const shareUrl =
+      platform === 'whatsapp'
+        ? `https://wa.me/?text=${encodeURIComponent(`${message}\n${pattern.summary}\n${url}`)}`
+        : platform === 'facebook'
+          ? `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(message)}`
+          : `https://twitter.com/intent/tweet?text=${encodeURIComponent(`${message} #ArtAfricain #Patrimoine`)}&url=${encodeURIComponent(url)}`;
+
+    window.open(shareUrl, '_blank', 'noopener,noreferrer,width=600,height=600');
     setIsOpen(false);
   };
 
   const handleCopyLink = async () => {
     try {
       await navigator.clipboard.writeText(url);
-      addToast({ variant: 'success', message: 'Lien copié !' });
+      addToast({ variant: 'success', message: t('linkCopied') });
       setIsOpen(false);
-    } catch (err) {
-      console.error('Copy error:', err);
-      addToast({ variant: 'error', message: 'Erreur lors de la copie' });
+    } catch (error) {
+      console.error('Unable to copy the pattern share link:', error);
+      addToast({ variant: 'error', message: t('copyError') });
     }
   };
 
   return (
-    <div className="relative" ref={menuRef}>
+    <>
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        ref={triggerRef}
+        type="button"
+        onClick={() => setIsOpen((open) => !open)}
+        aria-haspopup="dialog"
+        aria-expanded={isOpen}
+        aria-label={t('button')}
         className="bg-avs-primary/10 text-avs-primary hover:bg-avs-primary/20 flex items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-bold transition-all duration-200"
-        title="Partager ce motif"
       >
-        <i className="pi pi-share-alt" style={{ fontSize: '11px' }} /> Partager
+        <i className="pi pi-share-alt" aria-hidden="true" style={{ fontSize: '11px' }} />
+        {t('button')}
       </button>
 
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 8, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 8, scale: 0.95 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ duration: 0.15 }}
-            className="absolute right-0 top-full z-50 mt-2 w-56 overflow-hidden rounded-2xl border border-avs-accent/10 bg-avs-secondary shadow-avs-lg"
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-avs-accent/60 p-4 backdrop-blur-sm"
+            onMouseDown={(event) => {
+              if (event.target === event.currentTarget) setIsOpen(false);
+            }}
           >
-            <div className="border-avs-accent/10 border-b px-4 py-3">
-              <p className="text-avs-accent font-mono text-[9px] font-bold tracking-[0.16em] uppercase">
-                Partager sur
-              </p>
-            </div>
-
-            <div className="p-2">
-              {SHARE_PLATFORMS.map((platform) => (
-                <button
-                  key={platform.id}
-                  onClick={() => handleShare(platform)}
-                  className="group flex w-full items-center gap-3 rounded-xl px-3 py-2.5 transition-all duration-150 hover:bg-avs-secondary-dark"
-                >
-                  <div
-                    className="flex h-8 w-8 items-center justify-center rounded-full transition-transform duration-200 group-hover:scale-110"
-                    style={{ backgroundColor: platform.color }}
+            <motion.section
+              initial={{ opacity: 0, y: 12, scale: 0.97 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 12, scale: 0.97 }}
+              transition={{ duration: 0.18 }}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="share-dialog-title"
+              className="w-full max-w-md overflow-hidden rounded-3xl border border-avs-accent/10 bg-avs-secondary shadow-avs-lg"
+            >
+              <div className="border-avs-accent/10 flex items-center justify-between border-b px-5 py-4 sm:px-6">
+                <div>
+                  <p className="text-avs-accent font-mono text-[9px] font-bold tracking-[0.16em] uppercase">
+                    {t('menuTitle')}
+                  </p>
+                  <h2
+                    id="share-dialog-title"
+                    className="text-avs-accent mt-1 text-lg font-bold"
                   >
-                    <i
-                      className={`pi ${platform.icon} text-white`}
-                      style={{ fontSize: '13px' }}
-                    />
-                  </div>
-                  <span className="text-avs-accent text-xs font-semibold group-hover:text-avs-primary">
-                    {platform.name}
-                  </span>
-                </button>
-              ))}
-            </div>
-
-            <div className="border-avs-accent/10 border-t p-2">
-              <button
-                onClick={handleCopyLink}
-                className="group flex w-full items-center gap-3 rounded-xl px-3 py-2.5 transition-all duration-150 hover:bg-avs-secondary-dark"
-              >
-                <div className="bg-avs-accent/10 text-avs-accent flex h-8 w-8 items-center justify-center rounded-full transition-all duration-200 group-hover:bg-avs-primary group-hover:text-avs-secondary">
-                  <i className="pi pi-link" style={{ fontSize: '13px' }} />
+                    {pattern.name}
+                  </h2>
                 </div>
-                <span className="text-avs-accent text-xs font-semibold group-hover:text-avs-primary">
-                  Copier le lien
-                </span>
-              </button>
-            </div>
+                <button
+                  ref={closeRef}
+                  type="button"
+                  onClick={() => setIsOpen(false)}
+                  aria-label={t('close')}
+                  className="text-avs-accent/60 hover:bg-avs-accent/10 hover:text-avs-accent flex h-10 w-10 items-center justify-center rounded-full transition-colors"
+                >
+                  <i className="pi pi-times" aria-hidden="true" />
+                </button>
+              </div>
+
+              <div className="grid gap-2 p-4 sm:grid-cols-2 sm:p-5">
+                {SOCIAL_PLATFORMS.map((platform) => (
+                  <button
+                    key={platform.id}
+                    type="button"
+                    disabled={isPreparingImage}
+                    onClick={() => void handleShare(platform.id)}
+                    className="group flex min-h-14 items-center gap-3 rounded-2xl border border-avs-accent/10 px-4 py-3 text-left transition-colors hover:border-avs-primary/30 hover:bg-avs-secondary-dark disabled:opacity-60"
+                  >
+                    <span
+                      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-transform group-hover:scale-110"
+                      style={{ backgroundColor: platform.color }}
+                      aria-hidden="true"
+                    >
+                      <i className={`pi ${platform.icon} text-white`} style={{ fontSize: '15px' }} />
+                    </span>
+                    <span className="text-avs-accent text-sm font-semibold group-hover:text-avs-primary">
+                      {platform.id === 'instagram' && isPreparingImage
+                        ? t('preparingImage')
+                        : platform.name}
+                    </span>
+                    {platform.id === 'instagram' && (
+                      <span className="text-avs-accent/50 ml-auto text-[10px]">{t('image')}</span>
+                    )}
+                  </button>
+                ))}
+              </div>
+
+              <div className="border-avs-accent/10 border-t p-4 sm:px-5">
+                <button
+                  type="button"
+                  onClick={() => void handleCopyLink()}
+                  className="group flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-avs-primary/10 px-4 py-3 text-sm font-semibold text-avs-primary transition-colors hover:bg-avs-primary/20"
+                >
+                  <i className="pi pi-link" aria-hidden="true" />
+                  {t('copyLink')}
+                </button>
+              </div>
+            </motion.section>
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </>
   );
 }

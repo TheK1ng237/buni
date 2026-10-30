@@ -761,6 +761,18 @@
       "KUBA": "Kuba",
       "BERBER": "Berber"
     },
+    "share": {
+      "button": "Share",
+      "menuTitle": "Share this pattern",
+      "copyLink": "Copy link",
+      "linkCopied": "Pattern link copied.",
+      "copyError": "Could not copy the link. Please try again.",
+      "instagramDownloaded": "Image downloaded. You can now share it on Instagram.",
+      "imageError": "Could not prepare the pattern image. Please try again.",
+      "preparingImage": "Preparing image…",
+      "image": "Image",
+      "close": "Close"
+    },
     "sidebar": {
       "count": "{count} pattern{count, plural, one {} other {s}}",
       "listLabel": "Pattern list",
