@@ -232,6 +232,30 @@
       "license": "Apache 2.0 + Commons Clause"
     }
   },
+  "forgotPasswordPage": {
+    "title": "Mot de passe oublié ?",
+    "description": "Indiquez l’adresse e-mail associée à votre compte. Si un compte correspondant existe, vous recevrez un lien de réinitialisation.",
+    "email": "Adresse e-mail",
+    "emailPlaceholder": "vous@exemple.com",
+    "submit": "Envoyer le lien",
+    "sending": "Envoi en cours…",
+    "success": "Si cette adresse est associée à un compte, un e-mail contenant les instructions de réinitialisation sera envoyé.",
+    "error": "Impossible d’envoyer la demande pour le moment. Veuillez réessayer.",
+    "backToLogin": "Retour à la connexion"
+  },
+  "resetPasswordPage": {
+    "title": "Créer un nouveau mot de passe",
+    "description": "Choisissez un nouveau mot de passe d’au moins 8 caractères.",
+    "password": "Nouveau mot de passe",
+    "confirmPassword": "Confirmer le mot de passe",
+    "submit": "Réinitialiser le mot de passe",
+    "saving": "Enregistrement…",
+    "success": "Votre mot de passe a été modifié. Vous pouvez maintenant vous connecter.",
+    "invalidLink": "Ce lien est invalide ou a expiré. Demandez un nouveau lien de réinitialisation.",
+    "passwordTooShort": "Le mot de passe doit contenir au moins 8 caractères.",
+    "passwordMismatch": "Les mots de passe ne correspondent pas.",
+    "backToLogin": "Retour à la connexion"
+  },
   "register": {
     "loading": "Création du compte…",
     "perks": {

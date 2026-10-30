@@ -12,7 +12,7 @@ import { Route } from 'next';
 import { useLogin } from '@/features/auth/hooks/useLogin';
 import { authService } from '@/features/auth/services/auth.service';
 import { GoogleLoginButton,GithubLoginButton } from '@buni/auth';
-import { useTranslations } from '@/i18n';
+import { useLocale, useTranslations } from '@/i18n';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // VALIDATION
@@ -107,6 +107,7 @@ function Field({
 
 export default function LoginPage() {
   const t = useTranslations('login');
+  const { locale } = useLocale();
   const user = useAuthStore((s) => s.user);
   const { mutate, isPending, error } = useLogin();
   const { add } = useToast();
@@ -393,7 +394,7 @@ export default function LoginPage() {
                 error={errors.password}
                 right={
                   <Link
-                    href={'/auth/forgot' as Route}
+                    href={`/${locale}/auth/forgot` as Route}
                     className="text-avs-primary text-xs font-medium underline-offset-3 hover:underline"
                   >
                     {t('fields.password.forgot')}

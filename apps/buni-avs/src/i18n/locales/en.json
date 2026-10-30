@@ -231,6 +231,30 @@
       "license": "Apache 2.0 + Commons Clause"
     }
   },
+  "forgotPasswordPage": {
+    "title": "Forgot your password?",
+    "description": "Enter the email address linked to your account. If an account matches, you will receive a reset link.",
+    "email": "Email address",
+    "emailPlaceholder": "you@example.com",
+    "submit": "Send reset link",
+    "sending": "Sending…",
+    "success": "If this email address is associated with an account, a message with reset instructions will be sent.",
+    "error": "We could not submit your request right now. Please try again.",
+    "backToLogin": "Back to login"
+  },
+  "resetPasswordPage": {
+    "title": "Create a new password",
+    "description": "Choose a new password with at least 8 characters.",
+    "password": "New password",
+    "confirmPassword": "Confirm password",
+    "submit": "Reset password",
+    "saving": "Saving…",
+    "success": "Your password has been changed. You can now sign in.",
+    "invalidLink": "This link is invalid or has expired. Request a new reset link.",
+    "passwordTooShort": "Your password must contain at least 8 characters.",
+    "passwordMismatch": "The passwords do not match.",
+    "backToLogin": "Back to login"
+  },
   "register": {
     "loading": "Creating account…",
     "perks": {

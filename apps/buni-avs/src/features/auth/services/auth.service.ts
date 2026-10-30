@@ -30,6 +30,14 @@ export const authService = {
     return post<AuthResponse>('/api/v1/auth/login', dto);
   },
 
+  async requestPasswordReset(email: string, locale: 'fr' | 'en') {
+    return post<{ success: boolean }>('/api/v1/auth/forgot-password', { email, locale });
+  },
+
+  async resetPassword(token: string, password: string) {
+    return post<{ success: boolean }>('/api/v1/auth/reset-password', { token, password });
+  },
+
   async logout() {
     try {
       return await post('/api/v1/auth/logout');
