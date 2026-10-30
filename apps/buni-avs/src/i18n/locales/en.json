@@ -1645,6 +1645,43 @@
     }
   },
   "dashboard": {
+    "viewerDashboard": {
+      "role": "Explorer",
+      "verified": "Verified",
+      "notVerified": "Not verified",
+      "memberSince": "Member since",
+      "profile": "My profile",
+      "becomeCurator": {
+        "badge": "Join the creators",
+        "title": "Share your expertise",
+        "subtitle": "Become a curator",
+        "description": "Help preserve and enrich African cultural heritage by sharing your knowledge and creating pattern entries.",
+        "button": "Become a curator",
+        "explore": "Explore patterns"
+      },
+      "quickActionsLabel": "Quick actions",
+      "explorePlatform": {
+        "title": "Explore the platform"
+      },
+      "quickActions": {
+        "library": {
+          "title": "Pattern encyclopedia",
+          "description": "Discover patterns and their stories."
+        },
+        "palettes": {
+          "title": "Color palettes",
+          "description": "Explore colors inspired by African cultures."
+        },
+        "profile": {
+          "title": "My profile",
+          "description": "Manage your personal information."
+        },
+        "curator": {
+          "title": "Become a curator",
+          "description": "Share your knowledge with the community."
+        }
+      }
+    },
     "activity": {
       "title": "My Activity",
       "subtitle": "View all your interactions with the platform",

@@ -1605,6 +1605,43 @@
     }
   },
   "dashboard": {
+    "viewerDashboard": {
+      "role": "Explorateur",
+      "verified": "Vérifié",
+      "notVerified": "Non vérifié",
+      "memberSince": "Membre depuis",
+      "profile": "Mon profil",
+      "becomeCurator": {
+        "badge": "Rejoignez les créateurs",
+        "title": "Partagez votre expertise",
+        "subtitle": "Devenez curateur",
+        "description": "Contribuez à préserver et enrichir le patrimoine culturel africain en partageant vos connaissances et en créant des fiches de motifs.",
+        "button": "Devenir curateur",
+        "explore": "Explorer les motifs"
+      },
+      "quickActionsLabel": "Actions rapides",
+      "explorePlatform": {
+        "title": "Explorer la plateforme"
+      },
+      "quickActions": {
+        "library": {
+          "title": "Encyclopédie des motifs",
+          "description": "Découvrez les motifs et leurs histoires."
+        },
+        "palettes": {
+          "title": "Palettes de couleurs",
+          "description": "Explorez les couleurs inspirées des cultures africaines."
+        },
+        "profile": {
+          "title": "Mon profil",
+          "description": "Gérez vos informations personnelles."
+        },
+        "curator": {
+          "title": "Devenir curateur",
+          "description": "Partagez vos connaissances avec la communauté."
+        }
+      }
+    },
     "activity": {
       "title": "Mon activité",
       "subtitle": "Consultez toutes vos interactions avec la plateforme",
