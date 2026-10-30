@@ -28,7 +28,8 @@
     "settings": "Paramètres",
     "logout": "Déconnexion",
     "login": "Connexion",
-    "register": "Inscription"
+    "register": "Inscription",
+    "pricing": "Tarifs"
   },
   "auth": {
     "login": "Connexion",
@@ -616,6 +617,61 @@
         "about": "À propos",
         "contact": "Contact",
         "support": "Soutenir"
+      }
+    },
+    "minimalist": {
+      "presetMessages": {
+        "nextComponent": "Pour le prochain composant",
+        "beautifulDesign": "Pour l'amour du beau design",
+        "keepInspiring": "Continue d'inspirer !",
+        "communitySupport": "Soutien de la communauté",
+        "sayThanks": "Simplement pour dire merci"
+      },
+      "paymentProviders": {
+        "stripe": "Stripe / Carte",
+        "paypal": "PayPal",
+        "mobileMoney": "Mobile Money"
+      },
+      "header": {
+        "eyebrow": "Soutien direct",
+        "title": "Un café pour nourrir",
+        "titleHighlight": "une vision",
+        "description": "Chaque tasse alimente la création open-source et la valorisation du patrimoine visuel africain."
+      },
+      "tabs": {
+        "support": "Offrir un café",
+        "community": "Animation Communauté"
+      },
+      "coffeeSelection": {
+        "label": "Combien de tasses ?",
+        "pricePerCup": "/ tasse",
+        "cup": "tasse",
+        "cups": "tasses",
+        "lessCoffee": "Moins de café",
+        "moreCoffee": "Plus de café"
+      },
+      "message": {
+        "label": "Message d'encouragement",
+        "optional": "(optionnel)",
+        "placeholder": "Ou écrivez votre propre message..."
+      },
+      "payment": {
+        "label": "Moyen de paiement"
+      },
+      "cta": {
+        "processing": "Traitement en cours...",
+        "offerCoffee": "Offrir {count} {coffee, plural, one {café} other {cafés}} • ${amount}",
+        "otherOptions": "Autres formules de soutien →"
+      },
+      "reassurance": {
+        "direct": "100% direct",
+        "secure": "Sécurisé",
+        "cupsThisMonth": "348 tasses ce mois-ci"
+      },
+      "thankYou": {
+        "title": "Un immense merci !",
+        "message": "Votre soutien de ${amount} apporte une réelle chaleur à ce projet.",
+        "close": "Fermer & Continuer"
       }
     }
   },
@@ -1836,39 +1892,8 @@
         "nameMin": "Minimum 2 caractères",
         "invalidUrl": "URL invalide"
       },
-      "tabs": {
-        "info": "Informations",
-        "social": "Réseaux sociaux"
-      },
-      "avatar": {
-        "fileTooLarge": "Fichier trop volumineux",
-        "fileTooLargeDesc": "L'image ne doit pas dépasser 5MB",
-        "unsupportedFormat": "Format non supporté",
-        "unsupportedFormatDesc": "Seuls JPEG, PNG, WebP et GIF sont acceptés",
-        "updated": "Avatar mis à jour",
-        "updatedDesc": "Votre photo de profil a été changée avec succès",
-        "error": "Erreur",
-        "errorDesc": "Impossible de télécharger l'avatar. Veuillez réessayer.",
-        "upload": "Modifier l'avatar",
-        "uploading": "Téléchargement…",
-        "online": "En ligne"
-      },
-      "social": {
-        "github": "GitHub",
-        "twitter": "Twitter / X",
-        "preview": "Aperçu des liens"
-      },
-      "loading": "Chargement du profil…",
       "memberSince": "Membre depuis",
-      "verified": "Vérifié",
-      "notVerified": "Non vérifié",
       "changeAvatar": "Modifier l'avatar",
-      "validationError": "Erreur de validation",
-      "validationErrorDesc": "Veuillez vérifier les champs du formulaire",
-      "saved": "Profil mis à jour",
-      "savedDesc": "Vos modifications ont été enregistrées avec succès",
-      "error": "Erreur",
-      "errorDesc": "Impossible de sauvegarder le profil. Veuillez réessayer.",
       "socialPreview": "Aperçu des liens",
       "toasts": {
         "fileTooLarge": "Fichier trop volumineux",
@@ -1892,10 +1917,26 @@
       "subtitle": "Gérer votre compte et vos préférences",
       "account": "Compte",
       "sections": {
+        "profile": "Profil",
         "notifications": "Notifications",
         "security": "Sécurité",
         "privacy": "Confidentialité",
         "danger": "Zone de danger"
+      },
+      "profileTab": {
+        "title": "Informations de profil",
+        "name": "Nom complet",
+        "bio": "Biographie",
+        "location": "Localisation",
+        "website": "Site Web",
+        "github": "Nom d'utilisateur GitHub",
+        "twitter": "Nom d'utilisateur Twitter",
+        "specialty": "Spécialité / Domaine",
+        "save": "Enregistrer le profil",
+        "saving": "Enregistrement…",
+        "saved": "Profil mis à jour !",
+        "avatar": "Changer d'avatar",
+        "avatarUploading": "Envoi en cours…"
       },
       "notifications": {
         "email": {
@@ -1951,14 +1992,22 @@
           "title": "Double authentification (2FA)",
           "description": "Ajoutez une couche de sécurité via une application TOTP (Google Authenticator, Authy).",
           "toggle": "Activer 2FA",
-          "setupRequired": "Configuration requise",
-          "scanQR": "Scannez le QR code avec votre application d'authentification pour terminer la configuration."
+          "setupRequired": "Configuration 2FA requise",
+          "scanQR": "Scannez le QR code avec votre application d'authentification puis saisissez le code à 6 chiffres.",
+          "secretKey": "Clé secrète d'activation :",
+          "codePlaceholder": "Code à 6 chiffres (ex: 123456)",
+          "verifyButton": "Vérifier & Activer",
+          "disabling": "Désactivation…",
+          "enabled": "2FA Actif",
+          "disable": "Désactiver la 2FA"
         },
         "sessions": {
           "title": "Sessions actives",
           "noSessions": "Aucune session active",
           "current": "Actuelle",
-          "revoke": "Révoquer"
+          "revoke": "Révoquer",
+          "revokeAll": "Déconnecter toutes les autres sessions",
+          "revokeAllConfirm": "Voulez-vous vraiment déconnecter toutes les autres sessions ?"
         }
       },
       "privacy": {
@@ -1992,14 +2041,18 @@
             "desc": "Aidez-nous à améliorer AVS de façon anonyme",
             "toggle": "Partager les analytics"
           },
-          "download": "Télécharger mes données (RGPD)"
+          "download": "Télécharger mes données (RGPD)",
+          "exporting": "Génération de l'export…"
         }
       },
       "danger": {
         "deactivate": {
           "title": "Désactiver le compte",
           "description": "Votre compte sera désactivé temporairement. Vos motifs restent accessibles mais vous ne pourrez plus vous connecter.",
-          "button": "Désactiver mon compte"
+          "button": "Désactiver mon compte",
+          "modalTitle": "Confirmer la désactivation",
+          "modalDesc": "Êtes-vous sûr de vouloir désactiver votre compte ? Vos sessions actives seront clôturées.",
+          "confirm": "Oui, désactiver"
         },
         "delete": {
           "title": "Supprimer le compte",
@@ -2007,7 +2060,11 @@
           "description": "Tous vos motifs, données et contributions seront définitivement supprimés.",
           "noteTitle": "Note importante",
           "note": "Cette action ne peut pas être annulée. Veuillez sauvegarder vos données avant de continuer.",
-          "button": "Supprimer le compte"
+          "button": "Supprimer le compte",
+          "modalTitle": "Suppression définitive du compte",
+          "modalDesc": "Pour confirmer la suppression, veuillez saisir « SUPPRIMER » ci-dessous :",
+          "confirmPlaceholder": "Tapez SUPPRIMER",
+          "confirmButton": "Supprimer définitivement"
         }
       },
       "validation": {
@@ -2058,14 +2115,52 @@
       "memberSince": "Membre depuis",
       "actions": {
         "verify": "Vérifier",
-        "revoke": "Révoquer"
+        "revoke": "Révoquer",
+        "invite": "Inviter un utilisateur",
+        "export": "Exporter CSV",
+        "details": "Détails",
+        "delete": "Supprimer"
       },
       "table": {
         "title": "Liste des utilisateurs",
         "user": "Utilisateur",
         "status": "Statut",
         "memberSince": "Membre depuis",
-        "role": "Rôle"
+        "role": "Rôle",
+        "actions": "Actions"
+      },
+      "modal": {
+        "invite": {
+          "title": "Inviter un utilisateur",
+          "subtitle": "Un e-mail d'accès sera transmis avec les identifiants.",
+          "email": "Adresse e-mail",
+          "name": "Nom complet (optionnel)",
+          "role": "Rôle attribué",
+          "send": "Envoyer l'invitation"
+        },
+        "delete": {
+          "title": "Supprimer l'utilisateur",
+          "warning": "Êtes-vous sûr de vouloir supprimer définitivement cet utilisateur ? Cette action est irréversible.",
+          "confirm": "Supprimer définitivement"
+        }
+      },
+      "drawer": {
+        "title": "Profil de l'utilisateur",
+        "overview": "Aperçu & rôle",
+        "activity": "Activité",
+        "stats": "Statistiques"
+      },
+      "pagination": {
+        "showing": "Affichage de {from} à {to} sur {total} utilisateurs",
+        "page": "Page {current} / {total}",
+        "prev": "Précédent",
+        "next": "Suivant"
+      },
+      "toasts": {
+        "roleUpdated": "Rôle mis à jour avec succès",
+        "verificationToggled": "Statut de vérification mis à jour",
+        "userInvited": "Invitation envoyée avec succès",
+        "userDeleted": "Utilisateur supprimé"
       },
       "empty": {
         "title": "Aucun utilisateur trouvé",
@@ -2075,6 +2170,304 @@
         "title": "Accès refusé",
         "description": "Seuls les administrateurs peuvent accéder à cette page."
       }
+    }
+  },
+  "pricing": {
+    "badge": "Tarification Simple & Accessible",
+    "title": "Design africain pour tous les créateurs",
+    "subtitle": "Accédez aux motifs culturels AVS, aux design tokens et soutenez les artisans africains avec des tarifs adaptés au marché.",
+    "billing": {
+      "monthly": "Mensuel",
+      "annual": "Annuel",
+      "discount": "-20%"
+    },
+    "currency": "FCFA",
+    "perMonth": "/ mois",
+    "perYear": "/ an",
+    "popular": "Populaire",
+    "cta": {
+      "free": "Commencer",
+      "starter": "Essayer Starter",
+      "pro": "Choisir Pro",
+      "business": "Passer Business",
+      "enterprise": "Nous contacter"
+    },
+    "plans": {
+      "free": {
+        "name": "Gratuit",
+        "badge": "Découverte",
+        "description": "Pour découvrir AVS et utiliser les motifs de base dans vos projets personnels.",
+        "priceMonthly": "0",
+        "priceAnnual": "0",
+        "features": [
+          "50 motifs culturels en SVG",
+          "Exports PNG standards",
+          "Documentation complète",
+          "Support communautaire",
+          "Usage personnel uniquement"
+        ]
+      },
+      "starter": {
+        "name": "Starter",
+        "badge": "Indépendants",
+        "description": "Pour les freelances et créateurs qui utilisent régulièrement des motifs africains.",
+        "priceMonthly": "599",
+        "priceAnnual": "479",
+        "features": [
+          "500 motifs culturels en SVG",
+          "Exports vectoriels HD (SVG, EPS)",
+          "Design tokens Tailwind",
+          "Licence commerciale",
+          "Support email prioritaire",
+          "Attribution requise"
+        ]
+      },
+      "pro": {
+        "name": "Pro",
+        "badge": "Plus Populaire",
+        "description": "Pour les studios et agences qui intègrent AVS dans leurs projets clients.",
+        "priceMonthly": "1 999",
+        "priceAnnual": "1 599",
+        "features": [
+          "Motifs illimités SVG + PNG",
+          "Exports multi-formats (Figma, React)",
+          "Design tokens complets",
+          "Licence étendue sans attribution",
+          "3 utilisateurs inclus",
+          "Support dédié 24/7"
+        ]
+      },
+      "business": {
+        "name": "Business",
+        "badge": "Équipes",
+        "description": "Pour les entreprises qui intègrent AVS dans leur design system à grande échelle.",
+        "priceMonthly": "4 999",
+        "priceAnnual": "3 999",
+        "features": [
+          "Tous les motifs + exclusifs",
+          "API d'accès programmatique",
+          "15 utilisateurs inclus",
+          "Intégration design system",
+          "Formation équipe incluse",
+          "Account manager dédié"
+        ]
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "badge": "Sur-mesure",
+        "description": "Pour les grandes organisations avec des besoins spécifiques et volumétrie élevée.",
+        "priceMonthly": "Sur devis",
+        "priceAnnual": "Sur devis",
+        "features": [
+          "Utilisateurs illimités",
+          "Déploiement on-premise",
+          "Numérisation patrimoine propre",
+          "SLA garanti 99.9%",
+          "Formation sur site",
+          "Support VIP dédié"
+        ]
+      }
+    },
+    "matrix": {
+      "title": "Comparatif des fonctionnalités",
+      "subtitle": "Comparez les avantages de chaque plan pour trouver celui qui vous convient.",
+      "categories": {
+        "content": "Contenu & Motifs",
+        "export": "Exports & Tokens",
+        "license": "Licences & Utilisation",
+        "support": "Support & Équipe"
+      },
+      "options": {
+        "motifsCount": "Nombre de motifs",
+        "vectorExport": "Exports vectoriels",
+        "tailwindTokens": "Design tokens",
+        "figmaPlugin": "Intégration Figma",
+        "commercialLicense": "Licence commerciale",
+        "provenanceCheck": "Vérification provenance",
+        "multiUser": "Utilisateurs inclus",
+        "apiAccess": "Accès API",
+        "customDigitization": "Numérisation personnalisée",
+        "dedicatedSupport": "Support dédié"
+      }
+    },
+    "faq": {
+      "title": "Questions fréquentes",
+      "subtitle": "Les réponses aux questions qu'on nous pose souvent.",
+      "items": [
+        {
+          "q": "Comment payer en FCFA ?",
+          "a": "On accepte les cartes Visa/Mastercard et le Mobile Money (Orange, MTN, Wave, Moov) partout en Afrique de l'Ouest et Centrale."
+        },
+        {
+          "q": "Je peux changer de plan ?",
+          "a": "Oui, vous pouvez changer ou annuler n'importe quand depuis votre compte. Ça prend effet à la fin de la période en cours."
+        },
+        {
+          "q": "Les artisans sont payés ?",
+          "a": "Une partie de chaque abonnement va directement aux artisans qui documentent les motifs. C'est important pour nous."
+        },
+        {
+          "q": "Facture pour mon entreprise ?",
+          "a": "Oui, une facture conforme est envoyée automatiquement après chaque paiement."
+        },
+        {
+          "q": "Usage pour des produits physiques ?",
+          "a": "Les plans payants Starter, Pro et Business permettent l'usage commercial (textile, mode, design, etc.)."
+        }
+      ]
+    },
+    "banner": {
+      "title": "Un projet spécifique ?",
+      "subtitle": "Notre équipe peut vous aider à intégrer AVS dans vos projets ou à numériser vos propres motifs culturels.",
+      "button": "Discutons-en"
+    }
+  },
+  "upgrade": {
+    "badge": "Upgrade de compte",
+    "title": "Confirmez votre upgrade",
+    "subtitle": "Vous êtes sur le point de passer au plan {plan} avec une facturation {billing}.",
+    "billing": {
+      "title": "Facturation",
+      "annual": "Annuelle",
+      "monthly": "Mensuelle",
+      "annualDesc": "Facturation annuelle avec économie de 20%",
+      "monthlyDesc": "Facturation mensuelle flexible",
+      "savings": "Économisez 20%"
+    },
+    "features": {
+      "title": "Inclus dans ce plan :"
+    },
+    "security": {
+      "title": "Paiement sécurisé",
+      "encrypted": "Transactions chiffrées SSL",
+      "methods": "Cartes et Mobile Money acceptés",
+      "refund": "Remboursement 30 jours"
+    },
+    "support": {
+      "title": "Besoin d'aide ?",
+      "description": "Notre équipe est disponible pour répondre à vos questions.",
+      "contact": "Contacter le support"
+    },
+    "processing": "Traitement en cours...",
+    "confirm": "Confirmer l'upgrade",
+    "cancel": "Annuler"
+  },
+  "patternForm": {
+    "header": {
+      "newTitle": "Nouveau Motif",
+      "editTitle": "Modifier Motif",
+      "back": "Retour",
+      "stepProgress": "Étape {current} / {total} — {desc}"
+    },
+    "steps": {
+      "identity": "Identité",
+      "identityDesc": "Nom & origine géographique",
+      "description": "Description",
+      "descriptionDesc": "Contexte & symbolisme",
+      "colorsAssets": "Couleurs & Assets",
+      "colorsAssetsDesc": "Palette & fichier SVG",
+      "revision": "Révision",
+      "revisionDesc": "Vérification avant envoi"
+    },
+    "actions": {
+      "prev": "Précédent",
+      "next": "Suivant",
+      "submit": "Soumettre pour révision",
+      "update": "Mettre à jour le motif",
+      "submitting": "Envoi en cours…"
+    },
+    "step1": {
+      "title": "Identité du motif",
+      "sub": "Étape 1",
+      "nameLocalLabel": "Nom local",
+      "nameLocalPlaceholder": "Ndop (Ndoup)",
+      "nameFrLabel": "Nom (français / principal)",
+      "nameFrPlaceholder": "Bamoum Royal Ndop",
+      "licenseLabel": "Licence",
+      "patternTypeLabel": "Type de motif",
+      "regionLabel": "Région",
+      "chooseRegion": "Choisir…",
+      "countryLabel": "Code pays (ISO 2)",
+      "countryHint": "Ex : CM pour Cameroun",
+      "chooseCountry": "Choisir un code…",
+      "peopleLabel": "Peuple / Ethnie",
+      "peoplePlaceholder": "Peuple Bamoum (Bamum)",
+      "flagLabel": "Drapeau (emoji)",
+      "chooseFlag": "Choisir un drapeau…",
+      "kingdomLabel": "Royaume",
+      "kingdomPlaceholder": "Sultanat Bamoum",
+      "eraLabel": "Époque",
+      "eraPlaceholder": "XVIIe siècle — présent",
+      "coordsLabel": "Coordonnées (latitude, longitude)"
+    },
+    "step2": {
+      "title": "Description & Symbolisme",
+      "sub": "Étape 2",
+      "summaryLabel": "Résumé",
+      "summaryPlaceholder": "Brève description utilisée dans les listes et aperçus…",
+      "historyLabel": "Histoire",
+      "historyPlaceholder": "Contexte historique détaillé, évolution au fil du temps…",
+      "techniqueLabel": "Technique de fabrication",
+      "techniquePlaceholder": "Matériaux, savoir-faire, étapes de fabrication…",
+      "symbolismMeaningLabel": "Signification symbolique",
+      "symbolismMeaningPlaceholder": "Royauté, spiritualité, protection contre les mauvais esprits…",
+      "symbolismUsageLabel": "Usage principal",
+      "symbolismUsagePlaceholder": "en quel évènement est-ce exactement utilisé…",
+      "ceremonialLabel": "Usage cérémoniel",
+      "ceremonialPlaceholder": "Contextes cérémoniels où le motif est utilisé…",
+      "keywordsLabel": "Mots-clés (1–{max})",
+      "keywordsPlaceholder": "Ajouter un mot-clé puis Entrée…",
+      "removeKeyword": "Supprimer {kw}"
+    },
+    "step3": {
+      "title": "Couleurs & Assets",
+      "sub": "Étape 3",
+      "colorPaletteLabel": "Palette de couleurs",
+      "colorHexPlaceholder": "#C0573E",
+      "colorNamePlaceholder": "Nom de la couleur",
+      "colorMeaningPlaceholder": "Signification",
+      "addColor": "+ Ajouter une couleur",
+      "svgUploadLabel": "Fichier SVG du motif",
+      "dragDropOrClick": "Glissez-déposez votre fichier SVG ou cliquez pour parcourir",
+      "maxSizeHint": "Format SVG uniquement (max 2 Mo)",
+      "changeSvg": "Remplacer le SVG",
+      "sourcesLabel": "Sources & Références",
+      "sourcePlaceholder": "https://... ou Référence bibliographique",
+      "addSource": "+ Ajouter une source",
+      "symbolsLabel": "Symboles & Motifs élémentaires",
+      "symbolNameLabel": "Nom du symbole",
+      "symbolNameFrLabel": "Nom français",
+      "symbolMeaningLabel": "Signification",
+      "symbolUsageLabel": "Usage",
+      "sacredSymbol": "Symbole sacré",
+      "addSymbol": "+ Ajouter un symbole"
+    },
+    "step4": {
+      "title": "Révision finale",
+      "sub": "Étape 4",
+      "labels": {
+        "nameEn": "Nom EN",
+        "nameLocal": "Nom Local",
+        "type": "Type",
+        "region": "Région",
+        "country": "Pays",
+        "people": "Peuple",
+        "kingdom": "Royaume",
+        "era": "Époque",
+        "usage": "Usage",
+        "license": "Licence",
+        "keywords": "Mots-clés",
+        "palette": "Palette"
+      },
+      "validationTitle": "Processus de validation",
+      "validationText": "Votre motif sera relu par un curateur AVS avant publication. Ce processus prend généralement",
+      "validationTime": "24–48h ouvrées."
+    },
+    "preview": {
+      "namePlaceholder": "Nom du motif",
+      "descriptionPlaceholder": "La description apparaîtra ici…",
+      "realtimeTitle": "Aperçu en temps réel",
+      "progress": "Progression"
     }
   }
 }

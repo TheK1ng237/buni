@@ -8,8 +8,9 @@ import {
   Trophy, Medal, Check, X, ArrowRight,
 } from 'lucide-react';
 import { useAuth } from '@buni/auth';
-import { useTranslations } from 'next-intl';
+import { useTranslations } from '@/i18n';
 import { userService } from '@/features/user/services/user.service';
+import { KpiCard } from '@buni/ui';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // TYPES
@@ -419,10 +420,10 @@ export default function ContributorsPage() {
             </div>
           ) : (
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-              <StatCard value={String(contributors.length)}                       label={t('stats.members')}        icon={Shield}    t={t} />
-              <StatCard value={String(totalPatterns)}                             label={t('stats.totalPatterns')}   icon={Layers}    t={t} />
-              <StatCard value={`${(totalViews / 1000).toFixed(0)}k`}              label={t('stats.totalViews')}  icon={TrendingUp} t={t} />
-              <StatCard value={String(verifiedCount)}                             label={t('stats.verified')}       icon={Award}     t={t} />
+              <KpiCard label={t('stats.members')} value={contributors.length} icon={Shield} color="#C0573E" patternCss="avs-pattern-kente-royale" topAccent delay={0.1} />
+              <KpiCard label={t('stats.totalPatterns')} value={totalPatterns} icon={Layers} color="#4F7CFF" patternCss="avs-pattern-ndop-sultan" topAccent delay={0.17} />
+              <KpiCard label={t('stats.totalViews')} value={`${(totalViews / 1000).toFixed(0)}k`} icon={TrendingUp} color="#8B5CF6" patternCss="avs-pattern-bogolan-fanga" topAccent delay={0.24} />
+              <KpiCard label={t('stats.verified')} value={verifiedCount} icon={Award} color="#F59E0B" patternCss="avs-pattern-adinkra-sankofa" topAccent delay={0.31} />
             </div>
           )}
 

@@ -59,3 +59,4 @@ export { ScrollArea, ScrollBar } from './components/ScrollArea';
 export { BuniLoader } from './components/BuniLoader';
 export { cn } from './utils';
 export { Comingsoon } from './components/comingsoon';
+export { KpiCard, type KpiCardProps } from './components/KpiCard';

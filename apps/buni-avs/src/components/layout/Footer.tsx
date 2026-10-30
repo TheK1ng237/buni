@@ -12,6 +12,7 @@ const LINKS = {
   Standard: [
     { href: '/patterns',  label: 'Motifs culturels'   },
     { href: '/colors',    label: 'Palettes & tokens'  },
+    { href: '/pricing',   label: 'Tarifs'             },
     { href: '/artisans',  label: 'Réseau artisans'    },
   ],
   Ressources: [

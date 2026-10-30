@@ -4,8 +4,9 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useQuery } from '@tanstack/react-query';
 import { useAuth } from '@buni/auth';
-import { useTranslations } from 'next-intl';
+import { useTranslations } from '@/i18n';
 import { formatNumber, timeAgo } from '@buni/utils';
+import { KpiCard } from '@buni/ui';
 import { 
   Activity, Download, Eye, Heart, MessageSquare, 
   Clock, Filter, TrendingUp, ArrowUpRight, 
@@ -151,32 +152,12 @@ export default function ActivityPage() {
           className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
         >
           {[
-            { label: t('stats.total'), value: activityCounts.total, icon: Activity, color: '#C0573E', patternCss: 'avs-pattern-kente-royale' },
-            { label: t('stats.downloads'), value: activityCounts.downloads, icon: Download, color: '#4F7CFF', patternCss: 'avs-pattern-ndop-sultan' },
-            { label: t('stats.favorites'), value: activityCounts.favorites, icon: Heart, color: '#EC4899', patternCss: 'avs-pattern-adinkra-sankofa' },
-            { label: t('stats.reviews'), value: activityCounts.reviews, icon: Star, color: '#F59E0B', patternCss: 'avs-pattern-wax-dakar' },
-          ].map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, delay: 0.2 + i * 0.08, ease: [0.22, 1, 0.36, 1] }}
-              className="group relative overflow-hidden rounded-2xl border border-avs-accent/9 bg-avs-secondary p-5 transition-all hover:border-avs-primary/20 hover:-translate-y-0.5"
-            >
-              <div className={`${stat.patternCss} absolute bottom-0 right-0 h-16 w-16 rounded-br-2xl opacity-[0.06]`} aria-hidden />
-              <div className="relative flex items-start justify-between">
-                <div className="flex-1">
-                  <p className="mb-1 font-mono text-[10px] font-bold uppercase tracking-wider text-avs-accent/40">{stat.label}</p>
-                  <p className="font-display text-3xl font-black leading-none text-avs-accent">{formatNumber(Number(stat.value))}</p>
-                </div>
-                <div
-                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-transform group-hover:scale-110"
-                  style={{ background: `${stat.color}14` }}
-                >
-                  <stat.icon size={18} style={{ color: stat.color }} />
-                </div>
-              </div>
-            </motion.div>
+            { label: t('stats.total'), value: activityCounts.total, icon: Activity, color: '#C0573E', patternCss: 'avs-pattern-kente-royale', delay: 0.2 },
+            { label: t('stats.downloads'), value: activityCounts.downloads, icon: Download, color: '#4F7CFF', patternCss: 'avs-pattern-ndop-sultan', delay: 0.28 },
+            { label: t('stats.favorites'), value: activityCounts.favorites, icon: Heart, color: '#EC4899', patternCss: 'avs-pattern-adinkra-sankofa', delay: 0.36 },
+            { label: t('stats.reviews'), value: activityCounts.reviews, icon: Star, color: '#F59E0B', patternCss: 'avs-pattern-wax-dakar', delay: 0.44 },
+          ].map((stat) => (
+            <KpiCard key={String(stat.label)} {...stat} format={formatNumber} />
           ))}
         </motion.div>
 

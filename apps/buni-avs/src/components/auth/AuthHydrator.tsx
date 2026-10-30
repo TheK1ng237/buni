@@ -20,7 +20,7 @@ export function AuthHydrator() {
         // Extract token from cookie if available
         const tokenFromCookie = document.cookie
           .split('; ')
-          .find(row => row.startsWith('avs_session='))
+          .find(row => row.startsWith('avs_session=') || row.startsWith('avs_access='))
           ?.split('=')[1];
 
         if (tokenFromCookie) {

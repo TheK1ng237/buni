@@ -1,3 +1,5 @@
+'use client';
+
 import { DocPageTemplate } from '../../doc-page-template';
 import { useNavSpaces } from '../../nav-data';
 import { InstallationExplanation, InstallationWhy } from './installation-content';

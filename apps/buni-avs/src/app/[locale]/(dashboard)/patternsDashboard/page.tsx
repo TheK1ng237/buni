@@ -23,12 +23,14 @@ import {
   X,
 } from 'lucide-react';
 import { formatDate, formatNumber } from '@buni/utils';
+import { KpiCard } from '@buni/ui';
 import { useAuth } from '@buni/auth';
-import { useTranslations } from 'next-intl';
+import { useTranslations } from '@/i18n';
 
 import { Route } from 'next';
 import type { Pattern, PatternStatus, PatternSymbol } from '@buni/patterns';
-import { useFeaturePattern, useToggleFeature, useUnfeaturePattern } from '@/features/patterns/hooks/usePatternActions';
+import { useFeaturePattern, useToggleFeature, useUnfeaturePattern, useDeletePattern } from '@/features/patterns/hooks/usePatternActions';
+import { usePatterns } from '@/features/patterns/hooks/usePatterns';
 import { mapPatternDtoToModel } from '@/features/patterns/mappers/pattern.mapper';
 import { patternService } from '@/features/patterns/services/pattern.service';
 
@@ -79,64 +81,6 @@ function getStatusFilters(t: any): { value: PatternStatus | 'all'; label: string
   ];
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// STAT CARD  — même patron que profil : top-accent + glow
-// ─────────────────────────────────────────────────────────────────────────────
-
-function StatCard({
-  label,
-  value,
-  icon: Icon,
-  color,
-  sub,
-}: {
-  label: string;
-  value: string | number;
-  icon: typeof Layers;
-  color: string;
-  sub?: string;
-}) {
-  return (
-    <div
-      className="group border-avs-accent/9 bg-avs-secondary relative overflow-hidden rounded-2xl border p-5 transition-all duration-300 hover:-translate-y-0.5"
-      onMouseEnter={(e) => {
-        (e.currentTarget as HTMLElement).style.borderColor = `${color}35`;
-      }}
-      onMouseLeave={(e) => {
-        (e.currentTarget as HTMLElement).style.borderColor = '';
-      }}
-    >
-      <div
-        className="absolute inset-x-0 top-0 h-0.5 rounded-t-2xl"
-        style={{ background: color }}
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute -right-4 -bottom-4 h-16 w-16 rounded-full opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100"
-        style={{ background: `${color}25` }}
-        aria-hidden
-      />
-      <div className="relative">
-        <div
-          className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl"
-          style={{ background: `${color}12`, color }}
-        >
-          <Icon size={16} aria-hidden />
-        </div>
-        <p className="text-avs-accent/35 font-mono text-[9px] font-bold tracking-[0.18em] uppercase">
-          {label}
-        </p>
-        <p
-          className="font-display text-avs-accent mt-2 text-3xl leading-none font-black"
-          style={{ letterSpacing: '-0.025em' }}
-        >
-          {typeof value === 'number' ? formatNumber(value) : value}
-        </p>
-        {sub && <p className="text-avs-accent/35 mt-1.5 text-[11px]">{sub}</p>}
-      </div>
-    </div>
-  );
-}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // STATUS BADGE
@@ -145,7 +89,7 @@ function StatCard({
 function StatusBadge({ status, t }: { status: PatternStatus; t: any }) {
   const normalizedStatus = status?.toLowerCase() as PatternStatus;
 
-  const { label, dot, pill } = getStatusConfig(t)[normalizedStatus];
+  const { label, dot, pill } = getStatusConfig(t)[normalizedStatus] ?? getStatusConfig(t).draft;
   return (
     <span
       className={`inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1 font-mono text-[9px] font-black tracking-[0.14em] uppercase ${pill}`}
@@ -310,7 +254,9 @@ function EmptyState({ search, t }: { search: string; t: any }) {
 export default function MyPatternsPage() {
   const t = useTranslations('dashboard.patterns');
   const { user, isAdmin, isCurator } = useAuth();
-  const [patterns, setPatterns] = useState<Pattern[]>([]);
+  const { data: rawPatterns = [], isLoading } = usePatterns();
+  const deleteMutation = useDeletePattern();
+
   const [search, setSearch] = useState('');
   const [statusF, setStatusF] = useState<PatternStatus | 'all'>('all');
   const [sortKey, setSortKey] = useState<SortKey>('updatedAt');
@@ -343,38 +289,19 @@ export default function MyPatternsPage() {
         return 'draft';
     }
   };
-  useEffect(() => {
-    const loadPatterns = async () => {
-      try {
-        const response = await patternService.list();
-        const rawData = response.data.data;
-        
-        let allPatterns = rawData.map((p: any) => {
-          const pattern = mapPatternDtoToModel(p);
 
-          return {
-            ...pattern,
-            status: normalizeStatus(pattern.status),
-          };
-        });
+  const patterns = useMemo(() => {
+    let allPatterns = rawPatterns.map((p) => ({
+      ...p,
+      status: normalizeStatus(p.status),
+    }));
 
-        // Filtrer par utilisateur si pas admin
-        if (!isAdmin && user) {
-          allPatterns = allPatterns.filter((_: any, index: number) => {
-            const createdById = rawData[index]?.createdById;
-            return createdById === user.id;
-          });
-        }
+    if (!isAdmin && user) {
+      allPatterns = allPatterns.filter((p: any) => p.authorId === user.id || p.createdById === user.id);
+    }
 
-        setPatterns(allPatterns);
-      } catch (error) {
-        console.error(error);
-        // setPatterns(PATTERNS);
-      }
-    };
-
-    loadPatterns();
-  }, [isAdmin, isCurator, user]);
+    return allPatterns;
+  }, [rawPatterns, isAdmin, user]);
 
   const stats = useMemo(
     () => ({
@@ -431,13 +358,14 @@ export default function MyPatternsPage() {
   const confirmDelete = async () => {
     if (!deleteModal.patternId) return;
 
-    try {
-      await patternService.delete(deleteModal.patternId);
-      setPatterns((ps) => ps.filter((p) => p.id !== deleteModal.patternId));
-      setDeleteModal({ open: false, patternId: null, patternName: '' });
-    } catch (error) {
-      console.error('Erreur lors de la suppression:', error);
-    }
+    deleteMutation.mutate(deleteModal.patternId, {
+      onSuccess: () => {
+        setDeleteModal({ open: false, patternId: null, patternName: '' });
+      },
+      onError: (error) => {
+        console.error('Erreur lors de la suppression:', error);
+      },
+    });
   };
 
   const handleToggleFeatured = (id: string, shouldFeature: boolean) => {
@@ -561,15 +489,10 @@ export default function MyPatternsPage() {
         {/* ══ STAT CARDS — même patron que profil ════════════════════════════ */}
         {(isAdmin ) && (
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-            <StatCard label={t('stats.published')} value={stats.published} icon={CheckCircle2} color="#4A6741" />
-            <StatCard label={t('stats.draft')} value={stats.drafts} icon={FileText} color="#1D1D1B" />
-            <StatCard label={t('stats.review')} value={stats.review} icon={Hourglass} color="#D4A017" />
-            <StatCard
-              label={t('stats.totalViews')}
-              value={stats.totalViews}
-              icon={BarChart3}
-              color="#C0573E"
-            />
+            <KpiCard label={t('stats.published')} value={stats.published} icon={CheckCircle2} color="#4A6741" patternCss="avs-pattern-kente-royale" topAccent format={formatNumber} delay={0.1} />
+            <KpiCard label={t('stats.draft')} value={stats.drafts} icon={FileText} color="#8B5CF6" patternCss="avs-pattern-ndop-sultan" topAccent format={formatNumber} delay={0.17} />
+            <KpiCard label={t('stats.review')} value={stats.review} icon={Hourglass} color="#D4A017" patternCss="avs-pattern-bogolan-fanga" topAccent format={formatNumber} delay={0.24} />
+            <KpiCard label={t('stats.totalViews')} value={stats.totalViews} icon={BarChart3} color="#C0573E" patternCss="avs-pattern-adinkra-sankofa" topAccent format={formatNumber} delay={0.31} />
           </div>
         )}
 

@@ -1,0 +1,1210 @@
+{
+  "graph": {
+    "nodes": {
+      "@buni/search-service": {
+        "name": "@buni/search-service",
+        "type": "app",
+        "data": {
+          "root": "services/search-service",
+          "name": "@buni/search-service",
+          "tags": [
+            "npm:private"
+          ],
+          "metadata": {
+            "targetGroups": {
+              "NPM Scripts": [
+                "dev",
+                "build",
+                "start"
+              ]
+            },
+            "js": {
+              "packageName": "@buni/search-service",
+              "packageVersion": "0.0.1",
+              "isInPackageManagerWorkspaces": true
+            }
+          },
+          "targets": {
+            "dev": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "dev"
+              },
+              "metadata": {
+                "scriptContent": "tsx watch src/index.ts",
+                "runCommand": "pnpm run dev"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "dependsOn": [
+                "^build"
+              ]
+            },
+            "build": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "build"
+              },
+              "metadata": {
+                "scriptContent": "tsc",
+                "runCommand": "pnpm run build"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "production",
+                "^production"
+              ],
+              "outputs": [
+                "{projectRoot}/.next",
+                "{projectRoot}/dist"
+              ],
+              "cache": true
+            },
+            "start": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "start"
+              },
+              "metadata": {
+                "scriptContent": "node dist/index.js",
+                "runCommand": "pnpm run start"
+              },
+              "configurations": {},
+              "parallelism": true
+            }
+          },
+          "implicitDependencies": []
+        }
+      },
+      "@buni/media-service": {
+        "name": "@buni/media-service",
+        "type": "app",
+        "data": {
+          "root": "services/media-service",
+          "name": "@buni/media-service",
+          "tags": [
+            "npm:private"
+          ],
+          "metadata": {
+            "targetGroups": {
+              "NPM Scripts": [
+                "dev",
+                "build",
+                "start"
+              ]
+            },
+            "js": {
+              "packageName": "@buni/media-service",
+              "packageVersion": "0.0.1",
+              "isInPackageManagerWorkspaces": true
+            }
+          },
+          "targets": {
+            "dev": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "dev"
+              },
+              "metadata": {
+                "scriptContent": "tsx watch src/index.ts",
+                "runCommand": "pnpm run dev"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "dependsOn": [
+                "^build"
+              ]
+            },
+            "build": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "build"
+              },
+              "metadata": {
+                "scriptContent": "tsc",
+                "runCommand": "pnpm run build"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "production",
+                "^production"
+              ],
+              "outputs": [
+                "{projectRoot}/.next",
+                "{projectRoot}/dist"
+              ],
+              "cache": true
+            },
+            "start": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "start"
+              },
+              "metadata": {
+                "scriptContent": "node dist/index.js",
+                "runCommand": "pnpm run start"
+              },
+              "configurations": {},
+              "parallelism": true
+            }
+          },
+          "implicitDependencies": []
+        }
+      },
+      "@buni/api-gateway": {
+        "name": "@buni/api-gateway",
+        "type": "app",
+        "data": {
+          "root": "services/api-gateway",
+          "name": "@buni/api-gateway",
+          "tags": [
+            "npm:private"
+          ],
+          "metadata": {
+            "targetGroups": {
+              "NPM Scripts": [
+                "dev",
+                "build",
+                "start"
+              ]
+            },
+            "js": {
+              "packageName": "@buni/api-gateway",
+              "packageVersion": "0.0.1",
+              "isInPackageManagerWorkspaces": true
+            }
+          },
+          "targets": {
+            "dev": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "dev"
+              },
+              "metadata": {
+                "scriptContent": "tsx watch src/index.ts",
+                "runCommand": "pnpm run dev"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "dependsOn": [
+                "^build"
+              ]
+            },
+            "build": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "build"
+              },
+              "metadata": {
+                "scriptContent": "tsc",
+                "runCommand": "pnpm run build"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "production",
+                "^production"
+              ],
+              "outputs": [
+                "{projectRoot}/.next",
+                "{projectRoot}/dist"
+              ],
+              "cache": true
+            },
+            "start": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "start"
+              },
+              "metadata": {
+                "scriptContent": "node dist/index.js",
+                "runCommand": "pnpm run start"
+              },
+              "configurations": {},
+              "parallelism": true
+            }
+          },
+          "implicitDependencies": []
+        }
+      },
+      "@buni/analytics": {
+        "name": "@buni/analytics",
+        "type": "lib",
+        "data": {
+          "root": "packages/analytics",
+          "name": "@buni/analytics",
+          "projectType": "library",
+          "tags": [
+            "npm:private"
+          ],
+          "metadata": {
+            "targetGroups": {
+              "NPM Scripts": [
+                "typecheck"
+              ]
+            },
+            "js": {
+              "packageName": "@buni/analytics",
+              "packageVersion": "0.0.1",
+              "packageExports": {
+                ".": {
+                  "types": "./dist/index.d.ts",
+                  "default": "./dist/index.js"
+                }
+              },
+              "packageMain": "./dist/index.js",
+              "isInPackageManagerWorkspaces": true
+            }
+          },
+          "targets": {
+            "typecheck": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "typecheck"
+              },
+              "metadata": {
+                "scriptContent": "tsc --noEmit",
+                "runCommand": "pnpm run typecheck"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "inputs": [
+                "default"
+              ],
+              "cache": true
+            }
+          },
+          "implicitDependencies": []
+        }
+      },
+      "@buni/component": {
+        "name": "@buni/component",
+        "type": "lib",
+        "data": {
+          "root": "packages/component",
+          "name": "@buni/component",
+          "projectType": "library",
+          "tags": [
+            "npm:private"
+          ],
+          "metadata": {
+            "targetGroups": {
+              "NPM Scripts": [
+                "typecheck"
+              ]
+            },
+            "js": {
+              "packageName": "@buni/component",
+              "packageVersion": "0.0.1",
+              "packageExports": {
+                ".": {
+                  "types": "./src/index.ts",
+                  "default": "./src/index.ts"
+                }
+              },
+              "packageMain": "./src/index.ts",
+              "isInPackageManagerWorkspaces": true
+            }
+          },
+          "targets": {
+            "typecheck": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "typecheck"
+              },
+              "metadata": {
+                "scriptContent": "tsc --noEmit",
+                "runCommand": "pnpm run typecheck"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "inputs": [
+                "default"
+              ],
+              "cache": true
+            }
+          },
+          "implicitDependencies": []
+        }
+      },
+      "@buni/patterns": {
+        "name": "@buni/patterns",
+        "type": "lib",
+        "data": {
+          "root": "packages/patterns",
+          "name": "@buni/patterns",
+          "projectType": "library",
+          "tags": [
+            "npm:private"
+          ],
+          "metadata": {
+            "targetGroups": {
+              "NPM Scripts": [
+                "typecheck"
+              ]
+            },
+            "js": {
+              "packageName": "@buni/patterns",
+              "packageVersion": "0.0.1",
+              "packageExports": {
+                ".": {
+                  "types": "./dist/index.d.ts",
+                  "default": "./dist/index.js"
+                },
+                "./css": {
+                  "style": "./src/theme/patterns.css"
+                }
+              },
+              "packageMain": "./dist/index.js",
+              "isInPackageManagerWorkspaces": true
+            }
+          },
+          "targets": {
+            "typecheck": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "typecheck"
+              },
+              "metadata": {
+                "scriptContent": "tsc --noEmit",
+                "runCommand": "pnpm run typecheck"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "inputs": [
+                "default"
+              ],
+              "cache": true
+            }
+          },
+          "implicitDependencies": []
+        }
+      },
+      "@buni/config": {
+        "name": "@buni/config",
+        "type": "lib",
+        "data": {
+          "root": "packages/config",
+          "name": "@buni/config",
+          "projectType": "library",
+          "tags": [
+            "npm:private"
+          ],
+          "metadata": {
+            "targetGroups": {
+              "NPM Scripts": [
+                "typecheck"
+              ]
+            },
+            "js": {
+              "packageName": "@buni/config",
+              "packageVersion": "0.0.1",
+              "packageExports": {
+                ".": {
+                  "types": "./dist/index.d.ts",
+                  "default": "./dist/index.js"
+                }
+              },
+              "packageMain": "./dist/index.js",
+              "isInPackageManagerWorkspaces": true
+            }
+          },
+          "targets": {
+            "typecheck": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "typecheck"
+              },
+              "metadata": {
+                "scriptContent": "tsc --noEmit",
+                "runCommand": "pnpm run typecheck"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "inputs": [
+                "default"
+              ],
+              "cache": true
+            }
+          },
+          "implicitDependencies": []
+        }
+      },
+      "@buni/tokens": {
+        "name": "@buni/tokens",
+        "type": "lib",
+        "data": {
+          "root": "packages/tokens",
+          "name": "@buni/tokens",
+          "projectType": "library",
+          "tags": [
+            "npm:private"
+          ],
+          "metadata": {
+            "targetGroups": {
+              "NPM Scripts": [
+                "typecheck"
+              ]
+            },
+            "js": {
+              "packageName": "@buni/tokens",
+              "packageVersion": "0.0.1",
+              "packageExports": {
+                ".": {
+                  "types": "./dist/index.d.ts",
+                  "default": "./dist/index.js"
+                },
+                "./css": "./dist/index.css"
+              },
+              "packageMain": "./dist/index.js",
+              "isInPackageManagerWorkspaces": true
+            }
+          },
+          "targets": {
+            "typecheck": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "typecheck"
+              },
+              "metadata": {
+                "scriptContent": "tsc --noEmit",
+                "runCommand": "pnpm run typecheck"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "inputs": [
+                "default"
+              ],
+              "cache": true
+            },
+            "build": {
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "npm run build",
+                "cwd": "packages/tokens"
+              },
+              "outputs": [
+                "{projectRoot}/dist"
+              ],
+              "configurations": {},
+              "parallelism": true,
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "production",
+                "^production"
+              ],
+              "cache": true
+            }
+          },
+          "$schema": "../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "packages/tokens/src",
+          "implicitDependencies": []
+        }
+      },
+      "@buni/icons": {
+        "name": "@buni/icons",
+        "type": "lib",
+        "data": {
+          "root": "packages/icons",
+          "name": "@buni/icons",
+          "projectType": "library",
+          "tags": [
+            "npm:private"
+          ],
+          "metadata": {
+            "targetGroups": {
+              "NPM Scripts": [
+                "typecheck"
+              ]
+            },
+            "js": {
+              "packageName": "@buni/icons",
+              "packageVersion": "0.0.1",
+              "packageExports": {
+                ".": {
+                  "types": "./src/index.ts",
+                  "default": "./src/index.ts"
+                },
+                "./icons.css": "./src/icons.css"
+              },
+              "packageMain": "./src/index.ts",
+              "isInPackageManagerWorkspaces": true
+            }
+          },
+          "targets": {
+            "typecheck": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "typecheck"
+              },
+              "metadata": {
+                "scriptContent": "tsc --noEmit",
+                "runCommand": "pnpm run typecheck"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "inputs": [
+                "default"
+              ],
+              "cache": true
+            }
+          },
+          "implicitDependencies": []
+        }
+      },
+      "@buni/theme": {
+        "name": "@buni/theme",
+        "type": "lib",
+        "data": {
+          "root": "packages/theme",
+          "name": "@buni/theme",
+          "projectType": "library",
+          "tags": [
+            "npm:private"
+          ],
+          "metadata": {
+            "targetGroups": {
+              "NPM Scripts": [
+                "typecheck"
+              ]
+            },
+            "js": {
+              "packageName": "@buni/theme",
+              "packageVersion": "0.0.1",
+              "packageExports": {
+                ".": {
+                  "types": "./dist/index.d.ts",
+                  "default": "./dist/index.js"
+                }
+              },
+              "packageMain": "./dist/index.js",
+              "isInPackageManagerWorkspaces": true
+            }
+          },
+          "targets": {
+            "typecheck": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "typecheck"
+              },
+              "metadata": {
+                "scriptContent": "tsc --noEmit",
+                "runCommand": "pnpm run typecheck"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "inputs": [
+                "default"
+              ],
+              "cache": true
+            }
+          },
+          "implicitDependencies": []
+        }
+      },
+      "@buni/utils": {
+        "name": "@buni/utils",
+        "type": "lib",
+        "data": {
+          "root": "packages/utils",
+          "name": "@buni/utils",
+          "projectType": "library",
+          "tags": [
+            "npm:private"
+          ],
+          "metadata": {
+            "targetGroups": {
+              "NPM Scripts": [
+                "typecheck"
+              ]
+            },
+            "js": {
+              "packageName": "@buni/utils",
+              "packageVersion": "0.0.1",
+              "packageExports": {
+                ".": {
+                  "types": "./dist/index.d.ts",
+                  "default": "./dist/index.js"
+                }
+              },
+              "packageMain": "./dist/index.js",
+              "isInPackageManagerWorkspaces": true
+            }
+          },
+          "targets": {
+            "typecheck": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "typecheck"
+              },
+              "metadata": {
+                "scriptContent": "tsc --noEmit",
+                "runCommand": "pnpm run typecheck"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "inputs": [
+                "default"
+              ],
+              "cache": true
+            }
+          },
+          "implicitDependencies": []
+        }
+      },
+      "@buni/auth": {
+        "name": "@buni/auth",
+        "type": "lib",
+        "data": {
+          "root": "packages/auth",
+          "name": "@buni/auth",
+          "projectType": "library",
+          "tags": [
+            "npm:private"
+          ],
+          "metadata": {
+            "targetGroups": {
+              "NPM Scripts": [
+                "typecheck"
+              ]
+            },
+            "js": {
+              "packageName": "@buni/auth",
+              "packageVersion": "0.0.1",
+              "packageExports": {
+                ".": {
+                  "types": "./dist/index.d.ts",
+                  "default": "./dist/index.js"
+                }
+              },
+              "packageMain": "./dist/index.js",
+              "isInPackageManagerWorkspaces": true
+            }
+          },
+          "targets": {
+            "typecheck": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "typecheck"
+              },
+              "metadata": {
+                "scriptContent": "tsc --noEmit",
+                "runCommand": "pnpm run typecheck"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "inputs": [
+                "default"
+              ],
+              "cache": true
+            }
+          },
+          "implicitDependencies": []
+        }
+      },
+      "@buni/i18n": {
+        "name": "@buni/i18n",
+        "type": "lib",
+        "data": {
+          "root": "packages/i18n",
+          "name": "@buni/i18n",
+          "projectType": "library",
+          "tags": [
+            "npm:private"
+          ],
+          "metadata": {
+            "targetGroups": {
+              "NPM Scripts": [
+                "typecheck"
+              ]
+            },
+            "js": {
+              "packageName": "@buni/i18n",
+              "packageVersion": "0.0.1",
+              "packageExports": {
+                ".": {
+                  "types": "./dist/index.d.ts",
+                  "default": "./dist/index.js"
+                }
+              },
+              "packageMain": "./dist/index.js",
+              "isInPackageManagerWorkspaces": true
+            }
+          },
+          "targets": {
+            "typecheck": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "typecheck"
+              },
+              "metadata": {
+                "scriptContent": "tsc --noEmit",
+                "runCommand": "pnpm run typecheck"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "inputs": [
+                "default"
+              ],
+              "cache": true
+            }
+          },
+          "implicitDependencies": []
+        }
+      },
+      "buni-avs": {
+        "name": "buni-avs",
+        "type": "app",
+        "data": {
+          "root": "apps/buni-avs",
+          "targets": {
+            "build": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "build"
+              },
+              "metadata": {
+                "scriptContent": "next build",
+                "runCommand": "pnpm run build"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "production",
+                "^production"
+              ],
+              "outputs": [
+                "{projectRoot}/.next",
+                "{projectRoot}/dist"
+              ],
+              "cache": true
+            },
+            "dev": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "dev"
+              },
+              "metadata": {
+                "scriptContent": "next dev --webpack",
+                "runCommand": "pnpm run dev"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "dependsOn": [
+                "^build"
+              ]
+            },
+            "start": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "start"
+              },
+              "metadata": {
+                "scriptContent": "next start",
+                "runCommand": "pnpm run start"
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "serve-static": {
+              "continuous": true,
+              "options": {
+                "cwd": "apps/buni-avs",
+                "command": "next start"
+              },
+              "dependsOn": [
+                "build"
+              ],
+              "executor": "nx:run-commands",
+              "configurations": {},
+              "parallelism": true
+            },
+            "build-deps": {
+              "dependsOn": [
+                "^build"
+              ],
+              "configurations": {},
+              "options": {},
+              "parallelism": true,
+              "executor": "nx:noop"
+            },
+            "watch-deps": {
+              "continuous": true,
+              "dependsOn": [
+                "build-deps"
+              ],
+              "executor": "nx:run-commands",
+              "options": {
+                "command": "pnpm exec nx watch --projects buni-avs --includeDependentProjects -- pnpm exec nx build-deps buni-avs"
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "dev:turbo": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "dev:turbo"
+              },
+              "metadata": {
+                "scriptContent": "next dev",
+                "runCommand": "pnpm run dev:turbo"
+              },
+              "configurations": {},
+              "parallelism": true
+            },
+            "lint": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "lint"
+              },
+              "metadata": {
+                "scriptContent": "next lint",
+                "runCommand": "pnpm run lint"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "inputs": [
+                "default"
+              ],
+              "cache": true
+            },
+            "typecheck": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "typecheck"
+              },
+              "metadata": {
+                "scriptContent": "tsc --noEmit",
+                "runCommand": "pnpm run typecheck"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "inputs": [
+                "default"
+              ],
+              "cache": true
+            }
+          },
+          "name": "buni-avs",
+          "projectType": "application",
+          "tags": [
+            "npm:private"
+          ],
+          "metadata": {
+            "targetGroups": {
+              "NPM Scripts": [
+                "dev",
+                "dev:turbo",
+                "build",
+                "start",
+                "lint",
+                "typecheck"
+              ]
+            },
+            "js": {
+              "packageName": "@buni/buni-avs",
+              "packageVersion": "0.0.1",
+              "isInPackageManagerWorkspaces": true
+            }
+          },
+          "$schema": "../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "apps/buni-avs",
+          "implicitDependencies": []
+        }
+      },
+      "@buni/api": {
+        "name": "@buni/api",
+        "type": "lib",
+        "data": {
+          "root": "packages/api",
+          "name": "@buni/api",
+          "projectType": "library",
+          "tags": [
+            "npm:private"
+          ],
+          "metadata": {
+            "targetGroups": {
+              "NPM Scripts": [
+                "typecheck"
+              ]
+            },
+            "js": {
+              "packageName": "@buni/api",
+              "packageVersion": "0.0.1",
+              "packageExports": {
+                ".": {
+                  "types": "./src/index.ts",
+                  "default": "./src/index.ts"
+                }
+              },
+              "packageMain": "./src/index.ts",
+              "isInPackageManagerWorkspaces": true
+            }
+          },
+          "targets": {
+            "typecheck": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "typecheck"
+              },
+              "metadata": {
+                "scriptContent": "tsc --noEmit",
+                "runCommand": "pnpm run typecheck"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "inputs": [
+                "default"
+              ],
+              "cache": true
+            }
+          },
+          "implicitDependencies": []
+        }
+      },
+      "@buni/cli": {
+        "name": "@buni/cli",
+        "type": "lib",
+        "data": {
+          "root": "packages/cli",
+          "name": "@buni/cli",
+          "projectType": "library",
+          "tags": [
+            "npm:public"
+          ],
+          "metadata": {
+            "targetGroups": {
+              "NPM Scripts": [
+                "build",
+                "dev",
+                "typecheck"
+              ]
+            },
+            "description": "CLI for Buni Design System - Copy & Paste components to your project",
+            "js": {
+              "packageName": "@buni/cli",
+              "packageVersion": "0.0.1",
+              "isInPackageManagerWorkspaces": true
+            }
+          },
+          "targets": {
+            "build": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "build"
+              },
+              "metadata": {
+                "scriptContent": "tsc",
+                "runCommand": "pnpm run build"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "dependsOn": [
+                "^build"
+              ],
+              "inputs": [
+                "production",
+                "^production"
+              ],
+              "outputs": [
+                "{projectRoot}/.next",
+                "{projectRoot}/dist"
+              ],
+              "cache": true
+            },
+            "dev": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "dev"
+              },
+              "metadata": {
+                "scriptContent": "tsc --watch",
+                "runCommand": "pnpm run dev"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "dependsOn": [
+                "^build"
+              ]
+            },
+            "typecheck": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "typecheck"
+              },
+              "metadata": {
+                "scriptContent": "tsc --noEmit",
+                "runCommand": "pnpm run typecheck"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "inputs": [
+                "default"
+              ],
+              "cache": true
+            },
+            "nx-release-publish": {
+              "executor": "@nx/js:release-publish",
+              "dependsOn": [
+                "^nx-release-publish"
+              ],
+              "options": {},
+              "configurations": {},
+              "parallelism": true
+            }
+          },
+          "implicitDependencies": []
+        }
+      },
+      "@buni/ui": {
+        "name": "@buni/ui",
+        "type": "lib",
+        "data": {
+          "root": "packages/ui",
+          "name": "@buni/ui",
+          "projectType": "library",
+          "tags": [
+            "npm:private"
+          ],
+          "metadata": {
+            "targetGroups": {
+              "NPM Scripts": [
+                "typecheck"
+              ]
+            },
+            "js": {
+              "packageName": "@buni/ui",
+              "packageVersion": "0.0.1",
+              "packageExports": {
+                ".": {
+                  "types": "./dist/index.d.ts",
+                  "default": "./dist/index.js"
+                }
+              },
+              "packageMain": "./dist/index.js",
+              "isInPackageManagerWorkspaces": true
+            }
+          },
+          "targets": {
+            "typecheck": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "typecheck"
+              },
+              "metadata": {
+                "scriptContent": "tsc --noEmit",
+                "runCommand": "pnpm run typecheck"
+              },
+              "configurations": {},
+              "parallelism": true,
+              "inputs": [
+                "default"
+              ],
+              "cache": true
+            }
+          },
+          "implicitDependencies": []
+        }
+      }
+    },
+    "dependencies": {
+      "@buni/search-service": [],
+      "@buni/media-service": [],
+      "@buni/api-gateway": [],
+      "@buni/analytics": [],
+      "@buni/component": [
+        {
+          "source": "@buni/component",
+          "target": "@buni/ui",
+          "type": "static"
+        }
+      ],
+      "@buni/patterns": [],
+      "@buni/config": [],
+      "@buni/tokens": [],
+      "@buni/icons": [],
+      "@buni/theme": [],
+      "@buni/utils": [],
+      "@buni/auth": [],
+      "@buni/i18n": [],
+      "buni-avs": [
+        {
+          "source": "buni-avs",
+          "target": "@buni/analytics",
+          "type": "static"
+        },
+        {
+          "source": "buni-avs",
+          "target": "@buni/api",
+          "type": "static"
+        },
+        {
+          "source": "buni-avs",
+          "target": "@buni/auth",
+          "type": "static"
+        },
+        {
+          "source": "buni-avs",
+          "target": "@buni/config",
+          "type": "static"
+        },
+        {
+          "source": "buni-avs",
+          "target": "@buni/patterns",
+          "type": "static"
+        },
+        {
+          "source": "buni-avs",
+          "target": "@buni/theme",
+          "type": "static"
+        },
+        {
+          "source": "buni-avs",
+          "target": "@buni/tokens",
+          "type": "static"
+        },
+        {
+          "source": "buni-avs",
+          "target": "@buni/ui",
+          "type": "static"
+        },
+        {
+          "source": "buni-avs",
+          "target": "@buni/utils",
+          "type": "static"
+        }
+      ],
+      "@buni/api": [
+        {
+          "source": "@buni/api",
+          "target": "@buni/auth",
+          "type": "static"
+        }
+      ],
+      "@buni/cli": [],
+      "@buni/ui": [
+        {
+          "source": "@buni/ui",
+          "target": "@buni/utils",
+          "type": "static"
+        }
+      ]
+    }
+  }
+}

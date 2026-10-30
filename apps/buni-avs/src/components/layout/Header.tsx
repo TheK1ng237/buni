@@ -226,7 +226,7 @@ function getNavItems(t: any): NavItem[] {
     {
       href: '/documentation',
       label: t('docs'),
-      available: true,
+      available: false,
       modal: {
         title: 'Documentation en cours de rédaction',
         description: "Nous préparons une documentation complète d'AVS.",
@@ -243,15 +243,19 @@ function getNavItems(t: any): NavItem[] {
     },
 
     {
+      href: '/pricing',
+      label: t('pricing'),
+      available: false,
+    },
+
+    {
       href: '/contact',
       label: t('contact'),
       available: true,
     },
   ];
 }
-// ══════════════════════════════════════════════════════════════════════════════
-// PREMIUM MODAL
-// ══════════════════════════════════════════════════════════════════════════════
+
 
 function PremiumModal({ isOpen, onClose, t }: { isOpen: boolean; onClose: () => void; t: any }) {
   useEffect(() => {
@@ -593,7 +597,7 @@ function UserMenu({
                   <div className="min-w-0">
                     <p className="text-avs-accent truncate text-sm font-bold">{user.name}</p>
                     <p className="text-avs-accent/35 truncate text-[11px] capitalize">
-                      {user.role}
+                      {user.role?.replace('_', ' ')}
                     </p>
                   </div>
                   <span
@@ -766,6 +770,9 @@ export function Header() {
   // Use absolute path to bypass i18n middleware for static assets
 
   const NAV_ITEMS = getNavItems(navT);
+  const isDocumentationAvailable = NAV_ITEMS.some(
+    (item) => item.href === '/documentation' && item.available !== false
+  );
 
   useEffect(() => {
     setAuthState({ isAuthenticated, user });
@@ -849,7 +856,7 @@ export function Header() {
             aria-label="Navigation principale"
             className="hidden flex-1 items-center justify-center gap-0.5 lg:flex"
           >
-            {NAV_ITEMS.filter((item) => !item.hidden).map((item) => (
+            {NAV_ITEMS.filter((item) => !item.hidden && item.available !== false).map((item) => (
               <NavDropdown
                 key={item.label}
                 item={item}
@@ -1016,13 +1023,14 @@ export function Header() {
                       available={false}
                       onUnavailableClick={() => handleClick({ href: '/templates', label: 'Templates', available: false, modal: NAV_ITEMS.find(i => i.label === 'Templates')?.modal })}
                     /> */}
-                    <MobileLink
-                      href="/documentation"
-                      icon={BookOpen}
-                      label="Documentation"
-                      available={true}
-                      onClick={() => setMobileOpen(false)}
-                    />
+                    {isDocumentationAvailable && (
+                      <MobileLink
+                        href="/documentation"
+                        icon={BookOpen}
+                        label="Documentation"
+                        onClick={() => setMobileOpen(false)}
+                      />
+                    )}
                     <MobileLink
                       href="/about"
                       icon={User}
@@ -1106,7 +1114,7 @@ export function Header() {
                               {authState.user.name || 'User'}
                             </p>
                             <p className="text-avs-accent/35 truncate text-xs capitalize">
-                              {authState.user.role}
+                              {authState.user.role?.replace('_', ' ')}
                             </p>
                           </div>
                           <span className="ml-auto h-2 w-2 shrink-0 rounded-full bg-emerald-500" />

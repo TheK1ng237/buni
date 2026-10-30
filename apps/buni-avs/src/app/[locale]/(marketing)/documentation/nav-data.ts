@@ -3,7 +3,7 @@
 // the sidebar tree, the homepage category grid and the search index.
 // ─────────────────────────────────────────────────────────────────────────────
 
-import { useTranslations } from 'next-intl';
+import { useTranslations } from '@/i18n';
 
 export interface NavPage {
   slug: string;

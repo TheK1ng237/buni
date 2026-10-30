@@ -28,7 +28,8 @@
     "settings": "Settings",
     "logout": "Logout",
     "login": "Login",
-    "register": "Register"
+    "register": "Register",
+    "pricing": "Pricing"
   },
   "auth": {
     "login": "Login",
@@ -656,6 +657,61 @@
         "about": "About",
         "contact": "Contact",
         "support": "Support"
+      }
+    },
+    "minimalist": {
+      "presetMessages": {
+        "nextComponent": "For the next component",
+        "beautifulDesign": "For the love of beautiful design",
+        "keepInspiring": "Keep inspiring!",
+        "communitySupport": "Community support",
+        "sayThanks": "Simply to say thanks"
+      },
+      "paymentProviders": {
+        "stripe": "Stripe / Card",
+        "paypal": "PayPal",
+        "mobileMoney": "Mobile Money"
+      },
+      "header": {
+        "eyebrow": "Direct support",
+        "title": "A coffee to fuel",
+        "titleHighlight": "a vision",
+        "description": "Each cup fuels open-source creation and the valorization of African visual heritage."
+      },
+      "tabs": {
+        "support": "Offer a coffee",
+        "community": "Community Animation"
+      },
+      "coffeeSelection": {
+        "label": "How many cups?",
+        "pricePerCup": "/ cup",
+        "cup": "cup",
+        "cups": "cups",
+        "lessCoffee": "Less coffee",
+        "moreCoffee": "More coffee"
+      },
+      "message": {
+        "label": "Message of encouragement",
+        "optional": "(optional)",
+        "placeholder": "Or write your own message..."
+      },
+      "payment": {
+        "label": "Payment method"
+      },
+      "cta": {
+        "processing": "Processing...",
+        "offerCoffee": "Offer {count} {coffee, plural, one {coffee} other {coffees}} • ${amount}",
+        "otherOptions": "Other support options →"
+      },
+      "reassurance": {
+        "direct": "100% direct",
+        "secure": "Secure",
+        "cupsThisMonth": "348 cups this month"
+      },
+      "thankYou": {
+        "title": "A huge thank you!",
+        "message": "Your support of ${amount} brings real warmth to this project.",
+        "close": "Close & Continue"
       }
     }
   },
@@ -1876,39 +1932,8 @@
         "nameMin": "Minimum 2 characters",
         "invalidUrl": "Invalid URL"
       },
-      "tabs": {
-        "info": "Information",
-        "social": "Social networks"
-      },
-      "avatar": {
-        "fileTooLarge": "File too large",
-        "fileTooLargeDesc": "Image must not exceed 5MB",
-        "unsupportedFormat": "Format not supported",
-        "unsupportedFormatDesc": "Only JPEG, PNG, WebP and GIF are accepted",
-        "updated": "Avatar updated",
-        "updatedDesc": "Your profile photo has been changed successfully",
-        "error": "Error",
-        "errorDesc": "Unable to upload avatar. Please try again.",
-        "upload": "Change avatar",
-        "uploading": "Uploading…",
-        "online": "Online"
-      },
-      "social": {
-        "github": "GitHub",
-        "twitter": "Twitter / X",
-        "preview": "Link preview"
-      },
-      "loading": "Loading profile…",
       "memberSince": "Member since",
-      "verified": "Verified",
-      "notVerified": "Not verified",
       "changeAvatar": "Change avatar",
-      "validationError": "Validation error",
-      "validationErrorDesc": "Please check the form fields",
-      "saved": "Profile updated",
-      "savedDesc": "Your changes have been saved successfully",
-      "error": "Error",
-      "errorDesc": "Unable to save profile. Please try again.",
       "socialPreview": "Link preview",
       "toasts": {
         "fileTooLarge": "File too large",
@@ -1932,10 +1957,26 @@
       "subtitle": "Manage your account and preferences",
       "account": "Account",
       "sections": {
+        "profile": "Profile",
         "notifications": "Notifications",
         "security": "Security",
         "privacy": "Privacy",
         "danger": "Danger zone"
+      },
+      "profileTab": {
+        "title": "Profile Information",
+        "name": "Full Name",
+        "bio": "Bio",
+        "location": "Location",
+        "website": "Website",
+        "github": "GitHub Username",
+        "twitter": "Twitter Username",
+        "specialty": "Specialty / Domain",
+        "save": "Save Profile",
+        "saving": "Saving…",
+        "saved": "Profile Updated!",
+        "avatar": "Change Avatar",
+        "avatarUploading": "Uploading…"
       },
       "notifications": {
         "email": {
@@ -1991,14 +2032,22 @@
           "title": "Two-factor authentication (2FA)",
           "description": "Add a security layer via a TOTP app (Google Authenticator, Authy).",
           "toggle": "Enable 2FA",
-          "setupRequired": "Configuration required",
-          "scanQR": "Scan the QR code with your authentication app to complete setup."
+          "setupRequired": "2FA Setup Required",
+          "scanQR": "Scan the QR code with your authentication app then enter the 6-digit code.",
+          "secretKey": "Secret activation key:",
+          "codePlaceholder": "6-digit code (e.g. 123456)",
+          "verifyButton": "Verify & Enable",
+          "disabling": "Disabling…",
+          "enabled": "2FA Enabled",
+          "disable": "Disable 2FA"
         },
         "sessions": {
           "title": "Active sessions",
           "noSessions": "No active sessions",
           "current": "Current",
-          "revoke": "Revoke"
+          "revoke": "Revoke",
+          "revokeAll": "Revoke all other sessions",
+          "revokeAllConfirm": "Are you sure you want to log out all other active sessions?"
         }
       },
       "privacy": {
@@ -2032,14 +2081,18 @@
             "desc": "Help us improve AVS anonymously",
             "toggle": "Share analytics"
           },
-          "download": "Download my data (GDPR)"
+          "download": "Download my data (GDPR)",
+          "exporting": "Generating export…"
         }
       },
       "danger": {
         "deactivate": {
           "title": "Deactivate account",
           "description": "Your account will be temporarily deactivated. Your patterns remain accessible but you will no longer be able to log in.",
-          "button": "Deactivate my account"
+          "button": "Deactivate my account",
+          "modalTitle": "Confirm Deactivation",
+          "modalDesc": "Are you sure you want to deactivate your account? Your active sessions will be terminated.",
+          "confirm": "Yes, deactivate"
         },
         "delete": {
           "title": "Delete account",
@@ -2047,7 +2100,11 @@
           "description": "All your patterns, data and contributions will be permanently deleted.",
           "noteTitle": "Important note",
           "note": "This action cannot be undone. Please backup your data before proceeding.",
-          "button": "Delete my account"
+          "button": "Delete my account",
+          "modalTitle": "Permanently Delete Account",
+          "modalDesc": "To confirm deletion, please type \"SUPPRIMER\" below:",
+          "confirmPlaceholder": "Type SUPPRIMER",
+          "confirmButton": "Permanently Delete"
         }
       },
       "validation": {
@@ -2098,14 +2155,52 @@
       "memberSince": "Member since",
       "actions": {
         "verify": "Verify",
-        "revoke": "Revoke"
+        "revoke": "Revoke",
+        "invite": "Invite User",
+        "export": "Export CSV",
+        "details": "Details",
+        "delete": "Delete"
       },
       "table": {
         "title": "User list",
         "user": "User",
         "status": "Status",
         "memberSince": "Member since",
-        "role": "Role"
+        "role": "Role",
+        "actions": "Actions"
+      },
+      "modal": {
+        "invite": {
+          "title": "Invite User",
+          "subtitle": "An email with login credentials will be sent.",
+          "email": "Email address",
+          "name": "Full name (optional)",
+          "role": "Assigned role",
+          "send": "Send Invitation"
+        },
+        "delete": {
+          "title": "Delete User",
+          "warning": "Are you sure you want to permanently delete this user? This action cannot be undone.",
+          "confirm": "Permanently Delete"
+        }
+      },
+      "drawer": {
+        "title": "User Profile",
+        "overview": "Overview & Role",
+        "activity": "Activity",
+        "stats": "Statistics"
+      },
+      "pagination": {
+        "showing": "Showing {from} to {to} of {total} users",
+        "page": "Page {current} of {total}",
+        "prev": "Previous",
+        "next": "Next"
+      },
+      "toasts": {
+        "roleUpdated": "Role updated successfully",
+        "verificationToggled": "Verification status updated",
+        "userInvited": "Invitation sent successfully",
+        "userDeleted": "User deleted successfully"
       },
       "empty": {
         "title": "No users found",
@@ -2115,6 +2210,304 @@
         "title": "Access denied",
         "description": "Only administrators can access this page."
       }
+    }
+  },
+  "pricing": {
+    "badge": "Simple & Accessible Pricing",
+    "title": "African design for every creator",
+    "subtitle": "Access AVS cultural patterns, design tokens, and support African artisans with market-adapted pricing.",
+    "billing": {
+      "monthly": "Monthly",
+      "annual": "Annual",
+      "discount": "-20%"
+    },
+    "currency": "FCFA",
+    "perMonth": "/ month",
+    "perYear": "/ year",
+    "popular": "Popular",
+    "cta": {
+      "free": "Get Started",
+      "starter": "Try Starter",
+      "pro": "Choose Pro",
+      "business": "Go Business",
+      "enterprise": "Contact Us"
+    },
+    "plans": {
+      "free": {
+        "name": "Free",
+        "badge": "Discovery",
+        "description": "Perfect for discovering AVS and using basic patterns in your personal projects.",
+        "priceMonthly": "0",
+        "priceAnnual": "0",
+        "features": [
+          "50 cultural patterns in SVG",
+          "Standard PNG exports",
+          "Complete documentation",
+          "Community support",
+          "Personal use only"
+        ]
+      },
+      "starter": {
+        "name": "Starter",
+        "badge": "Freelancers",
+        "description": "For freelancers and creators who regularly use African patterns in their work.",
+        "priceMonthly": "599",
+        "priceAnnual": "479",
+        "features": [
+          "500 cultural patterns in SVG",
+          "HD vector exports (SVG, EPS)",
+          "Tailwind design tokens",
+          "Commercial license",
+          "Priority email support",
+          "Attribution required"
+        ]
+      },
+      "pro": {
+        "name": "Pro",
+        "badge": "Most Popular",
+        "description": "For studios and agencies integrating AVS into their client projects.",
+        "priceMonthly": "1,999",
+        "priceAnnual": "1,599",
+        "features": [
+          "Unlimited patterns SVG + PNG",
+          "Multi-format exports (Figma, React)",
+          "Complete design tokens",
+          "Extended license no attribution",
+          "3 users included",
+          "Dedicated 24/7 support"
+        ]
+      },
+      "business": {
+        "name": "Business",
+        "badge": "Teams",
+        "description": "For companies integrating AVS into their design system at scale.",
+        "priceMonthly": "4,999",
+        "priceAnnual": "3,999",
+        "features": [
+          "All patterns + exclusives",
+          "Programmatic API access",
+          "15 users included",
+          "Design system integration",
+          "Team training included",
+          "Dedicated account manager"
+        ]
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "badge": "Custom",
+        "description": "For large organizations with specific needs and high volume requirements.",
+        "priceMonthly": "Custom quote",
+        "priceAnnual": "Custom quote",
+        "features": [
+          "Unlimited users",
+          "On-premise deployment",
+          "Custom heritage digitization",
+          "Guaranteed 99.9% SLA",
+          "On-site training",
+          "VIP dedicated support"
+        ]
+      }
+    },
+    "matrix": {
+      "title": "Feature comparison",
+      "subtitle": "Compare the benefits of each plan to find the one that suits you.",
+      "categories": {
+        "content": "Content & Patterns",
+        "export": "Exports & Tokens",
+        "license": "Licenses & Usage",
+        "support": "Support & Team"
+      },
+      "options": {
+        "motifsCount": "Pattern count",
+        "vectorExport": "Vector exports",
+        "tailwindTokens": "Design tokens",
+        "figmaPlugin": "Figma integration",
+        "commercialLicense": "Commercial license",
+        "provenanceCheck": "Provenance verification",
+        "multiUser": "Included users",
+        "apiAccess": "API access",
+        "customDigitization": "Custom digitization",
+        "dedicatedSupport": "Dedicated support"
+      }
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "subtitle": "Answers to the questions we get asked often.",
+      "items": [
+        {
+          "q": "How to pay in FCFA?",
+          "a": "We accept Visa/Mastercard cards and Mobile Money (Orange, MTN, Wave, Moov) across West and Central Africa."
+        },
+        {
+          "q": "Can I change plans?",
+          "a": "Yes, you can upgrade or cancel anytime from your account. Changes take effect at the end of the current period."
+        },
+        {
+          "q": "Are artisans paid?",
+          "a": "A portion of every subscription goes directly to the artisans who document the patterns. This matters to us."
+        },
+        {
+          "q": "Invoice for my company?",
+          "a": "Yes, a compliant invoice is automatically sent after each payment."
+        },
+        {
+          "q": "Use for physical products?",
+          "a": "Paid plans Starter, Pro and Business allow commercial use (textile, fashion, design, etc.)."
+        }
+      ]
+    },
+    "banner": {
+      "title": "Specific project?",
+      "subtitle": "Our team can help you integrate AVS into your projects or digitize your own cultural patterns.",
+      "button": "Let's talk"
+    }
+  },
+  "upgrade": {
+    "badge": "Account upgrade",
+    "title": "Confirm your upgrade",
+    "subtitle": "You are about to upgrade to the {plan} plan with {billing} billing.",
+    "billing": {
+      "title": "Billing",
+      "annual": "Annual",
+      "monthly": "Monthly",
+      "annualDesc": "Annual billing with 20% savings",
+      "monthlyDesc": "Flexible monthly billing",
+      "savings": "Save 20%"
+    },
+    "features": {
+      "title": "Included in this plan:"
+    },
+    "security": {
+      "title": "Secure payment",
+      "encrypted": "SSL encrypted transactions",
+      "methods": "Cards and Mobile Money accepted",
+      "refund": "30-day refund policy"
+    },
+    "support": {
+      "title": "Need help?",
+      "description": "Our team is available to answer your questions.",
+      "contact": "Contact support"
+    },
+    "processing": "Processing...",
+    "confirm": "Confirm upgrade",
+    "cancel": "Cancel"
+  },
+  "patternForm": {
+    "header": {
+      "newTitle": "New Pattern",
+      "editTitle": "Edit Pattern",
+      "back": "Back",
+      "stepProgress": "Step {current} / {total} — {desc}"
+    },
+    "steps": {
+      "identity": "Identity",
+      "identityDesc": "Name & geographic origin",
+      "description": "Description",
+      "descriptionDesc": "Context & symbolism",
+      "colorsAssets": "Colors & Assets",
+      "colorsAssetsDesc": "Palette & SVG file",
+      "revision": "Review",
+      "revisionDesc": "Verification before submission"
+    },
+    "actions": {
+      "prev": "Previous",
+      "next": "Next",
+      "submit": "Submit for review",
+      "update": "Update pattern",
+      "submitting": "Submitting…"
+    },
+    "step1": {
+      "title": "Pattern Identity",
+      "sub": "Step 1",
+      "nameLocalLabel": "Local name",
+      "nameLocalPlaceholder": "Ndop (Ndoup)",
+      "nameFrLabel": "Name (English / Main)",
+      "nameFrPlaceholder": "Bamoum Royal Ndop",
+      "licenseLabel": "License",
+      "patternTypeLabel": "Pattern type",
+      "regionLabel": "Region",
+      "chooseRegion": "Choose…",
+      "countryLabel": "Country code (ISO 2)",
+      "countryHint": "E.g. CM for Cameroon",
+      "chooseCountry": "Choose a code…",
+      "peopleLabel": "People / Ethnicity",
+      "peoplePlaceholder": "Bamoum People (Bamum)",
+      "flagLabel": "Flag (emoji)",
+      "chooseFlag": "Choose a flag…",
+      "kingdomLabel": "Kingdom",
+      "kingdomPlaceholder": "Bamoum Sultanate",
+      "eraLabel": "Era",
+      "eraPlaceholder": "17th century — present",
+      "coordsLabel": "Coordinates (latitude, longitude)"
+    },
+    "step2": {
+      "title": "Description & Symbolism",
+      "sub": "Step 2",
+      "summaryLabel": "Summary",
+      "summaryPlaceholder": "Brief description used in lists and previews…",
+      "historyLabel": "History",
+      "historyPlaceholder": "Detailed historical context, evolution over time…",
+      "techniqueLabel": "Crafting technique",
+      "techniquePlaceholder": "Materials, craftsmanship, manufacturing steps…",
+      "symbolismMeaningLabel": "Symbolic meaning",
+      "symbolismMeaningPlaceholder": "Royalty, spirituality, protection against evil spirits…",
+      "symbolismUsageLabel": "Main usage",
+      "symbolismUsagePlaceholder": "in which specific event is this used…",
+      "ceremonialLabel": "Ceremonial usage",
+      "ceremonialPlaceholder": "Ceremonial contexts where the pattern is used…",
+      "keywordsLabel": "Keywords (1–{max})",
+      "keywordsPlaceholder": "Add a keyword then press Enter…",
+      "removeKeyword": "Remove {kw}"
+    },
+    "step3": {
+      "title": "Colors & Assets",
+      "sub": "Step 3",
+      "colorPaletteLabel": "Color palette",
+      "colorHexPlaceholder": "#C0573E",
+      "colorNamePlaceholder": "Color name",
+      "colorMeaningPlaceholder": "Meaning",
+      "addColor": "+ Add color",
+      "svgUploadLabel": "Pattern SVG File",
+      "dragDropOrClick": "Drag & drop your SVG file or click to browse",
+      "maxSizeHint": "SVG format only (max 2MB)",
+      "changeSvg": "Replace SVG",
+      "sourcesLabel": "Sources & References",
+      "sourcePlaceholder": "https://... or Bibliographic reference",
+      "addSource": "+ Add source",
+      "symbolsLabel": "Symbols & Elementary Motifs",
+      "symbolNameLabel": "Symbol name",
+      "symbolNameFrLabel": "French name",
+      "symbolMeaningLabel": "Meaning",
+      "symbolUsageLabel": "Usage",
+      "sacredSymbol": "Sacred symbol",
+      "addSymbol": "+ Add symbol"
+    },
+    "step4": {
+      "title": "Final Review",
+      "sub": "Step 4",
+      "labels": {
+        "nameEn": "Name EN",
+        "nameLocal": "Local Name",
+        "type": "Type",
+        "region": "Region",
+        "country": "Country",
+        "people": "People",
+        "kingdom": "Kingdom",
+        "era": "Era",
+        "usage": "Usage",
+        "license": "License",
+        "keywords": "Keywords",
+        "palette": "Palette"
+      },
+      "validationTitle": "Validation Process",
+      "validationText": "Your pattern will be reviewed by an AVS curator before publication. This process usually takes",
+      "validationTime": "24–48 business hours."
+    },
+    "preview": {
+      "namePlaceholder": "Pattern name",
+      "descriptionPlaceholder": "Description will appear here…",
+      "realtimeTitle": "Real-time preview",
+      "progress": "Progress"
     }
   }
 }

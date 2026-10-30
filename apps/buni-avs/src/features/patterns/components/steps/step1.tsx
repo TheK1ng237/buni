@@ -1,9 +1,10 @@
 'use client';
 
 import type { Step1Data, FieldErrors } from '../../types';
-import { PATTERN_TYPES, REGIONS,  } from '@buni/patterns';
-import { LICENSES } from '../../constants/pattern.constants';
+import { PATTERN_TYPES, REGIONS } from '@buni/patterns';
+import { LICENSES, AFRICAN_COUNTRIES } from '../../constants/pattern.constants';
 import { Field, PillBtn, SelectField, StepTitle } from '../Patternform.primitives';
+import { useTranslations } from '@/i18n';
 
 interface Step1Props {
   data: Partial<Step1Data>;
@@ -12,31 +13,33 @@ interface Step1Props {
 }
 
 export function Step1({ data, errors, onChange }: Step1Props) {
+  const t = useTranslations('patternForm.step1');
+
   return (
     <div className="space-y-6">
-      <StepTitle title="Identité du motif" sub="Étape 1" />
+      <StepTitle title={t('title')} sub={t('sub')} />
 
       {/* Names */}
       <div className="grid gap-5 sm:grid-cols-2">
-        <Field label="Nom local" error={errors['nameLocal']} required>
+        <Field label={t('nameLocalLabel')} error={errors['nameLocal']} required>
           <input
             className="avs-input"
             value={data.nameLocal ?? ''}
             onChange={(e) => onChange({ nameLocal: e.target.value })}
-            placeholder="Ndop (Ndoup)"
+            placeholder={t('nameLocalPlaceholder')}
           />
         </Field>
 
-        <Field label="Nom (francais)" error={errors['nameEn']} required>
+        <Field label={t('nameFrLabel')} error={errors['nameEn']} required>
           <input
             className="avs-input"
             value={data.nameEn ?? ''}
             onChange={(e) => onChange({ nameEn: e.target.value })}
-            placeholder="Bamoum Royal Ndop"
+            placeholder={t('nameFrPlaceholder')}
           />
         </Field>
 
-        <Field label="Licence" error={errors['license']} required>
+        <Field label={t('licenseLabel')} error={errors['license']} required>
           <div className="mt-1 flex flex-wrap gap-2">
             {LICENSES.map((l) => (
               <PillBtn
@@ -51,7 +54,7 @@ export function Step1({ data, errors, onChange }: Step1Props) {
       </div>
 
       {/* Pattern type pills */}
-      <Field label="Type de motif" error={errors['patternType']} required>
+      <Field label={t('patternTypeLabel')} error={errors['patternType']} required>
         <div className="mt-1 flex flex-wrap gap-2">
           {PATTERN_TYPES.map((t) => (
             <PillBtn
@@ -66,12 +69,12 @@ export function Step1({ data, errors, onChange }: Step1Props) {
 
       {/* Region + Country */}
       <div className="grid gap-5 sm:grid-cols-2">
-        <Field label="Région" error={errors['region']} required>
+        <Field label={t('regionLabel')} error={errors['region']} required>
           <SelectField
             value={data.region ?? ''}
             onChange={(v) => onChange({ region: v as Step1Data['region'] })}
           >
-            <option value="">Choisir…</option>
+            <option value="">{t('chooseRegion')}</option>
             {REGIONS.map((r) => (
               <option key={r} value={r}>{r}</option>
             ))}
@@ -79,63 +82,85 @@ export function Step1({ data, errors, onChange }: Step1Props) {
         </Field>
 
         <Field
-          label="Code pays (ISO 2)"
+          label={t('countryLabel')}
           error={errors['country']}
           required
-          hint="Ex : CM pour Cameroun"
+          hint={t('countryHint')}
         >
-          <input
-            className="avs-input font-mono uppercase"
-            maxLength={2}
+          <SelectField
             value={data.country ?? ''}
-            onChange={(e) => onChange({ country: e.target.value.toUpperCase() })}
-            placeholder="CM"
-          />
+            onChange={(code) => {
+              const matched = AFRICAN_COUNTRIES.find((c) => c.code === code);
+              onChange({
+                country: code,
+                ...(matched ? { flag: matched.flag } : {}),
+                ...(matched?.region && !data.region ? { region: matched.region as Step1Data['region'] } : {}),
+              });
+            }}
+          >
+            <option value="">{t('chooseCountry')}</option>
+            {AFRICAN_COUNTRIES.map((c) => (
+              <option key={c.code} value={c.code}>
+                {c.code}
+              </option>
+            ))}
+          </SelectField>
         </Field>
       </div>
 
       {/* Optional fields */}
       <div className="grid gap-5 sm:grid-cols-2">
-        <Field label="Peuple / Ethnie">
+        <Field label={t('peopleLabel')}>
           <input
             className="avs-input"
             value={data.people ?? ''}
             onChange={(e) => onChange({ people: e.target.value })}
-            placeholder="Peuple Bamoum (Bamum)"
+            placeholder={t('peoplePlaceholder')}
           />
         </Field>
 
-        <Field label="Drapeau (emoji)">
-          <input
-            className="avs-input"
+        <Field label={t('flagLabel')}>
+          <SelectField
             value={data.flag ?? ''}
-            onChange={(e) => onChange({ flag: e.target.value })}
-            placeholder="🇨🇲"
-            maxLength={8}
-          />
+            onChange={(flag) => {
+              const matched = AFRICAN_COUNTRIES.find((c) => c.flag === flag);
+              onChange({
+                flag,
+                ...(matched ? { country: matched.code } : {}),
+                ...(matched?.region && !data.region ? { region: matched.region as Step1Data['region'] } : {}),
+              });
+            }}
+          >
+            <option value="">{t('chooseFlag')}</option>
+            {AFRICAN_COUNTRIES.map((c) => (
+              <option key={`${c.code}-${c.flag}`} value={c.flag}>
+                {c.flag} {c.name} ({c.code})
+              </option>
+            ))}
+          </SelectField>
         </Field>
 
-        <Field label="Royaume">
+        <Field label={t('kingdomLabel')}>
           <input
             className="avs-input"
             value={data.kingdom ?? ''}
             onChange={(e) => onChange({ kingdom: e.target.value })}
-            placeholder="Sultanat Bamoum"
+            placeholder={t('kingdomPlaceholder')}
           />
         </Field>
 
-        <Field label="Époque">
+        <Field label={t('eraLabel')}>
           <input
             className="avs-input"
             value={data.era ?? ''}
             onChange={(e) => onChange({ era: e.target.value })}
-            placeholder="XVIIe siècle — présent"
+            placeholder={t('eraPlaceholder')}
           />
         </Field>
       </div>
 
       {/* Coordinates */}
-      <Field label="Coordonnées (latitude, longitude)">
+      <Field label={t('coordsLabel')}>
         <div className="grid grid-cols-2 gap-2">
           <input
             className="avs-input"

@@ -80,4 +80,8 @@ export const patternService = {
   async download(id: string) {
     return download(`/api/v1/patterns/${id}/download`);
   },
+
+  async trackView(id: string) {
+    return post(`/api/v1/patterns/${id}/view`, {});
+  },
 };

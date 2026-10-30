@@ -8,7 +8,7 @@ import {
   AlertCircle, Layers, Star,
 } from 'lucide-react';
 import { useAuth } from '@buni/auth';
-import { useTranslations } from 'next-intl';
+import { useTranslations } from '@/i18n';
 import { formatDate } from '@buni/utils';
 import { Route } from 'next';
 import Link from 'next/link';

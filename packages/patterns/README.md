@@ -1,6 +1,6 @@
-# @buni/patterns - Universal Pattern System
+# @buni/patterns - African Pattern CSS Classes
 
-Easy-to-use African patterns for any React project.
+Easy-to-use African pattern CSS classes for any React project.
 
 ## 🚀 Quick Start
 
@@ -10,78 +10,148 @@ Easy-to-use African patterns for any React project.
 npm install @buni/patterns
 ```
 
+### CSS Import Required
+
+For the CSS classes to work, you need to import the CSS in your global CSS file:
+
+```css
+/* In your globals.css or main CSS file */
+@import '@buni/patterns/css';
+```
+
 ### Basic Usage
 
 ```jsx
-import { UniversalPattern } from '@buni/patterns';
+import { kente, ndop, bogolan } from '@buni/patterns';
 
 function App() {
   return (
     <div>
       {/* Simple pattern background */}
-      <UniversalPattern type="KENTE" className="h-64" />
+      <div className={kente} className="h-64" />
       
       {/* Pattern as section */}
-      <UniversalPattern type="NDOP" as="section" className="py-8">
+      <section className={ndop}>
         <h1>Content with Ndop pattern</h1>
-      </UniversalPattern>
+      </section>
       
       {/* Pattern with custom styles */}
-      <UniversalPattern 
-        type="BOGOLAN" 
-        style={{ opacity: 0.3, borderRadius: '8px' }}
-        className="p-4"
+      <div 
+        className={bogolan}
+        className="opacity-30 rounded-xl"
       >
         <p>Overlay content</p>
-      </UniversalPattern>
+      </div>
     </div>
   );
 }
 ```
 
-## 🎨 Available Pattern Types
+### Direct Tailwind Usage (Recommended)
 
-- `KENTE` - Kente patterns (Ghana)
-- `NDOP` - Ndop patterns (Cameroon)
-- `BOGOLAN` - Bogolan patterns (Mali)
-- `ADINKRA` - Adinkra symbols (Ghana)
-- `TOGHU` - Toghu patterns (Cameroon)
-- `MUDCLOTH` - Mud cloth patterns
-- `BARKCLOTH` - Bark cloth patterns
-- `KUBA` - Kuba patterns (DRC)
-- `BERBER` - Berber patterns (North Africa)
-- `NDEBELE` - Ndebele patterns (Zimbabwe)
+```jsx
+// Even simpler - use pattern classes directly with Tailwind
+<div className="ndop h-20 w-full" />
+<div className="kente h-32 w-32 rounded-full" />
+<div className="bogolan h-16 w-full opacity-20" />
 
-## 📋 Props API
+// Combined with other Tailwind classes
+<section className="ndop min-h-screen relative">
+  <div className="absolute inset-0 bg-black/50" />
+  <div className="relative z-10 p-8">
+    <h1 className="text-white">Your content</h1>
+  </div>
+</section>
+```
 
-### UniversalPattern Props
+## 🎨 Available Pattern Classes
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `type` | `string` | **Required** - Pattern type from the list above |
-| `className` | `string` | `''` - Additional CSS classes |
-| `style` | `React.CSSProperties` | `{}` - Inline styles |
-| `children` | `React.ReactNode` | `undefined` - Content to render inside |
-| `as` | `keyof JSX.IntrinsicElements` | `'div'` - HTML tag to render |
-| `onClick` | `() => void` | `undefined` - Click handler |
+```typescript
+import { 
+  kente, 
+  bogolan, 
+  adinkra, 
+  ndebele, 
+  ndop, 
+  wax, 
+  kuba, 
+  berber 
+} from '@buni/patterns';
+```
+
+Available patterns:
+- `kente` - Kente patterns (Ghana)
+- `bogolan` - Bogolan patterns (Mali)
+- `adinkra` - Adinkra symbols (Ghana)
+- `ndebele` - Ndebele patterns (Zimbabwe)
+- `ndop` - Ndop patterns (Cameroon)
+- `wax` - Wax patterns (Pan-african)
+- `kuba` - Kuba patterns (DRC)
+- `berber` - Berber patterns (North Africa)
+
+Additional variations:
+- `kenteEtoile` - Kente étoile variation
+- `ndopCeremoniel` - Ndop cérémoniel variation
+- `bogolanTerre` - Bogolan terre variation
+- `waxLagos` - Wax Lagos variation
 
 ## 🎯 Advanced Examples
+
+### Pattern Backgrounds
+
+```jsx
+function PatternBackground() {
+  return (
+    <div className="kente h-48">
+      <h1 className="text-white">Kente Background</h1>
+    </div>
+  );
+}
+
+function PatternSection() {
+  return (
+    <section className="ndop">
+      <div className="p-8">
+        <h2>Section with Ndop pattern</h2>
+        <p>Your content here</p>
+      </div>
+    </section>
+  );
+}
+
+function PatternWithOpacity() {
+  return (
+    <div className="bogolan opacity-30">
+      <p>Subtle bogolan pattern overlay</p>
+    </div>
+  );
+}
+```
+
+### Interactive Pattern Cards
 
 ### Interactive Pattern Cards
 
 ```jsx
+import { kente, ndop, bogolan } from '@buni/patterns';
+
 function PatternCard({ pattern, onClick }) {
+  const patternClass = {
+    KENTE: kente,
+    NDOP: ndop,
+    BOGOLAN: bogolan
+  }[pattern.type] || kente;
+
   return (
-    <UniversalPattern 
-      type={pattern.type}
-      className="p-6 rounded-lg cursor-pointer hover:scale-105 transition-transform"
+    <div 
+      className={`${patternClass} p-6 rounded-lg cursor-pointer hover:scale-105 transition-transform`}
       onClick={onClick}
     >
       <div className="bg-white/90 backdrop-blur-sm p-4 rounded">
         <h3 className="font-bold text-lg">{pattern.name}</h3>
         <p className="text-sm opacity-75">{pattern.description}</p>
       </div>
-    </UniversalPattern>
+    </div>
   );
 }
 ```
@@ -89,18 +159,24 @@ function PatternCard({ pattern, onClick }) {
 ### Pattern Sections
 
 ```jsx
+import { kente, ndop, bogolan } from '@buni/patterns';
+
 function PatternSection({ title, type, children }) {
+  const patternClass = {
+    KENTE: kente,
+    NDOP: ndop,
+    BOGOLAN: bogolan
+  }[type] || kente;
+
   return (
     <section className="py-16">
-      <UniversalPattern 
-        type={type}
-        as="header"
-        className="h-32 flex items-center justify-center"
+      <header 
+        className={`${patternClass} h-32 flex items-center justify-center`}
       >
         <h1 className="text-4xl font-bold text-white drop-shadow-lg">
           {title}
         </h1>
-      </UniversalPattern>
+      </header>
       
       <main className="container mx-auto px-4">
         {children}
@@ -121,13 +197,20 @@ function PatternSection({ title, type, children }) {
 ### Pattern Overlays
 
 ```jsx
+import { kente, ndop, bogolan } from '@buni/patterns';
+
 function PatternOverlay({ type, children }) {
+  const patternClass = {
+    KENTE: kente,
+    NDOP: ndop,
+    BOGOLAN: bogolan
+  }[type] || kente;
+
   return (
     <div className="relative">
-      <UniversalPattern 
-        type={type}
+      <div 
+        className={`${patternClass} absolute inset-0 z-0`}
         style={{ opacity: 0.15 }}
-        className="absolute inset-0 z-0"
       />
       <div className="relative z-10">
         {children}
@@ -137,22 +220,31 @@ function PatternOverlay({ type, children }) {
 }
 ```
 
-## 🎨 CSS Classes
+## 🎨 CSS Classes Reference
 
-Each pattern type automatically maps to a specific CSS class:
+Each pattern has a short name for direct Tailwind usage:
 
 ```css
-.avs-pattern-kente-royale      /* Kente patterns */
-.avs-pattern-ndop-sultan       /* Ndop patterns */
-.avs-pattern-bogolan-fanga     /* Bogolan patterns */
-.avs-pattern-wax-dakar         /* Wax patterns */
-.avs-pattern-adinkra-sankofa   /* Adinkra patterns */
-.avs-pattern-toghu-bamileke    /* Toghu patterns */
-.avs-pattern-mudcloth          /* Mud cloth patterns */
-.avs-pattern-barkcloth         /* Bark cloth patterns */
-.avs-pattern-kuba-kasai        /* Kuba patterns */
-.avs-pattern-berber-amazigh    /* Berber patterns */
-.avs-pattern-ndebele-amabhaxa  /* Ndebele patterns */
+.kente      /* Kente pattern - short name */
+.ndop       /* Ndop pattern - short name */
+.bogolan    /* Bogolan pattern - short name */
+.wax        /* Wax pattern - short name */
+.adinkra    /* Adinkra pattern - short name */
+.kuba       /* Kuba pattern - short name */
+.berber     /* Berber pattern - short name */
+.ndebele    /* Ndebele pattern - short name */
+```
+
+The full class names are still available for backward compatibility:
+```css
+.avs-pattern-kente-royale      /* kente */
+.avs-pattern-ndop-sultan       /* ndop */
+.avs-pattern-bogolan-fanga     /* bogolan */
+.avs-pattern-wax-dakar         /* wax */
+.avs-pattern-adinkra-sankofa   /* adinkra */
+.avs-pattern-kuba-kasai        /* kuba */
+.avs-pattern-berber-amazigh    /* berber */
+.avs-pattern-ndebele-amabhaxa  /* ndebele */
 ```
 
 ## 🔄 TypeScript Support
@@ -160,24 +252,20 @@ Each pattern type automatically maps to a specific CSS class:
 Full TypeScript support with proper type definitions:
 
 ```typescript
-import { UniversalPattern } from '@buni/patterns';
+import { kente, ndop, bogolan } from '@buni/patterns';
 
-// Fully typed props
-<UniversalPattern 
-  type="KENTE" // Autocomplete shows all pattern types
-  className="p-4"
-  onClick={() => console.log('clicked')}
-/>
+// Fully typed imports
+const patternClass: string = kente; // Type: string
 ```
 
 ## 📦 Distribution
 
 This package is designed for easy distribution:
 
-- **Zero dependencies** - Works with any React project
+- **Zero dependencies** - Works with any CSS framework
 - **Tree-shakable** - Only imports what you use
 - **TypeScript first** - Full type safety
-- **Framework agnostic** - Works with Next.js, Vite, Create React App
+- **Framework agnostic** - Works with Next.js, Vite, Create React App, vanilla CSS
 
 ## 🌍 Cultural Context
 

@@ -2,9 +2,10 @@
 
 // =============================================================================
 // Hook — usePatternActions
-// Gère les actions sur les patterns avec optimistic updates et notifications
+// Gère les actions sur les patterns avec optimistic updates et invalidation
 // - feature / unfeature
-// - Gestion automatique des queries
+// - updateStatus
+// - delete
 // =============================================================================
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -12,6 +13,8 @@ import type { Pattern, PatternStatus } from '../types';
 import {
   featurePattern,
   unfeaturePattern,
+  updatePatternStatus,
+  deletePattern,
 } from '../usecases/pattern-actions.usecase';
 import { patternKeys } from './usePatterns';
 
@@ -25,24 +28,15 @@ export function useFeaturePattern() {
     mutationFn: featurePattern,
     onMutate: async (id) => {
       await qc.cancelQueries({ queryKey: patternKeys.all });
-      const previousPatterns = qc.getQueryData<Pattern[]>(patternKeys.all);
 
-      qc.setQueryData(patternKeys.all, (old: Pattern[] | undefined) =>
+      qc.setQueriesData<Pattern[]>({ queryKey: patternKeys.all }, (old) =>
         old?.map((p) =>
-          p.id === id ? { ...p, isFeatured: true, updatedAt: new Date().toISOString() } : p
+          p.id === id ? { ...p, featured: true, updatedAt: new Date().toISOString() } : p
         )
       );
-
-      return { previousPatterns };
-    },
-    onError: (_err, _id, context) => {
-      if (context?.previousPatterns) {
-        qc.setQueryData(patternKeys.all, context.previousPatterns);
-      }
     },
     onSuccess: () => {
       void qc.invalidateQueries({ queryKey: patternKeys.all });
-      void qc.invalidateQueries({ queryKey: patternKeys.featured() });
     },
   });
 }
@@ -57,24 +51,15 @@ export function useUnfeaturePattern() {
     mutationFn: unfeaturePattern,
     onMutate: async (id) => {
       await qc.cancelQueries({ queryKey: patternKeys.all });
-      const previousPatterns = qc.getQueryData<Pattern[]>(patternKeys.all);
 
-      qc.setQueryData(patternKeys.all, (old: Pattern[] | undefined) =>
+      qc.setQueriesData<Pattern[]>({ queryKey: patternKeys.all }, (old) =>
         old?.map((p) =>
-          p.id === id ? { ...p, isFeatured: false, updatedAt: new Date().toISOString() } : p
+          p.id === id ? { ...p, featured: false, updatedAt: new Date().toISOString() } : p
         )
       );
-
-      return { previousPatterns };
-    },
-    onError: (_err, _id, context) => {
-      if (context?.previousPatterns) {
-        qc.setQueryData(patternKeys.all, context.previousPatterns);
-      }
     },
     onSuccess: () => {
       void qc.invalidateQueries({ queryKey: patternKeys.all });
-      void qc.invalidateQueries({ queryKey: patternKeys.featured() });
     },
   });
 }
@@ -105,27 +90,32 @@ export function useToggleFeature() {
  */
 export function useUpdateStatus() {
   const qc = useQueryClient();
-  const { updatePatternStatus } = require('../usecases/pattern-actions.usecase');
 
   return useMutation({
     mutationFn: ({ id, status }: { id: string; status: PatternStatus }) => updatePatternStatus(id, status),
     onMutate: async ({ id, status }) => {
       await qc.cancelQueries({ queryKey: patternKeys.all });
-      const previousPatterns = qc.getQueryData<Pattern[]>(patternKeys.all);
 
-      qc.setQueryData(patternKeys.all, (old: Pattern[] | undefined) =>
+      qc.setQueriesData<Pattern[]>({ queryKey: patternKeys.all }, (old) =>
         old?.map((p) =>
           p.id === id ? { ...p, status, updatedAt: new Date().toISOString() } : p
         )
       );
+    },
+    onSuccess: () => {
+      void qc.invalidateQueries({ queryKey: patternKeys.all });
+    },
+  });
+}
 
-      return { previousPatterns };
-    },
-    onError: (_err, _vars, context) => {
-      if (context?.previousPatterns) {
-        qc.setQueryData(patternKeys.all, context.previousPatterns);
-      }
-    },
+/**
+ * Hook pour supprimer un pattern
+ */
+export function useDeletePattern() {
+  const qc = useQueryClient();
+
+  return useMutation({
+    mutationFn: (id: string) => deletePattern(id),
     onSuccess: () => {
       void qc.invalidateQueries({ queryKey: patternKeys.all });
     },

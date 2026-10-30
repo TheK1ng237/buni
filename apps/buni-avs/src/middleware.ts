@@ -27,18 +27,25 @@ export function middleware(request: NextRequest) {
   // ── Gestion i18n ─────────────────────────────────────────────────────────────
   const response = intlMiddleware(request);
 
-  // Récupérer le token (cookie ou header)
+  // ── Récupérer le token (cookie ou header) ───────────────────────────────────
   const token =
     request.cookies.get('avs_access')?.value ??
     request.headers.get('Authorization')?.replace('Bearer ', '');
 
+  // ── Extraire le chemin sans le préfixe de locale pour les vérifications ───────
+  const pathnameWithoutLocale = pathname.replace(/^\/[a-z]{2}/, '');
+
   // ── Redirections et headers de sécurité ─────────────────────────────────────
-  const isProtected = PROTECTED_PREFIXES.some((p) => pathname.startsWith(p));
-  const isAuthRoute = AUTH_ROUTES.some((p) => pathname.startsWith(p));
+  const isProtected = PROTECTED_PREFIXES.some((p) => pathnameWithoutLocale.startsWith(p));
+  const isAuthRoute = AUTH_ROUTES.some((p) => pathnameWithoutLocale.startsWith(p));
 
   // ── Redirection login si route protégée sans token ──────────────────────────
   if (isProtected && !token) {
-    const url = new URL(`/${defaultLocale}/auth/login`, request.url);
+    // Extraire la locale actuelle du pathname
+    const localeMatch = pathname.match(/^\/([a-z]{2})/);
+    const currentLocale = localeMatch ? localeMatch[1] : defaultLocale;
+    
+    const url = new URL(`/${currentLocale}/auth/login`, request.url);
     url.searchParams.set('callbackUrl', pathname);
     url.searchParams.set('reason', 'auth_required');
     return NextResponse.redirect(url);
@@ -46,7 +53,11 @@ export function middleware(request: NextRequest) {
 
   // ── Si déjà connecté, ne pas re-afficher login/register ────────────────────
   if (isAuthRoute && token) {
-    return NextResponse.redirect(new URL(`/${defaultLocale}/dashboard`, request.url));
+    // Extraire la locale actuelle du pathname
+    const localeMatch = pathname.match(/^\/([a-z]{2})/);
+    const currentLocale = localeMatch ? localeMatch[1] : defaultLocale;
+    
+    return NextResponse.redirect(new URL(`/${currentLocale}/dashboard`, request.url));
   }
 
   // ── Headers de sécurité sur toutes les réponses ─────────────────────────────
@@ -59,5 +70,5 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   // Exclure les assets statiques et les routes Next.js internes
-  matcher: ['/((?!_next/static|_next/image|favicon.ico|public/|patterns/|api/|.*\\.png|.*\\.jpg|.*\\.jpeg|.*\\.gif|.*\\.svg|.*\\.webp).*)'],
+  matcher: ['/((?!_next/static|_next/image|favicon.ico|public/|patterns/|api/|.*\\.png|.*\\.jpg|.*\\.jpeg|.*\\.gif|.*\\.svg|.*\\.webp|site.webmanifest).*)'],
 };

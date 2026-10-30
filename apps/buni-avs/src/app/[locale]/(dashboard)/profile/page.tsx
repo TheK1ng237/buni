@@ -9,7 +9,7 @@ import {
   ArrowRight,
 } from 'lucide-react';
 import { useAuth, useLogout } from '@buni/auth';
-import { useTranslations } from 'next-intl';
+import { useTranslations } from '@/i18n';
 import { formatDate } from '@buni/utils';
 import { z } from 'zod';
 import Link from 'next/link';

@@ -2,6 +2,7 @@
 
 import type { Step1Data, Step2Data, Step3Data, FieldErrors } from '../../types';
 import { StepTitle } from '../Patternform.primitives';
+import { useTranslations } from '@/i18n';
 
 interface Step4Props {
   step1: Partial<Step1Data>;
@@ -11,23 +12,25 @@ interface Step4Props {
 }
 
 export function Step4({ step1, step2, step3, errors }: Step4Props) {
+  const t = useTranslations('patternForm.step4');
+
   const rows = [
-    { label: 'Nom EN',    value: step1.nameEn },
-    { label: 'Nom Local', value: step1.nameLocal },
-    { label: 'Type',      value: step1.patternType?.toUpperCase() },
-    { label: 'Région',    value: step1.region },
-    { label: 'Pays',      value: step1.country },
-    { label: 'Peuple',    value: step1.people },
-    { label: 'Royaume',   value: step1.kingdom },
-    { label: 'Époque',    value: step1.era },
-    { label: 'Usage',     value: step2.symbolism?.usage },
-    { label: 'Licence',   value: step1.license?.toUpperCase() },
-    { label: 'Mots-clés', value: (step2.symbolism?.keywords ?? []).join(', ') },
+    { label: t('labels.nameEn'),    value: step1.nameEn },
+    { label: t('labels.nameLocal'), value: step1.nameLocal },
+    { label: t('labels.type'),      value: step1.patternType?.toUpperCase() },
+    { label: t('labels.region'),    value: step1.region },
+    { label: t('labels.country'),   value: step1.country },
+    { label: t('labels.people'),    value: step1.people },
+    { label: t('labels.kingdom'),   value: step1.kingdom },
+    { label: t('labels.era'),       value: step1.era },
+    { label: t('labels.usage'),     value: step2.symbolism?.usage },
+    { label: t('labels.license'),   value: step1.license?.toUpperCase() },
+    { label: t('labels.keywords'),  value: (step2.symbolism?.keywords ?? []).join(', ') },
   ].filter((r) => r.value);
 
   return (
     <div className="space-y-6">
-      <StepTitle title="Révision finale" sub="Étape 4" />
+      <StepTitle title={t('title')} sub={t('sub')} />
 
       {/* Data rows */}
       <div className="space-y-1.5">
@@ -47,7 +50,7 @@ export function Step4({ step1, step2, step3, errors }: Step4Props) {
         {(step3.colors ?? []).length > 0 && (
           <div className="flex items-center gap-3 rounded-xl border border-avs-accent/10 bg-avs-secondary-dark px-4 py-2.5">
             <span className="w-24 shrink-0 font-mono text-[9px] font-black uppercase tracking-[0.16em] text-avs-accent/40">
-              Palette
+              {t('labels.palette')}
             </span>
             <div className="flex gap-2">
               {(step3.colors ?? []).map((c) => (
@@ -69,12 +72,11 @@ export function Step4({ step1, step2, step3, errors }: Step4Props) {
         style={{ borderLeftWidth: 3, borderLeftColor: 'var(--color-avs-kente)' }}
       >
         <p className="mb-1.5 font-mono text-[9px] font-black uppercase tracking-[0.18em] text-avs-kente">
-          Processus de validation
+          {t('validationTitle')}
         </p>
         <p className="text-avs-accent/60">
-          Votre motif sera relu par un curateur AVS avant publication. Ce processus prend
-          généralement{' '}
-          <strong className="text-avs-accent">24–48h ouvrées</strong>.
+          {t('validationText')}{' '}
+          <strong className="text-avs-accent">{t('validationTime')}</strong>.
         </p>
       </div>
 

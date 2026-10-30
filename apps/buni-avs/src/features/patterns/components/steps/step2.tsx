@@ -3,9 +3,9 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { Plus, X } from 'lucide-react';
 import type { Step2Data, FieldErrors } from '../../types';
-import { SYMBOL_USAGES, FIELD_LIMITS } from '../../constants/pattern.constants';
-import { CharCount, Field, PillBtn, StepTitle } from '../Patternform.primitives';
-
+import { FIELD_LIMITS } from '../../constants/pattern.constants';
+import { CharCount, Field, StepTitle } from '../Patternform.primitives';
+import { useTranslations } from '@/i18n';
 
 interface Step2Props {
   data: Partial<Step2Data>;
@@ -21,85 +21,85 @@ export function Step2({
   data, errors, newKeyword,
   onChange, onNewKeywordChange, onAddKeyword, onRemoveKeyword,
 }: Step2Props) {
+  const t = useTranslations('patternForm.step2');
+
   return (
     <div className="space-y-6">
-      <StepTitle title="Description & Symbolisme" sub="Étape 2" />
+      <StepTitle title={t('title')} sub={t('sub')} />
 
-      <Field label="Résumé" error={errors['summary']} required>
+      <Field label={t('summaryLabel')} error={errors['summary']} required>
         <textarea
           rows={2}
           className="avs-input resize-none"
           value={data.summary ?? ''}
           onChange={(e) => onChange({ summary: e.target.value })}
-          placeholder="Brève description utilisée dans les listes et aperçus…"
+          placeholder={t('summaryPlaceholder')}
         />
         <CharCount value={data.summary ?? ''} max={FIELD_LIMITS.summary} />
       </Field>
 
-      <Field label="Histoire" error={errors['history']} required>
+      <Field label={t('historyLabel')} error={errors['history']} required>
         <textarea
           rows={3}
           className="avs-input resize-none"
           value={data.history ?? ''}
           onChange={(e) => onChange({ history: e.target.value })}
-          placeholder="Contexte historique détaillé, évolution au fil du temps…"
+          placeholder={t('historyPlaceholder')}
         />
         <CharCount value={data.history ?? ''} max={FIELD_LIMITS.history} />
       </Field>
 
-      <Field label="Technique de fabrication" error={errors['technique']} required>
+      <Field label={t('techniqueLabel')} error={errors['technique']} required>
         <textarea
           rows={3}
           className="avs-input resize-none"
           value={data.technique ?? ''}
           onChange={(e) => onChange({ technique: e.target.value })}
-          placeholder="Matériaux, savoir-faire, étapes de fabrication…"
+          placeholder={t('techniquePlaceholder')}
         />
         <CharCount value={data.technique ?? ''} max={FIELD_LIMITS.technique} />
       </Field>
 
-      <Field label="Signification symbolique" error={errors['symbolism.meaning']} required>
+      <Field label={t('symbolismMeaningLabel')} error={errors['symbolism.meaning']} required>
         <textarea
           rows={2}
           className="avs-input resize-none"
           value={data.symbolism?.meaning ?? ''}
           onChange={(e) => onChange({ symbolism: { meaning: e.target.value, usage: data.symbolism?.usage ?? '', keywords: data.symbolism?.keywords ?? [] } })}
-          placeholder="Royauté, spiritualité, protection contre les mauvais esprits…"
+          placeholder={t('symbolismMeaningPlaceholder')}
         />
       </Field>
 
-      <Field label="Usage principal" error={errors['symbolism.usage']} required>
+      <Field label={t('symbolismUsageLabel')} error={errors['symbolism.usage']} required>
         <textarea
           rows={2}
           className="avs-input resize-none"
           value={data.symbolism?.usage ?? ''}
           onChange={(e) => onChange({ symbolism: { meaning: data.symbolism?.meaning ?? '', usage: e.target.value, keywords: data.symbolism?.keywords ?? [] } })}
-          placeholder="en quel evenement est-ce exactement utiliser…"
+          placeholder={t('symbolismUsagePlaceholder')}
         />
       </Field>
 
-      
-
-      <Field label="Usage cérémoniel" error={errors['ceremonial']} required>
+      <Field label={t('ceremonialLabel')} error={errors['ceremonial']} required>
         <textarea
           rows={2}
           className="avs-input resize-none"
           value={data.ceremonial ?? ''}
           onChange={(e) => onChange({ ceremonial: e.target.value })}
-          placeholder="Contextes cérémoniels où le motif est utilisé…"
+          placeholder={t('ceremonialPlaceholder')}
         />
         <CharCount value={data.ceremonial ?? ''} max={FIELD_LIMITS.ceremonial} />
       </Field>
 
       {/* Keywords */}
-      <Field label={`Mots-clés (1–${FIELD_LIMITS.keywordsMax})`} error={errors['symbolism.keywords']} required>
+      <Field label={t('keywordsLabel', { max: FIELD_LIMITS.keywordsMax })} error={errors['symbolism.keywords']} required>
         <div className="flex gap-2">
           <input
             className="avs-input flex-1"
             value={newKeyword}
             onChange={(e) => onNewKeywordChange(e.target.value)}
             onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); onAddKeyword(); } }}
-            placeholder="Ajouter un mot-clé puis Entrée…"
+            placeholder={t('keywordsPlaceholder')}
           />
           <button
             type="button"
@@ -126,7 +126,7 @@ export function Step2({
                   {kw}
                   <button
                     type="button"
-                    aria-label={`Supprimer ${kw}`}
+                    aria-label={t('removeKeyword', { kw })}
                     onClick={() => onRemoveKeyword(kw)}
                     className="text-avs-primary/60 transition-colors hover:text-red-500"
                   >
