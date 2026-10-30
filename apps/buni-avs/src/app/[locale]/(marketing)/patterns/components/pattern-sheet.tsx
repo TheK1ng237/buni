@@ -11,6 +11,8 @@ import { useToast, BuniLoader } from '@buni/ui';
 import { formatNumber } from '@buni/utils';
 
 import { patternRepository } from '@/features/patterns/repositories/pattern.repository';
+import { PATTERN_CATALOG } from '@buni/patterns';
+import { createCssPatternSvg, saveBlob } from '@/features/patterns/utils/css-pattern-svg';
 
 const SECTIONS = [
   { id: 'histoire', label: 'Histoire' },
@@ -30,6 +32,7 @@ export function PatternSheet({ pattern }: { pattern: any }) {
   const [viewCount, setViewCount] = useState<number>(0);
 
   const contentRef = useRef<HTMLDivElement>(null);
+  const patternPreviewRef = useRef<HTMLDivElement>(null);
   const { add } = useToast();
   const patternImage = pattern.imgUrl;
   const previewClass = pattern.previewClass || pattern.cssClass;
@@ -39,15 +42,17 @@ export function PatternSheet({ pattern }: { pattern: any }) {
 
     setIsDownloading(true);
     try {
-      const blob = await downloadPattern(id);
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `${slug}.svg`;
-      document.body.appendChild(a);
-      a.click();
-      window.URL.revokeObjectURL(url);
-      document.body.removeChild(a);
+      const backendBlob = await downloadPattern(id);
+      const isCatalogPattern = PATTERN_CATALOG.some((catalogPattern) => catalogPattern.id === id);
+      let blob = backendBlob;
+      if (isCatalogPattern) {
+        const previewElement = patternPreviewRef.current;
+        if (!previewElement) {
+          throw new Error('Aperçu du motif indisponible pour créer le fichier SVG.');
+        }
+        blob = createCssPatternSvg(previewElement, pattern.name);
+      }
+      saveBlob(blob, `${slug}.svg`);
 
       try {
         const stats = await patternRepository.stats(id);
@@ -137,7 +142,7 @@ export function PatternSheet({ pattern }: { pattern: any }) {
             className="absolute inset-0 h-full w-full object-cover"
           />
         ) : (
-          <div className={`${previewClass} absolute inset-0`} />
+          <div ref={patternPreviewRef} className={`${previewClass} absolute inset-0`} />
         )}
         <div className="absolute inset-0 bg-linear-to-b from-black/5 via-transparent to-black/10" />
 

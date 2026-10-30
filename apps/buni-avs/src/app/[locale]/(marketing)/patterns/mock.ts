@@ -1,4 +1,4 @@
-import { Pattern , PatternSymbol} from '@buni/patterns';
+import { PATTERN_CATALOG, Pattern, PatternSymbol } from '@buni/patterns';
 
 /**
  * SVG PATTERNS DATA
@@ -29,7 +29,7 @@ import { Pattern , PatternSymbol} from '@buni/patterns';
 
 
 
-export const PATTERNS_DOCS: Pattern[] = [ 
+const PATTERN_DETAILS: Pattern[] = [
   {
     imgUrl: "",
     status: "published" as const,
@@ -447,3 +447,61 @@ export const PATTERNS_DOCS: Pattern[] = [
     featured: false,
   },
 ];
+
+const detailsById = new Map(PATTERN_DETAILS.map((pattern) => [pattern.id, pattern]));
+
+export const PATTERNS_DOCS: Pattern[] = PATTERN_CATALOG.map((catalogPattern) => {
+  const details = detailsById.get(catalogPattern.id);
+  if (details) {
+    return {
+      ...details,
+      slug: catalogPattern.id,
+      name: catalogPattern.name,
+      type: catalogPattern.type,
+      cssClass: catalogPattern.type,
+      previewClass: catalogPattern.cssClass,
+      origin: {
+        ...details.origin,
+        country: catalogPattern.origin,
+        region: catalogPattern.region,
+        flag: details.origin.flag ?? catalogPattern.flag,
+      },
+    };
+  }
+
+  return {
+    id: catalogPattern.id,
+    slug: catalogPattern.id,
+    name: catalogPattern.name,
+    localName: catalogPattern.name,
+    type: catalogPattern.type,
+    cssClass: catalogPattern.type,
+    previewClass: catalogPattern.cssClass,
+    imgUrl: '',
+    status: 'published',
+    origin: {
+      people: catalogPattern.origin,
+      region: catalogPattern.region,
+      country: catalogPattern.origin,
+      flag: catalogPattern.flag,
+    },
+    era: 'À documenter',
+    license: 'cc-by',
+    colors: catalogPattern.colors.map((hex) => ({
+      hex,
+      name: hex,
+      meaning: 'Couleur présente dans le motif CSS.',
+    })),
+    summary: `Aperçu ${catalogPattern.name} du catalogue de motifs. Les informations historiques détaillées restent à documenter.`,
+    symbolism: {
+      meaning: 'À documenter à partir de sources culturelles vérifiées.',
+      keywords: [],
+      usage: 'À documenter',
+    },
+    symbols: [],
+    sources: ['Catalogue de motifs @buni/patterns.'],
+    downloads: 0,
+    views: 0,
+    featured: false,
+  };
+});

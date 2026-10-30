@@ -18,6 +18,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Download, Info } from 'lucide-react';
 import { apiClient } from '@buni/api';
+import { createCssPatternSvg, saveBlob } from '@/features/patterns/utils/css-pattern-svg';
 import {
   SVG_REGISTRY,
   getSvgMeta,
@@ -51,23 +52,26 @@ interface SvgPatternProps {
   onClick?:       () => void;
 }
 
-function saveBlob(blob: Blob, filename: string) {
-  const url = window.URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  window.setTimeout(() => window.URL.revokeObjectURL(url), 1000);
-}
-
 async function downloadSvg(key: SvgPatternKey, filename: string) {
-  const response = await apiClient.get<Blob>(
+  await apiClient.get<Blob>(
     `/api/v1/patterns/${encodeURIComponent(SVG_REGISTRY[key].downloadSlug)}/download`,
     { responseType: 'blob' }
   );
-  saveBlob(response.data, filename);
+  const preview = document.createElement('div');
+  preview.className = SVG_REGISTRY[key].preview;
+  Object.assign(preview.style, {
+    position: 'fixed',
+    left: '-10000px',
+    top: '0',
+    width: '800px',
+    height: '600px',
+  });
+  document.body.appendChild(preview);
+  try {
+    saveBlob(createCssPatternSvg(preview, SVG_REGISTRY[key].name), filename);
+  } finally {
+    preview.remove();
+  }
 }
 
 // ── Composant principal ───────────────────────────────────────────────────────
