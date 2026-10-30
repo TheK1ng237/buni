@@ -61,6 +61,7 @@ export interface Pattern {
 
   svgUrl?: string;
   cssClass: string;
+  previewClass?: string;
 
   origin: PatternOrigin;
 

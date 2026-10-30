@@ -39,6 +39,7 @@ export const PATTERNS_DOCS: Pattern[] = [
     localName: 'Kente (Nwentom)',
     type: 'kente',
     cssClass: 'kente',
+    previewClass: 'avs-pattern-kente-royale',
     origin: {
       people: 'Peuple Akan — Ashanti',
       region: 'west-africa',
@@ -142,6 +143,7 @@ export const PATTERNS_DOCS: Pattern[] = [
     localName: 'Ndop (Ndoup)',
     type: 'ndop',
     cssClass: 'ndop',
+    previewClass: 'avs-pattern-ndop-sultan',
     origin: {
       people: 'Peuple Bamoum (Bamum)',
       region: 'central-africa',
@@ -232,6 +234,7 @@ export const PATTERNS_DOCS: Pattern[] = [
     localName: 'Bògòlanfini',
     type: 'bogolan',
     cssClass: 'bogolan',
+    previewClass: 'avs-pattern-bogolan-fanga',
     origin: {
       people: 'Peuples Bamana, Mandé',
       region: 'west-africa',
@@ -314,6 +317,7 @@ export const PATTERNS_DOCS: Pattern[] = [
     localName: 'Sankofa',
     type: 'adinkra',
     cssClass: 'adinkra',
+    previewClass: 'avs-pattern-adinkra-sankofa',
     origin: {
       people: 'Peuple Akan — Gyaman',
       region: 'west-africa',
@@ -416,6 +420,7 @@ export const PATTERNS_DOCS: Pattern[] = [
     localName: 'Kuba',
     type: 'kuba',
     cssClass: 'avs-pattern-kuba-kasai',
+    previewClass: 'avs-pattern-kuba-kasai',
     origin: {
       people: 'Peuple Kuba',
       region: 'central-africa',

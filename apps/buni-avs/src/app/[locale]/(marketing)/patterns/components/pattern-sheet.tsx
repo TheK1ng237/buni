@@ -31,7 +31,8 @@ export function PatternSheet({ pattern }: { pattern: any }) {
 
   const contentRef = useRef<HTMLDivElement>(null);
   const { add } = useToast();
-  const patternImage = pattern.svgUrl || pattern.imgUrl;
+  const patternImage = pattern.imgUrl;
+  const previewClass = pattern.previewClass || pattern.cssClass;
 
   const handleDownload = async (id: string, slug: string) => {
     if (isDownloading) return;
@@ -136,7 +137,7 @@ export function PatternSheet({ pattern }: { pattern: any }) {
             className="absolute inset-0 h-full w-full object-cover"
           />
         ) : (
-          <div className={`${pattern.cssClass} absolute inset-0 scale-150`} />
+          <div className={`${previewClass} absolute inset-0`} />
         )}
         <div className="absolute inset-0 bg-linear-to-b from-black/5 via-transparent to-black/10" />
 
@@ -463,7 +464,7 @@ export function PatternSheet({ pattern }: { pattern: any }) {
       {/* Artisan quote */}
       {pattern.artisanQuote && (
         <div className="border-avs-accent/10 mx-6 mb-8 overflow-hidden rounded-2xl border pb-8">
-          <div className={`${pattern.cssClass} h-1`} aria-hidden />
+          <div className={`${previewClass} h-1`} aria-hidden />
           <div className="bg-avs-secondary px-6 py-5">
             <p
               className="font-display text-avs-primary/25 text-5xl leading-none select-none"
@@ -477,7 +478,7 @@ export function PatternSheet({ pattern }: { pattern: any }) {
             </blockquote>
             <div className="mt-4 flex items-center gap-3">
               <div
-                className={`${pattern.cssClass} border-avs-accent/15 relative h-9 w-9 shrink-0 overflow-hidden rounded-full border`}
+                className={`${previewClass} border-avs-accent/15 relative h-9 w-9 shrink-0 overflow-hidden rounded-full border`}
               >
                 <div className="absolute inset-0 flex items-center justify-center bg-black/25">
                   <span className="font-display text-avs-secondary text-sm font-black drop-shadow">
