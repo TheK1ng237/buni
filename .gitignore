@@ -18,3 +18,5 @@ documentation/*compose.override.yaml
 /documentation
 compose.override.yaml
 .pnpm-store/v11
+.vscode
+.nx

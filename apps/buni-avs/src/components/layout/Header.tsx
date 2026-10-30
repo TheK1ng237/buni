@@ -226,7 +226,7 @@ function getNavItems(t: any): NavItem[] {
     {
       href: '/documentation',
       label: t('docs'),
-      available: true,
+      available: false,
       modal: {
         title: 'Documentation en cours de rédaction',
         description: "Nous préparons une documentation complète d'AVS.",
@@ -245,7 +245,7 @@ function getNavItems(t: any): NavItem[] {
     {
       href: '/pricing',
       label: t('pricing'),
-      available: true,
+      available: false,
     },
 
     {
@@ -255,9 +255,7 @@ function getNavItems(t: any): NavItem[] {
     },
   ];
 }
-// ══════════════════════════════════════════════════════════════════════════════
-// PREMIUM MODAL
-// ══════════════════════════════════════════════════════════════════════════════
+
 
 function PremiumModal({ isOpen, onClose, t }: { isOpen: boolean; onClose: () => void; t: any }) {
   useEffect(() => {
