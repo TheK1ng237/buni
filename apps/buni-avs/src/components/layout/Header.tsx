@@ -770,6 +770,9 @@ export function Header() {
   // Use absolute path to bypass i18n middleware for static assets
 
   const NAV_ITEMS = getNavItems(navT);
+  const isDocumentationAvailable = NAV_ITEMS.some(
+    (item) => item.href === '/documentation' && item.available !== false
+  );
 
   useEffect(() => {
     setAuthState({ isAuthenticated, user });
@@ -853,7 +856,7 @@ export function Header() {
             aria-label="Navigation principale"
             className="hidden flex-1 items-center justify-center gap-0.5 lg:flex"
           >
-            {NAV_ITEMS.filter((item) => !item.hidden).map((item) => (
+            {NAV_ITEMS.filter((item) => !item.hidden && item.available !== false).map((item) => (
               <NavDropdown
                 key={item.label}
                 item={item}
@@ -1020,13 +1023,14 @@ export function Header() {
                       available={false}
                       onUnavailableClick={() => handleClick({ href: '/templates', label: 'Templates', available: false, modal: NAV_ITEMS.find(i => i.label === 'Templates')?.modal })}
                     /> */}
-                    <MobileLink
-                      href="/documentation"
-                      icon={BookOpen}
-                      label="Documentation"
-                      available={true}
-                      onClick={() => setMobileOpen(false)}
-                    />
+                    {isDocumentationAvailable && (
+                      <MobileLink
+                        href="/documentation"
+                        icon={BookOpen}
+                        label="Documentation"
+                        onClick={() => setMobileOpen(false)}
+                      />
+                    )}
                     <MobileLink
                       href="/about"
                       icon={User}
