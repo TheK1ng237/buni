@@ -694,7 +694,8 @@
       "ADINKRA": "Adinkra",
       "WAX": "Wax",
       "NDEBELE": "Ndebele",
-      "KUBA": "Kuba"
+      "KUBA": "Kuba",
+      "BERBER": "Berbère"
     },
     "sidebar": {
       "count": "{count} motif{count, plural, one {} other {s}}",

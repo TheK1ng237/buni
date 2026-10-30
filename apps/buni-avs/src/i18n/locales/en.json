@@ -734,7 +734,8 @@
       "ADINKRA": "Adinkra",
       "WAX": "Wax",
       "NDEBELE": "Ndebele",
-      "KUBA": "Kuba"
+      "KUBA": "Kuba",
+      "BERBER": "Berber"
     },
     "sidebar": {
       "count": "{count} pattern{count, plural, one {} other {s}}",
