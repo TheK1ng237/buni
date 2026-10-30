@@ -2,7 +2,7 @@
 
 // =============================================================================
 // AVS — Composant SvgPattern
-// Affiche un aperçu CSS et propose le SVG vectoriel généré par le backend :
+// Affiche un aperçu CSS et exporte ce rendu dans un fichier SVG :
 //   - Fond de page/section
 //   - Téléchargement direct
 //   - Animation Framer Motion
@@ -22,7 +22,6 @@ import { createCssPatternSvg, saveBlob } from '@/features/patterns/utils/css-pat
 import {
   SVG_REGISTRY,
   getSvgMeta,
-  generatePaletteJson,
   type SvgPatternKey,
 } from '@buni/patterns';
 

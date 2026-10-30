@@ -28,8 +28,10 @@ export function PatternsContent() {
     const loadPatternsFromBackend = async () => {
       try {
         const backendPatterns = await patternRepository.findAll();
-        const mockIds = new Set(PATTERNS_DOCS.map((p) => p.id));
-        const newPatterns = backendPatterns.filter((p) => !mockIds.has(p.id));
+        const catalogKeys = new Set(PATTERNS_DOCS.flatMap((pattern) => [pattern.id, pattern.slug]));
+        const newPatterns = backendPatterns.filter(
+          (pattern) => !catalogKeys.has(pattern.id) && !catalogKeys.has(pattern.slug)
+        );
         setPatterns([...PATTERNS_DOCS, ...newPatterns]);
       } catch (error) {
         console.error('Error loading patterns from backend:', error);

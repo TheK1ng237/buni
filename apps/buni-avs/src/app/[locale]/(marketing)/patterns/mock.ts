@@ -1,4 +1,4 @@
-import { PATTERN_CATALOG, Pattern, PatternSymbol } from '@buni/patterns';
+import { PATTERN_CATALOG, type Pattern } from '@buni/patterns';
 
 /**
  * SVG PATTERNS DATA

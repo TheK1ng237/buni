@@ -1,27 +1,38 @@
 # Patterns data
 
-The static catalog entries currently live in
-`apps/buni-avs/src/app/[locale]/(marketing)/patterns/mock.ts`.
+`packages/patterns/src/catalog.ts` is the canonical catalog for motif IDs,
+types, names, CSS preview classes, origins, and hero palette metadata. The
+homepage hero, homepage gallery, SVG registry, and encyclopedia all derive
+their motif identity and preview class from this catalog.
+
+The canonical motif CSS lives in `packages/patterns/src/theme/patterns.css`.
+The app imports that stylesheet from `src/app/globals.css`; do not maintain a
+second app-local copy. The encyclopedia's `mock.ts` contains long-form
+documentation only and overlays it onto the canonical catalog.
 
 ## Add a CSS pattern
 
-1. Add the CSS rule to `packages/patterns/src/theme/patterns.css`.
-2. Give it a short class name, such as `.kente`.
-3. If it is a new variation of an existing type, add its short class to
-   `PATTERN_CSS_CLASSES` in `packages/patterns/src/registry.ts`. For a new type,
-   also add it to `PATTERN_TYPES` and `CSS_PATTERN_MAP`.
-4. Add or update the catalog entry with that class:
+1. Add the motif's CSS class to `packages/patterns/src/theme/patterns.css`.
+2. Add the motif's metadata and full CSS preview class to
+   `PATTERN_CATALOG` in `packages/patterns/src/catalog.ts`.
+3. If it introduces a new type, add it to `PATTERN_TYPES` and
+   `CSS_PATTERN_MAP` in `packages/patterns/src/registry.ts`.
+4. Add its long-form research and documentation to the encyclopedia's
+   `mock.ts` entry, keyed by the catalog ID.
 
 ```typescript
 {
+  id: 'kente-asante',
   type: 'kente',
-  cssClass: 'kente',
+  cssClass: 'avs-pattern-kente-royale',
 }
 ```
 
-The preview uses that class directly. For new catalog motifs whose views and
-downloads should be counted, also add the catalog slug and its motif type to
-`avs-backend/src/modules/culture/staticPatternRegistry.ts`.
+The homepage and encyclopedia previews use the canonical CSS class. CSS motif
+downloads are serialized from the browser's computed CSS so the downloaded SVG
+uses the same appearance as the site. Add the catalog ID to the backend static registry in
+`avs-backend/src/modules/culture/staticPatternRegistry.ts` so public views and
+downloads can be counted and served by the API.
 
 ## Add an uploaded SVG
 
