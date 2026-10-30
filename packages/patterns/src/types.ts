@@ -60,8 +60,6 @@ export interface Pattern {
   type: PatternType;
 
   svgUrl?: string;
-  svgPattern?: string;
-
   cssClass: string;
 
   origin: PatternOrigin;

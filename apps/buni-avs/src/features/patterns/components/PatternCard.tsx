@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { MapPin, Download, Eye } from 'lucide-react';
 import { formatNumber } from '@buni/utils';
@@ -21,7 +20,7 @@ interface PatternCardProps {
 
 export function PatternCard({ pattern, index = 0, featured = false, className }: PatternCardProps) {
   const patternKey = pattern.type.toLowerCase() as keyof typeof CSS_PATTERN_MAP;
-  const patternCSS = CSS_PATTERN_MAP[patternKey] ?? CSS_PATTERN_MAP.kente;
+  const patternCSS = pattern.cssClass || CSS_PATTERN_MAP[patternKey] || CSS_PATTERN_MAP.kente;
 
   return (
     <motion.article
@@ -39,12 +38,10 @@ export function PatternCard({ pattern, index = 0, featured = false, className }:
 
         {/* Visuel */}
         <div className={cn('relative overflow-hidden', featured ? 'h-52' : 'h-44')}>
-          {pattern.svgPattern ? (
-            <Image
-              src={pattern.svgPattern}
+          {pattern.svgUrl ? (
+            <img
+              src={pattern.svgUrl}
               alt={`Aperçu — ${pattern.localName ?? pattern.name}`}
-              fill
-              sizes="(max-width: 768px) 100vw, 33vw"
               className="object-cover transition-transform duration-500 group-hover:scale-105"
             />
           ) : (

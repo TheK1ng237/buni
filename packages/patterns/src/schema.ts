@@ -16,7 +16,7 @@ export const PatternSchema = z.object({
 
   type: z.enum(PATTERN_TYPES),
 
-  cssClass: z.string().default('avs-pattern-wax-dakar'),
+  cssClass: z.string().default('wax'),
 
   // ─────────────────────────────────────────────────────
   // ORIGINE
@@ -84,7 +84,6 @@ export const PatternSchema = z.object({
 
   artisanQuote: z.string().optional(),
 
-  svgPattern: z.string().optional(),
 
   // ─────────────────────────────────────────────────────
   // LICENCE

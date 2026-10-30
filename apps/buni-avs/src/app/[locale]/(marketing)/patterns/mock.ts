@@ -12,7 +12,7 @@ import { Pattern , PatternSymbol} from '@buni/patterns';
  * - nameFr: French name
  * - localName: Local name
  * - type: Pattern type (ndop, kente, etc.)
- * - svgPattern: CSS class for the SVG pattern (e.g., 'avs-svg-pattern-ndop6')
+ * - cssClass: short CSS class used for the pattern preview (e.g., 'ndop')
  * - origin: Geographic and cultural origin
  * - era: Time period
  * - colors: Color palette with meanings
@@ -38,7 +38,7 @@ export const PATTERNS_DOCS: Pattern[] = [
     name: 'Kente Asante',
     localName: 'Kente (Nwentom)',
     type: 'kente',
-    cssClass: 'avs-pattern-kente-royale',
+    cssClass: 'kente',
     origin: {
       people: 'Peuple Akan — Ashanti',
       region: 'west-africa',
@@ -124,8 +124,8 @@ export const PATTERNS_DOCS: Pattern[] = [
       'Doran H. Ross (1998). Wrapped in Pride.',
       'National Museum of Ghana — Archives ethnographiques 2019',
     ],
-    downloads: 4820,
-    views: 28400,
+    downloads: 0,
+    views: 0,
     
     featured: false
   },
@@ -141,7 +141,7 @@ export const PATTERNS_DOCS: Pattern[] = [
     name: 'Ndop Bamoum',
     localName: 'Ndop (Ndoup)',
     type: 'ndop',
-    cssClass: 'avs-pattern-ndop-sultan',
+    cssClass: 'ndop',
     origin: {
       people: 'Peuple Bamoum (Bamum)',
       region: 'central-africa',
@@ -218,8 +218,8 @@ export const PATTERNS_DOCS: Pattern[] = [
       'Geary, C. (1983). Things of the Palace.',
       'Musée des Arts et Traditions Bamoum — Foumban',
     ],
-    downloads: 3140,
-    views: 19800,
+    downloads: 0,
+    views: 0,
     
     featured: false
   },
@@ -231,7 +231,7 @@ export const PATTERNS_DOCS: Pattern[] = [
     name: 'Bogolan Malien',
     localName: 'Bògòlanfini',
     type: 'bogolan',
-    cssClass: 'avs-pattern-bogolan-fanga',
+    cssClass: 'bogolan',
     origin: {
       people: 'Peuples Bamana, Mandé',
       region: 'west-africa',
@@ -300,8 +300,8 @@ export const PATTERNS_DOCS: Pattern[] = [
       'Brett-Smith, S.C. (1982). Symbolic Blood.',
       'Musée National du Mali — Documentation ethnographique',
     ],
-    downloads: 2890,
-    views: 16200,
+    downloads: 0,
+    views: 0,
     
     featured: false
   },
@@ -313,7 +313,7 @@ export const PATTERNS_DOCS: Pattern[] = [
     name: 'Adinkra Akan',
     localName: 'Adinkra',
     type: 'adinkra',
-    cssClass: 'avs-pattern-adinkra-sankofa',
+    cssClass: 'adinkra',
     origin: {
       people: 'Peuple Akan — Gyaman',
       region: 'west-africa',
@@ -402,8 +402,8 @@ export const PATTERNS_DOCS: Pattern[] = [
       'Bowdich, T.E. (1817). Mission from Cape Coast Castle to Ashantee.',
       'Centre for National Culture — Kumasi, Ghana',
     ],
-    downloads: 5640,
-    views: 34100,
+    downloads: 0,
+    views: 0,
     
     featured: false
   },

@@ -26,16 +26,12 @@ export function PatternSheet({ pattern }: { pattern: any }) {
   const [activeSymbol, setActiveSymbol] = useState<any>(null);
   const [activeSection, setActiveSection] = useState<SectionId>('histoire');
   const [isDownloading, setIsDownloading] = useState(false);
-  const [downloadCount, setDownloadCount] = useState<number>(pattern.downloads || 0);
-  const [viewCount, setViewCount] = useState<number>(pattern.views || 0);
+  const [downloadCount, setDownloadCount] = useState<number>(0);
+  const [viewCount, setViewCount] = useState<number>(0);
 
   const contentRef = useRef<HTMLDivElement>(null);
   const { add } = useToast();
-
-  useEffect(() => {
-    setDownloadCount(pattern.downloads || 0);
-    setViewCount(pattern.views || 0);
-  }, [pattern.id, pattern.downloads, pattern.views]);
+  const patternImage = pattern.svgUrl || pattern.imgUrl;
 
   const handleDownload = async (id: string, slug: string) => {
     if (isDownloading) return;
@@ -52,7 +48,14 @@ export function PatternSheet({ pattern }: { pattern: any }) {
       window.URL.revokeObjectURL(url);
       document.body.removeChild(a);
 
-      setDownloadCount((prev) => prev + 1);
+      try {
+        const stats = await patternRepository.stats(id);
+        setDownloadCount(stats.downloads);
+        setViewCount(stats.views);
+      } catch (statsError) {
+        console.error('Download succeeded but statistics could not be refreshed:', statsError);
+        setDownloadCount((prev) => prev + 1);
+      }
 
       add({
         variant: 'success',
@@ -76,16 +79,46 @@ export function PatternSheet({ pattern }: { pattern: any }) {
     setActiveSymbol(null);
     setActiveSection('histoire');
 
-    // Dédoublonnage de vue avec sessionStorage
-    if (pattern?.id && typeof window !== 'undefined') {
-      const storageKey = `avs_viewed_${pattern.id}`;
-      if (!sessionStorage.getItem(storageKey)) {
-        sessionStorage.setItem(storageKey, 'true');
-        patternRepository.trackView(pattern.id).catch(() => null);
-        setViewCount((prev) => prev + 1);
+    let active = true;
+    const recordView = async () => {
+      try {
+        const storageKey = `avs_viewed_${pattern.id}`;
+        let alreadyViewed = false;
+        try {
+          alreadyViewed = sessionStorage.getItem(storageKey) === 'true';
+        } catch (error) {
+          console.warn('Unable to access session storage for view deduplication:', error);
+        }
+
+        const stats = alreadyViewed
+          ? await patternRepository.stats(pattern.id)
+          : await patternRepository.trackView(pattern.id);
+        if (!alreadyViewed) {
+          try {
+            sessionStorage.setItem(storageKey, 'true');
+          } catch (error) {
+            console.warn('Unable to save view deduplication state:', error);
+          }
+        }
+        if (active) {
+          setViewCount(stats.views);
+          setDownloadCount(stats.downloads);
+        }
+      } catch (error) {
+        console.error('Unable to load pattern statistics:', error);
+        add({
+          variant: 'error',
+          title: 'Statistiques indisponibles',
+          message: 'Les vues et téléchargements ne peuvent pas être actualisés pour le moment.',
+        });
       }
-    }
-  }, [pattern.id]);
+    };
+
+    void recordView();
+    return () => {
+      active = false;
+    };
+  }, [pattern.id, add]);
 
   return (
     <div
@@ -94,9 +127,9 @@ export function PatternSheet({ pattern }: { pattern: any }) {
     >
       {/* Cover - Pattern Preview */}
       <div className="bg-avs-secondary-dark relative h-64 overflow-hidden sm:h-96">
-        {pattern.imgUrl ? (
+        {patternImage ? (
           <img
-            src={pattern.imgUrl}
+            src={patternImage}
             alt={pattern.name}
             className="absolute inset-0 h-full w-full object-cover"
           />

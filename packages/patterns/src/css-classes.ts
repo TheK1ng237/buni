@@ -20,10 +20,10 @@ export const kuba = 'kuba';
 export const berber = 'berber';
 
 // Variations supplémentaires disponibles (avec noms complets)
-export const kenteEtoile = 'avs-pattern-kente-etoile';
-export const ndopCeremoniel = 'avs-pattern-ndop-ceremoniel';
-export const bogolanTerre = 'avs-pattern-bogolan-terre';
-export const waxLagos = 'avs-pattern-wax-lagos';
+export const kenteEtoile = 'kente-etoile';
+export const ndopCeremoniel = 'ndop-ceremoniel';
+export const bogolanTerre = 'bogolan-terre';
+export const waxLagos = 'wax-lagos';
 
 // Classe de fallback
 export const fallback = 'wax';

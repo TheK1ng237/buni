@@ -12,15 +12,7 @@ import { formatNumber } from '@buni/utils';
 
 import { usePattern } from '../hooks/usePatterns';
 import { PatternAdminActions } from './PatternAdminActions';
-
-const CSS_PATTERN_MAP: Record<string, string> = {
-  NDOP:    'avs-pattern-ndop-sultan',
-  KENTE:   'avs-pattern-kente-royale',
-  BOGOLAN: 'avs-pattern-bogolan-fanga',
-  WAX:     'avs-pattern-wax-dakar',
-  ADINKRA: 'avs-pattern-adinkra-sankofa',
-  KUBA:    'avs-pattern-kuba-kasai',
-};
+import { CSS_PATTERN_MAP } from '@buni/patterns';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // CONFIGURATION DES SECTIONS
@@ -243,7 +235,11 @@ export default function PatternDetailsPage({ slug }: { slug: string }) {
     );
   }
 
-  const patCss = CSS_PATTERN_MAP[pattern.type?.toUpperCase()] || 'avs-pattern-wax-dakar';
+  const patCss =
+    pattern.cssClass ||
+    (CSS_PATTERN_MAP[pattern.type?.toLowerCase() as keyof typeof CSS_PATTERN_MAP] ??
+      CSS_PATTERN_MAP.wax);
+  const patternImage = pattern.svgUrl || pattern.imgUrl;
   const available = new Set<string>([
     pattern.history && 'histoire',
     pattern.technique && 'technique',
@@ -314,9 +310,9 @@ export default function PatternDetailsPage({ slug }: { slug: string }) {
             >
               <div className="avs-pattern-ndop-sultan absolute inset-x-0 top-0 h-px opacity-70" aria-hidden />
               <div className="relative aspect-[4/3] w-full md:aspect-[21/9] overflow-hidden bg-avs-accent/5">
-                {pattern.imgUrl ? (
+                {patternImage ? (
                   <img
-                    src={pattern.imgUrl}
+                    src={patternImage}
                     alt={pattern.name}
                     className="w-full h-full object-cover"
                   />

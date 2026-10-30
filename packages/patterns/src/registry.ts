@@ -70,6 +70,20 @@ export const CSS_PATTERN_MAP = {
   berber: 'berber',
 } as const satisfies Record<PatternType, string>;
 
+export const PATTERN_CSS_CLASSES = [
+  ...Object.values(CSS_PATTERN_MAP),
+  'kente-etoile',
+  'ndop-ceremoniel',
+  'bogolan-terre',
+  'wax-lagos',
+] as const;
+
+export type PatternCssClass = (typeof PATTERN_CSS_CLASSES)[number];
+
+export function isPatternCssClass(value: string): value is PatternCssClass {
+  return (PATTERN_CSS_CLASSES as readonly string[]).includes(value);
+}
+
 /**
  * fallback safe class
  */

@@ -6,7 +6,8 @@
      Tissu royal tissé en bandelettes de soie entrelacées.
      ══════════════════════════════════════════════════════════════════════════════ */
 
-  .avs-pattern-kente-royale {
+  .avs-pattern-kente-royale,
+  .kente {
     background-color: #1a1208;
     background-image:
       repeating-linear-gradient(
@@ -54,12 +55,8 @@
       48px 100%;
   }
 
-  /* Alias court pour utilisation Tailwind */
-  .kente {
-    @extend .avs-pattern-kente-royale;
-  }
-
-  .avs-pattern-kente-etoile {
+  .avs-pattern-kente-etoile,
+  .kente-etoile {
     background-color: #1a1208;
     background-image:
       repeating-linear-gradient(
@@ -110,7 +107,8 @@
      Tissu sacré réservé à la royauté. Fond indigo profond, motifs géométriques
      ══════════════════════════════════════════════════════════════════════════════ */
 
-  .avs-pattern-ndop-ceremoniel {
+  .avs-pattern-ndop-ceremoniel,
+  .ndop-ceremoniel {
     background-color: #071828;
     background-image:
       repeating-linear-gradient(
@@ -158,7 +156,8 @@
       10px 10px;
   }
 
-  .avs-pattern-ndop-sultan {
+  .avs-pattern-ndop-sultan,
+  .ndop {
     background-color: #0d2340;
     background-image:
       repeating-linear-gradient(
@@ -186,17 +185,13 @@
       12px 12px;
   }
 
-  /* Alias court pour utilisation Tailwind */
-  .ndop {
-    @extend .avs-pattern-ndop-sultan;
-  }
-
   /* ══════════════════════════════════════════════════════════════════════════════
      BOGOLAN (Mali · Bambara)
      Géométrie binaire terre/lumière
      ══════════════════════════════════════════════════════════════════════════════ */
 
-  .avs-pattern-bogolan-terre {
+  .avs-pattern-bogolan-terre,
+  .bogolan-terre {
     background-color: #e8dcc8;
     background-image:
       repeating-linear-gradient(
@@ -218,7 +213,8 @@
       8px 8px;
   }
 
-  .avs-pattern-bogolan-fanga {
+  .avs-pattern-bogolan-fanga,
+  .bogolan {
     background-color: #f5ebe0;
     background-image:
       repeating-linear-gradient(
@@ -240,17 +236,13 @@
       14px 14px;
   }
 
-  /* Alias court pour utilisation Tailwind */
-  .bogolan {
-    @extend .avs-pattern-bogolan-fanga;
-  }
-
   /* ══════════════════════════════════════════════════════════════════════════════
      ADINKRA (Ghana · Akan)
      Symboles gravés et imprimés
      ══════════════════════════════════════════════════════════════════════════════ */
 
-  .avs-pattern-adinkra-sankofa {
+  .avs-pattern-adinkra-sankofa,
+  .adinkra {
     background-color: #1d1d1b;
     background-image:
       repeating-radial-gradient(
@@ -274,16 +266,12 @@
       14px 14px;
   }
 
-  /* Alias court pour utilisation Tailwind */
-  .adinkra {
-    @extend .avs-pattern-adinkra-sankofa;
-  }
-
   /* ══════════════════════════════════════════════════════════════════════════════
      WAX (Pan-africain)
      ══════════════════════════════════════════════════════════════════════════════ */
 
-  .avs-pattern-wax-dakar {
+  .avs-pattern-wax-dakar,
+  .wax {
     background-color: #f5ebe0;
     background-image:
       radial-gradient(
@@ -301,12 +289,8 @@
     background-size: 40px 40px;
   }
 
-  /* Alias court pour utilisation Tailwind */
-  .wax {
-    @extend .avs-pattern-wax-dakar;
-  }
-
-  .avs-pattern-wax-lagos {
+  .avs-pattern-wax-lagos,
+  .wax-lagos {
     background-color: #f5ebe0;
     background-image:
       repeating-radial-gradient(
@@ -328,7 +312,8 @@
      Velours de raphia entrelacé
      ══════════════════════════════════════════════════════════════════════════════ */
 
-  .avs-pattern-kuba-kasai {
+  .avs-pattern-kuba-kasai,
+  .kuba {
     background-color: #2a2420;
     background-image:
       repeating-linear-gradient(
@@ -358,17 +343,13 @@
       100% 6px;
   }
 
-  /* Alias court pour utilisation Tailwind */
-  .kuba {
-    @extend .avs-pattern-kuba-kasai;
-  }
-
   /* ══════════════════════════════════════════════════════════════════════════════
      NDEBELE (Afrique du Sud · Zimbabwe)
      Peinture murale graphique
      ══════════════════════════════════════════════════════════════════════════════ */
 
-  .avs-pattern-ndebele-amabhaxa {
+  .avs-pattern-ndebele-amabhaxa,
+  .ndebele {
     background-color: #ffffff;
     background-image:
       repeating-linear-gradient(
@@ -402,17 +383,13 @@
       100% 10px;
   }
 
-  /* Alias court pour utilisation Tailwind */
-  .ndebele {
-    @extend .avs-pattern-ndebele-amabhaxa;
-  }
-
   /* ══════════════════════════════════════════════════════════════════════════════
      BERBER (Maroc · Amazigh)
      Tapis losanges et chevrons
      ══════════════════════════════════════════════════════════════════════════════ */
 
-  .avs-pattern-berber-amazigh {
+  .avs-pattern-berber-amazigh,
+  .berber {
     background-color: #f5ebe0;
     background-image:
       repeating-linear-gradient(
@@ -430,11 +407,6 @@
         transparent 8px
       );
     background-size: 8px 8px;
-  }
-
-  /* Alias court pour utilisation Tailwind */
-  .berber {
-    @extend .avs-pattern-berber-amazigh;
   }
 
   /* ══════════════════════════════════════════════════════════════════════════════

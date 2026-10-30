@@ -8,6 +8,12 @@ import type {
 
 export const patternService = {
 
+  async stats(id: string) {
+    return get<{ data: { views: number; downloads: number } }>(
+      `/api/v1/patterns/${encodeURIComponent(id)}/stats`
+    );
+  },
+
   async list(filters = {}) {
 
     return get<PatternListApiResponse>(
@@ -82,6 +88,9 @@ export const patternService = {
   },
 
   async trackView(id: string) {
-    return post(`/api/v1/patterns/${id}/view`, {});
+    return post<{ data: { views: number; downloads: number } }>(
+      `/api/v1/patterns/${encodeURIComponent(id)}/view`,
+      {}
+    );
   },
 };

@@ -36,7 +36,7 @@ export interface Pattern {
 
   svgUrl?: string;
 
-  svgPattern?: string;
+  format?: 'SVG' | 'CSS' | 'HYBRID';
 
   // ── Classification ─────────────────────────────────────────
 

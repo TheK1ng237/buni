@@ -36,7 +36,6 @@ const INITIAL_S3: Partial<Step3Data> = {
   colors: [...DEFAULT_COLORS],
   sources: [],
   symbols: [],
-  svgPattern: '',
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -93,7 +92,6 @@ export function usePatternForm(initialPattern?: Pattern) {
           ...sym,
           imageUrl: sym.imageUrl || undefined,
         })) as any,
-        svgPattern: initialPattern.svgPattern || '',
         artisanQuote: initialPattern.artisanQuote,
       });
     }

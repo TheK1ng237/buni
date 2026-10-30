@@ -19,6 +19,7 @@ import { DashboardStats, UserPattern, DashboardActivity, dashboardService } from
 import { userService } from '@/features/user/services/user.service';
 import ViewerDashboard from './viewer-dashboard';
 import CuratorModal from '@/components/curator-modal';
+import { CSS_PATTERN_MAP } from '@buni/patterns';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // TYPES & CONFIG
@@ -38,15 +39,6 @@ const ACTIVITY_CONFIG: Record<string, { icon: typeof MessageSquare; color: strin
   download: { icon: Download,      color: '#4F7CFF' },
   review:   { icon: Check,         color: '#10B981' },
   favorite: { icon: Heart,         color: '#F59E0B' },
-};
-
-const CSS_PATTERN_MAP: Record<string, string> = {
-  NDOP:    'avs-pattern-ndop-sultan',
-  KENTE:   'avs-pattern-kente-royale',
-  BOGOLAN: 'avs-pattern-bogolan-fanga',
-  WAX:     'avs-pattern-wax-dakar',
-  ADINKRA: 'avs-pattern-adinkra-sankofa',
-  KUBA:    'avs-pattern-kuba-kasai',
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -140,7 +132,9 @@ function HeroBanner({ patternsCount, t }: { patternsCount: number; t: any }) {
 
 function PatternRow({ pattern, index, t }: { pattern: UserPattern; index: number; t: any }) {
   const status = getStatusConfig(t)[pattern.status] ?? getStatusConfig(t).draft!;
-  const patCss = CSS_PATTERN_MAP[pattern.type] ?? 'avs-pattern-wax-dakar';
+  const patCss =
+    CSS_PATTERN_MAP[pattern.type.toLowerCase() as keyof typeof CSS_PATTERN_MAP] ??
+    CSS_PATTERN_MAP.wax;
 
   return (
     <Link href={`/patternsDashboard/${pattern.slug || pattern.id}` as any}>

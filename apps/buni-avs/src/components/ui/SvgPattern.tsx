@@ -2,8 +2,7 @@
 
 // =============================================================================
 // AVS — Composant SvgPattern
-// Affiche un motif SVG depuis public/patterns/ avec :
-//   - Affichage via <img> (performances) ou inline SVG
+// Affiche un aperçu CSS et propose le SVG vectoriel généré par le backend :
 //   - Fond de page/section
 //   - Téléchargement direct
 //   - Animation Framer Motion
@@ -16,14 +15,12 @@
 // =============================================================================
 
 import { useState } from 'react';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Download, Info } from 'lucide-react';
-// TODO: These SVG utilities should be implemented in @buni/patterns
+import { download as downloadBlob } from '@buni/api';
 import {
   SVG_REGISTRY,
   getSvgMeta,
-  getSvgUrl,
   generatePaletteJson,
   type SvgPatternKey,
 } from '@buni/patterns';
@@ -54,34 +51,22 @@ interface SvgPatternProps {
   onClick?:       () => void;
 }
 
-// ── Hook — chargement SVG inline ───────────────────────────────────────────────
-// function useInlineSvg(url: string) {
-//   const [svg, setSvg] = useState<string | null>(null);
-
-//   useEffect(() => {
-//     fetch(url)
-//       .then(r => r.text())
-//       .then(text => {
-//         // Nettoyer le SVG pour injection sécurisée
-//         const clean = text
-//           .replace(/<script[\s\S]*?<\/script>/gi, '')
-//           .replace(/on\w+="[^"]*"/gi, '');
-//         setSvg(clean);
-//       })
-//       .catch(() => setSvg(null));
-//   }, [url]);
-
-//   return svg;
-// }
-
-// ── Téléchargement SVG ────────────────────────────────────────────────────────
-function downloadFile(url: string, filename: string) {
+function saveBlob(blob: Blob, filename: string) {
+  const url = window.URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
   a.download = filename;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
+  window.setTimeout(() => window.URL.revokeObjectURL(url), 1000);
+}
+
+async function downloadSvg(key: SvgPatternKey, filename: string) {
+  const blob = await downloadBlob(
+    `/api/v1/patterns/${encodeURIComponent(SVG_REGISTRY[key].downloadSlug)}/download`
+  );
+  saveBlob(blob, filename);
 }
 
 // ── Composant principal ───────────────────────────────────────────────────────
@@ -99,9 +84,10 @@ export function SvgPattern({
   onClick,
 }: SvgPatternProps) {
   const meta    = getSvgMeta(name);
-  const svgUrl  = getSvgUrl(name);
   const [info,  setInfo]  = useState(false);
   const [dlDone,setDlDone]= useState(false);
+  const [downloading, setDownloading] = useState(false);
+  const [downloadError, setDownloadError] = useState(false);
 
   const altText = alt ?? `Motif ${meta.name} — ${meta.origin}`;
 
@@ -117,15 +103,10 @@ export function SvgPattern({
         onKeyDown={onClick ? (e) => { if (e.key === 'Enter') onClick(); } : undefined}
         aria-label={onClick ? `Voir ${meta.name}` : undefined}
       >
-        {/* SVG en fond avec object-fit: cover */}
+        {/* CSS preview; the downloadable vector comes from the backend. */}
         <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage:    `url(${svgUrl})`,
-            backgroundSize:     repeat ? 'auto' : 'cover',
-            backgroundRepeat:   repeat ? 'repeat' : 'no-repeat',
-            backgroundPosition: 'center',
-          }}
+          className={`absolute inset-0 ${meta.preview}`}
+          style={{ backgroundSize: repeat ? 'auto' : undefined }}
           aria-hidden
         />
         {/* Dégradé de sortie */}
@@ -140,14 +121,10 @@ export function SvgPattern({
       className={`relative inline-flex shrink-0 items-center justify-center overflow-hidden rounded-avs-lg border border-avs-accent/10 ${className}`}
       style={{ width: size, height: size, opacity }}
     >
-      <Image
-        src={svgUrl}
-        alt={altText}
-        width={size}
-        height={size}
-        className="h-full w-full object-cover"
-        unoptimized  // SVG n'a pas besoin d'optimisation raster
-        priority={size > 200}
+      <div
+        className={`h-full w-full ${meta.preview}`}
+        role="img"
+        aria-label={altText}
       />
 
       {/* Overlay info au survol */}
@@ -181,12 +158,23 @@ export function SvgPattern({
             <button
               onClick={e => {
                 e.stopPropagation();
-                downloadFile(svgUrl, `avs-${name}.svg`);
-                setDlDone(true);
-                setTimeout(() => setDlDone(false), 2000);
+                if (downloading) return;
+                setDownloading(true);
+                setDownloadError(false);
+                void downloadSvg(name, `avs-${name}.svg`)
+                  .then(() => {
+                    setDlDone(true);
+                    setTimeout(() => setDlDone(false), 2000);
+                  })
+                  .catch(error => {
+                    console.error(`Unable to download SVG pattern ${name}:`, error);
+                    setDownloadError(true);
+                  })
+                  .finally(() => setDownloading(false));
               }}
-              className="flex h-7 w-7 items-center justify-center rounded-avs bg-avs-primary text-avs-secondary shadow-sm hover:bg-avs-primary/90"
-              aria-label="Télécharger le SVG"
+              disabled={downloading}
+              className="flex h-7 w-7 items-center justify-center rounded-avs bg-avs-primary text-avs-secondary shadow-sm hover:bg-avs-primary/90 disabled:opacity-50"
+              aria-label={downloading ? 'Téléchargement en cours' : 'Télécharger le SVG'}
             >
               <Download size={13} />
             </button>
@@ -197,6 +185,11 @@ export function SvgPattern({
       {dlDone && (
         <div className="absolute bottom-2 left-1/2 -translate-x-1/2 rounded-avs bg-green-600 px-3 py-1 text-[10px] font-bold text-white shadow">
           Téléchargé ✓
+        </div>
+      )}
+      {downloadError && (
+        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 rounded-avs bg-red-700 px-3 py-1 text-[10px] font-bold text-white shadow" role="status">
+          Échec du téléchargement
         </div>
       )}
     </div>
@@ -308,14 +301,7 @@ export function SvgPatternHero({
         transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
         aria-hidden
       >
-        <Image
-          src={getSvgUrl(name)}
-          alt=""
-          fill
-          className="object-cover"
-          unoptimized
-          aria-hidden
-        />
+        <div className={`h-full w-full ${SVG_REGISTRY[name].preview}`} />
       </motion.div>
 
       {/* Overlay dégradé */}
@@ -351,40 +337,41 @@ export function SvgPatternHero({
 // =============================================================================
 export function SvgDownloadCard({ name }: { name: SvgPatternKey }) {
   const meta = getSvgMeta(name);
-  const [downloading, setDownloading] = useState<string | null>(null);
+  const [downloading, setDownloading] = useState<'svg' | 'json' | null>(null);
+  const [downloaded, setDownloaded] = useState<'svg' | 'json' | null>(null);
+  const [downloadError, setDownloadError] = useState<string | null>(null);
 
   const dl = async (format: 'svg' | 'json') => {
     setDownloading(format);
-    if (format === 'svg') {
-      downloadFile(getSvgUrl(name), `avs-${name}.svg`);
-    } else {
-      const paletteJson = JSON.stringify({
-        key: name,
-        name: meta.name,
-        colors: meta.colors,
-        type: meta.type,
-        origin: meta.origin,
-      }, null, 2);
-      const blob = new Blob([paletteJson], { type: 'application/json' });
-      const url  = URL.createObjectURL(blob);
-      downloadFile(url, `avs-${name}-palette.json`);
-      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    setDownloaded(null);
+    setDownloadError(null);
+    try {
+      if (format === 'svg') {
+        await downloadSvg(name, `avs-${name}.svg`);
+      } else {
+        const paletteJson = JSON.stringify({
+          key: name,
+          name: meta.name,
+          colors: meta.colors,
+          type: meta.type,
+          origin: meta.origin,
+        }, null, 2);
+        saveBlob(new Blob([paletteJson], { type: 'application/json' }), `avs-${name}-palette.json`);
+      }
+      setDownloaded(format);
+    } catch (error) {
+      console.error(`Unable to download ${format} pattern ${name}:`, error);
+      setDownloadError(`Échec du téléchargement ${format.toUpperCase()}. Réessayez.`);
+    } finally {
+      setDownloading(null);
     }
-    await new Promise(r => setTimeout(r, 800));
-    setDownloading(null);
   };
 
   return (
     <div className="avs-card overflow-hidden p-0">
       {/* Aperçu SVG */}
-      <div className="relative h-44 bg-avs-accent/5">
-        <Image
-          src={getSvgUrl(name)}
-          alt={`Aperçu ${meta.name}`}
-          fill
-          className="object-contain p-6"
-          unoptimized
-        />
+      <div className="relative h-44 bg-avs-accent/5" role="img" aria-label={`Aperçu ${meta.name}`}>
+        <div className={`h-full w-full ${meta.preview}`} />
       </div>
 
       {/* Infos */}
@@ -414,10 +401,17 @@ export function SvgDownloadCard({ name }: { name: SvgPatternKey }) {
               } disabled:opacity-60`}
             >
               <Download size={11} aria-hidden />
-              {downloading === fmt ? 'Téléchargé ✓' : fmt.toUpperCase()}
+              {downloading === fmt
+                ? 'Téléchargement…'
+                : downloaded === fmt
+                  ? 'Téléchargé ✓'
+                  : fmt.toUpperCase()}
             </button>
           ))}
         </div>
+        {downloadError && (
+          <p className="mt-2 text-xs text-red-700" role="alert">{downloadError}</p>
+        )}
 
         {/* Licence */}
         <p className="mt-3 text-[10px] text-avs-accent/35">

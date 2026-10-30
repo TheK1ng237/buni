@@ -1,72 +1,37 @@
-# Patterns Data Management
+# Patterns data
 
-## Quick Start: Add a New Pattern
+The static catalog entries currently live in
+`apps/buni-avs/src/app/[locale]/(marketing)/patterns/mock.ts`.
 
-1. Open `patterns-data.ts`
-2. Add a new object to the `PATTERNS_DOCS` array:
+## Add a CSS pattern
+
+1. Add the CSS rule to `packages/patterns/src/theme/patterns.css`.
+2. Give it a short class name, such as `.kente`.
+3. If it is a new variation of an existing type, add its short class to
+   `PATTERN_CSS_CLASSES` in `packages/patterns/src/registry.ts`. For a new type,
+   also add it to `PATTERN_TYPES` and `CSS_PATTERN_MAP`.
+4. Add or update the catalog entry with that class:
 
 ```typescript
 {
-  id: 'unique-id',
-  slug: 'unique-slug',
-  nameFr: 'Pattern Name in French',
-  nameLocal: 'Pattern Name in Local Language',
-  type: 'NDOP', // or KENTE, BOGOLAN, etc.
-  svgPattern: 'avs-svg-pattern-ndop6', // CSS class for SVG pattern
-  origin: {
-    people: 'Ethnic Group',
-    region: 'Region Name',
-    country: 'Country Name',
-    flag: '🇨🇲',
-    coords: [latitude, longitude],
-  },
-  era: 'Time Period',
-  license: 'cc-by',
-  colors: [
-    { hex: '#HEXCODE', name: 'Color Name', meaning: 'Symbolic meaning' },
-  ],
-  summary: 'Brief description',
-  history: 'Historical background',
-  technique: 'How it is made',
-  symbolism: 'What it symbolizes',
-  ceremonial: 'When/how it is used',
-  symbols: [
-    {
-      name: 'Symbol Name',
-      nameFr: 'French Name',
-      cssPreview: '#HEXCODE',
-      meaning: 'What it means',
-      usage: 'How it is used',
-      sacred: true,
-    },
-  ],
-  sources: ['Source 1', 'Source 2'],
-  downloads: 0,
-  views: 0,
+  type: 'kente',
+  cssClass: 'kente',
 }
 ```
 
-## Available SVG Patterns
+The preview uses that class directly. For new catalog motifs whose views and
+downloads should be counted, also add the catalog slug and its motif type to
+`avs-backend/src/modules/culture/staticPatternRegistry.ts`.
 
-Use one of these for the `svgPattern` field:
+## Add an uploaded SVG
 
-- `avs-svg-pattern-ndop6`
-- `avs-svg-pattern-ndop-bamoum`
-- `avs-svg-pattern-ndop-symbol-1` through `5`
-- `avs-svg-pattern-toghu-bamenda`
-- `avs-svg-pattern-toghu-bamileke`
+Upload the SVG through the pattern form. The backend stores it and exposes its
+URL as `svgUrl`; the same pattern download endpoint serves the SVG file.
+Use `cssClass` only for allowlisted CSS previews; uploaded SVGs are served by
+the backend and do not need a CSS class.
 
-## Using in Your Page
+## Views and downloads
 
-```typescript
-import { PATTERNS_DOCS } from '@/features/patterns/data/patterns-data';
-
-// In your component:
-{PATTERNS_DOCS.map(pattern => (
-  <div key={pattern.id} className={pattern.svgPattern}>
-    {/* Your content */}
-  </div>
-))}
-```
-
-That's it! No setup needed. 🎨
+Do not hard-code engagement totals in the catalog data. Static pattern
+statistics are read from the backend and start at zero until real views or
+downloads are recorded.

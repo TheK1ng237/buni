@@ -8,8 +8,8 @@ export const SVG_REGISTRY = {
   kente: {
     key: 'kente',
     name: 'Kente Royale',
-    file: '/patterns/kente-royale.svg',
-    preview: 'avs-pattern-kente-royale',
+    downloadSlug: 'kente-asante',
+    preview: 'kente',
     type: 'kente',
     origin: 'Ghana',
     description: 'Motif traditionnel kente du Ghana',
@@ -20,8 +20,8 @@ export const SVG_REGISTRY = {
   bogolan: {
     key: 'bogolan',
     name: 'Bogolan Fanga',
-    file: '/patterns/bogolan-fanga.svg',
-    preview: 'avs-pattern-bogolan-fanga',
+    downloadSlug: 'bogolan-malien',
+    preview: 'bogolan',
     type: 'bogolan',
     origin: 'Mali',
     description: 'Motif bogolan du Mali',
@@ -32,8 +32,8 @@ export const SVG_REGISTRY = {
   adinkra: {
     key: 'adinkra',
     name: 'Adinkra Sankofa',
-    file: '/patterns/adinkra-sankofa.svg',
-    preview: 'avs-pattern-adinkra-sankofa',
+    downloadSlug: 'adinkra-akan',
+    preview: 'adinkra',
     type: 'adinkra',
     origin: 'Ghana',
     description: 'Symboles adinkra du Ghana',
@@ -44,8 +44,8 @@ export const SVG_REGISTRY = {
   ndebele: {
     key: 'ndebele',
     name: 'Ndebele Amabhaxa',
-    file: '/patterns/ndebele-amabhaxa.svg',
-    preview: 'avs-pattern-ndebele-amabhaxa',
+    downloadSlug: 'ndebele-amabhaxa',
+    preview: 'ndebele',
     type: 'ndebele',
     origin: 'Afrique du Sud',
     description: 'Motif ndebele d\'Afrique du Sud',
@@ -56,8 +56,8 @@ export const SVG_REGISTRY = {
   ndop: {
     key: 'ndop',
     name: 'Ndop Sultan',
-    file: '/patterns/ndop-sultan.svg',
-    preview: 'avs-pattern-ndop-sultan',
+    downloadSlug: 'ndop-bamoum',
+    preview: 'ndop',
     type: 'ndop',
     origin: 'Cameroun',
     description: 'Tissu ndop du Cameroun',
@@ -68,8 +68,8 @@ export const SVG_REGISTRY = {
   wax: {
     key: 'wax',
     name: 'Wax Dakar',
-    file: '/patterns/wax-dakar.svg',
-    preview: 'avs-pattern-wax-dakar',
+    downloadSlug: 'wax-dakar',
+    preview: 'wax',
     type: 'wax',
     origin: 'Sénégal',
     description: 'Tissu wax du Sénégal',
@@ -80,8 +80,8 @@ export const SVG_REGISTRY = {
   kuba: {
     key: 'kuba',
     name: 'Kuba Kasai',
-    file: '/patterns/kuba-kasai.svg',
-    preview: 'avs-pattern-kuba-kasai',
+    downloadSlug: 'kuba-kasai',
+    preview: 'kuba',
     type: 'kuba',
     origin: 'République Démocratique du Congo',
     description: 'Tissu kuba du Congo',
@@ -92,8 +92,8 @@ export const SVG_REGISTRY = {
   berber: {
     key: 'berber',
     name: 'Berber Amazigh',
-    file: '/patterns/berber-amazigh.svg',
-    preview: 'avs-pattern-berber-amazigh',
+    downloadSlug: 'berber-amazigh',
+    preview: 'berber',
     type: 'berber',
     origin: 'Afrique du Nord',
     description: 'Motif amazigh d\'Afrique du Nord',
@@ -120,12 +120,6 @@ export function getSvgMeta(
   key: SvgPatternKey
 ): SvgPatternMeta {
   return SVG_REGISTRY[key];
-}
-
-export function getSvgUrl(
-  key: SvgPatternKey
-): string {
-  return SVG_REGISTRY[key].file;
 }
 
 export function isSvgPatternKey(

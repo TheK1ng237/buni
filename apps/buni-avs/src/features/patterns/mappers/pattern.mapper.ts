@@ -8,7 +8,13 @@ import type {
   Pattern,
   PatternDto,
 } from '../types';
-import { CSS_PATTERN_MAP, PatternOrigin, PatternSymbolism, PatternSymbol } from '@buni/patterns';
+import {
+  CSS_PATTERN_MAP,
+  isPatternCssClass,
+  PatternOrigin,
+  PatternSymbolism,
+  PatternSymbol,
+} from '@buni/patterns';
 import type { UploadablePatternSymbol } from '../types/uploads/pattern.upload';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -60,7 +66,6 @@ export function toCreatePayload(s1: Step1Data, s2: Step2Data, s3: Step3Data): Cr
 
     sources: s3.sources,
 
-    svgPattern: s3.svgPattern,
 
     artisanQuote: s3.artisanQuote,
 
@@ -136,7 +141,6 @@ export function toFormData(
 
     'ceremonial',
 
-    'svgPattern',
 
     'people',
 
@@ -228,13 +232,16 @@ export function mapPatternDtoToModel(dto: PatternDto): Pattern {
 
     svgUrl: dto.svgUrl,
 
-    svgPattern: dto.svgPattern,
+    format: dto.format,
 
     // ── Classification ─────────────────────────────────────────────────────
 
     type: dto.type,
 
-    cssClass: dto.cssClass || CSS_PATTERN_MAP[dto.type] || 'avs-pattern-default',
+    cssClass:
+      (dto.cssClass && isPatternCssClass(dto.cssClass) && dto.cssClass) ||
+      CSS_PATTERN_MAP[dto.type.toLowerCase() as keyof typeof CSS_PATTERN_MAP] ||
+      CSS_PATTERN_MAP.wax,
 
     // ── Featured / Status ─────────────────────────────────────────────────
 
