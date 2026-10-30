@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { createPortal } from 'react-dom';
+import { motion } from 'framer-motion';
 import { useToast } from '@buni/ui';
 import { useLocale, useTranslations } from '@/i18n';
 import type { Pattern } from '@/features/patterns/types';
@@ -32,6 +33,7 @@ export function ShareMenu({ pattern }: ShareMenuProps) {
   const t = useTranslations('patterns.share');
   const triggerRef = useRef<HTMLButtonElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLElement>(null);
   const slug = pattern.slug || pattern.id;
   const path = `/${locale}/pattern/${encodeURIComponent(slug)}`;
   const imagePath = `${path}/opengraph-image`;
@@ -43,6 +45,23 @@ export function ShareMenu({ pattern }: ShareMenuProps) {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         setIsOpen(false);
+        return;
+      }
+
+      if (event.key === 'Tab' && dialogRef.current) {
+        const focusableElements = dialogRef.current.querySelectorAll<HTMLElement>(
+          'button:not(:disabled), a[href], [tabindex]:not([tabindex="-1"])'
+        );
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (event.shiftKey && document.activeElement === firstElement) {
+          event.preventDefault();
+          lastElement?.focus();
+        } else if (!event.shiftKey && document.activeElement === lastElement) {
+          event.preventDefault();
+          firstElement?.focus();
+        }
       }
     };
 
@@ -61,11 +80,7 @@ export function ShareMenu({ pattern }: ShareMenuProps) {
     const response = await fetch(imagePath);
     if (!response.ok) throw new Error(`Image preview failed with status ${response.status}`);
 
-    const image = new File(
-      [await response.blob()],
-      `${slug}-buni.png`,
-      { type: 'image/png' },
-    );
+    const image = new File([await response.blob()], `${slug}-buni.png`, { type: 'image/png' });
 
     if (navigator.canShare?.({ files: [image] }) && navigator.share) {
       await navigator.share({
@@ -143,37 +158,30 @@ export function ShareMenu({ pattern }: ShareMenuProps) {
         {t('button')}
       </button>
 
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.15 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-avs-accent/60 p-4 backdrop-blur-sm"
+      {isOpen &&
+        createPortal(
+          <div
+            className="bg-avs-accent/60 fixed inset-0 z-[100] flex items-center justify-center p-4 backdrop-blur-sm"
             onMouseDown={(event) => {
               if (event.target === event.currentTarget) setIsOpen(false);
             }}
           >
             <motion.section
+              ref={dialogRef}
               initial={{ opacity: 0, y: 12, scale: 0.97 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 12, scale: 0.97 }}
               transition={{ duration: 0.18 }}
               role="dialog"
               aria-modal="true"
               aria-labelledby="share-dialog-title"
-              className="w-full max-w-md overflow-hidden rounded-3xl border border-avs-accent/10 bg-avs-secondary shadow-avs-lg"
+              className="border-avs-accent/10 bg-avs-secondary shadow-avs-lg w-full max-w-md overflow-hidden rounded-3xl border"
             >
               <div className="border-avs-accent/10 flex items-center justify-between border-b px-5 py-4 sm:px-6">
                 <div>
                   <p className="text-avs-accent font-mono text-[9px] font-bold tracking-[0.16em] uppercase">
                     {t('menuTitle')}
                   </p>
-                  <h2
-                    id="share-dialog-title"
-                    className="text-avs-accent mt-1 text-lg font-bold"
-                  >
+                  <h2 id="share-dialog-title" className="text-avs-accent mt-1 text-lg font-bold">
                     {pattern.name}
                   </h2>
                 </div>
@@ -195,16 +203,19 @@ export function ShareMenu({ pattern }: ShareMenuProps) {
                     type="button"
                     disabled={isPreparingImage}
                     onClick={() => void handleShare(platform.id)}
-                    className="group flex min-h-14 items-center gap-3 rounded-2xl border border-avs-accent/10 px-4 py-3 text-left transition-colors hover:border-avs-primary/30 hover:bg-avs-secondary-dark disabled:opacity-60"
+                    className="group border-avs-accent/10 hover:border-avs-primary/30 hover:bg-avs-secondary-dark flex min-h-14 items-center gap-3 rounded-2xl border px-4 py-3 text-left transition-colors disabled:opacity-60"
                   >
                     <span
                       className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-transform group-hover:scale-110"
                       style={{ backgroundColor: platform.color }}
                       aria-hidden="true"
                     >
-                      <i className={`pi ${platform.icon} text-white`} style={{ fontSize: '15px' }} />
+                      <i
+                        className={`pi ${platform.icon} text-white`}
+                        style={{ fontSize: '15px' }}
+                      />
                     </span>
-                    <span className="text-avs-accent text-sm font-semibold group-hover:text-avs-primary">
+                    <span className="text-avs-accent group-hover:text-avs-primary text-sm font-semibold">
                       {platform.id === 'instagram' && isPreparingImage
                         ? t('preparingImage')
                         : platform.name}
@@ -220,16 +231,16 @@ export function ShareMenu({ pattern }: ShareMenuProps) {
                 <button
                   type="button"
                   onClick={() => void handleCopyLink()}
-                  className="group flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-avs-primary/10 px-4 py-3 text-sm font-semibold text-avs-primary transition-colors hover:bg-avs-primary/20"
+                  className="group bg-avs-primary/10 text-avs-primary hover:bg-avs-primary/20 flex min-h-12 w-full items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold transition-colors"
                 >
                   <i className="pi pi-link" aria-hidden="true" />
                   {t('copyLink')}
                 </button>
               </div>
             </motion.section>
-          </motion.div>
+          </div>,
+          document.body
         )}
-      </AnimatePresence>
     </>
   );
 }
