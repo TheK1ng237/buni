@@ -8,7 +8,7 @@ import { PATTERNS_DOCS } from '../mock';
 import { patternRepository } from '@/features/patterns/repositories/pattern.repository';
 import { useTranslations } from '@/i18n';
 
-const TYPES = ['ALL', 'KENTE', 'NDOP', 'BOGOLAN', 'ADINKRA', 'WAX', 'NDEBELE', 'KUBA'];
+const TYPES = ['ALL', 'KENTE', 'NDOP', 'BOGOLAN', 'ADINKRA', 'WAX', 'NDEBELE', 'KUBA', 'BERBER'];
 
 export function PatternsContent() {
   const t = useTranslations('patterns');
@@ -60,7 +60,7 @@ export function PatternsContent() {
       p.origin.country.toLowerCase().includes(q) ||
       p.origin.people.toLowerCase().includes(q) ||
       p.summary.toLowerCase().includes(q);
-    const matchType = activeType === 'ALL' || p.type === activeType;
+    const matchType = activeType === 'ALL' || p.type.toUpperCase() === activeType;
     return matchSearch && matchType;
   });
 

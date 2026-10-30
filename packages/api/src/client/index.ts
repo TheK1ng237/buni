@@ -21,8 +21,19 @@ apiClient.interceptors.response.use(
   async (err: AxiosError) => {
     if (err.response?.status === 401) useAuthStore.getState().logout();
 
-    // Extract error message from backend response
-    const backendMessage = err.response?.data as { message?: string } | undefined;
+    let responseData = err.response?.data;
+    if (typeof Blob !== 'undefined' && responseData instanceof Blob) {
+      const body = await responseData.text();
+      if (body) {
+        try {
+          responseData = JSON.parse(body);
+        } catch {
+          err.message = body;
+        }
+      }
+    }
+
+    const backendMessage = responseData as { message?: string } | undefined;
     if (backendMessage?.message) {
       err.message = backendMessage.message;
     }

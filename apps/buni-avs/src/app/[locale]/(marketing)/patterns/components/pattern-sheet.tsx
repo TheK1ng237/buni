@@ -54,7 +54,6 @@ export function PatternSheet({ pattern }: { pattern: any }) {
         setViewCount(stats.views);
       } catch (statsError) {
         console.error('Download succeeded but statistics could not be refreshed:', statsError);
-        setDownloadCount((prev) => prev + 1);
       }
 
       add({
@@ -64,10 +63,13 @@ export function PatternSheet({ pattern }: { pattern: any }) {
       });
     } catch (error) {
       console.error('Download failed:', error);
+      const errorMessage = error instanceof Error ? error.message : '';
       add({
         variant: 'error',
         title: 'Échec du téléchargement',
-        message: 'Une erreur est survenue lors du téléchargement. Veuillez réessayer.',
+        message: errorMessage
+          ? `Le téléchargement a échoué : ${errorMessage}`
+          : 'Une erreur est survenue lors du téléchargement. Veuillez réessayer.',
       });
     } finally {
       setIsDownloading(false);

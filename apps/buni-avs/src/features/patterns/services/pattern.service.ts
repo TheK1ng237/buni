@@ -1,5 +1,5 @@
 
-import { post, patch, del, get, download } from '@buni/api';
+import { post, patch, del, get, apiClient } from '@buni/api';
 
 import type {
   PatternDto,
@@ -84,7 +84,11 @@ export const patternService = {
   },
 
   async download(id: string) {
-    return download(`/api/v1/patterns/${id}/download`);
+    const response = await apiClient.get<Blob>(
+      `/api/v1/patterns/${encodeURIComponent(id)}/download`,
+      { responseType: 'blob' }
+    );
+    return response.data;
   },
 
   async trackView(id: string) {

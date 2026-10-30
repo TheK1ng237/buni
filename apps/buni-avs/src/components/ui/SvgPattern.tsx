@@ -17,7 +17,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Download, Info } from 'lucide-react';
-import { download as downloadBlob } from '@buni/api';
+import { apiClient } from '@buni/api';
 import {
   SVG_REGISTRY,
   getSvgMeta,
@@ -63,10 +63,11 @@ function saveBlob(blob: Blob, filename: string) {
 }
 
 async function downloadSvg(key: SvgPatternKey, filename: string) {
-  const blob = await downloadBlob(
-    `/api/v1/patterns/${encodeURIComponent(SVG_REGISTRY[key].downloadSlug)}/download`
+  const response = await apiClient.get<Blob>(
+    `/api/v1/patterns/${encodeURIComponent(SVG_REGISTRY[key].downloadSlug)}/download`,
+    { responseType: 'blob' }
   );
-  saveBlob(blob, filename);
+  saveBlob(response.data, filename);
 }
 
 // ── Composant principal ───────────────────────────────────────────────────────
