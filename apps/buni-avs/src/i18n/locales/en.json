@@ -1967,6 +1967,7 @@
       "restricted": {
         "title": "Restricted editing",
         "description": "As an Explorer, you cannot edit your profile. Become a Curator to access all editing features.",
+        "socialDescription": "As an Explorer, you cannot edit your social links. Become a Curator to access editing features.",
         "becomeCurator": "Become Curator"
       },
       "form": {
@@ -2007,6 +2008,7 @@
         "invalidUrl": "Invalid URL"
       },
       "memberSince": "Member since",
+      "notAvailable": "Not available",
       "changeAvatar": "Change avatar",
       "socialPreview": "Link preview",
       "toasts": {

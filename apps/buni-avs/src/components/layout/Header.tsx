@@ -880,6 +880,7 @@ export function Header() {
 
             {/* Coffee CTA */}
             <button
+              hidden
               onClick={() => router.push('/coffee' as Route)}
               className="group hidden items-center gap-2 rounded-xl border px-4 py-2 text-[13px] font-semibold transition-all duration-200 hover:-translate-y-0.5 sm:flex"
               style={{
@@ -1048,13 +1049,15 @@ export function Header() {
                   </MobileSection>
 
                   <MobileSection title="Outils">
-                    <MobileLink
-                      href="/coffee"
-                      icon={Coffee}
-                      label="Offer me a coffee"
-                      isActive={pathname === '/coffee'}
-                      onClick={() => setMobileOpen(false)}
-                    />
+                    <div hidden>
+                      <MobileLink
+                        href="/coffee"
+                        icon={Coffee}
+                        label="Offer me a coffee"
+                        isActive={pathname === '/coffee'}
+                        onClick={() => setMobileOpen(false)}
+                      />
+                    </div>
                     {authState.isAuthenticated && authState.user && (
                       <MobileLink
                         href="/dashboard"

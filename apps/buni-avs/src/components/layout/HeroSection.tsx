@@ -455,6 +455,7 @@ export function HeroSection() {
                     </Link>
 
                     <Link
+                      hidden
                       href={'/documentation' as Route}
                       className="inline-flex items-center gap-2 rounded-xl border-2 border-[var(--color-light-border)] px-5 py-3 text-sm font-semibold text-[var(--color-light-text)] transition-all duration-200 hover:border-[var(--color-avs-primary)] hover:text-[var(--color-avs-primary)] sm:px-7 sm:py-3.5"
                     >
@@ -563,6 +564,7 @@ export function HeroSection() {
                     </Link>
 
                     <Link
+                      hidden
                       href={'/components' as Route}
                       className="inline-flex items-center gap-2 rounded-xl border-2 border-[var(--color-light-border)] px-5 py-3 text-sm font-semibold text-[var(--color-light-text)] transition-all duration-200 hover:border-[var(--color-avs-primary)] hover:text-[var(--color-avs-primary)] sm:px-7 sm:py-3.5"
                     >
