@@ -1927,6 +1927,7 @@
       "restricted": {
         "title": "Édition restreinte",
         "description": "En tant qu'Explorateur, vous ne pouvez pas modifier votre profil. Devenez Curateur pour accéder à toutes les fonctionnalités d'édition.",
+        "socialDescription": "En tant qu'Explorateur, vous ne pouvez pas modifier vos liens sociaux. Devenez Curateur pour accéder aux fonctionnalités d'édition.",
         "becomeCurator": "Devenir Curateur"
       },
       "form": {
@@ -1967,6 +1968,7 @@
         "invalidUrl": "URL invalide"
       },
       "memberSince": "Membre depuis",
+      "notAvailable": "Non disponible",
       "changeAvatar": "Modifier l'avatar",
       "socialPreview": "Aperçu des liens",
       "toasts": {
