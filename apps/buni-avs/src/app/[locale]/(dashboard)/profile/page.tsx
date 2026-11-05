@@ -205,7 +205,7 @@ function SocialRow({ icon, platform, prefix, value, onChange, maxLength, placeho
 // ─────────────────────────────────────────────────────────────────────────────
 
 export default function ProfilePage() {
-  const t = useTranslations('dashboard.profile');
+  const t = useTranslations('profile');
   const { user, isAuthenticated, isHydrated, canContribute } = useAuth();
   const logout = useLogout();
   const { add: addToast, ToastContainer } = useToast();

@@ -17,7 +17,7 @@ const LINKS = {
   ],
   Ressources: [
     { href: '/about',         label: 'Notre mission'  },
-    { href: '/documentation', label: 'Documentation'  },
+    { href: '/documentation', label: 'Documentation', hidden: true },
     { href: '/auth/register', label: 'Contribuer'     },
   ],
   Légal: [
@@ -262,6 +262,7 @@ export function Footer() {
 
               {/* Coffee CTA */}
               <Link
+                hidden
                 href={'/coffee' as Route}
                 className="mt-5 inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5"
                 style={{
@@ -291,7 +292,7 @@ export function Footer() {
                   {title}
                 </h3>
                 <ul className="space-y-3">
-                  {items.map(({ href, label }) => (
+                  {items.filter(({ href }) => href !== '/documentation').map(({ href, label }) => (
                     <li key={href}>
                       <Link
                         href={href as Route}
