@@ -8,6 +8,12 @@
 @import 'tailwindcss';
 @import 'primeicons/primeicons.css';
 
+/* Use the local Buni typeface for both body text and display headings. */
+:root {
+  --font-body: var(--font-buni-display), sans-serif;
+  --font-display: var(--font-buni-display), serif;
+}
+
 /* ── 1. BASE ──────────────────────────────────────────────── */
 
 @layer base {
