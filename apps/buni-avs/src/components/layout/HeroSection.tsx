@@ -573,35 +573,7 @@ export function HeroSection() {
                     </Link>
                   </motion.div>
 
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7, delay: 0.5, ease }}
-                    className="mt-6 flex items-center gap-3 sm:mt-7"
-                  >
-                    <div className="flex">
-                      {COMMUNITY_AVATARS.map(({ letter, bg }, i) => (
-                        <div
-                          key={letter}
-                          className="font-display relative flex h-7 w-7 items-center justify-center overflow-hidden rounded-full text-[11px] font-black text-white"
-                          style={{
-                            background: bg,
-                            border: '2px solid var(--hp-bg)',
-                            marginLeft: i > 0 ? '-8px' : 0,
-                            zIndex: 5 - i,
-                          }}
-                        >
-                          {letter}
-                        </div>
-                      ))}
-                    </div>
-                    <p className="text-[11px]" style={{ color: 'var(--hp-hint)' }}>
-                      <span style={{ color: 'var(--hp-muted)', fontWeight: 600 }}>
-                        {t('communityProof')}
-                      </span>{' '}
-                      {t('verifyEachPattern')}
-                    </p>
-                  </motion.div>
+                  
                 </div>
 
                 {/* — Right: the live inspector, offset lower for editorial asymmetry — */}
@@ -640,39 +612,7 @@ export function HeroSection() {
                 </motion.div>
               </div>
 
-              {/* footnote strip — the "receipts" for the claim above */}
-              <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.28, ease }}
-                className="grid grid-cols-2 sm:flex"
-                style={{ border: '1px solid var(--hp-border)', background: 'var(--hp-faint)' }}
-              >
-                {FOOTNOTES.map(({ index, value, labelKey }, i) => (
-                  <div key={index} className="relative px-3 py-3 sm:px-4 sm:py-3">
-                    {i > 0 && i % 2 === 0 && (
-                      <div
-                        className="absolute top-[20%] left-0 hidden h-[60%] w-px sm:block"
-                        style={{ background: 'var(--hp-border)' }}
-                        aria-hidden
-                      />
-                    )}
-                    
-                    <p
-                      className="font-display mt-1 text-lg leading-none font-black sm:text-xl"
-                      style={{ color: 'var(--hp-text)' }}
-                    >
-                      {value}
-                    </p>
-                    <p
-                      className="tracking-widset mt-1 font-mono text-[8px] leading-tight uppercase sm:text-[9px]"
-                      style={{ color: 'var(--hp-hint)' }}
-                    >
-                      {t(labelKey)}
-                    </p>
-                  </div>
-                ))}
-              </motion.div>
+              
             </div>
           </motion.div>
         </div>

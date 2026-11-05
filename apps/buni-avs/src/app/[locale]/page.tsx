@@ -667,14 +667,7 @@ export default function HomePage() {
               >
                 {t('cta.exploreFirst')}
               </Link>
-              <button
-                onClick={() => window.open('https://ko-fi.com/yourusername', '_blank', 'noopener,noreferrer')}
-                className="inline-flex items-center gap-2 rounded-xl px-6 py-4 text-sm font-semibold border border-avs-primary/30 text-avs-primary hover:bg-avs-primary/10 hover:border-avs-primary transition-all duration-200"
-                aria-label="Offer me a coffee on Ko-fi"
-              >
-                <Coffee size={14} />
-                <span>Offer me a coffee</span>
-              </button>
+              
             </motion.div>
 
             {/* Community avatars */}
@@ -683,9 +676,9 @@ export default function HomePage() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.5, duration: 0.7 }}
-              className="mt-14 flex items-center justify-center gap-4"
+              className="mt-14 md:flex items-center justify-center gap-4"
             >
-              <div className="flex">
+              <div className="flex items-center justify-center">
                 {COMMUNITY_AVATARS.map((css, i) => (
                   <div
                     key={i}
@@ -700,7 +693,7 @@ export default function HomePage() {
                   </div>
                 ))}
               </div>
-              <p className="text-sm text-avs-secondary/60">
+              <p className="text-sm text-avs-secondary/60 mt-5 md:mt-0">
                 +312 artisans nous ont déjà rejoints
               </p>
             </motion.div>
