@@ -98,7 +98,13 @@ export const patternRepository = {
     return patternService.download(id);
   },
 
-  async trackView(id: string): Promise<void> {
-    await patternService.trackView(id);
+  async stats(id: string): Promise<{ views: number; downloads: number }> {
+    const response = await patternService.stats(id);
+    return response.data;
+  },
+
+  async trackView(id: string): Promise<{ views: number; downloads: number }> {
+    const response = await patternService.trackView(id);
+    return response.data;
   },
 };

@@ -43,8 +43,6 @@ export interface Step2Data {
 export interface Step3Data {
   colors: PatternColor[];
 
-  svgPattern?: string;
-
   artisanQuote?: ArtisanQuote;
 
   sources: string[];
@@ -111,8 +109,6 @@ export interface CreatePatternPayload {
   colors: PatternColor[];
 
   sources: string[];
-
-  svgPattern?: string;
 
   artisanQuote?: ArtisanQuote;
 

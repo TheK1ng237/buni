@@ -231,6 +231,30 @@
       "license": "Apache 2.0 + Commons Clause"
     }
   },
+  "forgotPasswordPage": {
+    "title": "Forgot your password?",
+    "description": "Enter the email address linked to your account. If an account matches, you will receive a reset link.",
+    "email": "Email address",
+    "emailPlaceholder": "you@example.com",
+    "submit": "Send reset link",
+    "sending": "Sending…",
+    "success": "If this email address is associated with an account, a message with reset instructions will be sent.",
+    "error": "We could not submit your request right now. Please try again.",
+    "backToLogin": "Back to login"
+  },
+  "resetPasswordPage": {
+    "title": "Create a new password",
+    "description": "Choose a new password with at least 8 characters.",
+    "password": "New password",
+    "confirmPassword": "Confirm password",
+    "submit": "Reset password",
+    "saving": "Saving…",
+    "success": "Your password has been changed. You can now sign in.",
+    "invalidLink": "This link is invalid or has expired. Request a new reset link.",
+    "passwordTooShort": "Your password must contain at least 8 characters.",
+    "passwordMismatch": "The passwords do not match.",
+    "backToLogin": "Back to login"
+  },
   "register": {
     "loading": "Creating account…",
     "perks": {
@@ -734,7 +758,20 @@
       "ADINKRA": "Adinkra",
       "WAX": "Wax",
       "NDEBELE": "Ndebele",
-      "KUBA": "Kuba"
+      "KUBA": "Kuba",
+      "BERBER": "Berber"
+    },
+    "share": {
+      "button": "Share",
+      "menuTitle": "Share this pattern",
+      "copyLink": "Copy link",
+      "linkCopied": "Pattern link copied.",
+      "copyError": "Could not copy the link. Please try again.",
+      "instagramDownloaded": "Image downloaded. You can now share it on Instagram.",
+      "imageError": "Could not prepare the pattern image. Please try again.",
+      "preparingImage": "Preparing image…",
+      "image": "Image",
+      "close": "Close"
     },
     "sidebar": {
       "count": "{count} pattern{count, plural, one {} other {s}}",
@@ -1644,6 +1681,43 @@
     }
   },
   "dashboard": {
+    "viewerDashboard": {
+      "role": "Explorer",
+      "verified": "Verified",
+      "notVerified": "Not verified",
+      "memberSince": "Member since",
+      "profile": "My profile",
+      "becomeCurator": {
+        "badge": "Join the creators",
+        "title": "Share your expertise",
+        "subtitle": "Become a curator",
+        "description": "Help preserve and enrich African cultural heritage by sharing your knowledge and creating pattern entries.",
+        "button": "Become a curator",
+        "explore": "Explore patterns"
+      },
+      "quickActionsLabel": "Quick actions",
+      "explorePlatform": {
+        "title": "Explore the platform"
+      },
+      "quickActions": {
+        "library": {
+          "title": "Pattern encyclopedia",
+          "description": "Discover patterns and their stories."
+        },
+        "palettes": {
+          "title": "Color palettes",
+          "description": "Explore colors inspired by African cultures."
+        },
+        "profile": {
+          "title": "My profile",
+          "description": "Manage your personal information."
+        },
+        "curator": {
+          "title": "Become a curator",
+          "description": "Share your knowledge with the community."
+        }
+      }
+    },
     "activity": {
       "title": "My Activity",
       "subtitle": "View all your interactions with the platform",

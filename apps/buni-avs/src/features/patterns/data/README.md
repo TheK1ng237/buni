@@ -1,72 +1,48 @@
-# Patterns Data Management
+# Patterns data
 
-## Quick Start: Add a New Pattern
+`packages/patterns/src/catalog.ts` is the canonical catalog for motif IDs,
+types, names, CSS preview classes, origins, and hero palette metadata. The
+homepage hero, homepage gallery, SVG registry, and encyclopedia all derive
+their motif identity and preview class from this catalog.
 
-1. Open `patterns-data.ts`
-2. Add a new object to the `PATTERNS_DOCS` array:
+The canonical motif CSS lives in `packages/patterns/src/theme/patterns.css`.
+The app imports that stylesheet from `src/app/globals.css`; do not maintain a
+second app-local copy. The encyclopedia's `mock.ts` contains long-form
+documentation only and overlays it onto the canonical catalog.
+
+## Add a CSS pattern
+
+1. Add the motif's CSS class to `packages/patterns/src/theme/patterns.css`.
+2. Add the motif's metadata and full CSS preview class to
+   `PATTERN_CATALOG` in `packages/patterns/src/catalog.ts`.
+3. If it introduces a new type, add it to `PATTERN_TYPES` and
+   `CSS_PATTERN_MAP` in `packages/patterns/src/registry.ts`.
+4. Add its long-form research and documentation to the encyclopedia's
+   `mock.ts` entry, keyed by the catalog ID.
 
 ```typescript
 {
-  id: 'unique-id',
-  slug: 'unique-slug',
-  nameFr: 'Pattern Name in French',
-  nameLocal: 'Pattern Name in Local Language',
-  type: 'NDOP', // or KENTE, BOGOLAN, etc.
-  svgPattern: 'avs-svg-pattern-ndop6', // CSS class for SVG pattern
-  origin: {
-    people: 'Ethnic Group',
-    region: 'Region Name',
-    country: 'Country Name',
-    flag: '🇨🇲',
-    coords: [latitude, longitude],
-  },
-  era: 'Time Period',
-  license: 'cc-by',
-  colors: [
-    { hex: '#HEXCODE', name: 'Color Name', meaning: 'Symbolic meaning' },
-  ],
-  summary: 'Brief description',
-  history: 'Historical background',
-  technique: 'How it is made',
-  symbolism: 'What it symbolizes',
-  ceremonial: 'When/how it is used',
-  symbols: [
-    {
-      name: 'Symbol Name',
-      nameFr: 'French Name',
-      cssPreview: '#HEXCODE',
-      meaning: 'What it means',
-      usage: 'How it is used',
-      sacred: true,
-    },
-  ],
-  sources: ['Source 1', 'Source 2'],
-  downloads: 0,
-  views: 0,
+  id: 'kente-asante',
+  type: 'kente',
+  cssClass: 'avs-pattern-kente-royale',
 }
 ```
 
-## Available SVG Patterns
+The homepage and encyclopedia previews use the canonical CSS class. CSS motif
+downloads are serialized from the browser's computed CSS so the downloaded SVG
+uses the same appearance as the site. Add the catalog ID to the backend static registry in
+`avs-backend/src/modules/culture/staticPatternRegistry.ts` so public views and
+downloads can be counted and served by the API.
 
-Use one of these for the `svgPattern` field:
+## Add an uploaded SVG
 
-- `avs-svg-pattern-ndop6`
-- `avs-svg-pattern-ndop-bamoum`
-- `avs-svg-pattern-ndop-symbol-1` through `5`
-- `avs-svg-pattern-toghu-bamenda`
-- `avs-svg-pattern-toghu-bamileke`
+Upload the SVG through the pattern form. The backend stores it and exposes its
+URL as `svgUrl`; the same pattern download endpoint serves the SVG file.
+Use `cssClass` only for allowlisted CSS previews; uploaded SVGs are served by
+the backend and do not need a CSS class.
 
-## Using in Your Page
+## Views and downloads
 
-```typescript
-import { PATTERNS_DOCS } from '@/features/patterns/data/patterns-data';
-
-// In your component:
-{PATTERNS_DOCS.map(pattern => (
-  <div key={pattern.id} className={pattern.svgPattern}>
-    {/* Your content */}
-  </div>
-))}
-```
-
-That's it! No setup needed. 🎨
+Do not hard-code engagement totals in the catalog data. Static pattern
+statistics are read from the backend and start at zero until real views or
+downloads are recorded.

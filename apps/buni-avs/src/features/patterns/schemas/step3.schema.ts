@@ -33,7 +33,6 @@ export const Step3Schema = z.object({
     .min(2, 'Au moins 2 couleurs requises')
     .max(5, 'Maximum 5 couleurs'),
 
-  svgPattern:   z.string().optional(),
   artisanQuote: ArtisanQuoteSchema.optional(),
 
   sources: z

@@ -18,6 +18,7 @@ import { cn } from '@buni/ui';
 import { Route } from 'next';
 import { HeroSection } from '../../components/layout/HeroSection';
 import { useTranslations } from '@/i18n';
+import { PATTERN_CATALOG } from '@buni/patterns';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // DATA (moved inside component for i18n)
@@ -97,18 +98,20 @@ export default function HomePage() {
     { value: 98,   display: '98k',   label: t('stats.downloads'),       sub: t('stats.thisMonth')     },
   ] as const;
 
-  const MARQUEE_ITEMS = [
-    'KENTE','NDOP','BOGOLAN','ADINKRA','WAX','KUBA',
-    'NDEBELE','BERBER','TOGHU','RAPHIA','MAASAI','ANKARA',
-  ];
-
-  const GALLERY = [
-    { cssClass: 'avs-pattern-ndop-sultan',       type: 'NDOP',    name: 'Ndop Sultan',    origin: 'Foumban · CM', slug: 'ndop-bamoum',      cls: 'lg:col-span-3 lg:row-span-2' },
-    { cssClass: 'avs-pattern-kente-royale',      type: 'KENTE',   name: 'Kente Royale',   origin: 'Kumasi · GH',  slug: 'kente-asante',     cls: 'lg:col-span-2'               },
-    { cssClass: 'avs-pattern-adinkra-sankofa',   type: 'ADINKRA', name: 'Adinkra Sankofa',origin: 'Akan · GH',    slug: 'adinkra-akan', cls: ''                            },
-    { cssClass: 'avs-pattern-kuba-kasai',        type: 'KUBA',    name: 'Kuba Kasai',     origin: 'Kasai · CD',   slug: 'kuba-kasai',      cls: ''                            },
-    { cssClass: 'avs-pattern-bogolan-fanga',     type: 'BOGOLAN', name: 'Bogolan Fanga',  origin: 'Ségou · ML',   slug: 'bogolan-malien',   cls: 'lg:col-span-2'               },
-  ] as const;
+  const MARQUEE_ITEMS = PATTERN_CATALOG.map((pattern) => pattern.type.toUpperCase());
+  const galleryLayout: Record<string, { className: string; minHeight: string }> = {
+    'ndop-bamoum': { className: 'lg:col-span-3 lg:row-span-2', minHeight: '380px' },
+    'kente-asante': { className: 'lg:col-span-2', minHeight: '165px' },
+    'bogolan-malien': { className: 'lg:col-span-2', minHeight: '165px' },
+  };
+  const GALLERY = PATTERN_CATALOG.map((pattern) => ({
+    ...pattern,
+    type: pattern.type.toUpperCase(),
+    origin: `${pattern.origin} · ${pattern.flag}`,
+    slug: pattern.id,
+    cls: galleryLayout[pattern.id]?.className ?? '',
+    minHeight: galleryLayout[pattern.id]?.minHeight ?? '165px',
+  }));
 
   const FEATURES = [
     {
@@ -278,12 +281,12 @@ export default function HomePage() {
               variants={stagger}
               className="grid grid-cols-2 gap-2 lg:grid-cols-6 lg:grid-rows-2"
             >
-              {GALLERY.map(({ cssClass, type, name, origin, slug, cls }, i) => (
+              {GALLERY.map(({ cssClass, type, name, origin, slug, cls, minHeight }) => (
                 <Link
                   key={name}
                   href={`/patterns?pattern=${slug}` as Route}
                   className={`group relative overflow-hidden rounded-2xl block ${cls}`}
-                  style={{ minHeight: i === 0 ? '380px' : '165px' }}
+                  style={{ minHeight }}
                 >
                   <motion.div
                     variants={itemFade}

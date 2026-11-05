@@ -27,18 +27,17 @@ import { kente, ndop, bogolan } from '@buni/patterns';
 function App() {
   return (
     <div>
-      {/* Simple pattern background */}
-      <div className={kente} className="h-64" />
+      {/* Short class names are available as importable values */}
+      <div className={`${kente} h-64`} />
       
       {/* Pattern as section */}
-      <section className={ndop}>
+      <section className={`${ndop} min-h-64`}>
         <h1>Content with Ndop pattern</h1>
       </section>
       
       {/* Pattern with custom styles */}
       <div 
-        className={bogolan}
-        className="opacity-30 rounded-xl"
+        className={`${bogolan} rounded-xl opacity-30`}
       >
         <p>Overlay content</p>
       </div>
@@ -222,7 +221,7 @@ function PatternOverlay({ type, children }) {
 
 ## 🎨 CSS Classes Reference
 
-Each pattern has a short name for direct Tailwind usage:
+Each pattern has a short class name for direct usage:
 
 ```css
 .kente      /* Kente pattern - short name */
@@ -284,9 +283,11 @@ Each pattern includes cultural context and historical significance.
 To add new patterns:
 
 1. Design the pattern with cultural authenticity
-2. Add CSS class to the pattern system
-3. Update the type definitions
-4. Document the cultural significance
+2. Add a short class (for example `.nouveau-motif`) beside its CSS rule
+3. Add the key to `CSS_PATTERN_MAP` and export it from `css-classes.ts`
+4. For a static catalog entry, register its slug in the backend static pattern
+   registry so its view/download counters and SVG export are persisted
+5. Document the cultural significance
 
 ## 📄 License
 

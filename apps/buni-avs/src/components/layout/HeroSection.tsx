@@ -15,6 +15,7 @@ import {
 import { ArrowRight, Check, Command, Copy, MoveDown } from 'lucide-react';
 import { useTranslations } from '@/i18n';
 import { useTheme } from 'next-themes';
+import { PATTERN_CATALOG } from '@buni/patterns';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // DATA — the hero IS a live instance of the design system, not a picture of it
@@ -30,88 +31,16 @@ type PatternFamily = {
   colors: readonly [string, string, string, string];
 };
 
-const PATTERNS: readonly PatternFamily[] = [
-  {
-    id: 'kente',
-    css: 'avs-pattern-kente-royale',
-    code: 'KENTE',
-    name: 'Kente Royale',
-    country: 'Ghana',
-    flag: 'GH',
-    symbolism: 'Royauté · Sagesse',
-    colors: ['#C0573E', '#D4A017', '#1D1D1B', '#F5EBE0'],
-  },
-  {
-    id: 'ndop',
-    css: 'avs-pattern-ndop-sultan',
-    code: 'NDOP',
-    name: 'Ndop Sultan',
-    country: 'Cameroun',
-    flag: 'CM',
-    symbolism: 'Autorité · Ancêtres',
-    colors: ['#2A4A6B', '#F5EBE0', '#8B4513', '#1D1D1B'],
-  },
-  {
-    id: 'adinkra',
-    css: 'avs-pattern-adinkra-sankofa',
-    code: 'ADINKRA',
-    name: 'Adinkra Sankofa',
-    country: 'Ghana',
-    flag: 'GH',
-    symbolism: 'Mémoire · Retour aux sources',
-    colors: ['#1D1D1B', '#C8A96E', '#F5EBE0', '#C0573E'],
-  },
-  {
-    id: 'bogolan',
-    css: 'avs-pattern-bogolan-fanga',
-    code: 'BOGOLAN',
-    name: 'Bogolan Fanga',
-    country: 'Mali',
-    flag: 'ML',
-    symbolism: 'Force · Protection',
-    colors: ['#8B4513', '#D4A017', '#1D1D1B', '#F5EBE0'],
-  },
-  {
-    id: 'kuba',
-    css: 'avs-pattern-kuba-kasai',
-    code: 'KUBA',
-    name: 'Kuba Kasaï',
-    country: 'RD Congo',
-    flag: 'CD',
-    symbolism: 'Géométrie sacrée',
-    colors: ['#4A6741', '#C8A96E', '#1D1D1B', '#F5EBE0'],
-  },
-  {
-    id: 'wax',
-    css: 'avs-pattern-wax-dakar',
-    code: 'WAX',
-    name: 'Wax Dakar',
-    country: 'Sénégal',
-    flag: 'SN',
-    symbolism: 'Récit populaire',
-    colors: ['#C0573E', '#2A4A6B', '#D4A017', '#F5EBE0'],
-  },
-  {
-    id: 'maasai',
-    css: 'avs-pattern-maasai',
-    code: 'MAASAI',
-    name: 'Maasai',
-    country: 'Kenya',
-    flag: 'KE',
-    symbolism: 'Rites de passage',
-    colors: ['#C0573E', '#1D1D1B', '#F5EBE0', '#D4A017'],
-  },
-  {
-    id: 'ndebele',
-    css: 'avs-pattern-ndebele',
-    code: 'NDEBELE',
-    name: 'Ndebele',
-    country: 'Afrique du Sud',
-    flag: 'ZA',
-    symbolism: 'Identité · Statut',
-    colors: ['#4A6741', '#C0573E', '#D4A017', '#1D1D1B'],
-  },
-] as const;
+const PATTERNS: readonly PatternFamily[] = PATTERN_CATALOG.map((pattern) => ({
+  id: pattern.type,
+  css: pattern.cssClass,
+  code: pattern.type.toUpperCase(),
+  name: pattern.name,
+  country: pattern.origin,
+  flag: pattern.flag,
+  symbolism: pattern.symbolism,
+  colors: pattern.colors,
+}));
 
 const FOOTNOTES = [
   { index: 0,  value: '1 248', labelKey: 'footnote1' },
@@ -749,4 +678,3 @@ export function HeroSection() {
     </>
   );
 }
-

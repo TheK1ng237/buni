@@ -20,7 +20,7 @@ const config: NextConfig = {
     '@buni/component',
   ],
   typedRoutes: true,
-  allowedDevOrigins: ['192.168.1.190'],
+  allowedDevOrigins: ['192.168.1.18'],
   images: {
     unoptimized: true,
     remotePatterns: [

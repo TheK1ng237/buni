@@ -104,16 +104,6 @@ export function Step3({
         </div>
       </Field>
 
-      {/* ── CSS class ─────────────────────────────────────────────────────── */}
-      <Field label="Classe CSS du pattern" hint="Ex : avs-pattern-ndop-sultan">
-        <input
-          className="avs-input font-mono"
-          value={data.svgPattern ?? ''}
-          onChange={(e) => onChange({ svgPattern: e.target.value })}
-          placeholder="avs-pattern-ndop-sultan"
-        />
-      </Field>
-
       {/* ── SVG upload ────────────────────────────────────────────────────── */}
       <Field label={t('svgUploadLabel')} hint={t('maxSizeHint')}>
         <label

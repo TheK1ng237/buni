@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import type { Route } from 'next';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { ArrowRight, HelpCircle, ShieldCheck, Sparkles, Zap, MessageSquare } from 'lucide-react';
@@ -137,10 +138,12 @@ export const PricingContent: React.FC = () => {
       router.push('/contact');
     } else if (user) {
       // Si déjà connecté, rediriger vers la page d'upgrade avec les paramètres du plan
-      router.push(`/dashboard/upgrade?plan=${planKey}&billing=${isAnnual ? 'annual' : 'monthly'}`);
+      const params = new URLSearchParams({ plan: planKey, billing: isAnnual ? 'annual' : 'monthly' });
+      router.push(`/dashboard/upgrade?${params.toString()}` as Route);
     } else {
       // Sinon, rediriger vers la page d'inscription avec les paramètres du plan
-      router.push(`/auth/register?plan=${planKey}&billing=${isAnnual ? 'annual' : 'monthly'}`);
+      const params = new URLSearchParams({ plan: planKey, billing: isAnnual ? 'annual' : 'monthly' });
+      router.push(`/auth/register?${params.toString()}` as Route);
     }
   };
 

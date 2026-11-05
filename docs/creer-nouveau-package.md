@@ -2,6 +2,68 @@
 
 Ce guide explique comment créer un nouveau package dans le monorepo Buni et l'intégrer dans vos applications.
 
+## Gestionnaire de paquets : pnpm uniquement
+
+Ce dépôt est un workspace pnpm (voir `pnpm-workspace.yaml` et le champ
+`packageManager` à la racine). Il faut conserver un seul lockfile, à la racine :
+`pnpm-lock.yaml`.
+
+- Installez les dépendances depuis la racine avec `pnpm install`.
+- En CI ou sur la plateforme de déploiement, utilisez `pnpm install --frozen-lockfile`.
+- N'exécutez pas `npm install` ou `yarn install` dans ce dépôt : cela crée d'autres
+  lockfiles et peut produire une installation différente de celle testée localement.
+- N'ajoutez pas de lockfile dans une app ou un package. Ajoutez ses dépendances
+  depuis la racine avec `pnpm add <dependance> -F <nom-du-package>`.
+
+Si un `package-lock.json` réapparaît, supprimez-le et vérifiez que le changement
+est bien enregistré dans Git avant de redéployer.
+
+## Créer une application indépendante
+
+Les applications sont dans `apps/`, tandis que le code réutilisable reste dans
+`packages/`. Par exemple, pour ajouter l'application Buni Icon :
+
+1. Créez `apps/buni-icon/` avec son `package.json`, sa configuration Next.js et
+   son code source. Inspirez-vous de `apps/buni-avs/`.
+2. Donnez-lui un nom de projet unique (par exemple `buni-icon`) dans sa
+   configuration Nx et un nom de package unique dans `package.json`.
+3. Déclarez les packages partagés utilisés par l'app en dépendances
+   `workspace:*`.
+4. Depuis la racine, lancez `pnpm install`, puis validez avec
+   `pnpm exec nx build buni-icon` (et `pnpm exec nx lint buni-icon` si la cible
+   lint est configurée).
+5. Gardez une app par produit : `apps/buni-mode/`, `apps/buni-icon/`, etc.
+   Une app ne doit pas être créée dans `packages/`, qui est réservé aux
+   bibliothèques partagées.
+
+### Déployer les apps sur des domaines séparés
+
+Pour que les apps puissent être déployées et évoluer séparément, créez un projet
+de déploiement par app et reliez chaque projet au même dépôt Git. Pour chaque
+projet, sélectionnez le dossier de l'app comme répertoire racine (par exemple
+`apps/buni-icon`) et configurez le build de façon à ce qu'il puisse également
+accéder aux packages partagés du workspace. Le lockfile reste celui situé à la
+racine du dépôt ; ne créez pas de lockfile par app.
+
+Dans le tableau de bord de votre hébergeur, associez ensuite les domaines aux
+projets :
+
+| Application | Domaine |
+| --- | --- |
+| Buni (site principal) | `buni.africa` |
+| Buni Icon | `icon.buni.africa` |
+| Buni Mode | `mode.buni.africa` |
+
+Ajoutez chaque domaine au projet correspondant chez l'hébergeur, puis créez chez
+votre fournisseur DNS l'enregistrement demandé par cet hébergeur (souvent un
+`CNAME` pour un sous-domaine). Utilisez la cible exacte fournie dans son tableau
+de bord : elle dépend du fournisseur. Attendez la propagation DNS et vérifiez
+que le certificat HTTPS est actif avant de partager le domaine.
+
+Lorsqu'une nouvelle app est ajoutée, répétez ces étapes avec un nouveau dossier,
+un nouveau projet d'hébergement et un nouveau sous-domaine. Les changements dans
+le lockfile racine doivent être commités avec les changements de dépendances.
+
 ## Structure du monorepo
 
 ```

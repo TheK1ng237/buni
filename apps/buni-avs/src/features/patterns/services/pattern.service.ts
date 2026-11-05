@@ -1,5 +1,5 @@
 
-import { post, patch, del, get, download } from '@buni/api';
+import { post, patch, del, get, apiClient } from '@buni/api';
 
 import type {
   PatternDto,
@@ -7,6 +7,12 @@ import type {
 } from '../types';
 
 export const patternService = {
+
+  async stats(id: string) {
+    return get<{ data: { views: number; downloads: number } }>(
+      `/api/v1/patterns/${encodeURIComponent(id)}/stats`
+    );
+  },
 
   async list(filters = {}) {
 
@@ -78,10 +84,17 @@ export const patternService = {
   },
 
   async download(id: string) {
-    return download(`/api/v1/patterns/${id}/download`);
+    const response = await apiClient.get<Blob>(
+      `/api/v1/patterns/${encodeURIComponent(id)}/download`,
+      { responseType: 'blob' }
+    );
+    return response.data;
   },
 
   async trackView(id: string) {
-    return post(`/api/v1/patterns/${id}/view`, {});
+    return post<{ data: { views: number; downloads: number } }>(
+      `/api/v1/patterns/${encodeURIComponent(id)}/view`,
+      {}
+    );
   },
 };

@@ -1,4 +1,4 @@
-import { Pattern , PatternSymbol} from '@buni/patterns';
+import { PATTERN_CATALOG, type Pattern } from '@buni/patterns';
 
 /**
  * SVG PATTERNS DATA
@@ -12,7 +12,7 @@ import { Pattern , PatternSymbol} from '@buni/patterns';
  * - nameFr: French name
  * - localName: Local name
  * - type: Pattern type (ndop, kente, etc.)
- * - svgPattern: CSS class for the SVG pattern (e.g., 'avs-svg-pattern-ndop6')
+ * - cssClass: short CSS class used for the pattern preview (e.g., 'ndop')
  * - origin: Geographic and cultural origin
  * - era: Time period
  * - colors: Color palette with meanings
@@ -29,16 +29,17 @@ import { Pattern , PatternSymbol} from '@buni/patterns';
 
 
 
-export const PATTERNS_DOCS: Pattern[] = [ 
+const PATTERN_DETAILS: Pattern[] = [
   {
     imgUrl: "",
     status: "published" as const,
     id: 'kente-asante',
     slug: 'kente-asante',
-    name: 'Kente Asante',
+    name: 'Kente Royale',
     localName: 'Kente (Nwentom)',
     type: 'kente',
-    cssClass: 'avs-pattern-kente-royale',
+    cssClass: 'kente',
+    previewClass: 'avs-pattern-kente-royale',
     origin: {
       people: 'Peuple Akan — Ashanti',
       region: 'west-africa',
@@ -124,8 +125,8 @@ export const PATTERNS_DOCS: Pattern[] = [
       'Doran H. Ross (1998). Wrapped in Pride.',
       'National Museum of Ghana — Archives ethnographiques 2019',
     ],
-    downloads: 4820,
-    views: 28400,
+    downloads: 0,
+    views: 0,
     
     featured: false
   },
@@ -138,10 +139,11 @@ export const PATTERNS_DOCS: Pattern[] = [
     status: "published" as const,
     id: 'ndop-bamoum',
     slug: 'ndop-bamoum',
-    name: 'Ndop Bamoum',
+    name: 'Ndop Sultan',
     localName: 'Ndop (Ndoup)',
     type: 'ndop',
-    cssClass: 'avs-pattern-ndop-sultan',
+    cssClass: 'ndop',
+    previewClass: 'avs-pattern-ndop-sultan',
     origin: {
       people: 'Peuple Bamoum (Bamum)',
       region: 'central-africa',
@@ -218,8 +220,8 @@ export const PATTERNS_DOCS: Pattern[] = [
       'Geary, C. (1983). Things of the Palace.',
       'Musée des Arts et Traditions Bamoum — Foumban',
     ],
-    downloads: 3140,
-    views: 19800,
+    downloads: 0,
+    views: 0,
     
     featured: false
   },
@@ -228,10 +230,11 @@ export const PATTERNS_DOCS: Pattern[] = [
     status: "published" as const,
     id: 'bogolan-malien',
     slug: 'bogolan-malien',
-    name: 'Bogolan Malien',
+    name: 'Bogolan Fanga',
     localName: 'Bògòlanfini',
     type: 'bogolan',
-    cssClass: 'avs-pattern-bogolan-fanga',
+    cssClass: 'bogolan',
+    previewClass: 'avs-pattern-bogolan-fanga',
     origin: {
       people: 'Peuples Bamana, Mandé',
       region: 'west-africa',
@@ -300,8 +303,8 @@ export const PATTERNS_DOCS: Pattern[] = [
       'Brett-Smith, S.C. (1982). Symbolic Blood.',
       'Musée National du Mali — Documentation ethnographique',
     ],
-    downloads: 2890,
-    views: 16200,
+    downloads: 0,
+    views: 0,
     
     featured: false
   },
@@ -310,10 +313,11 @@ export const PATTERNS_DOCS: Pattern[] = [
     status: "published" as const,
     id: 'adinkra-akan',
     slug: 'adinkra-akan',
-    name: 'Adinkra Akan',
-    localName: 'Adinkra',
+    name: 'Adinkra Sankofa',
+    localName: 'Sankofa',
     type: 'adinkra',
-    cssClass: 'avs-pattern-adinkra-sankofa',
+    cssClass: 'adinkra',
+    previewClass: 'avs-pattern-adinkra-sankofa',
     origin: {
       people: 'Peuple Akan — Gyaman',
       region: 'west-africa',
@@ -402,10 +406,102 @@ export const PATTERNS_DOCS: Pattern[] = [
       'Bowdich, T.E. (1817). Mission from Cape Coast Castle to Ashantee.',
       'Centre for National Culture — Kumasi, Ghana',
     ],
-    downloads: 5640,
-    views: 34100,
+    downloads: 0,
+    views: 0,
     
     featured: false
   },
-  
+  {
+    imgUrl: '',
+    status: 'published',
+    id: 'kuba-kasai',
+    slug: 'kuba-kasai',
+    name: 'Kuba Kasai',
+    localName: 'Kuba',
+    type: 'kuba',
+    cssClass: 'avs-pattern-kuba-kasai',
+    previewClass: 'avs-pattern-kuba-kasai',
+    origin: {
+      people: 'Peuple Kuba',
+      region: 'central-africa',
+      country: 'République démocratique du Congo',
+      flag: '🇨🇩',
+    },
+    era: 'À documenter',
+    license: 'cc-by',
+    colors: [
+      { hex: '#8B7355', name: 'Brun', meaning: 'Palette de l’aperçu du motif.' },
+      { hex: '#D2B48C', name: 'Beige', meaning: 'Palette de l’aperçu du motif.' },
+      { hex: '#241C18', name: 'Brun foncé', meaning: 'Palette de l’aperçu du motif.' },
+    ],
+    summary: 'Aperçu Kuba Kasai de la galerie d’accueil. Les informations culturelles détaillées seront ajoutées après validation de sources documentaires.',
+    symbolism: {
+      meaning: 'À documenter à partir de sources culturelles vérifiées.',
+      keywords: [],
+      usage: 'À documenter',
+    },
+    symbols: [],
+    sources: ['Galerie de motifs de la page d’accueil.'],
+    downloads: 0,
+    views: 0,
+    featured: false,
+  },
 ];
+
+const detailsById = new Map(PATTERN_DETAILS.map((pattern) => [pattern.id, pattern]));
+
+export const PATTERNS_DOCS: Pattern[] = PATTERN_CATALOG.map((catalogPattern) => {
+  const details = detailsById.get(catalogPattern.id);
+  if (details) {
+    return {
+      ...details,
+      slug: catalogPattern.id,
+      name: catalogPattern.name,
+      type: catalogPattern.type,
+      cssClass: catalogPattern.type,
+      previewClass: catalogPattern.cssClass,
+      origin: {
+        ...details.origin,
+        country: catalogPattern.origin,
+        region: catalogPattern.region,
+        flag: details.origin.flag ?? catalogPattern.flag,
+      },
+    };
+  }
+
+  return {
+    id: catalogPattern.id,
+    slug: catalogPattern.id,
+    name: catalogPattern.name,
+    localName: catalogPattern.name,
+    type: catalogPattern.type,
+    cssClass: catalogPattern.type,
+    previewClass: catalogPattern.cssClass,
+    imgUrl: '',
+    status: 'published',
+    origin: {
+      people: catalogPattern.origin,
+      region: catalogPattern.region,
+      country: catalogPattern.origin,
+      flag: catalogPattern.flag,
+    },
+    era: 'À documenter',
+    license: 'cc-by',
+    colors: catalogPattern.colors.map((hex) => ({
+      hex,
+      name: hex,
+      meaning: 'Couleur présente dans le motif CSS.',
+    })),
+    summary: `Aperçu ${catalogPattern.name} du catalogue de motifs. Les informations historiques détaillées restent à documenter.`,
+    symbolism: {
+      meaning: 'À documenter à partir de sources culturelles vérifiées.',
+      keywords: [],
+      usage: 'À documenter',
+    },
+    symbols: [],
+    sources: ['Catalogue de motifs @buni/patterns.'],
+    downloads: 0,
+    views: 0,
+    featured: false,
+  };
+});

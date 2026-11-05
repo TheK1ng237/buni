@@ -8,7 +8,7 @@ import { PATTERNS_DOCS } from '../mock';
 import { patternRepository } from '@/features/patterns/repositories/pattern.repository';
 import { useTranslations } from '@/i18n';
 
-const TYPES = ['ALL', 'KENTE', 'NDOP', 'BOGOLAN', 'ADINKRA', 'WAX', 'NDEBELE', 'KUBA'];
+const TYPES = ['ALL', 'KENTE', 'NDOP', 'BOGOLAN', 'ADINKRA', 'WAX', 'NDEBELE', 'KUBA', 'BERBER'];
 
 export function PatternsContent() {
   const t = useTranslations('patterns');
@@ -28,8 +28,10 @@ export function PatternsContent() {
     const loadPatternsFromBackend = async () => {
       try {
         const backendPatterns = await patternRepository.findAll();
-        const mockIds = new Set(PATTERNS_DOCS.map((p) => p.id));
-        const newPatterns = backendPatterns.filter((p) => !mockIds.has(p.id));
+        const catalogKeys = new Set(PATTERNS_DOCS.flatMap((pattern) => [pattern.id, pattern.slug]));
+        const newPatterns = backendPatterns.filter(
+          (pattern) => !catalogKeys.has(pattern.id) && !catalogKeys.has(pattern.slug)
+        );
         setPatterns([...PATTERNS_DOCS, ...newPatterns]);
       } catch (error) {
         console.error('Error loading patterns from backend:', error);
@@ -60,7 +62,7 @@ export function PatternsContent() {
       p.origin.country.toLowerCase().includes(q) ||
       p.origin.people.toLowerCase().includes(q) ||
       p.summary.toLowerCase().includes(q);
-    const matchType = activeType === 'ALL' || p.type === activeType;
+    const matchType = activeType === 'ALL' || p.type.toUpperCase() === activeType;
     return matchSearch && matchType;
   });
 
@@ -203,7 +205,7 @@ export function PatternsContent() {
                   >
                     <div className="flex items-center gap-2.5 sm:gap-3 px-3 sm:px-4 py-2.5 sm:py-3.5">
                       <div
-                        className={`${p.cssClass} relative h-10 w-10 sm:h-11 sm:w-11 shrink-0 overflow-hidden rounded-lg sm:rounded-xl ring-1 ring-black/10 transition-transform duration-300 group-hover:scale-105 dark:ring-white/10`}
+                        className={`${p.previewClass || p.cssClass} relative h-10 w-10 sm:h-11 sm:w-11 shrink-0 overflow-hidden rounded-lg sm:rounded-xl ring-1 ring-black/10 transition-transform duration-300 group-hover:scale-105 dark:ring-white/10`}
                       >
                         {p.imgUrl ? (
                           <img

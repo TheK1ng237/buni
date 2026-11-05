@@ -11,6 +11,8 @@ import { useToast, BuniLoader } from '@buni/ui';
 import { formatNumber } from '@buni/utils';
 
 import { patternRepository } from '@/features/patterns/repositories/pattern.repository';
+import { PATTERN_CATALOG } from '@buni/patterns';
+import { createCssPatternSvg, saveBlob } from '@/features/patterns/utils/css-pattern-svg';
 
 const SECTIONS = [
   { id: 'histoire', label: 'Histoire' },
@@ -26,33 +28,39 @@ export function PatternSheet({ pattern }: { pattern: any }) {
   const [activeSymbol, setActiveSymbol] = useState<any>(null);
   const [activeSection, setActiveSection] = useState<SectionId>('histoire');
   const [isDownloading, setIsDownloading] = useState(false);
-  const [downloadCount, setDownloadCount] = useState<number>(pattern.downloads || 0);
-  const [viewCount, setViewCount] = useState<number>(pattern.views || 0);
+  const [downloadCount, setDownloadCount] = useState<number>(0);
+  const [viewCount, setViewCount] = useState<number>(0);
 
   const contentRef = useRef<HTMLDivElement>(null);
+  const patternPreviewRef = useRef<HTMLDivElement>(null);
   const { add } = useToast();
-
-  useEffect(() => {
-    setDownloadCount(pattern.downloads || 0);
-    setViewCount(pattern.views || 0);
-  }, [pattern.id, pattern.downloads, pattern.views]);
+  const patternImage = pattern.imgUrl;
+  const previewClass = pattern.previewClass || pattern.cssClass;
 
   const handleDownload = async (id: string, slug: string) => {
     if (isDownloading) return;
 
     setIsDownloading(true);
     try {
-      const blob = await downloadPattern(id);
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `${slug}.svg`;
-      document.body.appendChild(a);
-      a.click();
-      window.URL.revokeObjectURL(url);
-      document.body.removeChild(a);
+      const backendBlob = await downloadPattern(id);
+      const isCatalogPattern = PATTERN_CATALOG.some((catalogPattern) => catalogPattern.id === id);
+      let blob = backendBlob;
+      if (isCatalogPattern) {
+        const previewElement = patternPreviewRef.current;
+        if (!previewElement) {
+          throw new Error('Aperçu du motif indisponible pour créer le fichier SVG.');
+        }
+        blob = createCssPatternSvg(previewElement, pattern.name);
+      }
+      saveBlob(blob, `${slug}.svg`);
 
-      setDownloadCount((prev) => prev + 1);
+      try {
+        const stats = await patternRepository.stats(id);
+        setDownloadCount(stats.downloads);
+        setViewCount(stats.views);
+      } catch (statsError) {
+        console.error('Download succeeded but statistics could not be refreshed:', statsError);
+      }
 
       add({
         variant: 'success',
@@ -61,10 +69,13 @@ export function PatternSheet({ pattern }: { pattern: any }) {
       });
     } catch (error) {
       console.error('Download failed:', error);
+      const errorMessage = error instanceof Error ? error.message : '';
       add({
         variant: 'error',
         title: 'Échec du téléchargement',
-        message: 'Une erreur est survenue lors du téléchargement. Veuillez réessayer.',
+        message: errorMessage
+          ? `Le téléchargement a échoué : ${errorMessage}`
+          : 'Une erreur est survenue lors du téléchargement. Veuillez réessayer.',
       });
     } finally {
       setIsDownloading(false);
@@ -76,16 +87,46 @@ export function PatternSheet({ pattern }: { pattern: any }) {
     setActiveSymbol(null);
     setActiveSection('histoire');
 
-    // Dédoublonnage de vue avec sessionStorage
-    if (pattern?.id && typeof window !== 'undefined') {
-      const storageKey = `avs_viewed_${pattern.id}`;
-      if (!sessionStorage.getItem(storageKey)) {
-        sessionStorage.setItem(storageKey, 'true');
-        patternRepository.trackView(pattern.id).catch(() => null);
-        setViewCount((prev) => prev + 1);
+    let active = true;
+    const recordView = async () => {
+      try {
+        const storageKey = `avs_viewed_${pattern.id}`;
+        let alreadyViewed = false;
+        try {
+          alreadyViewed = sessionStorage.getItem(storageKey) === 'true';
+        } catch (error) {
+          console.warn('Unable to access session storage for view deduplication:', error);
+        }
+
+        const stats = alreadyViewed
+          ? await patternRepository.stats(pattern.id)
+          : await patternRepository.trackView(pattern.id);
+        if (!alreadyViewed) {
+          try {
+            sessionStorage.setItem(storageKey, 'true');
+          } catch (error) {
+            console.warn('Unable to save view deduplication state:', error);
+          }
+        }
+        if (active) {
+          setViewCount(stats.views);
+          setDownloadCount(stats.downloads);
+        }
+      } catch (error) {
+        console.error('Unable to load pattern statistics:', error);
+        add({
+          variant: 'error',
+          title: 'Statistiques indisponibles',
+          message: 'Les vues et téléchargements ne peuvent pas être actualisés pour le moment.',
+        });
       }
-    }
-  }, [pattern.id]);
+    };
+
+    void recordView();
+    return () => {
+      active = false;
+    };
+  }, [pattern.id, add]);
 
   return (
     <div
@@ -94,14 +135,14 @@ export function PatternSheet({ pattern }: { pattern: any }) {
     >
       {/* Cover - Pattern Preview */}
       <div className="bg-avs-secondary-dark relative h-64 overflow-hidden sm:h-96">
-        {pattern.imgUrl ? (
+        {patternImage ? (
           <img
-            src={pattern.imgUrl}
+            src={patternImage}
             alt={pattern.name}
             className="absolute inset-0 h-full w-full object-cover"
           />
         ) : (
-          <div className={`${pattern.cssClass} absolute inset-0 scale-150`} />
+          <div ref={patternPreviewRef} className={`${previewClass} absolute inset-0`} />
         )}
         <div className="absolute inset-0 bg-linear-to-b from-black/5 via-transparent to-black/10" />
 
@@ -428,7 +469,7 @@ export function PatternSheet({ pattern }: { pattern: any }) {
       {/* Artisan quote */}
       {pattern.artisanQuote && (
         <div className="border-avs-accent/10 mx-6 mb-8 overflow-hidden rounded-2xl border pb-8">
-          <div className={`${pattern.cssClass} h-1`} aria-hidden />
+          <div className={`${previewClass} h-1`} aria-hidden />
           <div className="bg-avs-secondary px-6 py-5">
             <p
               className="font-display text-avs-primary/25 text-5xl leading-none select-none"
@@ -442,7 +483,7 @@ export function PatternSheet({ pattern }: { pattern: any }) {
             </blockquote>
             <div className="mt-4 flex items-center gap-3">
               <div
-                className={`${pattern.cssClass} border-avs-accent/15 relative h-9 w-9 shrink-0 overflow-hidden rounded-full border`}
+                className={`${previewClass} border-avs-accent/15 relative h-9 w-9 shrink-0 overflow-hidden rounded-full border`}
               >
                 <div className="absolute inset-0 flex items-center justify-center bg-black/25">
                   <span className="font-display text-avs-secondary text-sm font-black drop-shadow">

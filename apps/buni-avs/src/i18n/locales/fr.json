@@ -232,6 +232,30 @@
       "license": "Apache 2.0 + Commons Clause"
     }
   },
+  "forgotPasswordPage": {
+    "title": "Mot de passe oublié ?",
+    "description": "Indiquez l’adresse e-mail associée à votre compte. Si un compte correspondant existe, vous recevrez un lien de réinitialisation.",
+    "email": "Adresse e-mail",
+    "emailPlaceholder": "vous@exemple.com",
+    "submit": "Envoyer le lien",
+    "sending": "Envoi en cours…",
+    "success": "Si cette adresse est associée à un compte, un e-mail contenant les instructions de réinitialisation sera envoyé.",
+    "error": "Impossible d’envoyer la demande pour le moment. Veuillez réessayer.",
+    "backToLogin": "Retour à la connexion"
+  },
+  "resetPasswordPage": {
+    "title": "Créer un nouveau mot de passe",
+    "description": "Choisissez un nouveau mot de passe d’au moins 8 caractères.",
+    "password": "Nouveau mot de passe",
+    "confirmPassword": "Confirmer le mot de passe",
+    "submit": "Réinitialiser le mot de passe",
+    "saving": "Enregistrement…",
+    "success": "Votre mot de passe a été modifié. Vous pouvez maintenant vous connecter.",
+    "invalidLink": "Ce lien est invalide ou a expiré. Demandez un nouveau lien de réinitialisation.",
+    "passwordTooShort": "Le mot de passe doit contenir au moins 8 caractères.",
+    "passwordMismatch": "Les mots de passe ne correspondent pas.",
+    "backToLogin": "Retour à la connexion"
+  },
   "register": {
     "loading": "Création du compte…",
     "perks": {
@@ -694,7 +718,20 @@
       "ADINKRA": "Adinkra",
       "WAX": "Wax",
       "NDEBELE": "Ndebele",
-      "KUBA": "Kuba"
+      "KUBA": "Kuba",
+      "BERBER": "Berbère"
+    },
+    "share": {
+      "button": "Partager",
+      "menuTitle": "Partager ce motif",
+      "copyLink": "Copier le lien",
+      "linkCopied": "Lien du motif copié.",
+      "copyError": "Impossible de copier le lien. Réessayez.",
+      "instagramDownloaded": "Image téléchargée. Vous pouvez maintenant la partager sur Instagram.",
+      "imageError": "Impossible de préparer l’image du motif. Réessayez.",
+      "preparingImage": "Préparation de l’image…",
+      "image": "Image",
+      "close": "Fermer"
     },
     "sidebar": {
       "count": "{count} motif{count, plural, one {} other {s}}",
@@ -1604,6 +1641,43 @@
     }
   },
   "dashboard": {
+    "viewerDashboard": {
+      "role": "Explorateur",
+      "verified": "Vérifié",
+      "notVerified": "Non vérifié",
+      "memberSince": "Membre depuis",
+      "profile": "Mon profil",
+      "becomeCurator": {
+        "badge": "Rejoignez les créateurs",
+        "title": "Partagez votre expertise",
+        "subtitle": "Devenez curateur",
+        "description": "Contribuez à préserver et enrichir le patrimoine culturel africain en partageant vos connaissances et en créant des fiches de motifs.",
+        "button": "Devenir curateur",
+        "explore": "Explorer les motifs"
+      },
+      "quickActionsLabel": "Actions rapides",
+      "explorePlatform": {
+        "title": "Explorer la plateforme"
+      },
+      "quickActions": {
+        "library": {
+          "title": "Encyclopédie des motifs",
+          "description": "Découvrez les motifs et leurs histoires."
+        },
+        "palettes": {
+          "title": "Palettes de couleurs",
+          "description": "Explorez les couleurs inspirées des cultures africaines."
+        },
+        "profile": {
+          "title": "Mon profil",
+          "description": "Gérez vos informations personnelles."
+        },
+        "curator": {
+          "title": "Devenir curateur",
+          "description": "Partagez vos connaissances avec la communauté."
+        }
+      }
+    },
     "activity": {
       "title": "Mon activité",
       "subtitle": "Consultez toutes vos interactions avec la plateforme",

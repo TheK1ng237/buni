@@ -31,13 +31,13 @@ export interface PatternDto {
 
   cssClass?: string;
 
+  format?: 'SVG' | 'CSS' | 'HYBRID';
+
   status: PatternStatus;
 
   isFeatured: boolean;
 
   svgUrl?: string;
-
-  svgPattern?: string;
 
   origin?: PatternOrigin;
 

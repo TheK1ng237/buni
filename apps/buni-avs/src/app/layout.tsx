@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 
 import '@/theme/tokens/avs-tokens.css';
-import '@/theme/patterns/patterns.css';
 import './globals.css';
 import localFont from 'next/font/local';
 
