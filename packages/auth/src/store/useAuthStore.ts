@@ -46,7 +46,7 @@ export const useAuthStore = create<AuthState & AuthActions>()(
           ),
 
         logout: () => {
-          set(initial, false, 'auth/logout');
+          set({ ...initial, isHydrated: true }, false, 'auth/logout');
         },
 
         setLoading: (isLoading) => set({ isLoading }, false, 'auth/setLoading'),

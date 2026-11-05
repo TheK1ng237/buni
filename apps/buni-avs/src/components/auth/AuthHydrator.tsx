@@ -5,7 +5,7 @@ import { useAuthStore } from '@buni/auth';
 import { authService } from '../../features/auth/services/auth.service';
 
 /**
- * Hydrator component - restores auth session from server on initial mount
+ * Hydrates the persisted JWT against the API on initial mount
  * IMPORTANT: Only runs once on app mount, not on route changes
  * Route changes will use persisted Zustand state from localStorage
  */
@@ -16,18 +16,15 @@ export function AuthHydrator() {
     if (hasRun) return;
 
     const hydrateAuth = async () => {
+      const token = useAuthStore.getState().token;
+
+      if (!token) {
+        useAuthStore.setState({ user: null, isHydrated: true });
+        setHasRun(true);
+        return;
+      }
+
       try {
-        // Extract token from cookie if available
-        const tokenFromCookie = document.cookie
-          .split('; ')
-          .find(row => row.startsWith('avs_session=') || row.startsWith('avs_access='))
-          ?.split('=')[1];
-
-        if (tokenFromCookie) {
-          useAuthStore.setState({ token: tokenFromCookie });
-        }
-
-        // Validate session with server
         const response = await authService.getMe();
         useAuthStore.setState({
           user: response.data,

@@ -3,24 +3,15 @@
 import { useMutation } from '@tanstack/react-query';
 import { useAuthStore } from '@buni/auth';
 import { useRouter } from 'next/navigation';
+import type { Route } from 'next';
+import { useLocale } from '@/i18n';
 import { authService } from '../services/auth.service';
 import type { LoginDto } from '../types';
-
-interface LoginResponse {
-  success: boolean;
-  data: {
-    user: any;
-    tokens?: {
-      accessToken: string;
-      refreshToken: string;
-      expiresIn: number;
-    };
-  };
-}
 
 export const useLogin = () => {
   const { setUser, setToken } = useAuthStore();
   const router = useRouter();
+  const { locale } = useLocale();
 
   const mutation = useMutation({
     mutationFn: async (data: LoginDto) => {
@@ -30,12 +21,12 @@ export const useLogin = () => {
         throw new Error(response.message || 'Login failed');
       }
 
-      return response as LoginResponse;
+      return response;
     },
     onSuccess: (data) => {
       setUser(data.data.user);
-      setToken(data.data.tokens?.accessToken ?? null);
-      router.push('/dashboard');
+      setToken(data.data.tokens.accessToken);
+      router.replace(`/${locale}/dashboard` as Route);
     },
   });
 

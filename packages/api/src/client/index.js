@@ -1,15 +1,18 @@
 import axios from 'axios';
 import { useAuthStore } from '@buni/auth';
-const BASE = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000/api';
+const rawBase = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000';
+const BASE = rawBase.replace(/\/api(\/v1)?\/?$/, '');
 export const apiClient = axios.create({
-    baseURL: BASE,
+    baseURL: typeof window === 'undefined' ? BASE : '',
     timeout: 15000,
     headers: { 'Content-Type': 'application/json' },
-    withCredentials: true,
 });
 apiClient.interceptors.request.use((config) => {
     if (config.data instanceof FormData)
         delete config.headers['Content-Type'];
+    const token = useAuthStore.getState().token;
+    if (token)
+        config.headers.set('Authorization', `Bearer ${token}`);
     return config;
 });
 apiClient.interceptors.response.use(r => r, async (err) => {
@@ -35,6 +38,10 @@ export async function patch(url, data) {
 }
 export async function del(url) {
     const res = await apiClient.delete(url);
+    return res.data;
+}
+export async function download(url) {
+    const res = await apiClient.get(url, { responseType: 'blob' });
     return res.data;
 }
 //# sourceMappingURL=index.js.map

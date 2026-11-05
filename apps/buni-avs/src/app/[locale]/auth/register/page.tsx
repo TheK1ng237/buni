@@ -12,7 +12,7 @@ import { useRegister } from '@/features/auth/hooks/useRegister';
 import { GoogleLoginButton, GithubLoginButton } from '@buni/auth';
 import { authService } from '@/features/auth/services/auth.service';
 import { useAuthStore } from '@buni/auth';
-import { useTranslations } from '@/i18n';
+import { useLocale, useTranslations } from '@/i18n';
 
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -104,6 +104,7 @@ function Field({ id, label, error, children }: {
 
 export default function RegisterPage() {
   const t = useTranslations('register');
+  const { locale } = useLocale();
   const { mutate, isPending, error } = useRegister();
   const { add } = useToast();
 
@@ -112,8 +113,6 @@ export default function RegisterPage() {
   const [showPwd, setShowPwd] = useState(false);
   const [showConfirmPwd, setShowConfirmPwd] = useState(false);
   const [focused, setFocused] = useState<string | null>(null);
-  const [githubToken, setGithubToken] = useState<string | null>(null);
-
   const RegisterSchema = z.object({
     name:            z.string().min(2, t('validation.nameTooShort')),
     email:           z.string().email(t('validation.invalidEmail')),
@@ -211,17 +210,16 @@ export default function RegisterPage() {
     const token = params.get('github_token');
 
     if (token) {
-      setGithubToken(token);
       authService.githubLogin(token).then((response) => {
         if (response.success) {
           const { user, tokens } = response.data;
           useAuthStore.getState().setUser(user);
-          useAuthStore.getState().setToken(tokens?.accessToken ?? null);
-          window.location.assign('/dashboard');
+          useAuthStore.getState().setToken(tokens.accessToken);
+          window.location.assign(`/${locale}/dashboard`);
         }
       });
     }
-  }, []);
+  }, [locale]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -515,8 +513,8 @@ export default function RegisterPage() {
                     if (response.success) {
                       const { user, tokens } = response.data;
                       useAuthStore.getState().setUser(user);
-                      useAuthStore.getState().setToken(tokens?.accessToken ?? null);
-                      window.location.assign('/dashboard');
+                      useAuthStore.getState().setToken(tokens.accessToken);
+                      window.location.assign(`/${locale}/dashboard`);
                     }
                   }}
                 />

@@ -6,8 +6,12 @@ export async function POST(request: NextRequest) {
 
     const backendRes = await fetch(`${apiUrl}/api/v1/auth/logout`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        ...(request.headers.get('Authorization')
+          ? { Authorization: request.headers.get('Authorization')! }
+          : {}),
+      },
     });
 
     const data = await backendRes.json();
@@ -16,14 +20,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(data, { status: backendRes.status });
     }
 
-    const response = NextResponse.json(data, { status: 200 });
-
-    const setCookieHeader = backendRes.headers.get('set-cookie');
-    if (setCookieHeader) {
-      response.headers.set('set-cookie', setCookieHeader);
-    }
-
-    return response;
+    return NextResponse.json(data, { status: 200 });
   } catch (err) {
     return NextResponse.json(
       { success: false, message: err instanceof Error ? err.message : 'Erreur serveur' },

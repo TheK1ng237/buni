@@ -8,12 +8,14 @@ export interface AuthResponse {
   message?: string;
   data: {
     user: User;
-    tokens: {
-      accessToken: string;
-      refreshToken: string;
-      expiresIn: number;
-    };
+    tokens: AuthTokens;
   };
+}
+
+export interface AuthTokens {
+  accessToken: string;
+  refreshToken: string;
+  expiresIn: number;
 }
 
 export interface UserResponse {

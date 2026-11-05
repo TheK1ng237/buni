@@ -2,18 +2,16 @@
 
 import { useMutation } from '@tanstack/react-query';
 import { useAuthStore } from '@buni/auth';
+import { useRouter } from 'next/navigation';
+import type { Route } from 'next';
+import { useLocale } from '@/i18n';
 import { authService } from '../services/auth.service';
 import { RegisterSchema } from '../types';
 
-interface RegisterResponse {
-  success: boolean;
-  data: {
-    user: any;
-  };
-}
-
 export const useRegister = () => {
-  const { setUser } = useAuthStore();
+  const { setUser, setToken } = useAuthStore();
+  const router = useRouter();
+  const { locale } = useLocale();
 
   const mutation = useMutation({
     mutationFn: async (data: { name: string; email: string; password: string; confirmPassword: string }) => {
@@ -26,10 +24,12 @@ export const useRegister = () => {
         throw new Error(response.message || 'Registration failed');
       }
 
-      return response as RegisterResponse;
+      return response;
     },
     onSuccess: (data) => {
       setUser(data.data.user);
+      setToken(data.data.tokens.accessToken);
+      router.replace(`/${locale}/dashboard` as Route);
     },
   });
 
