@@ -116,8 +116,6 @@ export default function LoginPage() {
   const [errors, setErrors] = useState<FieldErrors>({});
   const [showPwd, setShowPwd] = useState(false);
   const [focused, setFocused] = useState<string | null>(null);
-  const [githubCode, setGithubCode] = useState<string | null>(null);
-
   const TESTIMONIALS_MINI = [
     {
       pattern: 'avs-pattern-kente-royale',
@@ -150,20 +148,19 @@ export default function LoginPage() {
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const code = params.get('github_code');
+    const token = params.get('github_token') ?? params.get('github_code');
 
-    if (!code) return;
+    if (!token) return;
 
-    setGithubCode(code);
-    authService.githubLogin(code).then((response) => {
+    authService.githubLogin(token).then((response) => {
       if (response.success) {
         const { user, tokens } = response.data;
         useAuthStore.getState().setUser(user);
-        useAuthStore.getState().setToken(tokens?.accessToken ?? null);
-        window.location.assign('/dashboard');
+        useAuthStore.getState().setToken(tokens.accessToken);
+        window.location.assign(`/${locale}/dashboard`);
       }
     });
-  }, []);
+  }, [locale]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
