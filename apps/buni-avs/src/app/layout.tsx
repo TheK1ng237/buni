@@ -4,14 +4,10 @@ import '@/theme/tokens/avs-tokens.css';
 import './globals.css';
 import localFont from 'next/font/local';
 
-export const dmSans = localFont({
-  src: '../../public/fonts/DM_Sans/DMSans-Regular.ttf',
-  variable: '--font-body',
-});
-
-export const playfair = localFont({
-  src: '../../public/fonts/Playfair_Display/PlayfairDisplay-Regular.ttf',
-  variable: '--font-display',
+export const buniDisplay = localFont({
+  src: '../../public/fonts/BuniDisplay-Regular.otf',
+  variable: '--font-buni-display',
+  display: 'swap',
 });
 
 export const jetbrains = localFont({
@@ -65,7 +61,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="fr"
-      className={`${playfair.variable} ${dmSans.variable} ${jetbrains.variable}`}
+      className={`${buniDisplay.variable} ${jetbrains.variable}`}
       suppressHydrationWarning
     >
       <head>

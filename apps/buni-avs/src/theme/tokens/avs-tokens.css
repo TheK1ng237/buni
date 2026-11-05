@@ -8,8 +8,8 @@
   --avs-raffia:    #C8A96E;
   --avs-earth:     #8B4513;
 
-  --font-display: 'Playfair Display', Georgia, serif;
-  --font-body:    'DM Sans', 'Helvetica Neue', sans-serif;
+  --font-display: var(--font-buni-display), Georgia, serif;
+  --font-body:    var(--font-buni-display), sans-serif;
 
   --shadow-avs:    3px 3px 0px 0px var(--avs-accent);
   --shadow-avs-md: 5px 5px 0px 0px var(--avs-primary);
