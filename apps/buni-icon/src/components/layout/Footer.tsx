@@ -3,7 +3,7 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { useTranslations, useLocale } from '@/i18n';
-import { ArrowUpRight, Heart, Sparkles } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { BuniIcon } from '@buni/icon-react';
 
 export function Footer() {
@@ -14,7 +14,6 @@ export function Footer() {
     <footer className="border-t border-avs-accent/10 bg-avs-secondary pt-16 pb-12 transition-colors">
       <div className="avs-container">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-avs-accent/10">
-          {/* Brand & Manifesto */}
           <div className="md:col-span-2 space-y-4">
             <div className="flex items-center gap-2.5">
               <div className="w-7 h-7 rounded-avs bg-avs-primary text-avs-secondary flex items-center justify-center font-bold text-sm shadow-avs">
@@ -27,10 +26,9 @@ export function Footer() {
                 CC BY 4.0
               </span>
             </div>
-            <p className="text-sm text-avs-accent/70 max-w-md leading-relaxed">
+            <p className="text-sm text-avs-accent/70 max-w-md leading-relaxed font-sans">
               {t('manifesto')}
             </p>
-            {/* Palette swatch */}
             <div className="flex items-center gap-2 pt-2">
               <span className="text-[10px] font-mono uppercase tracking-wider text-avs-accent/50 mr-2">
                 Pigments :
@@ -43,7 +41,6 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Links Standard */}
           <div className="space-y-3">
             <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-avs-primary">
               {t('linksStandard')}
@@ -78,7 +75,6 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Links Ecosystem */}
           <div className="space-y-3">
             <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-avs-primary">
               {t('linksResources')}
@@ -91,7 +87,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="hover:text-avs-primary transition-colors inline-flex items-center gap-1"
                 >
-                  <span>Iconify Dataset</span>
+                  <span>Format Iconify</span>
                   <ArrowUpRight size={12} />
                 </a>
               </li>
@@ -113,7 +109,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="hover:text-avs-primary transition-colors inline-flex items-center gap-1"
                 >
-                  <span>GitHub Repository</span>
+                  <span>Code source</span>
                   <ArrowUpRight size={12} />
                 </a>
               </li>
@@ -121,7 +117,6 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Bottom bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-avs-accent/60">
           <p>{t('rights')}</p>
           <div className="flex items-center gap-2">
@@ -132,4 +127,3 @@ export function Footer() {
     </footer>
   );
 }
-

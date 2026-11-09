@@ -1,20 +1,36 @@
-# 🏺 BUNI ICON — L'Iconify de l'Afrique
+# BUNI ICON — L'Iconify de l'Afrique
 
 > **« Chaque icône a une histoire. »**  
 > Bibliothèque et catalogue d'icônes SVG ancrées dans les cultures, l'artisanat, la vie quotidienne et les technologies locales du continent africain. Conçu comme une extension naturelle et indissociable de [`buni-avs`](https://buni.idem.africa).
 
 ---
 
-## 🏛️ Les Quatre Lois de BUNI
+## Les Quatre Lois de BUNI
 
 1. **Maxi-Minimalisme Fractal** : Peu d'éléments, chacun très travaillé. Le trait épuré porte des siècles de transmission.
 2. **Pixel Habité** : Aucun pixel gratuit. Chaque courbe, chaque évidement a une raison matérielle ou symbolique.
 3. **Couleur Souveraine** : Pigments naturels africains (terre cuite de poterie `#C0573E`, lin naturel `#F5EBE0`, obsidienne `#1D1D1B`, or Kente `#D4A017`, vert Ndop `#4A6741`, bleu bogolan `#2A4A6B`).
-4. **Le Code comme Acte de Libération** : Copier-coller 1-clic (SVG, React JSX, Iconify, JSON, PNG) sans dépendances opaques.
+4. **Le Code comme Acte de Libération** : Copier-coller en un clic (SVG, React JSX, Iconify, JSON, PNG) sans dépendances opaques.
 
 ---
 
-## 🚀 Démarrage Rapide
+## Intégration des Motifs Textiles Authentiques
+
+L'application s'appuie directement sur le package `@buni/patterns` (`PATTERN_CATALOG`) pour relier chaque icône à son héritage textile :
+- **Kente Royale & Kente Étoile** (Akan / Ghana)
+- **Ndop Sultan & Ndop Cérémoniel** (Bamiléké / Cameroun)
+- **Bogolan Fanga & Bogolan Terre** (Bambara / Mali)
+- **Adinkra Sankofa** (Akan / Ghana)
+- **Wax Dakar & Wax Lagos** (Sénégal & Nigéria)
+- **Kuba Kasai** (Kuba / RD Congo)
+- **Ndebele Amabhaxa** (Afrique du Sud)
+- **Berber Amazigh** (Afrique du Nord)
+
+Chaque icône est associée à son motif d'origine dans `apps/buni-icon/src/lib/pattern-map.ts`, visible en filigrane dans les fiches, dans l'inspecteur interactif de la page d'accueil et sélectionnable en toile de fond dans la page de détail.
+
+---
+
+## Démarrage Rapide
 
 ### Prérequis
 - Node.js >= 20
@@ -34,11 +50,9 @@ pnpm dev:icon
 pnpm --filter @buni/buni-icon build
 ```
 
-L'application est disponible sur `http://localhost:3000` (ou le port alloué).
-
 ---
 
-## 📂 Architecture du Projet
+## Architecture du Projet
 
 ```
 buni/
@@ -50,6 +64,8 @@ buni/
 │       │   │   ├── icons/page.tsx   # Catalogue plein texte et filtres
 │       │   │   └── icons/[slug]/    # Fiche icône détaillée et exports
 │       │   ├── components/          # Composants UI, Layout et Catalogue
+│       │   ├── lib/
+│       │   │   └── pattern-map.ts   # Liaison icônes <-> motifs @buni/patterns
 │       │   └── i18n/                # Configuration et dictionnaires next-intl
 ├── packages/
 │   ├── icons-data/                  # Source de vérité des icônes
@@ -62,21 +78,22 @@ buni/
 │   │   └── dist/
 │   │       ├── icons.json           # Jeu au format standard Iconify
 │   │       └── index.json           # Catalogue complet compilé
-│   └── icon-react/                  # Composant React <BuniIcon /> tree-shakable
+│   ├── icon-react/                  # Composant React <BuniIcon /> tree-shakable
+│   └── patterns/                    # Motifs textiles panafricains vectoriels
 ```
 
 ---
 
-## ➕ Comment ajouter une nouvelle icône
+## Comment ajouter une nouvelle icône
 
 ### Étape 1 : Dessiner le SVG
-Placez le fichier SVG dans `packages/icons-data/src/svg/<famille>/<slug>.svg` :
+Placer le fichier SVG dans `packages/icons-data/src/svg/<famille>/<slug>.svg` :
 - **Grille stricte** : `viewBox="0 0 24 24"`
 - **Trait uniforme** : `stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"`
-- **Zéro couleur en dur** : aucun code hexadécimal (`#...`) ou `rgb()`, utilisez exclusivement `currentColor` ou `none`.
+- **Zéro couleur en dur** : aucun code hexadécimal (`#...`) ou `rgb()`, utiliser exclusivement `currentColor` ou `none`.
 
 ### Étape 2 : Rédiger la fiche de métadonnées
-Créez `packages/icons-data/src/meta/<slug>.json` :
+Créer `packages/icons-data/src/meta/<slug>.json` :
 ```json
 {
   "slug": "mon-icone",
@@ -97,7 +114,10 @@ Créez `packages/icons-data/src/meta/<slug>.json` :
 > [!IMPORTANT]
 > Pour toute icône de la famille `symboles`, les champs `culturalNote` (minimum 25 caractères) et `verifiedBy` sont **strictement obligatoires**. Sans eux, le linter échoue.
 
-### Étape 3 : Linter et compiler
+### Étape 3 : Lier le motif textile associé
+Ajouter l'entrée correspondante dans `apps/buni-icon/src/lib/pattern-map.ts`.
+
+### Étape 4 : Linter et compiler
 ```bash
 pnpm icons:lint
 pnpm icons:build
@@ -105,7 +125,7 @@ pnpm icons:build
 
 ---
 
-## 📦 Publication du jeu Iconify
+## Publication du jeu Iconify
 
 Le script `pnpm icons:build` génère automatiquement `packages/icons-data/dist/icons.json` selon la spécification officielle **Iconify Collection JSON v2** :
 - `prefix`: `"buni"`
@@ -134,7 +154,7 @@ import { Icon } from '@iconify/react';
 
 ---
 
-## 🎨 Rapport de Direction Artistique (alignement buni-avs)
+## Rapport de Direction Artistique (alignement buni-avs)
 
 L'application `buni-icon` a été développée en cohérence stricte avec `buni-avs` :
 - **Design Tokens** : Réutilisation directe du package `@buni/tokens` et du preset Tailwind `@buni/config`.
@@ -145,12 +165,12 @@ L'application `buni-icon` a été développée en cohérence stricte avec `buni-
   - Or Kente : `#D4A017`
   - Vert Ndop : `#4A6741`
   - Bleu Bogolan : `#2A4A6B`
+- **Motifs textiles** : Utilisation des motifs CSS du package `@buni/patterns` comme toiles et textures de fond (Kente, Ndop, Bogolan, Adinkra, Kuba, Wax).
 - **Typographie** : `BuniDisplay-Regular.otf` en display, `DM Sans` pour le corps, `JetBrains Mono` pour les codes et métadonnées.
 - **Ombres** : Ombres dures franches (`shadow-avs` 3px 3px 0 `#1D1D1B`, `shadow-avs-md` 5px 5px 0 `#C0573E`).
-- **Écarts constatés** : **Aucun écart**. L'univers graphique, les micro-interactions, le ton éditorial patrimonial et l'ergonomie sont parfaitement alignés sur `buni-avs`.
 
 ---
 
-## 📜 Licence
+## Licence
 - **Icônes SVG** : [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)
-- **Code source** : Apache License 2.0 (alignée sur le monorepo BUNI).
+- **Code source** : Apache License 2.0.

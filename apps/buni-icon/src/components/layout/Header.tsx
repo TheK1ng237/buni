@@ -4,7 +4,7 @@ import * as React from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useTranslations, useLocale } from '@/i18n';
-import { Search, Globe, ArrowUpRight, Sparkles } from 'lucide-react';
+import { Search, Globe, ArrowUpRight } from 'lucide-react';
 import { BuniIcon } from '@buni/icon-react';
 
 export function Header() {
@@ -16,7 +16,6 @@ export function Header() {
   const otherLocale = locale === 'fr' ? 'en' : 'fr';
 
   const switchLanguage = () => {
-    // Remplacer le premier segment /[locale] par l'autre locale
     const newPath = pathname.replace(`/${locale}`, `/${otherLocale}`);
     router.push(newPath as any);
   };
@@ -24,7 +23,6 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 w-full border-b border-avs-accent/10 bg-avs-secondary/95 backdrop-blur-md transition-colors">
       <div className="avs-container flex h-16 items-center justify-between gap-4">
-        {/* LOGO & BRAND */}
         <div className="flex items-center gap-6">
           <Link href={`/${locale}` as any} className="flex items-center gap-2.5 group">
             <div className="w-8 h-8 rounded-avs bg-avs-primary text-avs-secondary flex items-center justify-center font-bold text-base shadow-avs group-hover:scale-105 transition-transform">
@@ -40,7 +38,6 @@ export function Header() {
             </div>
           </Link>
 
-          {/* Sibling Link vers buni-avs */}
           <a
             href="https://buni.idem.africa"
             target="_blank"
@@ -52,7 +49,6 @@ export function Header() {
           </a>
         </div>
 
-        {/* NAVIGATION LINKS */}
         <nav className="hidden lg:flex items-center gap-7 text-sm font-semibold text-avs-accent/80">
           <Link
             href={`/${locale}/icons` as any}
@@ -71,13 +67,12 @@ export function Header() {
           </Link>
           <Link
             href={`/${locale}/#lois` as any}
-            className="hover:text-avs-primary transition-colors flex items-center gap-1"
+            className="hover:text-avs-primary transition-colors"
           >
-            <span>{t('standards')}</span>
+            {t('standards')}
           </Link>
         </nav>
 
-        {/* ACTIONS */}
         <div className="flex items-center gap-3">
           <Link
             href={`/${locale}/icons` as any}
@@ -90,7 +85,6 @@ export function Header() {
             </kbd>
           </Link>
 
-          {/* Lang switcher */}
           <button
             onClick={switchLanguage}
             className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-mono font-bold uppercase rounded-avs border border-avs-accent/15 hover:border-avs-primary hover:text-avs-primary transition-colors"
@@ -104,4 +98,3 @@ export function Header() {
     </header>
   );
 }
-

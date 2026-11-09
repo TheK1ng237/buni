@@ -48,9 +48,9 @@ export function ExportShadcnTabs({
       setCopiedKey(activeTab);
       add({
         variant: 'success',
-        title: 'Copié !',
+        title: 'Copié',
         message: `${label} copié dans votre presse-papier.`,
-        duration: 2500,
+        duration: 2200,
       });
       setTimeout(() => setCopiedKey(null), 2000);
     } catch {
@@ -69,8 +69,8 @@ export function ExportShadcnTabs({
     add({
       variant: 'success',
       title: 'Téléchargement lancé',
-      message: `Fichier buni-${icon.slug}.svg enregistré.`,
-      duration: 2500,
+      message: `buni-${icon.slug}.svg enregistré.`,
+      duration: 2200,
     });
   };
 
@@ -82,7 +82,6 @@ export function ExportShadcnTabs({
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Remplacer currentColor par la couleur choisie pour l'export PNG
     const tintedSvg = icon.svg
       .replace(/currentColor/g, colorHex)
       .replace(/stroke-width="[^"]*"/g, `stroke-width="${strokeWidth}"`);
@@ -104,8 +103,8 @@ export function ExportShadcnTabs({
       add({
         variant: 'success',
         title: 'PNG généré',
-        message: `Image PNG haute résolution (512x512) téléchargée.`,
-        duration: 2500,
+        message: `Image 512×512 téléchargée.`,
+        duration: 2200,
       });
     };
     img.src = url;
@@ -124,12 +123,11 @@ export function ExportShadcnTabs({
     jsx: jsxCode,
     iconify: iconifyName,
     json: jsonMetadata,
-    png: `Export haute définition PNG (512×512) avec pigment personnalisé (${colorHex}). Prêt pour Figma, Canva et présentations.`,
+    png: `Export haute définition PNG (512×512) avec pigment personnalisé (${colorHex}).`,
   }[activeTab];
 
   return (
     <div className="avs-card overflow-hidden">
-      {/* Header bar with tabs */}
       <div className="flex flex-wrap items-center justify-between border-b border-avs-accent/10 bg-avs-accent/5 px-4 py-2 gap-2">
         <div className="flex items-center gap-1 overflow-x-auto">
           {tabs.map(tab => (
@@ -148,7 +146,6 @@ export function ExportShadcnTabs({
           ))}
         </div>
 
-        {/* Action Button */}
         <div className="flex items-center gap-2">
           {activeTab === 'svg' && (
             <button
@@ -177,12 +174,12 @@ export function ExportShadcnTabs({
               {copiedKey === activeTab ? (
                 <>
                   <Check size={13} className="text-white" />
-                  <span>Copié !</span>
+                  <span>Copié</span>
                 </>
               ) : (
                 <>
                   <Copy size={13} />
-                  <span>Copier le code</span>
+                  <span>Copier</span>
                 </>
               )}
             </button>
@@ -190,7 +187,6 @@ export function ExportShadcnTabs({
         </div>
       </div>
 
-      {/* Code preview area */}
       <div className="relative p-4 bg-avs-accent/90 text-avs-secondary font-mono text-xs overflow-x-auto max-h-72 selection:bg-avs-primary/40 selection:text-white">
         <pre className="whitespace-pre-wrap leading-relaxed">
           <code>{currentContent}</code>
@@ -199,4 +195,3 @@ export function ExportShadcnTabs({
     </div>
   );
 }
-

@@ -6,6 +6,7 @@ import { BuniIcon } from '@buni/icon-react';
 import type { BuniIconMeta } from '@buni/icons-data';
 import { useToast } from '@buni/ui';
 import { Copy, Check, ArrowRight } from 'lucide-react';
+import { getIconPattern } from '@/lib/pattern-map';
 
 interface IconCardProps {
   icon: BuniIconMeta;
@@ -14,26 +15,22 @@ interface IconCardProps {
   strokeWidth?: number;
 }
 
-const familyColors: Record<string, { badge: string; text: string; label: string }> = {
+const FAMILY_BADGES: Record<string, { badge: string; label: string }> = {
   'objets-artisanat': {
     badge: 'bg-[#C0573E]/10 text-[#C0573E] border-[#C0573E]/20',
-    text: 'Artisanat',
     label: 'Artisanat',
   },
   'vie-quotidienne': {
     badge: 'bg-[#D4A017]/15 text-[#9C750D] border-[#D4A017]/30',
-    text: 'Quotidien',
-    label: 'Vie Quotidienne',
+    label: 'Quotidien',
   },
   'tech-locale': {
     badge: 'bg-[#2A4A6B]/15 text-[#2A4A6B] border-[#2A4A6B]/30',
-    text: 'Tech Locale',
     label: 'Tech Locale',
   },
-  'symboles': {
+  symboles: {
     badge: 'bg-[#4A6741]/15 text-[#4A6741] border-[#4A6741]/30',
-    text: 'Symbole',
-    label: 'Symbole Adinkra',
+    label: 'Adinkra',
   },
 };
 
@@ -45,10 +42,10 @@ export function IconCard({
 }: IconCardProps) {
   const { add } = useToast();
   const [copied, setCopied] = React.useState(false);
+  const pattern = getIconPattern(icon.slug);
 
-  const familyConfig = familyColors[icon.family] ?? {
+  const familyConfig = FAMILY_BADGES[icon.family] ?? {
     badge: 'bg-avs-accent/10 text-avs-accent border-avs-accent/20',
-    text: icon.family,
     label: icon.family,
   };
 
@@ -60,45 +57,49 @@ export function IconCard({
       setCopied(true);
       add({
         variant: 'success',
-        title: 'Copié !',
-        message: `SVG de « ${icon.nameFr} » copié dans le presse-papier.`,
-        duration: 2500,
+        title: 'Copié',
+        message: `${icon.nameFr} (SVG) copié dans le presse-papier`,
+        duration: 2200,
       });
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      // Fallback
+      //
     }
   };
 
   return (
-    <div className="avs-card group relative flex flex-col justify-between overflow-hidden p-4 hover:border-avs-primary/50 hover:shadow-avs-md transition-all duration-200">
-      {/* Top badges */}
-      <div className="flex items-center justify-between gap-2 mb-3">
+    <div className="avs-card group relative flex flex-col justify-between overflow-hidden p-3.5 hover:border-avs-primary/50 hover:shadow-avs-md transition-all duration-200">
+      <div className="flex items-center justify-between gap-2 mb-2.5">
         <span
           className={`px-2 py-0.5 rounded-full border text-[9px] font-mono font-bold uppercase tracking-wider ${familyConfig.badge}`}
         >
-          {familyConfig.text}
+          {familyConfig.label}
         </span>
-        <span className="font-mono text-[9px] font-semibold text-avs-accent/50 bg-avs-accent/5 px-1.5 py-0.5 rounded">
+        <span className="font-mono text-[9px] font-semibold text-avs-accent/60 bg-avs-accent/5 px-1.5 py-0.5 rounded">
           {icon.countryCode ?? 'AF'}
         </span>
       </div>
 
-      {/* Main icon preview */}
       <Link
         href={`/${locale}/icons/${icon.slug}` as any}
-        className="flex flex-col items-center justify-center py-6 group-hover:scale-105 transition-transform"
+        className="relative flex flex-col items-center justify-center my-1 rounded-avs overflow-hidden border border-avs-accent/8 bg-avs-secondary/40 py-6 transition-all group-hover:border-avs-primary/30"
       >
-        <div className="w-16 h-16 rounded-avs bg-avs-secondary border border-avs-accent/8 flex items-center justify-center text-avs-accent group-hover:text-avs-primary group-hover:border-avs-primary/30 transition-colors">
+        <div
+          className={`absolute inset-0 ${pattern.cssClass} opacity-[0.05] group-hover:opacity-[0.14] transition-opacity`}
+          aria-hidden="true"
+        />
+        <div className="relative z-10 text-avs-accent group-hover:text-avs-primary group-hover:scale-110 transition-all duration-200">
           <BuniIcon
             name={icon.slug}
             size={size}
             strokeWidth={strokeWidth}
           />
         </div>
+        <span className="absolute bottom-1 right-1.5 font-mono text-[8px] uppercase tracking-wider text-avs-accent/40 group-hover:text-avs-accent/70 transition-colors">
+          {pattern.name}
+        </span>
       </Link>
 
-      {/* Info & Quick Actions */}
       <div className="pt-2 border-t border-avs-accent/8 flex items-center justify-between gap-2">
         <div className="min-w-0">
           <Link
@@ -124,9 +125,9 @@ export function IconCard({
 
           <Link
             href={`/${locale}/icons/${icon.slug}` as any}
-            title="Voir la fiche culturelle"
+            title="Fiche culturelle"
             className="p-1.5 rounded-avs border border-avs-accent/15 text-avs-accent/70 hover:border-avs-primary hover:text-avs-primary hover:bg-avs-primary/10 transition-colors"
-            aria-label={`Voir détails de ${icon.nameFr}`}
+            aria-label={`Fiche de ${icon.nameFr}`}
           >
             <ArrowRight size={13} />
           </Link>
@@ -135,4 +136,3 @@ export function IconCard({
     </div>
   );
 }
-

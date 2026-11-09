@@ -11,3 +11,4 @@
 ## Scripts
 - `npm run lint` : Vérifie la conformité (grille 24x24, pas de couleur en dur, validation des métadonnées et fiches culturelles).
 - `npm run build` : Compile les SVG et génère le catalogue et les formats Iconify.
+

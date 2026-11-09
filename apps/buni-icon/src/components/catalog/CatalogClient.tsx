@@ -6,6 +6,7 @@ import { useTranslations, useLocale } from '@/i18n';
 import { ICONS_CATALOG } from '@buni/icons-data';
 import { IconCard } from '@/components/icons/IconCard';
 import { IconFilters } from '@/components/icons/IconFilters';
+import { getIconPattern } from '@/lib/pattern-map';
 import { Layers } from 'lucide-react';
 
 function CatalogInner() {
@@ -56,6 +57,7 @@ function CatalogInner() {
 
       if (search.trim()) {
         const query = search.toLowerCase().trim();
+        const pattern = getIconPattern(icon.slug);
         const matchesNameFr = icon.nameFr.toLowerCase().includes(query);
         const matchesNameEn = icon.nameEn.toLowerCase().includes(query);
         const matchesSlug = icon.slug.toLowerCase().includes(query);
@@ -63,6 +65,10 @@ function CatalogInner() {
         const matchesCountry = icon.country.toLowerCase().includes(query);
         const matchesTags = icon.tags.some(t => t.toLowerCase().includes(query));
         const matchesNote = icon.culturalNote.toLowerCase().includes(query);
+        const matchesPattern =
+          pattern.name.toLowerCase().includes(query) ||
+          pattern.type.toLowerCase().includes(query) ||
+          pattern.symbolism.toLowerCase().includes(query);
 
         return (
           matchesNameFr ||
@@ -71,7 +77,8 @@ function CatalogInner() {
           matchesPeople ||
           matchesCountry ||
           matchesTags ||
-          matchesNote
+          matchesNote ||
+          matchesPattern
         );
       }
 
@@ -87,7 +94,6 @@ function CatalogInner() {
 
   return (
     <div className="avs-container py-10 sm:py-14 space-y-8">
-      {/* Header section */}
       <div className="space-y-3 max-w-3xl">
         <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-avs-primary/10 border border-avs-primary/20 text-avs-primary text-xs font-mono font-bold tracking-wider uppercase">
           <Layers size={13} />
@@ -101,7 +107,6 @@ function CatalogInner() {
         </p>
       </div>
 
-      {/* Interactive Filters & Controls */}
       <IconFilters
         search={search}
         onSearchChange={setSearch}
@@ -119,13 +124,11 @@ function CatalogInner() {
         onReset={handleReset}
       />
 
-      {/* Results Count */}
       <div className="flex items-center justify-between text-xs font-mono text-avs-accent/60 border-b border-avs-accent/8 pb-2">
         <span>{t('found', { count: filteredIcons.length })}</span>
         <span className="hidden sm:inline">Grille 24×24 · Stroke uniforme</span>
       </div>
 
-      {/* Grid of Icons */}
       {filteredIcons.length > 0 ? (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
           {filteredIcons.map(icon => (
@@ -140,8 +143,8 @@ function CatalogInner() {
         </div>
       ) : (
         <div className="avs-card p-12 text-center space-y-4">
-          <p className="text-sm text-avs-accent/70">{t('noResults')}</p>
-          <button onClick={handleReset} className="avs-btn-primary !text-xs">
+          <p className="text-sm text-avs-accent/70 font-sans">{t('noResults')}</p>
+          <button onClick={handleReset} className="avs-btn-primary !text-xs font-mono">
             {t('reset')}
           </button>
         </div>
@@ -152,9 +155,8 @@ function CatalogInner() {
 
 export function CatalogClient() {
   return (
-    <React.Suspense fallback={<div className="avs-container py-20 text-center font-mono text-xs">Chargement du catalogue...</div>}>
+    <React.Suspense fallback={<div className="avs-container py-20 text-center font-mono text-xs text-avs-accent/60">Chargement du catalogue...</div>}>
       <CatalogInner />
     </React.Suspense>
   );
 }
-

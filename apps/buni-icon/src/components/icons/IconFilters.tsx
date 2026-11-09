@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { Search, SlidersHorizontal, RotateCcw } from 'lucide-react';
+import { Search, RotateCcw } from 'lucide-react';
 import { useTranslations } from '@/i18n';
 
 interface IconFiltersProps {
@@ -40,7 +40,6 @@ export function IconFilters({
   const t = useTranslations('catalog');
   const searchInputRef = React.useRef<HTMLInputElement>(null);
 
-  // Écoute du raccourci clavier ⌘K / Ctrl+K
   React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
@@ -65,9 +64,7 @@ export function IconFilters({
 
   return (
     <div className="space-y-4 mb-8">
-      {/* Search and Quick Filters Row */}
       <div className="flex flex-col md:flex-row gap-3 items-stretch md:items-center justify-between">
-        {/* Search Bar */}
         <div className="relative flex-1">
           <Search
             size={16}
@@ -86,7 +83,6 @@ export function IconFilters({
           </kbd>
         </div>
 
-        {/* Country Filter */}
         <div className="flex items-center gap-2">
           <select
             value={selectedCountry}
@@ -101,7 +97,6 @@ export function IconFilters({
             ))}
           </select>
 
-          {/* Reset Filters */}
           {(search || selectedFamily !== 'all' || selectedCountry !== 'all') && (
             <button
               onClick={onReset}
@@ -115,9 +110,7 @@ export function IconFilters({
         </div>
       </div>
 
-      {/* Families tabs and preview sliders */}
       <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4 pt-2 border-t border-avs-accent/8">
-        {/* Family Pill Tabs */}
         <div className="flex flex-wrap items-center gap-1.5">
           {families.map(f => (
             <button
@@ -143,9 +136,7 @@ export function IconFilters({
           ))}
         </div>
 
-        {/* Live Controls: Size & Stroke */}
         <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-avs-accent/70 bg-avs-accent/5 p-2 rounded-avs border border-avs-accent/10 self-start lg:self-auto">
-          {/* Size buttons */}
           <div className="flex items-center gap-1">
             <span className="text-[10px] uppercase font-bold text-avs-accent/40 mr-1">
               {t('size')} :
@@ -167,7 +158,6 @@ export function IconFilters({
 
           <div className="h-4 w-px bg-avs-accent/15" />
 
-          {/* Stroke width buttons */}
           <div className="flex items-center gap-1">
             <span className="text-[10px] uppercase font-bold text-avs-accent/40 mr-1">
               {t('stroke')} :
@@ -191,4 +181,3 @@ export function IconFilters({
     </div>
   );
 }
-
