@@ -442,3 +442,4 @@ for (const meta of iconsMeta) {
 }
 
 console.log(`✅ ${iconsMeta.length} fiches de métadonnées générées avec succès !`);
+

@@ -1,0 +1,80 @@
+{
+  "nav": {
+    "catalog": "Catalogue",
+    "families": "Familles",
+    "standards": "Les 4 Lois",
+    "iconify": "Iconify Spec",
+    "github": "Code Source",
+    "searchPlaceholder": "Rechercher une icône (ex: calebasse, USSD, sankofa)...",
+    "switchLang": "EN"
+  },
+  "home": {
+    "badge": "L'Iconify de l'Afrique · V1.0",
+    "title": "Chaque icône a une histoire.",
+    "subtitle": "La bibliothèque souveraine d’icônes vectorielles ancrées dans les cultures, l’artisanat et le quotidien africains. Zéro artifice, pixel habité, copier-coller libre.",
+    "ctaExplore": "Explorer le catalogue",
+    "ctaIconify": "Utiliser avec Iconify",
+    "stats": {
+      "icons": "Icônes vectorisées",
+      "iconsSub": "Grille pure 24×24",
+      "families": "Familles souveraines",
+      "familiesSub": "Artisanat, vie, tech, symboles",
+      "verified": "Fiches culturelles",
+      "verifiedSub": "Vérifiées par des gardiens",
+      "license": "Licence libre",
+      "licenseSub": "Creative Commons BY 4.0"
+    },
+    "lawsTitle": "Les Quatre Lois de BUNI",
+    "laws": {
+      "law1Title": "Maxi-Minimalisme Fractal",
+      "law1Desc": "Peu d’éléments, chacun travaillé à l’extrême. La pureté géométrique d’un trait qui porte des siècles de transmission.",
+      "law2Title": "Pixel Habité",
+      "law2Desc": "Aucun pixel gratuit. Chaque courbe, chaque interstice a une raison matérielle, d’usage ou de mémoire.",
+      "law3Title": "Couleur Souveraine",
+      "law3Desc": "Pigments naturels africains : terre cuite de poterie, lin Fulani, or Kente, vert Ndop et obsidienne.",
+      "law4Title": "Le Code comme Acte de Libération",
+      "law4Desc": "Copier-coller immédiat sans dépendance opaque. Importez en SVG brut, composant React ou préfixe Iconify."
+    },
+    "popular": "Icônes emblématiques",
+    "viewAll": "Voir toutes les icônes"
+  },
+  "catalog": {
+    "title": "Catalogue des Icônes",
+    "subtitle": "Explorez nos icônes vectorielles par famille, pays d’origine ou mot-clé.",
+    "search": "Filtrer les icônes...",
+    "allFamilies": "Toutes les familles",
+    "allCountries": "Tous les pays",
+    "size": "Taille",
+    "stroke": "Épaisseur",
+    "found": "{count} icône(s) trouvée(s)",
+    "noResults": "Aucune icône ne correspond à votre recherche.",
+    "reset": "Réinitialiser les filtres",
+    "quickCopy": "Copier SVG"
+  },
+  "detail": {
+    "back": "Retour au catalogue",
+    "culturalSheet": "Fiche Culturelle & Patrimoniale",
+    "meaning": "Signification & Contexte",
+    "recommendedUse": "Usages recommandés en interface",
+    "verifiedBy": "Vérifié par",
+    "origin": "Origine & Peuple",
+    "country": "Pays",
+    "license": "Licence d'usage",
+    "copySvg": "Copier SVG",
+    "copyJsx": "Copier React JSX",
+    "copyIconify": "Copier nom Iconify",
+    "downloadPng": "Télécharger PNG",
+    "copyJson": "Copier Métadonnées JSON",
+    "copied": "Copié dans le presse-papier !",
+    "customize": "Personnaliser l'aperçu",
+    "color": "Pigment",
+    "strokeWidth": "Épaisseur de trait"
+  },
+  "footer": {
+    "manifesto": "Buni Icon est un standard libre conçu pour enrichir les interfaces numériques du continent et du monde entier avec l'imaginaire africain.",
+    "linksStandard": "Standard",
+    "linksResources": "Ressources",
+    "rights": "© 2026 BUNI Standard. Icônes sous licence Creative Commons Attribution 4.0 International (CC BY 4.0)."
+  }
+}
+

@@ -1,0 +1,80 @@
+{
+  "nav": {
+    "catalog": "Catalog",
+    "families": "Families",
+    "standards": "The 4 Laws",
+    "iconify": "Iconify Spec",
+    "github": "Source Code",
+    "searchPlaceholder": "Search an icon (e.g. calabash, USSD, sankofa)...",
+    "switchLang": "FR"
+  },
+  "home": {
+    "badge": "Africa’s Iconify · V1.0",
+    "title": "Every icon tells a story.",
+    "subtitle": "The sovereign vector icon library rooted in African cultures, craftsmanship, and daily living. Zero fluff, inhabited pixels, frictionless copy-paste.",
+    "ctaExplore": "Explore catalog",
+    "ctaIconify": "Use with Iconify",
+    "stats": {
+      "icons": "Vectorized icons",
+      "iconsSub": "Pure 24×24 grid",
+      "families": "Sovereign families",
+      "familiesSub": "Crafts, daily life, tech, symbols",
+      "verified": "Cultural records",
+      "verifiedSub": "Verified by keepers",
+      "license": "Open license",
+      "licenseSub": "Creative Commons BY 4.0"
+    },
+    "lawsTitle": "The Four Laws of BUNI",
+    "laws": {
+      "law1Title": "Fractal Maxi-Minimalism",
+      "law1Desc": "Few elements, each meticulously carved. The geometric purity of a line carrying centuries of memory.",
+      "law2Title": "Inhabited Pixel",
+      "law2Desc": "No gratuitous pixels. Every curve, stroke, and clearance serves a material or cultural purpose.",
+      "law3Title": "Sovereign Color",
+      "law3Desc": "African natural pigments: pottery terracotta, Fulani linen, Asante Kente gold, and Ndop indigo.",
+      "law4Title": "Code as an Act of Liberation",
+      "law4Desc": "Instant copy-paste without opaque dependencies. Export clean SVG, React JSX, or Iconify prefix."
+    },
+    "popular": "Signature Icons",
+    "viewAll": "View all icons"
+  },
+  "catalog": {
+    "title": "Icon Catalog",
+    "subtitle": "Browse our African vector icons by family, country of origin, or keyword.",
+    "search": "Filter icons...",
+    "allFamilies": "All families",
+    "allCountries": "All countries",
+    "size": "Size",
+    "stroke": "Stroke",
+    "found": "{count} icon(s) found",
+    "noResults": "No icons match your search criteria.",
+    "reset": "Reset filters",
+    "quickCopy": "Copy SVG"
+  },
+  "detail": {
+    "back": "Back to catalog",
+    "culturalSheet": "Cultural & Heritage Record",
+    "meaning": "Meaning & Context",
+    "recommendedUse": "Recommended UI usage",
+    "verifiedBy": "Verified by",
+    "origin": "Origin & People",
+    "country": "Country",
+    "license": "Usage license",
+    "copySvg": "Copy SVG",
+    "copyJsx": "Copy React JSX",
+    "copyIconify": "Copy Iconify name",
+    "downloadPng": "Download PNG",
+    "copyJson": "Copy JSON Metadata",
+    "copied": "Copied to clipboard!",
+    "customize": "Customize preview",
+    "color": "Pigment",
+    "strokeWidth": "Stroke width"
+  },
+  "footer": {
+    "manifesto": "Buni Icon is an open standard designed to enrich digital interfaces across Africa and the world with African visual heritage.",
+    "linksStandard": "Standard",
+    "linksResources": "Resources",
+    "rights": "© 2026 BUNI Standard. Icons licensed under Creative Commons Attribution 4.0 International (CC BY 4.0)."
+  }
+}
+

@@ -120,3 +120,4 @@ if (hasError) {
 } else {
   console.log(`\n✨ [icons:lint] Succès : ${totalChecked} icônes vérifiées conformes aux Quatre Lois de BUNI.`);
 }
+
