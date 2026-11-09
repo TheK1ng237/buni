@@ -1,0 +1,21 @@
+{
+  "slug": "moto-taxi",
+  "nameFr": "Moto-Taxi",
+  "nameEn": "Motorcycle Taxi",
+  "family": "vie-quotidienne",
+  "tags": [
+    "moto",
+    "taxi",
+    "transport",
+    "vitesse",
+    "urbain",
+    "zemidjan"
+  ],
+  "country": "Bénin / Togo / Nigeria / Kenya",
+  "countryCode": "BJ",
+  "people": "Urbain Panafricain",
+  "culturalNote": "Appelé Zémidjan à Cotonou, Okada à Lagos ou Boda-Boda à Nairobi, le moto-taxi est le cœur battant de la mobilité urbaine africaine, agile et indispensable.",
+  "recommendedUse": "Livraison express, envoi rapide, mobilité, géolocalisation.",
+  "verifiedBy": "BUNI Urban Mobility Observatory",
+  "license": "CC BY 4.0"
+}

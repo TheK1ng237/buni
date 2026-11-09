@@ -3,7 +3,12 @@
   "version": "0.0.0",
   "license": "MIT",
   "packageManager": "pnpm@10.0.0",
-  "scripts": {},
+  "scripts": {
+    "dev:avs": "pnpm --filter @buni/buni-avs dev",
+    "dev:icon": "pnpm --filter @buni/buni-icon dev",
+    "icons:build": "node packages/icons-data/scripts/build.mjs",
+    "icons:lint": "node packages/icons-data/scripts/lint.mjs"
+  },
   "private": true,
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.5",

@@ -1,0 +1,20 @@
+{
+  "slug": "pirogue",
+  "nameFr": "Pirogue Monoxyle",
+  "nameEn": "Canoe",
+  "family": "objets-artisanat",
+  "tags": [
+    "pirogue",
+    "navigation",
+    "fleuve",
+    "peche",
+    "voyage"
+  ],
+  "country": "Sénégal / RDC",
+  "countryCode": "SN",
+  "people": "Lébou / Wagenia",
+  "culturalNote": "Creusée dans un seul tronc d’arbre pour affronter les rapides et les courants des fleuves majestueux (Congo, Niger), la pirogue incarne le voyage et la subsistance.",
+  "recommendedUse": "Navigation, parcours utilisateur, transport de paquets, flux de données.",
+  "verifiedBy": "BUNI Maritime & Riverine Studies",
+  "license": "CC BY 4.0"
+}

@@ -1,0 +1,20 @@
+{
+  "slug": "recharge-credit",
+  "nameFr": "Carte de Recharge",
+  "nameEn": "Scratch Recharge Card",
+  "family": "tech-locale",
+  "tags": [
+    "recharge",
+    "credit",
+    "airtime",
+    "telecom",
+    "gratter"
+  ],
+  "country": "Nigeria / RDC / Cameroun",
+  "countryCode": "NG",
+  "people": "Panafricain",
+  "culturalNote": "La petite carte cartonnée à gratter avec une pièce de monnaie pour dévoiler les chiffres secrets de crédit d’appel et de mégas Internet.",
+  "recommendedUse": "Coupons de réduction, clés de licence, activation d’accès, jetons.",
+  "verifiedBy": "BUNI Heritage Lab",
+  "license": "CC BY 4.0"
+}

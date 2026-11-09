@@ -1,0 +1,21 @@
+{
+  "slug": "mortier-pilon",
+  "nameFr": "Mortier et Pilon",
+  "nameEn": "Mortar and Pestle",
+  "family": "vie-quotidienne",
+  "tags": [
+    "mortier",
+    "pilon",
+    "foufou",
+    "force",
+    "cuisine",
+    "rythme"
+  ],
+  "country": "Côte d’Ivoire / Nigeria",
+  "countryCode": "CI",
+  "people": "Akan / Igbo / Baoulé",
+  "culturalNote": "Sculpté dans le cœur d’un iroko massif, le mortier donne la cadence de la maisonnée au son réconfortant du pilage matinal de l’igname et du manioc.",
+  "recommendedUse": "Traitement de données, compilation, transformation, outils de build.",
+  "verifiedBy": "BUNI Gastronomic Heritage Group",
+  "license": "CC BY 4.0"
+}

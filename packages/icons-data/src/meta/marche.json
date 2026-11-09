@@ -1,0 +1,20 @@
+{
+  "slug": "marche",
+  "nameFr": "Grand Marché",
+  "nameEn": "Open Market",
+  "family": "vie-quotidienne",
+  "tags": [
+    "marche",
+    "commerce",
+    "etal",
+    "echanges",
+    "sociabilite"
+  ],
+  "country": "Togo / Nigeria",
+  "countryCode": "TG",
+  "people": "Nana Benz / Marchands d’Afrique",
+  "culturalNote": "Lieu de convergence des saveurs, des nouvelles et des négoces, le marché sous ombrière est le réseau social fondamental des cités africaines.",
+  "recommendedUse": "Boutique, marketplace, catalogue d’offres, intégrations.",
+  "verifiedBy": "BUNI Heritage Lab",
+  "license": "CC BY 4.0"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "@buni/icons-data",
+  "version": "0.1.0",
+  "description": "Bibliothèque d'icônes SVG africaines de BUNI et métadonnées culturelles",
+  "license": "Apache-2.0",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "type": "module",
+  "files": [
+    "dist",
+    "src/svg",
+    "src/meta"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "lint": "node scripts/lint.mjs"
+  }
+}

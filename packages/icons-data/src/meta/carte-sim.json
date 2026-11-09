@@ -1,0 +1,21 @@
+{
+  "slug": "carte-sim",
+  "nameFr": "Carte SIM",
+  "nameEn": "SIM Card",
+  "family": "tech-locale",
+  "tags": [
+    "sim",
+    "identite",
+    "gsm",
+    "reseau",
+    "puce",
+    "telecom"
+  ],
+  "country": "Panafricain",
+  "countryCode": "ZA",
+  "people": "Panafricain",
+  "culturalNote": "La minuscule carte à puce qui abrite l’identité numérique, le numéro de téléphone et la confiance de chaque citoyen connecté en Afrique.",
+  "recommendedUse": "Profil utilisateur, identité, sécurité SIM-swap, authentification.",
+  "verifiedBy": "BUNI Digital Sovereignty Lab",
+  "license": "CC BY 4.0"
+}

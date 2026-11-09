@@ -1,0 +1,20 @@
+{
+  "slug": "panneau-solaire",
+  "nameFr": "Kit Solaire Autonome",
+  "nameEn": "Solar Panel Kit",
+  "family": "tech-locale",
+  "tags": [
+    "solaire",
+    "energie",
+    "autonomie",
+    "soleil",
+    "off-grid"
+  ],
+  "country": "Rwanda / Mali / Kenya",
+  "countryCode": "RW",
+  "people": "Panafricain",
+  "culturalNote": "Le saut technologique (« leapfrogging ») énergétique africain qui alimente smartphones, éclairages LED et pompes à eau au cœur des villages isolés.",
+  "recommendedUse": "Éco-conception, mode basse consommation, énergie propre, autonomie.",
+  "verifiedBy": "BUNI Clean Energy Council",
+  "license": "CC BY 4.0"
+}

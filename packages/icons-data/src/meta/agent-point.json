@@ -1,0 +1,21 @@
+{
+  "slug": "agent-point",
+  "nameFr": "Point Agent",
+  "nameEn": "Cash Agent Booth",
+  "family": "tech-locale",
+  "tags": [
+    "agent",
+    "guichet",
+    "depot",
+    "retrait",
+    "proximite",
+    "kiosque"
+  ],
+  "country": "Kenya / Ouganda / Tanzanie",
+  "countryCode": "KE",
+  "people": "Panafricain",
+  "culturalNote": "Sous son parasol ou dans sa cabine jaune ou orange, l’agent mobile money est le visage humain qui convertit instantanément le cash en bits numériques.",
+  "recommendedUse": "Points relais, support utilisateur en direct, partenaires agréés.",
+  "verifiedBy": "BUNI FinTech Observatory",
+  "license": "CC BY 4.0"
+}

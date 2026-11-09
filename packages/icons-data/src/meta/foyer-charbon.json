@@ -1,0 +1,21 @@
+{
+  "slug": "foyer-charbon",
+  "nameFr": "Fourneau à Charbon",
+  "nameEn": "Charcoal Stove",
+  "family": "vie-quotidienne",
+  "tags": [
+    "foyer",
+    "fourneau",
+    "braise",
+    "cuisson",
+    "energie",
+    "chaleur"
+  ],
+  "country": "Madagascar / Mali / Sénégal",
+  "countryCode": "MG",
+  "people": "Malgache / Mandé",
+  "culturalNote": "Le fourneau traditionnel en fonte ou tôle recyclée concentre les braises ardentes avec une frugalité exemplaire pour faire mijoter les repas familiaux.",
+  "recommendedUse": "Moteur de calcul, activités en cours, traitement intensif, énergie.",
+  "verifiedBy": "BUNI Heritage Lab",
+  "license": "CC BY 4.0"
+}

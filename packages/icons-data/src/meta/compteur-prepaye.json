@@ -1,0 +1,20 @@
+{
+  "slug": "compteur-prepaye",
+  "nameFr": "Compteur Électrique Prépayé",
+  "nameEn": "Prepaid Energy Meter",
+  "family": "tech-locale",
+  "tags": [
+    "compteur",
+    "prepaye",
+    "electricite",
+    "energie",
+    "code-pin"
+  ],
+  "country": "Afrique du Sud / Ghana / Côte d’Ivoire",
+  "countryCode": "ZA",
+  "people": "Panafricain",
+  "culturalNote": "Le boîtier mural à clavier numérique (Cashpower) où l’on tape les 20 chiffres du jeton acheté au coin de la rue pour allumer la lumière du foyer.",
+  "recommendedUse": "Quota de requêtes, facturation à l’usage, limites de bande passante.",
+  "verifiedBy": "BUNI Tech Observatory",
+  "license": "CC BY 4.0"
+}

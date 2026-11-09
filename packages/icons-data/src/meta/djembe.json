@@ -1,0 +1,21 @@
+{
+  "slug": "djembe",
+  "nameFr": "Djembé",
+  "nameEn": "Djembe Drum",
+  "family": "objets-artisanat",
+  "tags": [
+    "djembe",
+    "tambour",
+    "musique",
+    "rythme",
+    "fete",
+    "communion"
+  ],
+  "country": "Guinée / Mali",
+  "countryCode": "GN",
+  "people": "Malinké",
+  "culturalNote": "Taillé dans un tronc de bois noble et recouvert d’une peau de chèvre tendue par cordage, le djembé réunit la communauté (« Anke djé, anke bé » : ensemble en harmonie).",
+  "recommendedUse": "Notifications sonores, alertes, diffusion d’actualités, célébrations.",
+  "verifiedBy": "BUNI Heritage Lab & Institut des Arts Mandingues",
+  "license": "CC BY 4.0"
+}

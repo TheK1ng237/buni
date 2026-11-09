@@ -1,0 +1,20 @@
+{
+  "slug": "kiosque",
+  "nameFr": "Kiosque de Rue",
+  "nameEn": "Street Kiosk",
+  "family": "vie-quotidienne",
+  "tags": [
+    "kiosque",
+    "boutique",
+    "service",
+    "proximite",
+    "quartier"
+  ],
+  "country": "Cameroun / Sénégal / Ghana",
+  "countryCode": "CM",
+  "people": "Urbain Panafricain",
+  "culturalNote": "Point de repère du carrefour et premier relais des services de proximité, le kiosque offre pain, journaux, recharge et discussions impromptues.",
+  "recommendedUse": "Points de vente, succursales, contact local, guichet de support.",
+  "verifiedBy": "BUNI Urban Studies",
+  "license": "CC BY 4.0"
+}

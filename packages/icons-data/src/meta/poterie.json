@@ -1,0 +1,20 @@
+{
+  "slug": "poterie",
+  "nameFr": "Poterie en Terre Cuite",
+  "nameEn": "Clay Pot",
+  "family": "objets-artisanat",
+  "tags": [
+    "poterie",
+    "argile",
+    "terre",
+    "conservation",
+    "artisanat"
+  ],
+  "country": "Nigeria / Cameroun",
+  "countryCode": "NG",
+  "people": "Yoruba / Bamiléké",
+  "culturalNote": "Façonnée à la main et cuite à foyer ouvert avec des pigments d’ocre et de sève, la poterie garde l’eau fraîche et abrite les graines sacrées de semence.",
+  "recommendedUse": "Stockage, bases de données, archives persistantes, ressources fraîches.",
+  "verifiedBy": "BUNI Heritage Lab",
+  "license": "CC BY 4.0"
+}

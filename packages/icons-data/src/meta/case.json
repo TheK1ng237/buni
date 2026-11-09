@@ -1,0 +1,20 @@
+{
+  "slug": "case",
+  "nameFr": "Case Traditionnelle",
+  "nameEn": "Traditional Hut",
+  "family": "vie-quotidienne",
+  "tags": [
+    "case",
+    "habitat",
+    "foyer",
+    "architecture",
+    "toit-chaume"
+  ],
+  "country": "Burkina Faso / Mali",
+  "countryCode": "BF",
+  "people": "Gourounsi / Dogon",
+  "culturalNote": "Bâtie en banco thermique aux formes rondes protectrices, la case ancestrale régule naturellement la chaleur du soleil et célèbre l’harmonie avec la terre.",
+  "recommendedUse": "Accueil (Home), tableau de bord principal, espace membre, hébergement.",
+  "verifiedBy": "BUNI Vernacular Architecture Lab",
+  "license": "CC BY 4.0"
+}

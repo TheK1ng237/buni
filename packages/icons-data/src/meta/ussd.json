@@ -1,0 +1,20 @@
+{
+  "slug": "ussd",
+  "nameFr": "Code USSD",
+  "nameEn": "USSD Dialing",
+  "family": "tech-locale",
+  "tags": [
+    "ussd",
+    "feature-phone",
+    "reseau",
+    "accessibilite",
+    "gsm"
+  ],
+  "country": "Afrique Subsaharienne",
+  "countryCode": "GH",
+  "people": "Panafricain",
+  "culturalNote": "Le protocole GSM des téléphones basiques (*144#, *555#) qui fait tourner l’économie informelle et la micro-assurance sans connexion Internet mobile.",
+  "recommendedUse": "Accès hors-ligne, commandes raccourcies, saisie rapide au clavier.",
+  "verifiedBy": "BUNI Digital Sovereignty Lab",
+  "license": "CC BY 4.0"
+}

@@ -1,0 +1,21 @@
+{
+  "slug": "mobile-money",
+  "nameFr": "Mobile Money",
+  "nameEn": "Mobile Money",
+  "family": "tech-locale",
+  "tags": [
+    "mobile-money",
+    "paiement",
+    "fintech",
+    "transfert",
+    "m-pesa",
+    "wave"
+  ],
+  "country": "Kenya / Sénégal / Côte d’Ivoire",
+  "countryCode": "KE",
+  "people": "Panafricain",
+  "culturalNote": "Pionnière mondiale du paiement mobile sans compte bancaire, l’Afrique a réinventé la transaction financière pour inclure des centaines de millions d’usagers.",
+  "recommendedUse": "Transactions financières, paiements in-app, solde, retraits.",
+  "verifiedBy": "BUNI Inclusive FinTech Taskforce",
+  "license": "CC BY 4.0"
+}

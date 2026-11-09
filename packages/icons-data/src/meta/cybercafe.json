@@ -1,0 +1,20 @@
+{
+  "slug": "cybercafe",
+  "nameFr": "Cybercafé",
+  "nameEn": "Cybercafe",
+  "family": "tech-locale",
+  "tags": [
+    "cybercafe",
+    "internet",
+    "connexion",
+    "communaute",
+    "ecran"
+  ],
+  "country": "Ghana / Cameroun / Nigeria",
+  "countryCode": "GH",
+  "people": "Génération Web africaine",
+  "culturalNote": "Berceau des premiers codeurs, étudiants et entrepreneurs du continent, lieu mythique d’initiation aux autoroutes de l’information au son des ventilateurs.",
+  "recommendedUse": "Espace de travail, ressources publiques, sessions partagées, connexion.",
+  "verifiedBy": "BUNI Digital Heritage Project",
+  "license": "CC BY 4.0"
+}
