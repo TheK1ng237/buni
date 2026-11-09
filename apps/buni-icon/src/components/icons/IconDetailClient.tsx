@@ -14,7 +14,6 @@ import {
   Globe,
   Users,
   Scale,
-  Layers,
 } from 'lucide-react';
 
 const PIGMENTS = [
@@ -68,21 +67,6 @@ export function IconDetailClient({
               />
             )}
 
-            <div className="absolute top-4 left-4 flex items-center gap-2 z-10">
-              <span className="px-2 py-0.5 rounded-full border border-avs-accent/15 text-[9px] font-mono font-bold uppercase tracking-wider bg-avs-secondary/90">
-                {icon.family}
-              </span>
-              <span className="px-2 py-0.5 rounded-full bg-avs-primary/10 text-avs-primary border border-avs-primary/20 text-[9px] font-mono font-bold">
-                {icon.countryCode}
-              </span>
-            </div>
-
-            <div className="absolute top-4 right-4 z-10">
-              <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-avs-accent/50 bg-avs-secondary/90 px-2 py-0.5 rounded-full border border-avs-accent/10">
-                {pattern.name}
-              </span>
-            </div>
-
             <div
               className="relative z-10 my-10 flex items-center justify-center transition-all"
               style={{ color: activeColor }}
@@ -94,25 +78,25 @@ export function IconDetailClient({
               />
             </div>
 
-            <div className="relative z-10 font-mono text-[10px] text-avs-accent/60 bg-avs-secondary/80 px-2.5 py-0.5 rounded border border-avs-accent/10">
-              24×24 · {previewSize}px
+            <div className="relative z-10 text-xs text-avs-accent/60">
+              {pattern.name} · 24×24 · {previewSize}px
             </div>
           </div>
 
           <div className="avs-card p-5 space-y-4">
-            <h3 className="font-mono text-xs font-bold uppercase tracking-wider text-avs-accent/80">
+            <h3 className="font-display text-lg font-semibold text-avs-accent">
               {t('customize')}
             </h3>
 
             <div>
-              <span className="block text-[11px] font-mono text-avs-accent/60 mb-2">
+              <span className="block text-sm text-avs-accent/65 mb-2">
                 Toile textile ({pattern.name}) :
               </span>
               <div className="grid grid-cols-3 gap-2">
                 <button
                   type="button"
                   onClick={() => setPatternBackdrop('none')}
-                  className={`px-2.5 py-1.5 text-xs font-mono font-bold rounded-avs border transition-colors ${
+                  className={`px-2.5 py-1.5 text-sm rounded-avs border transition-colors ${
                     patternBackdrop === 'none'
                       ? 'bg-avs-accent text-avs-secondary border-avs-accent'
                       : 'border-avs-accent/20 text-avs-accent/70 hover:border-avs-accent'
@@ -123,7 +107,7 @@ export function IconDetailClient({
                 <button
                   type="button"
                   onClick={() => setPatternBackdrop('subtle')}
-                  className={`px-2.5 py-1.5 text-xs font-mono font-bold rounded-avs border transition-colors ${
+                  className={`px-2.5 py-1.5 text-sm rounded-avs border transition-colors ${
                     patternBackdrop === 'subtle'
                       ? 'bg-avs-accent text-avs-secondary border-avs-accent'
                       : 'border-avs-accent/20 text-avs-accent/70 hover:border-avs-accent'
@@ -134,7 +118,7 @@ export function IconDetailClient({
                 <button
                   type="button"
                   onClick={() => setPatternBackdrop('vibrant')}
-                  className={`px-2.5 py-1.5 text-xs font-mono font-bold rounded-avs border transition-colors ${
+                  className={`px-2.5 py-1.5 text-sm rounded-avs border transition-colors ${
                     patternBackdrop === 'vibrant'
                       ? 'bg-avs-accent text-avs-secondary border-avs-accent'
                       : 'border-avs-accent/20 text-avs-accent/70 hover:border-avs-accent'
@@ -146,7 +130,7 @@ export function IconDetailClient({
             </div>
 
             <div>
-              <span className="block text-[11px] font-mono text-avs-accent/60 mb-2">
+              <span className="block text-sm text-avs-accent/65 mb-2">
                 {t('color')} :
               </span>
               <div className="flex items-center gap-2">
@@ -167,7 +151,7 @@ export function IconDetailClient({
             </div>
 
             <div>
-              <span className="block text-[11px] font-mono text-avs-accent/60 mb-2">
+              <span className="block text-sm text-avs-accent/65 mb-2">
                 {t('strokeWidth')} :
               </span>
               <div className="flex items-center gap-2">
@@ -175,7 +159,7 @@ export function IconDetailClient({
                   <button
                     key={st}
                     onClick={() => setActiveStroke(st)}
-                    className={`px-3 py-1 text-xs font-mono font-bold rounded-avs border transition-colors ${
+                    className={`px-3 py-1 text-sm rounded-avs border transition-colors ${
                       activeStroke === st
                         ? 'bg-avs-accent text-avs-secondary border-avs-accent shadow-sm'
                         : 'border-avs-accent/20 text-avs-accent/70 hover:border-avs-accent'
@@ -188,7 +172,7 @@ export function IconDetailClient({
             </div>
 
             <div>
-              <span className="block text-[11px] font-mono text-avs-accent/60 mb-2">
+              <span className="block text-sm text-avs-accent/65 mb-2">
                 Échelle ({previewSize}px) :
               </span>
               <input
@@ -206,20 +190,11 @@ export function IconDetailClient({
 
         <div className="lg:col-span-7 space-y-6">
           <div className="space-y-2 border-b border-avs-accent/10 pb-5">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="font-mono text-xs font-bold text-avs-primary uppercase tracking-widest">
-                buni:{icon.slug}
-              </span>
-              <span className="px-2 py-0.5 rounded bg-green-100 text-green-800 border border-green-200 text-[10px] font-mono font-bold">
-                Vérifié
-              </span>
-            </div>
-
             <h1 className="font-display font-black text-3xl sm:text-4xl text-avs-accent">
               {locale === 'en' ? icon.nameEn : icon.nameFr}
             </h1>
 
-            <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-avs-accent/70 pt-1">
+            <div className="flex flex-wrap items-center gap-4 text-sm text-avs-accent/70 pt-1">
               <span className="flex items-center gap-1.5">
                 <Globe size={13} className="text-avs-primary" />
                 <span>{icon.country} ({icon.countryCode})</span>
@@ -236,13 +211,12 @@ export function IconDetailClient({
           </div>
 
           <div className="avs-card p-6 space-y-4 border-l-4 border-l-avs-primary">
-            <div className="flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-avs-primary">
-              <Layers size={15} />
-              <span>{t('culturalSheet')}</span>
-            </div>
+            <h2 className="font-display text-xl font-semibold text-avs-accent">
+              {t('culturalSheet')}
+            </h2>
 
             <div className="space-y-1">
-              <h4 className="text-xs font-bold uppercase font-mono text-avs-accent/60">
+              <h4 className="text-sm font-semibold text-avs-accent/75">
                 {t('meaning')}
               </h4>
               <p className="text-sm text-avs-accent/90 leading-relaxed font-sans">
@@ -252,7 +226,7 @@ export function IconDetailClient({
 
             {icon.recommendedUse && (
               <div className="space-y-1 pt-2 border-t border-avs-accent/8">
-                <h4 className="text-xs font-bold uppercase font-mono text-avs-accent/60">
+                <h4 className="text-sm font-semibold text-avs-accent/75">
                   {t('recommendedUse')}
                 </h4>
                 <p className="text-xs text-avs-accent/80 font-sans">
@@ -261,7 +235,7 @@ export function IconDetailClient({
               </div>
             )}
 
-            <div className="pt-2 border-t border-avs-accent/8 flex items-center gap-2 text-xs font-mono text-avs-accent/70">
+            <div className="pt-2 border-t border-avs-accent/8 flex items-center gap-2 text-sm text-avs-accent/70">
               <ShieldCheck size={14} className="text-avs-ndop shrink-0" />
               <span>
                 <strong>{t('verifiedBy')} :</strong> {icon.verifiedBy}
@@ -271,11 +245,10 @@ export function IconDetailClient({
 
           <div className="avs-card p-5 space-y-3 bg-avs-secondary/60 border border-avs-accent/15">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-avs-accent">
-                <span className="w-2 h-2 rounded-full bg-avs-primary" />
-                <span>Motif Textile Associé : {pattern.name}</span>
+              <div className="text-sm font-medium text-avs-accent">
+                Motif associé · {pattern.name}
               </div>
-              <span className="font-mono text-[10px] text-avs-accent/60">
+              <span className="text-xs text-avs-accent/60">
                 {pattern.origin} · {pattern.flag}
               </span>
             </div>
@@ -290,7 +263,7 @@ export function IconDetailClient({
                   {pattern.symbolism}
                 </div>
                 <div className="flex items-center gap-1.5 pt-1">
-                  <span className="font-mono text-[9px] text-avs-accent/50 uppercase">Palette :</span>
+                  <span className="text-xs text-avs-accent/50">Palette :</span>
                   {pattern.colors.map(col => (
                     <span
                       key={col}
@@ -305,8 +278,8 @@ export function IconDetailClient({
           </div>
 
           <div className="space-y-2">
-            <h3 className="font-mono text-xs font-bold uppercase tracking-wider text-avs-accent/80">
-              Exports & Copier-Coller Instantané
+            <h3 className="font-display text-lg font-semibold text-avs-accent">
+              Exports
             </h3>
             <ExportShadcnTabs
               icon={icon}
@@ -315,18 +288,8 @@ export function IconDetailClient({
             />
           </div>
 
-          <div className="flex flex-wrap items-center gap-1.5 pt-2">
-            <span className="text-[10px] font-mono uppercase text-avs-accent/50 mr-1">
-              Tags :
-            </span>
-            {icon.tags.map(tag => (
-              <span
-                key={tag}
-                className="px-2 py-0.5 rounded-full text-[10px] font-mono bg-avs-accent/5 text-avs-accent/70 border border-avs-accent/10"
-              >
-                #{tag}
-              </span>
-            ))}
+          <div className="pt-2 text-sm text-avs-accent/60">
+            {icon.tags.join(' · ')}
           </div>
         </div>
       </div>
@@ -339,7 +302,7 @@ export function IconDetailClient({
             </h3>
             <Link
               href={`/${locale}/icons` as any}
-              className="text-xs font-mono font-bold text-avs-primary hover:underline"
+              className="text-sm font-medium text-avs-primary hover:underline"
             >
               Voir tout
             </Link>

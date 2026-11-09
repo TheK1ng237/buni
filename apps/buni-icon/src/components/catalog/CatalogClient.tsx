@@ -7,7 +7,6 @@ import { ICONS_CATALOG } from '@buni/icons-data';
 import { IconCard } from '@/components/icons/IconCard';
 import { IconFilters } from '@/components/icons/IconFilters';
 import { getIconPattern } from '@/lib/pattern-map';
-import { Layers } from 'lucide-react';
 
 function CatalogInner() {
   const t = useTranslations('catalog');
@@ -17,7 +16,7 @@ function CatalogInner() {
   const [search, setSearch] = React.useState(searchParams.get('q') ?? '');
   const [selectedFamily, setSelectedFamily] = React.useState('all');
   const [selectedCountry, setSelectedCountry] = React.useState('all');
-  const [size, setSize] = React.useState(28);
+  const [size, setSize] = React.useState(72);
   const [strokeWidth, setStrokeWidth] = React.useState(1.75);
 
   React.useEffect(() => {
@@ -35,14 +34,6 @@ function CatalogInner() {
       }
     }
     return Array.from(map.entries()).map(([code, label]) => ({ code, label }));
-  }, []);
-
-  const familyCounts = React.useMemo(() => {
-    const counts: Record<string, number> = {};
-    for (const icon of ICONS_CATALOG) {
-      counts[icon.family] = (counts[icon.family] ?? 0) + 1;
-    }
-    return counts;
   }, []);
 
   const filteredIcons = React.useMemo(() => {
@@ -95,10 +86,6 @@ function CatalogInner() {
   return (
     <div className="avs-container py-10 sm:py-14 space-y-8">
       <div className="space-y-3 max-w-3xl">
-        <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-avs-primary/10 border border-avs-primary/20 text-avs-primary text-xs font-mono font-bold tracking-wider uppercase">
-          <Layers size={13} />
-          <span>V1.0 · 30 Icônes Souveraines</span>
-        </div>
         <h1 className="font-display font-black text-3xl sm:text-5xl text-avs-accent">
           {t('title')}
         </h1>
@@ -119,18 +106,15 @@ function CatalogInner() {
         strokeWidth={strokeWidth}
         onStrokeWidthChange={setStrokeWidth}
         countries={countries}
-        familyCounts={familyCounts}
-        totalCount={ICONS_CATALOG.length}
         onReset={handleReset}
       />
 
-      <div className="flex items-center justify-between text-xs font-mono text-avs-accent/60 border-b border-avs-accent/8 pb-2">
+      <div className="flex items-center justify-between text-sm text-avs-accent/60 border-b border-avs-accent/8 pb-2">
         <span>{t('found', { count: filteredIcons.length })}</span>
-        <span className="hidden sm:inline">Grille 24×24 · Stroke uniforme</span>
       </div>
 
       {filteredIcons.length > 0 ? (
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 2xl:grid-cols-2 gap-6">
           {filteredIcons.map(icon => (
             <IconCard
               key={icon.slug}

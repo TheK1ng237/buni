@@ -22,16 +22,13 @@ export function Footer() {
               <span className="font-display font-black tracking-wider text-lg text-avs-accent">
                 BUNI<span className="text-avs-primary">.</span>ICON
               </span>
-              <span className="px-2 py-0.5 rounded-avs bg-avs-primary/10 text-avs-primary text-[10px] font-mono font-bold tracking-wider uppercase">
-                CC BY 4.0
-              </span>
             </div>
             <p className="text-sm text-avs-accent/70 max-w-md leading-relaxed font-sans">
               {t('manifesto')}
             </p>
             <div className="flex items-center gap-2 pt-2">
-              <span className="text-[10px] font-mono uppercase tracking-wider text-avs-accent/50 mr-2">
-                Pigments :
+              <span className="text-xs text-avs-accent/55 mr-2">
+                Pigments
               </span>
               <span className="w-4 h-4 rounded-full bg-[#C0573E] ring-1 ring-black/10" title="Terre cuite" />
               <span className="w-4 h-4 rounded-full bg-[#D4A017] ring-1 ring-black/10" title="Or Kente" />
@@ -42,7 +39,7 @@ export function Footer() {
           </div>
 
           <div className="space-y-3">
-            <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-avs-primary">
+            <h4 className="text-sm font-semibold text-avs-accent">
               {t('linksStandard')}
             </h4>
             <ul className="space-y-2 text-sm text-avs-accent/75">
@@ -54,11 +51,6 @@ export function Footer() {
               <li>
                 <Link href={`/${locale}/#familles` as any} className="hover:text-avs-primary transition-colors">
                   Familles d’icônes
-                </Link>
-              </li>
-              <li>
-                <Link href={`/${locale}/#lois` as any} className="hover:text-avs-primary transition-colors">
-                  Les 4 Lois BUNI
                 </Link>
               </li>
               <li>
@@ -76,7 +68,7 @@ export function Footer() {
           </div>
 
           <div className="space-y-3">
-            <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-avs-primary">
+            <h4 className="text-sm font-semibold text-avs-accent">
               {t('linksResources')}
             </h4>
             <ul className="space-y-2 text-sm text-avs-accent/75">

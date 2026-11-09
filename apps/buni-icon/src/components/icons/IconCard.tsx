@@ -15,39 +15,21 @@ interface IconCardProps {
   strokeWidth?: number;
 }
 
-const FAMILY_BADGES: Record<string, { badge: string; label: string }> = {
-  'objets-artisanat': {
-    badge: 'bg-[#C0573E]/10 text-[#C0573E] border-[#C0573E]/20',
-    label: 'Artisanat',
-  },
-  'vie-quotidienne': {
-    badge: 'bg-[#D4A017]/15 text-[#9C750D] border-[#D4A017]/30',
-    label: 'Quotidien',
-  },
-  'tech-locale': {
-    badge: 'bg-[#2A4A6B]/15 text-[#2A4A6B] border-[#2A4A6B]/30',
-    label: 'Tech Locale',
-  },
-  symboles: {
-    badge: 'bg-[#4A6741]/15 text-[#4A6741] border-[#4A6741]/30',
-    label: 'Adinkra',
-  },
-};
-
 export function IconCard({
   icon,
   locale,
-  size = 28,
+  size = 72,
   strokeWidth = 1.75,
 }: IconCardProps) {
   const { add } = useToast();
   const [copied, setCopied] = React.useState(false);
   const pattern = getIconPattern(icon.slug);
-
-  const familyConfig = FAMILY_BADGES[icon.family] ?? {
-    badge: 'bg-avs-accent/10 text-avs-accent border-avs-accent/20',
-    label: icon.family,
-  };
+  const familyLabel = {
+    'objets-artisanat': locale === 'en' ? 'Crafts' : 'Artisanat',
+    'vie-quotidienne': locale === 'en' ? 'Daily life' : 'Vie quotidienne',
+    'tech-locale': locale === 'en' ? 'Local technology' : 'Technologies locales',
+    symboles: locale === 'en' ? 'Adinkra symbols' : 'Symboles Adinkra',
+  }[icon.family] ?? icon.family;
 
   const copySvg = async (e: React.MouseEvent) => {
     e.preventDefault();
@@ -68,71 +50,72 @@ export function IconCard({
   };
 
   return (
-    <div className="avs-card group relative flex flex-col justify-between overflow-hidden p-3.5 hover:border-avs-primary/50 hover:shadow-avs-md transition-all duration-200">
-      <div className="flex items-center justify-between gap-2 mb-2.5">
-        <span
-          className={`px-2 py-0.5 rounded-full border text-[9px] font-mono font-bold uppercase tracking-wider ${familyConfig.badge}`}
+    <article className="group relative isolate flex min-h-64 flex-col overflow-hidden border-2 border-avs-accent/25 bg-avs-secondary text-avs-accent shadow-avs transition-all duration-200 hover:border-avs-primary/60 hover:shadow-avs-md">
+      <div
+        className={`absolute inset-0 ${pattern.cssClass} opacity-[0.16] transition-opacity duration-200 group-hover:opacity-25`}
+        aria-hidden="true"
+      />
+      <div className="absolute inset-0 bg-gradient-to-br from-avs-secondary/95 via-avs-secondary/90 to-avs-secondary/80" />
+      <div
+        className={`absolute inset-x-0 top-0 h-3 ${pattern.cssClass} opacity-80`}
+        aria-hidden="true"
+      />
+      <div
+        className={`absolute inset-x-0 bottom-0 h-3 ${pattern.cssClass} opacity-80`}
+        aria-hidden="true"
+      />
+      <div className="pointer-events-none absolute inset-2 border border-dashed border-avs-accent/30" />
+
+      <div className="relative z-10 flex flex-1 flex-col items-center gap-5 px-7 py-8 sm:flex-row sm:gap-7 sm:px-9">
+        <Link
+          href={`/${locale}/icons/${icon.slug}` as any}
+          aria-label={`${locale === 'en' ? 'View' : 'Voir'} ${locale === 'en' ? icon.nameEn : icon.nameFr}`}
+          className="relative flex h-36 w-36 shrink-0 items-center justify-center rounded-full border-2 border-avs-primary/45 bg-avs-secondary/90 text-avs-primary shadow-avs transition-transform duration-200 group-hover:scale-105"
         >
-          {familyConfig.label}
-        </span>
-        <span className="font-mono text-[9px] font-semibold text-avs-accent/60 bg-avs-accent/5 px-1.5 py-0.5 rounded">
-          {icon.countryCode ?? 'AF'}
-        </span>
-      </div>
-
-      <Link
-        href={`/${locale}/icons/${icon.slug}` as any}
-        className="relative flex flex-col items-center justify-center my-1 rounded-avs overflow-hidden border border-avs-accent/8 bg-avs-secondary/40 py-6 transition-all group-hover:border-avs-primary/30"
-      >
-        <div
-          className={`absolute inset-0 ${pattern.cssClass} opacity-[0.05] group-hover:opacity-[0.14] transition-opacity`}
-          aria-hidden="true"
-        />
-        <div className="relative z-10 text-avs-accent group-hover:text-avs-primary group-hover:scale-110 transition-all duration-200">
-          <BuniIcon
-            name={icon.slug}
-            size={size}
-            strokeWidth={strokeWidth}
+          <div
+            className={`absolute inset-1 rounded-full ${pattern.cssClass} opacity-20`}
+            aria-hidden="true"
           />
-        </div>
-        <span className="absolute bottom-1 right-1.5 font-mono text-[8px] uppercase tracking-wider text-avs-accent/40 group-hover:text-avs-accent/70 transition-colors">
-          {pattern.name}
-        </span>
-      </Link>
+          <BuniIcon name={icon.slug} size={size} strokeWidth={strokeWidth} />
+        </Link>
 
-      <div className="pt-2 border-t border-avs-accent/8 flex items-center justify-between gap-2">
-        <div className="min-w-0">
+        <div className="flex min-w-0 flex-1 flex-col items-center text-center sm:items-start sm:text-left">
+          <span className="text-sm text-avs-primary">
+            {familyLabel} · {icon.people}
+          </span>
           <Link
             href={`/${locale}/icons/${icon.slug}` as any}
-            className="block text-xs font-bold text-avs-accent hover:text-avs-primary truncate transition-colors"
+            className="mt-1 font-display text-xl font-bold leading-tight text-avs-accent transition-colors group-hover:text-avs-primary sm:text-2xl"
           >
             {locale === 'en' ? icon.nameEn : icon.nameFr}
           </Link>
-          <span className="block font-mono text-[9px] text-avs-accent/50 truncate">
-            {icon.people}
-          </span>
+          <p className="mt-2 line-clamp-2 max-w-2xl text-sm leading-relaxed text-avs-accent/75">
+            {icon.culturalNote}
+          </p>
+          <span className="mt-2 text-sm text-avs-accent/60">{icon.country}</span>
         </div>
 
-        <div className="flex items-center gap-1 shrink-0">
+        <div className="flex shrink-0 items-center gap-2">
           <button
             onClick={copySvg}
-            title="Copier le SVG"
-            className="p-1.5 rounded-avs border border-avs-accent/15 text-avs-accent/70 hover:border-avs-primary hover:text-avs-primary hover:bg-avs-primary/10 transition-colors"
-            aria-label={`Copier SVG de ${icon.nameFr}`}
+            title={locale === 'en' ? 'Copy SVG' : 'Copier le SVG'}
+            className="inline-flex items-center gap-2 border border-avs-accent/30 px-3 py-2 text-xs font-medium text-avs-accent/80 transition-colors hover:border-avs-primary hover:text-avs-primary"
+            aria-label={`${locale === 'en' ? 'Copy SVG for' : 'Copier le SVG de'} ${icon.nameFr}`}
           >
-            {copied ? <Check size={13} className="text-green-600" /> : <Copy size={13} />}
+            {copied ? <Check size={14} className="text-green-600" /> : <Copy size={14} />}
+            <span>{locale === 'en' ? 'Copy SVG' : 'Copier le SVG'}</span>
           </button>
-
           <Link
             href={`/${locale}/icons/${icon.slug}` as any}
-            title="Fiche culturelle"
-            className="p-1.5 rounded-avs border border-avs-accent/15 text-avs-accent/70 hover:border-avs-primary hover:text-avs-primary hover:bg-avs-primary/10 transition-colors"
-            aria-label={`Fiche de ${icon.nameFr}`}
+            title={locale === 'en' ? 'Icon details' : 'Fiche culturelle'}
+            className="inline-flex items-center gap-2 bg-avs-primary px-3 py-2 text-xs font-semibold text-avs-secondary transition-colors hover:bg-avs-primary/90"
+            aria-label={`${locale === 'en' ? 'View details for' : 'Voir la fiche de'} ${icon.nameFr}`}
           >
-            <ArrowRight size={13} />
+            <span>{locale === 'en' ? 'Details' : 'Détails'}</span>
+            <ArrowRight size={14} />
           </Link>
         </div>
       </div>
-    </div>
+    </article>
   );
 }
