@@ -1,0 +1,13 @@
+{
+  "slug": "trash",
+  "nameFr": "Supprimer",
+  "nameEn": "Delete",
+  "family": "interface",
+  "tags": ["supprimer", "effacer", "jarre"],
+  "country": "Référence panafricaine",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Jarre en terre cuite à couvercle et bande en zigzag, forme générique inspirée de la poterie présente dans toute l’Afrique.",
+  "recommendedUse": "Supprimer. Tester l’icône, car la jarre peut aussi être interprétée comme un pot ou une conserve.",
+  "verifiedBy": "Documentation BUNI-ICON Core 60",
+  "license": "CC BY 4.0"
+}

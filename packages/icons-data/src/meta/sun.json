@@ -1,0 +1,13 @@
+{
+  "slug": "sun",
+  "nameFr": "Soleil",
+  "nameEn": "Sun",
+  "family": "interface",
+  "tags": ["soleil", "mode clair", "météo"],
+  "country": "Référence générique",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Disque entouré de douze rayons alternés, dont le rythme rappelle de façon générique des motifs de tissage.",
+  "recommendedUse": "Mode clair ou météo.",
+  "verifiedBy": "Documentation BUNI-ICON Core 60",
+  "license": "CC BY 4.0"
+}

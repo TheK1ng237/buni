@@ -17,7 +17,7 @@ export function Footer() {
           <div className="md:col-span-2 space-y-4">
             <div className="flex items-center gap-2.5">
               <div className="w-7 h-7 rounded-avs bg-avs-primary text-avs-secondary flex items-center justify-center font-bold text-sm shadow-avs">
-                <BuniIcon name="sankofa" size={17} />
+                <BuniIcon name="home" size={17} />
               </div>
               <span className="font-display font-black tracking-wider text-lg text-avs-accent">
                 BUNI<span className="text-avs-primary">.</span>ICON

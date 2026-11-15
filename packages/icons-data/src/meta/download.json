@@ -1,0 +1,17 @@
+{
+  "slug": "download",
+  "nameFr": "Téléchargement",
+  "nameEn": "Download",
+  "family": "interface",
+  "tags": [
+    "téléchargement",
+    "import",
+    "fichier"
+  ],
+  "country": "Référence générique",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Flèche descendante vers un panier tressé, cohérente avec l’icône basket.",
+  "recommendedUse": "Téléchargement et import.",
+  "verifiedBy": "Documentation BUNI-ICON Core 30",
+  "license": "CC BY 4.0"
+}

@@ -1,0 +1,17 @@
+{
+  "slug": "camera",
+  "nameFr": "Appareil photo",
+  "nameEn": "Camera",
+  "family": "interface",
+  "tags": [
+    "photo",
+    "caméra",
+    "image"
+  ],
+  "country": "Référence générique",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Boîtier avec objectif circulaire et losange central, reprenant une géométrie de motif textile.",
+  "recommendedUse": "Photo et capture.",
+  "verifiedBy": "Documentation BUNI-ICON Core 30",
+  "license": "CC BY 4.0"
+}

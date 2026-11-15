@@ -15,57 +15,20 @@ import { ICONS_CATALOG, type BuniIconMeta } from '@buni/icons-data';
 import { BuniIcon } from '@buni/icon-react';
 import { IconCard } from '@/components/icons/IconCard';
 import { useToast } from '@buni/ui';
+import { getIconPattern } from '@/lib/pattern-map';
 
 interface HeroPairing {
   iconSlug: string;
-  patternCss: string;
-  patternName: string;
-  culture: string;
-  country: string;
-  colors: readonly [string, string, string, string];
+  labelFr: string;
+  labelEn: string;
 }
 
 const HERO_PAIRINGS: readonly HeroPairing[] = [
-  {
-    iconSlug: 'sankofa',
-    patternCss: 'avs-pattern-adinkra-sankofa',
-    patternName: 'Adinkra Sankofa',
-    culture: 'Peuple Akan',
-    country: 'Ghana',
-    colors: ['#C0573E', '#F5EBE0', '#1D1D1B', '#C8A96E'],
-  },
-  {
-    iconSlug: 'tabouret-ashanti',
-    patternCss: 'avs-pattern-kente-royale',
-    patternName: 'Kente Royale',
-    culture: 'Royaume Ashanti',
-    country: 'Ghana',
-    colors: ['#D4A017', '#C0573E', '#4A6741', '#1D1D1B'],
-  },
-  {
-    iconSlug: 'djembe',
-    patternCss: 'avs-pattern-bogolan-fanga',
-    patternName: 'Bogolan Fanga',
-    culture: 'Peuple Mandé',
-    country: 'Mali',
-    colors: ['#8B4513', '#D4A017', '#1D1D1B', '#F5EBE0'],
-  },
-  {
-    iconSlug: 'poterie',
-    patternCss: 'avs-pattern-ndop-sultan',
-    patternName: 'Ndop Sultan',
-    culture: 'Royaume Bamoun',
-    country: 'Cameroun',
-    colors: ['#2A4A6B', '#F5EBE0', '#8B4513', '#1D1D1B'],
-  },
-  {
-    iconSlug: 'pirogue',
-    patternCss: 'avs-pattern-kuba-kasai',
-    patternName: 'Kuba Kasai',
-    culture: 'Royaume Kuba',
-    country: 'RD Congo',
-    colors: ['#4A6741', '#C8A96E', '#1D1D1B', '#F5EBE0'],
-  },
+  { iconSlug: 'home', labelFr: 'Accueil', labelEn: 'Home' },
+  { iconSlug: 'search', labelFr: 'Recherche', labelEn: 'Search' },
+  { iconSlug: 'user', labelFr: 'Profil', labelEn: 'Profile' },
+  { iconSlug: 'shield', labelFr: 'Sécurité', labelEn: 'Security' },
+  { iconSlug: 'basket', labelFr: 'Panier', labelEn: 'Basket' },
 ] as const;
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -85,6 +48,8 @@ function IconInspector({
   onCopyHex: (hex: string) => void;
   locale: string;
 }) {
+  const pattern = getIconPattern(active.iconSlug);
+
   return (
     <div
       className="relative overflow-hidden rounded-2xl border border-avs-accent/15 bg-avs-secondary/85 shadow-avs-md backdrop-blur-md"
@@ -105,7 +70,7 @@ function IconInspector({
                   : 'text-avs-accent/55 hover:text-avs-accent'
               }`}
             >
-              {p.iconSlug}
+              {locale === 'en' ? p.labelEn : p.labelFr}
             </button>
           ))}
         </div>
@@ -113,7 +78,7 @@ function IconInspector({
 
       <div className="relative mx-4 my-3 flex min-h-[200px] items-center justify-center overflow-hidden rounded-xl bg-avs-secondary/40">
         <div
-          className={`absolute inset-0 ${active.patternCss} opacity-25 transition-all duration-700`}
+          className={`absolute inset-0 ${pattern.cssClass} opacity-25 transition-all duration-700`}
           aria-hidden="true"
         />
         <AnimatePresence mode="wait">
@@ -129,7 +94,7 @@ function IconInspector({
               <BuniIcon name={active.iconSlug} size={56} strokeWidth={1.8} />
             </div>
             <div className="text-sm text-avs-accent/75">
-              {active.patternName} · {active.culture}
+              {locale === 'en' ? active.labelEn : active.labelFr}
             </div>
           </motion.div>
         </AnimatePresence>
@@ -138,12 +103,14 @@ function IconInspector({
       <div className="px-4 pb-4">
         <div className="mb-2 flex items-center justify-between text-xs text-avs-accent/60">
           <span>
-            Pigments associés · {active.country}
+            {locale === 'en'
+              ? `Textile palette · ${pattern.name} · ${pattern.origin}`
+              : `Palette textile · ${pattern.name} · ${pattern.origin}`}
           </span>
         </div>
 
         <div className="flex gap-1.5">
-          {active.colors.map(hex => (
+          {pattern.colors.map(hex => (
             <button
               key={hex}
               type="button"
@@ -168,7 +135,7 @@ function IconInspector({
             href={`/${locale}/icons/${active.iconSlug}` as any}
             className="flex items-center gap-1 font-mono text-[11px] font-bold text-avs-primary hover:underline"
           >
-            <span>Fiche culturelle & exports</span>
+            <span>{locale === 'en' ? 'Icon details & exports' : 'Détails et exports'}</span>
             <ArrowRight size={12} />
           </Link>
           <div className="flex gap-1 text-[10px] text-avs-accent/45">
@@ -218,14 +185,14 @@ export function HomeClient() {
 
   const featuredIcons = React.useMemo(() => {
     const slugs = [
-      'sankofa',
-      'calebasse',
-      'mobile-money',
-      'djembe',
-      'gye-nyame',
-      'ussd',
-      'tabouret-ashanti',
-      'duafe',
+      'home',
+      'search',
+      'user',
+      'menu',
+      'settings',
+      'shield',
+      'basket',
+      'favorite',
     ];
     return slugs
       .map(slug => ICONS_CATALOG.find(i => i.slug === slug))
@@ -246,14 +213,14 @@ export function HomeClient() {
           <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-12">
             <div className="lg:col-span-7 space-y-6">
               <h1 className="font-display text-4xl font-black leading-[1.05] tracking-tight text-avs-accent sm:text-6xl lg:text-7xl">
-                Chaque icône
-                <span className="block text-avs-primary">a une histoire.</span>
+                Core 30
+                <span className="block text-avs-primary">
+                  {locale === 'en' ? 'for your interfaces.' : 'pour vos interfaces.'}
+                </span>
               </h1>
 
               <p className="max-w-xl text-base text-avs-accent/75 font-sans leading-relaxed sm:text-lg">
-                La bibliothèque souveraine d’icônes vectorielles ancrées dans les cultures,
-                l’artisanat et le quotidien africains. Grille 24×24, pixel habité, copier-coller
-                immédiat pour React, SVG et l'écosystème Iconify.
+                {t('subtitle')}
               </p>
 
               <form onSubmit={handleSearchSubmit} className="relative max-w-lg">
@@ -336,10 +303,10 @@ export function HomeClient() {
           <div className="absolute inset-0 bg-gradient-to-br from-avs-secondary/96 via-avs-secondary/92 to-avs-secondary/88" />
           <div className="relative z-10 space-y-5">
             <div className="inline-flex p-3 rounded-2xl bg-avs-primary text-avs-secondary shadow-avs">
-              <BuniIcon name="sankofa" size={32} />
+              <BuniIcon name="home" size={32} />
             </div>
             <h2 className="font-display font-black text-3xl sm:text-4xl text-avs-accent">
-              Chaque icône a une histoire.
+              BUNI-ICON Core 30
             </h2>
             <p className="max-w-xl mx-auto text-sm sm:text-base text-avs-accent/75 font-sans leading-relaxed">
               Copiez le SVG brut, intégrez le composant React tree-shakable ou chargez le préfixe <code className="font-mono font-bold text-avs-primary">buni:</code> dans vos projets Iconify.

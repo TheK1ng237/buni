@@ -1,0 +1,13 @@
+{
+  "slug": "chart",
+  "nameFr": "Graphique",
+  "nameEn": "Chart",
+  "family": "interface",
+  "tags": ["graphique", "statistiques", "données"],
+  "country": "Référence générique",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Quatre colonnes de hauteurs croissantes, qui évoquent des fils de chaîne sans référence culturelle spécifique.",
+  "recommendedUse": "Statistiques et tableaux de bord.",
+  "verifiedBy": "Documentation BUNI-ICON Core 60",
+  "license": "CC BY 4.0"
+}

@@ -1,0 +1,13 @@
+{
+  "slug": "store",
+  "nameFr": "Boutique",
+  "nameEn": "Store",
+  "family": "interface",
+  "tags": ["boutique", "marché", "vendeur"],
+  "country": "Référence panafricaine",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Étal de marché à auvent festonné ; le marché est un lieu central de la vie commerciale dans de nombreuses villes africaines.",
+  "recommendedUse": "Boutique, marché ou vendeur.",
+  "verifiedBy": "Documentation BUNI-ICON Core 60",
+  "license": "CC BY 4.0"
+}

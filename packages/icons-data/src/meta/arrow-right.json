@@ -1,0 +1,17 @@
+{
+  "slug": "arrow-right",
+  "nameFr": "Suivant",
+  "nameEn": "Forward",
+  "family": "interface",
+  "tags": [
+    "suivant",
+    "navigation",
+    "flèche"
+  ],
+  "country": "Référence générique",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Double chevron directionnel à géométrie répétitive, rappelant des frises textiles.",
+  "recommendedUse": "Suivant, avancer ou passer.",
+  "verifiedBy": "Documentation BUNI-ICON Core 30",
+  "license": "CC BY 4.0"
+}

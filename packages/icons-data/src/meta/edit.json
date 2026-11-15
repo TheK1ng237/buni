@@ -1,0 +1,13 @@
+{
+  "slug": "edit",
+  "nameFr": "Modifier",
+  "nameEn": "Edit",
+  "family": "interface",
+  "tags": ["modifier", "éditer", "crayon"],
+  "country": "Sans attribution culturelle",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Crayon ou stylet incliné avec un trait de base ; icône utilitaire conservée proche des conventions pour la lisibilité.",
+  "recommendedUse": "Modifier, renommer ou éditer un élément.",
+  "verifiedBy": "Documentation BUNI-ICON Core 60",
+  "license": "CC BY 4.0"
+}

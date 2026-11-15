@@ -1,0 +1,13 @@
+{
+  "slug": "power",
+  "nameFr": "Alimentation",
+  "nameEn": "Power",
+  "family": "interface",
+  "tags": ["alimentation", "marche", "arrêt"],
+  "country": "Sans attribution culturelle",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Trait et arc ouvert, icône utilitaire conventionnelle.",
+  "recommendedUse": "Marche, arrêt ou déconnexion.",
+  "verifiedBy": "Documentation BUNI-ICON Core 60",
+  "license": "CC BY 4.0"
+}

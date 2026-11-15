@@ -6,7 +6,6 @@ import { useTranslations, useLocale } from '@/i18n';
 import { ICONS_CATALOG } from '@buni/icons-data';
 import { IconCard } from '@/components/icons/IconCard';
 import { IconFilters } from '@/components/icons/IconFilters';
-import { getIconPattern } from '@/lib/pattern-map';
 
 function CatalogInner() {
   const t = useTranslations('catalog');
@@ -14,8 +13,6 @@ function CatalogInner() {
   const searchParams = useSearchParams();
 
   const [search, setSearch] = React.useState(searchParams.get('q') ?? '');
-  const [selectedFamily, setSelectedFamily] = React.useState('all');
-  const [selectedCountry, setSelectedCountry] = React.useState('all');
   const [size, setSize] = React.useState(72);
   const [strokeWidth, setStrokeWidth] = React.useState(1.75);
 
@@ -26,29 +23,10 @@ function CatalogInner() {
     }
   }, [searchParams]);
 
-  const countries = React.useMemo(() => {
-    const map = new Map<string, string>();
-    for (const icon of ICONS_CATALOG) {
-      if (icon.countryCode) {
-        map.set(icon.countryCode, icon.country);
-      }
-    }
-    return Array.from(map.entries()).map(([code, label]) => ({ code, label }));
-  }, []);
-
   const filteredIcons = React.useMemo(() => {
     return ICONS_CATALOG.filter(icon => {
-      if (selectedFamily !== 'all' && icon.family !== selectedFamily) {
-        return false;
-      }
-
-      if (selectedCountry !== 'all' && icon.countryCode !== selectedCountry) {
-        return false;
-      }
-
       if (search.trim()) {
         const query = search.toLowerCase().trim();
-        const pattern = getIconPattern(icon.slug);
         const matchesNameFr = icon.nameFr.toLowerCase().includes(query);
         const matchesNameEn = icon.nameEn.toLowerCase().includes(query);
         const matchesSlug = icon.slug.toLowerCase().includes(query);
@@ -56,10 +34,6 @@ function CatalogInner() {
         const matchesCountry = icon.country.toLowerCase().includes(query);
         const matchesTags = icon.tags.some(t => t.toLowerCase().includes(query));
         const matchesNote = icon.culturalNote.toLowerCase().includes(query);
-        const matchesPattern =
-          pattern.name.toLowerCase().includes(query) ||
-          pattern.type.toLowerCase().includes(query) ||
-          pattern.symbolism.toLowerCase().includes(query);
 
         return (
           matchesNameFr ||
@@ -68,19 +42,16 @@ function CatalogInner() {
           matchesPeople ||
           matchesCountry ||
           matchesTags ||
-          matchesNote ||
-          matchesPattern
+          matchesNote
         );
       }
 
       return true;
     });
-  }, [search, selectedFamily, selectedCountry]);
+  }, [search]);
 
   const handleReset = () => {
     setSearch('');
-    setSelectedFamily('all');
-    setSelectedCountry('all');
   };
 
   return (
@@ -97,15 +68,10 @@ function CatalogInner() {
       <IconFilters
         search={search}
         onSearchChange={setSearch}
-        selectedFamily={selectedFamily}
-        onFamilyChange={setSelectedFamily}
-        selectedCountry={selectedCountry}
-        onCountryChange={setSelectedCountry}
         size={size}
         onSizeChange={setSize}
         strokeWidth={strokeWidth}
         onStrokeWidthChange={setStrokeWidth}
-        countries={countries}
         onReset={handleReset}
       />
 

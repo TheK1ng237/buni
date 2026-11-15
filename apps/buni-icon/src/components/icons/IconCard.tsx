@@ -23,13 +23,8 @@ export function IconCard({
 }: IconCardProps) {
   const { add } = useToast();
   const [copied, setCopied] = React.useState(false);
+  const familyLabel = 'Interface';
   const pattern = getIconPattern(icon.slug);
-  const familyLabel = {
-    'objets-artisanat': locale === 'en' ? 'Crafts' : 'Artisanat',
-    'vie-quotidienne': locale === 'en' ? 'Daily life' : 'Vie quotidienne',
-    'tech-locale': locale === 'en' ? 'Local technology' : 'Technologies locales',
-    symboles: locale === 'en' ? 'Adinkra symbols' : 'Symboles Adinkra',
-  }[icon.family] ?? icon.family;
 
   const copySvg = async (e: React.MouseEvent) => {
     e.preventDefault();
@@ -79,6 +74,7 @@ export function IconCard({
           <BuniIcon name={icon.slug} size={size} strokeWidth={strokeWidth} />
         </Link>
 
+        <div className="">
         <div className="flex min-w-0 flex-1 flex-col items-center text-center sm:items-start sm:text-left">
           <span className="text-sm text-avs-primary">
             {familyLabel} · {icon.people}
@@ -107,13 +103,14 @@ export function IconCard({
           </button>
           <Link
             href={`/${locale}/icons/${icon.slug}` as any}
-            title={locale === 'en' ? 'Icon details' : 'Fiche culturelle'}
+            title={locale === 'en' ? 'Icon details' : 'Détails de l’icône'}
             className="inline-flex items-center gap-2 bg-avs-primary px-3 py-2 text-xs font-semibold text-avs-secondary transition-colors hover:bg-avs-primary/90"
             aria-label={`${locale === 'en' ? 'View details for' : 'Voir la fiche de'} ${icon.nameFr}`}
           >
             <span>{locale === 'en' ? 'Details' : 'Détails'}</span>
             <ArrowRight size={14} />
           </Link>
+        </div>
         </div>
       </div>
     </article>

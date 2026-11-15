@@ -1,0 +1,17 @@
+{
+  "slug": "clock",
+  "nameFr": "Horloge / Temps",
+  "nameEn": "Clock / Time",
+  "family": "interface",
+  "tags": [
+    "heure",
+    "temps",
+    "horloge"
+  ],
+  "country": "Sans attribution géographique",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Cadran avec gnomon triangulaire et graduations, évocation stylisée de la mesure du temps par l’ombre, sans référence à un instrument précis.",
+  "recommendedUse": "Heure, durée et historique.",
+  "verifiedBy": "Documentation BUNI-ICON Core 30",
+  "license": "CC BY 4.0"
+}

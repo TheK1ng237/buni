@@ -2,7 +2,7 @@ export interface BuniIconMeta {
   slug: string;
   nameFr: string;
   nameEn: string;
-  family: 'objets-artisanat' | 'vie-quotidienne' | 'tech-locale' | 'symboles';
+  family: 'interface';
   tags: string[];
   country: string;
   countryCode?: string;
@@ -26,690 +26,1154 @@ export interface IconifyData {
 
 export const ICONS_CATALOG: BuniIconMeta[] = [
   {
-    "slug": "calebasse",
-    "nameFr": "Calebasse",
-    "nameEn": "Calabash",
-    "family": "objets-artisanat",
+    "slug": "arrow-left",
+    "nameFr": "Retour",
+    "nameEn": "Back",
+    "family": "interface",
     "tags": [
-      "calebasse",
-      "recipient",
-      "artisanat",
-      "partage",
-      "tradition"
-    ],
-    "country": "Afrique de l’Ouest",
-    "countryCode": "SN",
-    "people": "Mandé / Peul / Yoruba",
-    "culturalNote": "Fruit du calebassier vidé et séché, la calebasse est le réceptacle par excellence de l’hospitalité africaine, servant au partage de l’eau, du lait et du vin de palme.",
-    "recommendedUse": "Actions de partage, réceptacle de données, alimentation, convivialité.",
-    "verifiedBy": "BUNI Heritage Lab",
-    "license": "CC BY 4.0",
-    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M12 2v3\" />\n  <path d=\"M10 5h4\" />\n  <path d=\"M10 5c-1 2-2 3-2 5 0 1.5 1 2.5 1 4 0 4.4 2.7 8 6 8s6-3.6 6-8c0-1.5 1-2.5 1-4 0-2-1-3-2-5\" />\n  <path d=\"M7 14c1.5 2 3.5 3 5 3s3.5-1 5-3\" />\n  <circle cx=\"12\" cy=\"11\" r=\"1\" fill=\"currentColor\" stroke=\"none\" />\n</svg>",
-    "body": "<path d=\"M12 2v3\" /><path d=\"M10 5h4\" /><path d=\"M10 5c-1 2-2 3-2 5 0 1.5 1 2.5 1 4 0 4.4 2.7 8 6 8s6-3.6 6-8c0-1.5 1-2.5 1-4 0-2-1-3-2-5\" /><path d=\"M7 14c1.5 2 3.5 3 5 3s3.5-1 5-3\" /><circle cx=\"12\" cy=\"11\" r=\"1\" fill=\"currentColor\" stroke=\"none\" />"
-  },
-  {
-    "slug": "djembe",
-    "nameFr": "Djembé",
-    "nameEn": "Djembe Drum",
-    "family": "objets-artisanat",
-    "tags": [
-      "djembe",
-      "tambour",
-      "musique",
-      "rythme",
-      "fete",
-      "communion"
-    ],
-    "country": "Guinée / Mali",
-    "countryCode": "GN",
-    "people": "Malinké",
-    "culturalNote": "Taillé dans un tronc de bois noble et recouvert d’une peau de chèvre tendue par cordage, le djembé réunit la communauté (« Anke djé, anke bé » : ensemble en harmonie).",
-    "recommendedUse": "Notifications sonores, alertes, diffusion d’actualités, célébrations.",
-    "verifiedBy": "BUNI Heritage Lab & Institut des Arts Mandingues",
-    "license": "CC BY 4.0",
-    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <ellipse cx=\"12\" cy=\"5\" rx=\"8\" ry=\"2.5\" />\n  <path d=\"M4 5.5c0 4 3 6.5 6 7.5v5c-2.5 1-4 1.5-4 3h12c0-1.5-1.5-2-4-3v-5c3-1 6-3.5 6-7.5\" />\n  <path d=\"M7 6.8l3 5.7 2-5.7 2 5.7 3-5.7\" />\n  <path d=\"M9 18h6\" />\n</svg>",
-    "body": "<ellipse cx=\"12\" cy=\"5\" rx=\"8\" ry=\"2.5\" /><path d=\"M4 5.5c0 4 3 6.5 6 7.5v5c-2.5 1-4 1.5-4 3h12c0-1.5-1.5-2-4-3v-5c3-1 6-3.5 6-7.5\" /><path d=\"M7 6.8l3 5.7 2-5.7 2 5.7 3-5.7\" /><path d=\"M9 18h6\" />"
-  },
-  {
-    "slug": "pagne",
-    "nameFr": "Pagne Traditionnel",
-    "nameEn": "Woven Fabric",
-    "family": "objets-artisanat",
-    "tags": [
-      "pagne",
-      "tissu",
-      "textile",
-      "kente",
-      "bogolan",
-      "elegance"
-    ],
-    "country": "Côte d’Ivoire / Ghana",
-    "countryCode": "CI",
-    "people": "Baoulé / Asante",
-    "culturalNote": "Tissé bande par bande sur des métiers étroits traditionnels, le pagne raconte une condition sociale, un proverbe ou une bénédiction portée à même le corps.",
-    "recommendedUse": "Thèmes, habillage graphique, personnalisation de profil, mode.",
-    "verifiedBy": "BUNI Textile Archive",
-    "license": "CC BY 4.0",
-    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M4 4h16c.6 0 1 .4 1 1v14c0 .6-.4 1-1 1H4c-.6 0-1-.4-1-1V5c0-.6.4-1 1-1z\" />\n  <path d=\"M4 9h16\" />\n  <path d=\"M4 15h16\" />\n  <path d=\"M9 4v16\" />\n  <path d=\"M15 4v16\" />\n  <path d=\"M6 12l3-3 3 3-3 3-3-3z\" />\n  <path d=\"M12 12l3-3 3 3-3 3-3-3z\" />\n</svg>",
-    "body": "<path d=\"M4 4h16c.6 0 1 .4 1 1v14c0 .6-.4 1-1 1H4c-.6 0-1-.4-1-1V5c0-.6.4-1 1-1z\" /><path d=\"M4 9h16\" /><path d=\"M4 15h16\" /><path d=\"M9 4v16\" /><path d=\"M15 4v16\" /><path d=\"M6 12l3-3 3 3-3 3-3-3z\" /><path d=\"M12 12l3-3 3 3-3 3-3-3z\" />"
-  },
-  {
-    "slug": "pirogue",
-    "nameFr": "Pirogue Monoxyle",
-    "nameEn": "Canoe",
-    "family": "objets-artisanat",
-    "tags": [
-      "pirogue",
+      "retour",
       "navigation",
-      "fleuve",
-      "peche",
-      "voyage"
+      "flèche"
     ],
-    "country": "Sénégal / RDC",
-    "countryCode": "SN",
-    "people": "Lébou / Wagenia",
-    "culturalNote": "Creusée dans un seul tronc d’arbre pour affronter les rapides et les courants des fleuves majestueux (Congo, Niger), la pirogue incarne le voyage et la subsistance.",
-    "recommendedUse": "Navigation, parcours utilisateur, transport de paquets, flux de données.",
-    "verifiedBy": "BUNI Maritime & Riverine Studies",
+    "country": "Référence générique",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Pointe triangulaire avec hampe, inspirée de formes génériques de pointes d’armes d’hast.",
+    "recommendedUse": "Retour arrière. En interface RTL, inverser le côté de l’icône.",
+    "verifiedBy": "Documentation BUNI-ICON Core 30",
     "license": "CC BY 4.0",
-    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M2 13c3 3 7 5 10 5s7-2 10-5c-2-2-5-3-10-3s-8 1-10 3z\" />\n  <path d=\"M7 11v-1\" />\n  <path d=\"M12 11v-1\" />\n  <path d=\"M17 11v-1\" />\n  <path d=\"M18 6l-6 12\" />\n  <path d=\"M19.5 4.5l-3 3\" />\n  <path d=\"M4 17c2 2 5 2.5 8 2.5s6-.5 8-2.5\" />\n</svg>",
-    "body": "<path d=\"M2 13c3 3 7 5 10 5s7-2 10-5c-2-2-5-3-10-3s-8 1-10 3z\" /><path d=\"M7 11v-1\" /><path d=\"M12 11v-1\" /><path d=\"M17 11v-1\" /><path d=\"M18 6l-6 12\" /><path d=\"M19.5 4.5l-3 3\" /><path d=\"M4 17c2 2 5 2.5 8 2.5s6-.5 8-2.5\" />"
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M3.5 12 L10 6.5 V17.5 Z\"/>\n  <path d=\"M10 12 H20.5\"/>\n</svg>",
+    "body": "<path d=\"M3.5 12 L10 6.5 V17.5 Z\"/><path d=\"M10 12 H20.5\"/>"
   },
   {
-    "slug": "poterie",
-    "nameFr": "Poterie en Terre Cuite",
-    "nameEn": "Clay Pot",
-    "family": "objets-artisanat",
+    "slug": "arrow-right",
+    "nameFr": "Suivant",
+    "nameEn": "Forward",
+    "family": "interface",
     "tags": [
-      "poterie",
-      "argile",
-      "terre",
-      "conservation",
-      "artisanat"
+      "suivant",
+      "navigation",
+      "flèche"
     ],
-    "country": "Nigeria / Cameroun",
-    "countryCode": "NG",
-    "people": "Yoruba / Bamiléké",
-    "culturalNote": "Façonnée à la main et cuite à foyer ouvert avec des pigments d’ocre et de sève, la poterie garde l’eau fraîche et abrite les graines sacrées de semence.",
-    "recommendedUse": "Stockage, bases de données, archives persistantes, ressources fraîches.",
-    "verifiedBy": "BUNI Heritage Lab",
+    "country": "Référence générique",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Double chevron directionnel à géométrie répétitive, rappelant des frises textiles.",
+    "recommendedUse": "Suivant, avancer ou passer.",
+    "verifiedBy": "Documentation BUNI-ICON Core 30",
     "license": "CC BY 4.0",
-    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M9 3h6\" />\n  <path d=\"M10 3v2c-3 1.5-6 4-6 8 0 4.5 3.5 8 8 8s8-3.5 8-8c0-4-3-6.5-6-8V3\" />\n  <path d=\"M4 11c-1.5 0-2 1-2 2 0 1.5 1 2.5 2.5 2.5\" />\n  <path d=\"M20 11c1.5 0 2 1 2 2 0 1.5-1 2.5-2.5 2.5\" />\n  <path d=\"M7 13h10\" />\n  <path d=\"M8 16h8\" />\n</svg>",
-    "body": "<path d=\"M9 3h6\" /><path d=\"M10 3v2c-3 1.5-6 4-6 8 0 4.5 3.5 8 8 8s8-3.5 8-8c0-4-3-6.5-6-8V3\" /><path d=\"M4 11c-1.5 0-2 1-2 2 0 1.5 1 2.5 2.5 2.5\" /><path d=\"M20 11c1.5 0 2 1 2 2 0 1.5-1 2.5-2.5 2.5\" /><path d=\"M7 13h10\" /><path d=\"M8 16h8\" />"
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M5 6 L11 12 L5 18\"/>\n  <path d=\"M13 6 L19 12 L13 18\"/>\n</svg>",
+    "body": "<path d=\"M5 6 L11 12 L5 18\"/><path d=\"M13 6 L19 12 L13 18\"/>"
   },
   {
-    "slug": "tabouret-ashanti",
-    "nameFr": "Tabouret Ashanti",
-    "nameEn": "Ashanti Stool",
-    "family": "objets-artisanat",
+    "slug": "basket",
+    "nameFr": "Panier",
+    "nameEn": "Basket",
+    "family": "interface",
     "tags": [
-      "tabouret",
-      "siege",
-      "royauté",
-      "souverainete",
-      "akan",
-      "pouvoir"
+      "panier",
+      "achat",
+      "vannerie"
     ],
-    "country": "Ghana",
-    "countryCode": "GH",
-    "people": "Ashanti / Akan",
-    "culturalNote": "Le Sika Dwa Kofi (Siège royal) est le sanctuaire de l’âme du peuple Ashanti. Sa forme concave accueille l’autorité avec révérence et équilibre spirituel.",
-    "recommendedUse": "Gouvernance, rôles d’administration, stabilité, sécurité de compte.",
-    "verifiedBy": "National Cultural Centre of Kumasi & BUNI Advisory",
+    "country": "Afrique (référence générique)",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Panier tressé à anse avec deux bandes de vannerie, savoir-faire présent dans toute l’Afrique ; forme générique.",
+    "recommendedUse": "Panier d’achat. Compléter par un badge numérique dans l’interface.",
+    "verifiedBy": "Documentation BUNI-ICON Core 30",
     "license": "CC BY 4.0",
-    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M3 6c3 2 6 3 9 3s6-1 9-3\" />\n  <path d=\"M2 5c2 3 5 4 10 4s8-1 10-4\" />\n  <path d=\"M5 9v10\" />\n  <path d=\"M19 9v10\" />\n  <path d=\"M10 9v10\" />\n  <path d=\"M14 9v10\" />\n  <circle cx=\"12\" cy=\"14\" r=\"1.5\" />\n  <path d=\"M2 19h20\" />\n  <path d=\"M4 22h16\" />\n</svg>",
-    "body": "<path d=\"M3 6c3 2 6 3 9 3s6-1 9-3\" /><path d=\"M2 5c2 3 5 4 10 4s8-1 10-4\" /><path d=\"M5 9v10\" /><path d=\"M19 9v10\" /><path d=\"M10 9v10\" /><path d=\"M14 9v10\" /><circle cx=\"12\" cy=\"14\" r=\"1.5\" /><path d=\"M2 19h20\" /><path d=\"M4 22h16\" />"
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M4.5 10 H19.5 L17.5 20 H6.5 Z\"/>\n  <path d=\"M8 10 C8 4.5 16 4.5 16 10\"/>\n  <path d=\"M5.2 13.5 H18.8 M5.9 16.8 H18.1\"/>\n</svg>",
+    "body": "<path d=\"M4.5 10 H19.5 L17.5 20 H6.5 Z\"/><path d=\"M8 10 C8 4.5 16 4.5 16 10\"/><path d=\"M5.2 13.5 H18.8 M5.9 16.8 H18.1\"/>"
   },
   {
-    "slug": "bassine",
-    "nameFr": "Bassine Émaillée",
-    "nameEn": "Enamel Basin",
-    "family": "vie-quotidienne",
+    "slug": "bell",
+    "nameFr": "Notification",
+    "nameEn": "Notification",
+    "family": "interface",
     "tags": [
-      "bassine",
-      "foyer",
-      "marche",
-      "eau",
-      "portage",
-      "femme"
+      "notification",
+      "alerte",
+      "cloche"
     ],
-    "country": "Afrique subsaharienne",
-    "countryCode": "CI",
-    "people": "Panafricain",
-    "culturalNote": "Posée avec maestria au sommet de la tête sur un anneau d’étoffe tressée, la bassine transporte les récoltes, le linge et les produits frais au pas cadencé.",
-    "recommendedUse": "Panier d’achat, conteneur de fichiers, chargement en masse.",
-    "verifiedBy": "BUNI Daily Life Archive",
+    "country": "Référence générique",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Clochette métallique à battant, inspirée de cloches de signalisation, dont l’agogô yoruba est un exemple.",
+    "recommendedUse": "Notifications et alertes.",
+    "verifiedBy": "Documentation BUNI-ICON Core 60",
     "license": "CC BY 4.0",
-    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <ellipse cx=\"12\" cy=\"7\" rx=\"9\" ry=\"2.5\" />\n  <path d=\"M3 7.5l2 8c.5 2 3 3.5 7 3.5s6.5-1.5 7-3.5l2-8\" />\n  <path d=\"M1 7h2\" />\n  <path d=\"M21 7h2\" />\n  <path d=\"M7 14c1.5 1 3 1.5 5 1.5s3.5-.5 5-1.5\" />\n</svg>",
-    "body": "<ellipse cx=\"12\" cy=\"7\" rx=\"9\" ry=\"2.5\" /><path d=\"M3 7.5l2 8c.5 2 3 3.5 7 3.5s6.5-1.5 7-3.5l2-8\" /><path d=\"M1 7h2\" /><path d=\"M21 7h2\" /><path d=\"M7 14c1.5 1 3 1.5 5 1.5s3.5-.5 5-1.5\" />"
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M6 17 C7.5 15 7.5 12.5 7.5 10 a4.5 4.5 0 0 1 9 0 C16.5 12.5 16.5 15 18 17 Z\"/>\n  <path d=\"M12 3.2 V5.5\"/>\n  <path d=\"M10.4 19.8 a1.6 1.6 0 0 0 3.2 0\"/>\n  <path d=\"M7.6 13.5 H16.4\"/>\n</svg>",
+    "body": "<path d=\"M6 17 C7.5 15 7.5 12.5 7.5 10 a4.5 4.5 0 0 1 9 0 C16.5 12.5 16.5 15 18 17 Z\"/><path d=\"M12 3.2 V5.5\"/><path d=\"M10.4 19.8 a1.6 1.6 0 0 0 3.2 0\"/><path d=\"M7.6 13.5 H16.4\"/>"
   },
   {
-    "slug": "case",
-    "nameFr": "Case Traditionnelle",
-    "nameEn": "Traditional Hut",
-    "family": "vie-quotidienne",
+    "slug": "bookmark",
+    "nameFr": "Marque-page",
+    "nameEn": "Bookmark",
+    "family": "interface",
     "tags": [
-      "case",
-      "habitat",
-      "foyer",
-      "architecture",
-      "toit-chaume"
+      "marque-page",
+      "enregistrer",
+      "favori"
     ],
-    "country": "Burkina Faso / Mali",
-    "countryCode": "BF",
-    "people": "Gourounsi / Dogon",
-    "culturalNote": "Bâtie en banco thermique aux formes rondes protectrices, la case ancestrale régule naturellement la chaleur du soleil et célèbre l’harmonie avec la terre.",
-    "recommendedUse": "Accueil (Home), tableau de bord principal, espace membre, hébergement.",
-    "verifiedBy": "BUNI Vernacular Architecture Lab",
+    "country": "Référence générique",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Fanion à pointe en chevron ; sa géométrie fait écho à des motifs textiles sans référence culturelle spécifique.",
+    "recommendedUse": "Enregistrer un élément ou marquer une page.",
+    "verifiedBy": "Documentation BUNI-ICON Core 60",
     "license": "CC BY 4.0",
-    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M12 2l-9 9h18L12 2z\" />\n  <path d=\"M5 11v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9\" />\n  <path d=\"M10 21v-5a2 2 0 0 1 4 0v5\" />\n  <path d=\"M12 2v3\" />\n  <path d=\"M7 11h10\" />\n</svg>",
-    "body": "<path d=\"M12 2l-9 9h18L12 2z\" /><path d=\"M5 11v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9\" /><path d=\"M10 21v-5a2 2 0 0 1 4 0v5\" /><path d=\"M12 2v3\" /><path d=\"M7 11h10\" />"
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M6.5 3.5 H17.5 V20.5 L12 16 L6.5 20.5 Z\"/>\n</svg>",
+    "body": "<path d=\"M6.5 3.5 H17.5 V20.5 L12 16 L6.5 20.5 Z\"/>"
   },
   {
-    "slug": "foyer-charbon",
-    "nameFr": "Fourneau à Charbon",
-    "nameEn": "Charcoal Stove",
-    "family": "vie-quotidienne",
+    "slug": "calendar",
+    "nameFr": "Calendrier",
+    "nameEn": "Calendar",
+    "family": "interface",
     "tags": [
-      "foyer",
-      "fourneau",
-      "braise",
-      "cuisson",
-      "energie",
-      "chaleur"
+      "calendrier",
+      "date",
+      "événement"
     ],
-    "country": "Madagascar / Mali / Sénégal",
-    "countryCode": "MG",
-    "people": "Malgache / Mandé",
-    "culturalNote": "Le fourneau traditionnel en fonte ou tôle recyclée concentre les braises ardentes avec une frugalité exemplaire pour faire mijoter les repas familiaux.",
-    "recommendedUse": "Moteur de calcul, activités en cours, traitement intensif, énergie.",
-    "verifiedBy": "BUNI Heritage Lab",
+    "country": "Référence historique : RDC",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Calendrier avec cinq traits de comptage. Le comptage par encoches est une pratique ancienne et répandue ; l’os d’Ishango (RDC) constitue un repère historique.",
+    "recommendedUse": "Dates, événements et rendez-vous.",
+    "verifiedBy": "Documentation BUNI-ICON Core 30",
     "license": "CC BY 4.0",
-    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M4 6h16l-2 9H6L4 6z\" />\n  <path d=\"M3 6h18\" />\n  <path d=\"M7 15l-2 6\" />\n  <path d=\"M17 15l2 6\" />\n  <path d=\"M12 15v6\" />\n  <circle cx=\"8\" cy=\"10\" r=\"1\" fill=\"currentColor\" stroke=\"none\" />\n  <circle cx=\"12\" cy=\"10\" r=\"1\" fill=\"currentColor\" stroke=\"none\" />\n  <circle cx=\"16\" cy=\"10\" r=\"1\" fill=\"currentColor\" stroke=\"none\" />\n</svg>",
-    "body": "<path d=\"M4 6h16l-2 9H6L4 6z\" /><path d=\"M3 6h18\" /><path d=\"M7 15l-2 6\" /><path d=\"M17 15l2 6\" /><path d=\"M12 15v6\" /><circle cx=\"8\" cy=\"10\" r=\"1\" fill=\"currentColor\" stroke=\"none\" /><circle cx=\"12\" cy=\"10\" r=\"1\" fill=\"currentColor\" stroke=\"none\" /><circle cx=\"16\" cy=\"10\" r=\"1\" fill=\"currentColor\" stroke=\"none\" />"
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <rect x=\"4.5\" y=\"5.5\" width=\"15\" height=\"14.5\" rx=\"2\"/>\n  <path d=\"M8.5 3.5 V7.5 M15.5 3.5 V7.5 M4.5 10 H19.5\"/>\n  <path d=\"M8 13 V17 M10.5 13 V17 M13 13 V17 M15.5 13 V17 M7 16.5 L16.5 13.5\"/>\n</svg>",
+    "body": "<rect x=\"4.5\" y=\"5.5\" width=\"15\" height=\"14.5\" rx=\"2\"/><path d=\"M8.5 3.5 V7.5 M15.5 3.5 V7.5 M4.5 10 H19.5\"/><path d=\"M8 13 V17 M10.5 13 V17 M13 13 V17 M15.5 13 V17 M7 16.5 L16.5 13.5\"/>"
   },
   {
-    "slug": "kiosque",
-    "nameFr": "Kiosque de Rue",
-    "nameEn": "Street Kiosk",
-    "family": "vie-quotidienne",
+    "slug": "camera",
+    "nameFr": "Appareil photo",
+    "nameEn": "Camera",
+    "family": "interface",
     "tags": [
-      "kiosque",
-      "boutique",
-      "service",
-      "proximite",
-      "quartier"
+      "photo",
+      "caméra",
+      "image"
     ],
-    "country": "Cameroun / Sénégal / Ghana",
-    "countryCode": "CM",
-    "people": "Urbain Panafricain",
-    "culturalNote": "Point de repère du carrefour et premier relais des services de proximité, le kiosque offre pain, journaux, recharge et discussions impromptues.",
-    "recommendedUse": "Points de vente, succursales, contact local, guichet de support.",
-    "verifiedBy": "BUNI Urban Studies",
+    "country": "Référence générique",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Boîtier avec objectif circulaire et losange central, reprenant une géométrie de motif textile.",
+    "recommendedUse": "Photo et capture.",
+    "verifiedBy": "Documentation BUNI-ICON Core 30",
     "license": "CC BY 4.0",
-    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M4 8l8-4 8 4v2H4V8z\" />\n  <path d=\"M5 10v11\" />\n  <path d=\"M19 10v11\" />\n  <path d=\"M3 21h18\" />\n  <path d=\"M5 14h14\" />\n  <path d=\"M8 10v4\" />\n  <path d=\"M16 10v4\" />\n  <path d=\"M10 17h4v4h-4z\" />\n</svg>",
-    "body": "<path d=\"M4 8l8-4 8 4v2H4V8z\" /><path d=\"M5 10v11\" /><path d=\"M19 10v11\" /><path d=\"M3 21h18\" /><path d=\"M5 14h14\" /><path d=\"M8 10v4\" /><path d=\"M16 10v4\" /><path d=\"M10 17h4v4h-4z\" />"
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M3.5 8 H7.5 L9 5.5 H15 L16.5 8 H20.5 V19 H3.5Z\"/>\n  <circle cx=\"12\" cy=\"13.5\" r=\"4\"/>\n  <path d=\"M12 11.5 L14 13.5 L12 15.5 L10 13.5Z\"/>\n</svg>",
+    "body": "<path d=\"M3.5 8 H7.5 L9 5.5 H15 L16.5 8 H20.5 V19 H3.5Z\"/><circle cx=\"12\" cy=\"13.5\" r=\"4\"/><path d=\"M12 11.5 L14 13.5 L12 15.5 L10 13.5Z\"/>"
   },
   {
-    "slug": "marche",
-    "nameFr": "Grand Marché",
-    "nameEn": "Open Market",
-    "family": "vie-quotidienne",
+    "slug": "chart",
+    "nameFr": "Graphique",
+    "nameEn": "Chart",
+    "family": "interface",
     "tags": [
-      "marche",
-      "commerce",
-      "etal",
-      "echanges",
-      "sociabilite"
+      "graphique",
+      "statistiques",
+      "données"
     ],
-    "country": "Togo / Nigeria",
-    "countryCode": "TG",
-    "people": "Nana Benz / Marchands d’Afrique",
-    "culturalNote": "Lieu de convergence des saveurs, des nouvelles et des négoces, le marché sous ombrière est le réseau social fondamental des cités africaines.",
-    "recommendedUse": "Boutique, marketplace, catalogue d’offres, intégrations.",
-    "verifiedBy": "BUNI Heritage Lab",
+    "country": "Référence générique",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Quatre colonnes de hauteurs croissantes, qui évoquent des fils de chaîne sans référence culturelle spécifique.",
+    "recommendedUse": "Statistiques et tableaux de bord.",
+    "verifiedBy": "Documentation BUNI-ICON Core 60",
     "license": "CC BY 4.0",
-    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M3 9l9-5 9 5v2H3V9z\" />\n  <path d=\"M5 11v8\" />\n  <path d=\"M19 11v8\" />\n  <path d=\"M3 19h18\" />\n  <circle cx=\"9\" cy=\"15\" r=\"1.5\" />\n  <circle cx=\"15\" cy=\"15\" r=\"1.5\" />\n  <path d=\"M12 4v2\" />\n</svg>",
-    "body": "<path d=\"M3 9l9-5 9 5v2H3V9z\" /><path d=\"M5 11v8\" /><path d=\"M19 11v8\" /><path d=\"M3 19h18\" /><circle cx=\"9\" cy=\"15\" r=\"1.5\" /><circle cx=\"15\" cy=\"15\" r=\"1.5\" /><path d=\"M12 4v2\" />"
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M5.5 19.5 V13.5 M10.2 19.5 V7.5 M14.9 19.5 V11 M19.6 19.5 V4.5\"/>\n  <path d=\"M3 21.2 H21\"/>\n</svg>",
+    "body": "<path d=\"M5.5 19.5 V13.5 M10.2 19.5 V7.5 M14.9 19.5 V11 M19.6 19.5 V4.5\"/><path d=\"M3 21.2 H21\"/>"
   },
   {
-    "slug": "mortier-pilon",
-    "nameFr": "Mortier et Pilon",
-    "nameEn": "Mortar and Pestle",
-    "family": "vie-quotidienne",
+    "slug": "chat",
+    "nameFr": "Discussion",
+    "nameEn": "Chat",
+    "family": "interface",
     "tags": [
-      "mortier",
-      "pilon",
-      "foufou",
-      "force",
-      "cuisine",
-      "rythme"
+      "discussion",
+      "message",
+      "commentaire"
     ],
-    "country": "Côte d’Ivoire / Nigeria",
-    "countryCode": "CI",
-    "people": "Akan / Igbo / Baoulé",
-    "culturalNote": "Sculpté dans le cœur d’un iroko massif, le mortier donne la cadence de la maisonnée au son réconfortant du pilage matinal de l’igname et du manioc.",
-    "recommendedUse": "Traitement de données, compilation, transformation, outils de build.",
-    "verifiedBy": "BUNI Gastronomic Heritage Group",
+    "country": "Référence générique",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Bulle de dialogue marquée d’un zigzag inspiré de motifs textiles génériques.",
+    "recommendedUse": "Discussion et commentaires.",
+    "verifiedBy": "Documentation BUNI-ICON Core 60",
     "license": "CC BY 4.0",
-    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M5 9c0 3 2.5 5 5 5.5V18c-2 0-3 1-3 2h10c0-1-1-2-3-2v-3.5c2.5-.5 5-2.5 5-5.5H5z\" />\n  <path d=\"M12 2l2 11h-4l2-11z\" />\n  <path d=\"M4 9h16\" />\n</svg>",
-    "body": "<path d=\"M5 9c0 3 2.5 5 5 5.5V18c-2 0-3 1-3 2h10c0-1-1-2-3-2v-3.5c2.5-.5 5-2.5 5-5.5H5z\" /><path d=\"M12 2l2 11h-4l2-11z\" /><path d=\"M4 9h16\" />"
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M4 6.5 a2 2 0 0 1 2 -2 H18 a2 2 0 0 1 2 2 V14.5 a2 2 0 0 1 -2 2 H11 L7 20 V16.5 H6 a2 2 0 0 1 -2 -2Z\"/>\n  <path d=\"M8 10.5 l1.5 -1.3 l1.5 1.3 l1.5 -1.3 l1.5 1.3 l1.5 -1.3\"/>\n</svg>",
+    "body": "<path d=\"M4 6.5 a2 2 0 0 1 2 -2 H18 a2 2 0 0 1 2 2 V14.5 a2 2 0 0 1 -2 2 H11 L7 20 V16.5 H6 a2 2 0 0 1 -2 -2Z\"/><path d=\"M8 10.5 l1.5 -1.3 l1.5 1.3 l1.5 -1.3 l1.5 1.3 l1.5 -1.3\"/>"
   },
   {
-    "slug": "moto-taxi",
-    "nameFr": "Moto-Taxi",
-    "nameEn": "Motorcycle Taxi",
-    "family": "vie-quotidienne",
+    "slug": "check",
+    "nameFr": "Validation",
+    "nameEn": "Check",
+    "family": "interface",
     "tags": [
-      "moto",
-      "taxi",
+      "validation",
+      "confirmation",
+      "interface"
+    ],
+    "country": "Référence générique",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Coche inscrite dans un losange, forme géométrique récurrente dans de nombreux textiles africains (référence générique).",
+    "recommendedUse": "Confirmation et tâche terminée.",
+    "verifiedBy": "Documentation BUNI-ICON Core 30",
+    "license": "CC BY 4.0",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M12 2.5 L21.5 12 L12 21.5 L2.5 12Z\"/>\n  <path d=\"M8 12.2 L10.8 15 L16 9.2\"/>\n</svg>",
+    "body": "<path d=\"M12 2.5 L21.5 12 L12 21.5 L2.5 12Z\"/><path d=\"M8 12.2 L10.8 15 L16 9.2\"/>"
+  },
+  {
+    "slug": "clock",
+    "nameFr": "Horloge / Temps",
+    "nameEn": "Clock / Time",
+    "family": "interface",
+    "tags": [
+      "heure",
+      "temps",
+      "horloge"
+    ],
+    "country": "Sans attribution géographique",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Cadran avec gnomon triangulaire et graduations, évocation stylisée de la mesure du temps par l’ombre, sans référence à un instrument précis.",
+    "recommendedUse": "Heure, durée et historique.",
+    "verifiedBy": "Documentation BUNI-ICON Core 30",
+    "license": "CC BY 4.0",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <circle cx=\"12\" cy=\"12\" r=\"9\"/>\n  <path d=\"M6.5 12 H17.5\"/>\n  <path d=\"M10 12 L12 5.5 L14 12\"/>\n  <path d=\"M18.58 15.8 L17.28 15.05 M12 19.6 L12 18.1 M5.42 15.8 L6.72 15.05\"/>\n</svg>",
+    "body": "<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M6.5 12 H17.5\"/><path d=\"M10 12 L12 5.5 L14 12\"/><path d=\"M18.58 15.8 L17.28 15.05 M12 19.6 L12 18.1 M5.42 15.8 L6.72 15.05\"/>"
+  },
+  {
+    "slug": "close",
+    "nameFr": "Fermer",
+    "nameEn": "Close",
+    "family": "interface",
+    "tags": [
+      "fermer",
+      "annuler",
+      "interface"
+    ],
+    "country": "Sans attribution géographique",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Deux lignes croisées, dans une forme volontairement simple.",
+    "recommendedUse": "Fermer, annuler ou supprimer un tag.",
+    "verifiedBy": "Documentation BUNI-ICON Core 30",
+    "license": "CC BY 4.0",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M6 6 L18 18 M18 6 L6 18\"/>\n</svg>",
+    "body": "<path d=\"M6 6 L18 18 M18 6 L6 18\"/>"
+  },
+  {
+    "slug": "cloud",
+    "nameFr": "Nuage",
+    "nameEn": "Cloud",
+    "family": "interface",
+    "tags": [
+      "nuage",
+      "stockage",
+      "météo"
+    ],
+    "country": "Référence générique",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Nuage décoré d’un zigzag inspiré de motifs textiles génériques.",
+    "recommendedUse": "Stockage en ligne ou météo.",
+    "verifiedBy": "Documentation BUNI-ICON Core 60",
+    "license": "CC BY 4.0",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M7 18.5 A4 4 0 0 1 6.6 10.6 A6 6 0 0 1 18.2 10.8 A3.9 3.9 0 0 1 17.5 18.5 Z\"/>\n  <path d=\"M9 14.8 l1.5 -1.3 l1.5 1.3 l1.5 -1.3 l1.5 1.3\"/>\n</svg>",
+    "body": "<path d=\"M7 18.5 A4 4 0 0 1 6.6 10.6 A6 6 0 0 1 18.2 10.8 A3.9 3.9 0 0 1 17.5 18.5 Z\"/><path d=\"M9 14.8 l1.5 -1.3 l1.5 1.3 l1.5 -1.3 l1.5 1.3\"/>"
+  },
+  {
+    "slug": "copy",
+    "nameFr": "Copier",
+    "nameEn": "Copy",
+    "family": "interface",
+    "tags": [
+      "copier",
+      "dupliquer",
+      "presse-papiers"
+    ],
+    "country": "Sans attribution culturelle",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Deux cadres superposés, forme utilitaire proche des conventions d’interface et sans référence culturelle spécifique.",
+    "recommendedUse": "Copier ou dupliquer un élément.",
+    "verifiedBy": "Documentation BUNI-ICON Core 60",
+    "license": "CC BY 4.0",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <rect x=\"8.5\" y=\"8.5\" width=\"11.5\" height=\"11.5\" rx=\"2\"/>\n  <path d=\"M15.5 8.5 V6 a2 2 0 0 0 -2 -2 H6 a2 2 0 0 0 -2 2 V13.5 a2 2 0 0 0 2 2 H8.5\"/>\n</svg>",
+    "body": "<rect x=\"8.5\" y=\"8.5\" width=\"11.5\" height=\"11.5\" rx=\"2\"/><path d=\"M15.5 8.5 V6 a2 2 0 0 0 -2 -2 H6 a2 2 0 0 0 -2 2 V13.5 a2 2 0 0 0 2 2 H8.5\"/>"
+  },
+  {
+    "slug": "cowrie",
+    "nameFr": "Cauri",
+    "nameEn": "Cowrie",
+    "family": "interface",
+    "tags": [
+      "cauri",
+      "monnaie",
+      "paiement"
+    ],
+    "country": "Afrique (notamment Afrique de l’Ouest)",
+    "people": "Référence africaine générique",
+    "culturalNote": "Coquillage cauri à fente centrale dentelée. Les cauris ont servi de monnaie dans une large partie de l’Afrique, notamment en Afrique de l’Ouest, et restent un symbole de valeur.",
+    "recommendedUse": "Devise, solde et prix.",
+    "verifiedBy": "Documentation BUNI-ICON Core 30",
+    "license": "CC BY 4.0",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <g transform=\"rotate(-12 12 12)\"><ellipse cx=\"12\" cy=\"12\" rx=\"6.2\" ry=\"8.8\"/><path d=\"M12.6 3.5 C10.8 8.5 10.8 15.5 12.6 20.5\"/><path d=\"M9.4 8.5 l1.5 .4 M9.2 12 h1.7 M9.4 15.5 l1.5 -.4 M14.4 9 l-1.2 .3 M14.6 12 h-1.4 M14.4 15 l-1.2 -.3\"/></g>\n</svg>",
+    "body": "<g transform=\"rotate(-12 12 12)\"><ellipse cx=\"12\" cy=\"12\" rx=\"6.2\" ry=\"8.8\"/><path d=\"M12.6 3.5 C10.8 8.5 10.8 15.5 12.6 20.5\"/><path d=\"M9.4 8.5 l1.5 .4 M9.2 12 h1.7 M9.4 15.5 l1.5 -.4 M14.4 9 l-1.2 .3 M14.6 12 h-1.4 M14.4 15 l-1.2 -.3\"/></g>"
+  },
+  {
+    "slug": "delivery",
+    "nameFr": "Livraison",
+    "nameEn": "Delivery",
+    "family": "interface",
+    "tags": [
+      "livraison",
       "transport",
-      "vitesse",
-      "urbain",
-      "zemidjan"
+      "colis"
     ],
-    "country": "Bénin / Togo / Nigeria / Kenya",
-    "countryCode": "BJ",
-    "people": "Urbain Panafricain",
-    "culturalNote": "Appelé Zémidjan à Cotonou, Okada à Lagos ou Boda-Boda à Nairobi, le moto-taxi est le cœur battant de la mobilité urbaine africaine, agile et indispensable.",
-    "recommendedUse": "Livraison express, envoi rapide, mobilité, géolocalisation.",
-    "verifiedBy": "BUNI Urban Mobility Observatory",
+    "country": "Référence panafricaine",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Pirogue transportant un colis avec une pagaie ; la pirogue sert au transport de marchandises sur de nombreux fleuves et lacs africains.",
+    "recommendedUse": "Livraison et suivi de commande. Tester sa lisibilité, car la pirogue est moins immédiate qu’un camion.",
+    "verifiedBy": "Documentation BUNI-ICON Core 60",
     "license": "CC BY 4.0",
-    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <circle cx=\"5\" cy=\"17\" r=\"3\" />\n  <circle cx=\"19\" cy=\"17\" r=\"3\" />\n  <path d=\"M5 17h4l3-6h5l2 6\" />\n  <path d=\"M12 11l-2-4H7\" />\n  <circle cx=\"12\" cy=\"5\" r=\"1.5\" />\n  <path d=\"M12 6.5v4\" />\n  <path d=\"M14 9h3\" />\n</svg>",
-    "body": "<circle cx=\"5\" cy=\"17\" r=\"3\" /><circle cx=\"19\" cy=\"17\" r=\"3\" /><path d=\"M5 17h4l3-6h5l2 6\" /><path d=\"M12 11l-2-4H7\" /><circle cx=\"12\" cy=\"5\" r=\"1.5\" /><path d=\"M12 6.5v4\" /><path d=\"M14 9h3\" />"
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M2.5 14 H21.5 C20 18 17 19.5 14 19.5 H10 C7 19.5 4 18 2.5 14Z\"/>\n  <rect x=\"7\" y=\"9.2\" width=\"5.5\" height=\"4.8\" rx=\"0.8\"/>\n  <path d=\"M18.5 4 L13.8 13\"/>\n</svg>",
+    "body": "<path d=\"M2.5 14 H21.5 C20 18 17 19.5 14 19.5 H10 C7 19.5 4 18 2.5 14Z\"/><rect x=\"7\" y=\"9.2\" width=\"5.5\" height=\"4.8\" rx=\"0.8\"/><path d=\"M18.5 4 L13.8 13\"/>"
   },
   {
-    "slug": "theiere-ataya",
-    "nameFr": "Théière Ataya",
-    "nameEn": "Ataya Teapot",
-    "family": "vie-quotidienne",
+    "slug": "download",
+    "nameFr": "Téléchargement",
+    "nameEn": "Download",
+    "family": "interface",
     "tags": [
-      "theiere",
-      "ataya",
-      "the",
-      "patience",
-      "hospitalite",
-      "palabre"
+      "téléchargement",
+      "import",
+      "fichier"
     ],
-    "country": "Sénégal / Mauritanie / Mali",
-    "countryCode": "SN",
-    "people": "Sénégambie / Sahélo-saharien",
-    "culturalNote": "Instrument du rituel des trois verres d’Ataya (le premier amer comme la mort, le deuxième doux comme la vie, le troisième suave comme l’amour).",
-    "recommendedUse": "Temps de pause, mise en attente, salon de discussion, messagerie.",
-    "verifiedBy": "BUNI Tea Culture Circle",
+    "country": "Référence générique",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Flèche descendante vers un panier tressé, cohérente avec l’icône basket.",
+    "recommendedUse": "Téléchargement et import.",
+    "verifiedBy": "Documentation BUNI-ICON Core 30",
     "license": "CC BY 4.0",
-    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M11 2h2\" />\n  <path d=\"M12 2v2\" />\n  <path d=\"M9 4h6\" />\n  <path d=\"M8 6c-2 3-2 8 0 11 1 1.5 2.5 2 4 2s3-.5 4-2c2-3 2-8 0-11\" />\n  <path d=\"M7 10C3 10 3 14 6 15\" />\n  <path d=\"M16 8c3 0 5 1 5 4s-2 5-5 5\" />\n  <path d=\"M6 19h12\" />\n</svg>",
-    "body": "<path d=\"M11 2h2\" /><path d=\"M12 2v2\" /><path d=\"M9 4h6\" /><path d=\"M8 6c-2 3-2 8 0 11 1 1.5 2.5 2 4 2s3-.5 4-2c2-3 2-8 0-11\" /><path d=\"M7 10C3 10 3 14 6 15\" /><path d=\"M16 8c3 0 5 1 5 4s-2 5-5 5\" /><path d=\"M6 19h12\" />"
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M4.5 14 H19.5 L17.5 20.5 H6.5 Z\"/>\n  <path d=\"M5.4 17.2 H18.6\"/>\n  <path d=\"M12 3.5 V10.5 M8.5 7.5 L12 11 L15.5 7.5\"/>\n</svg>",
+    "body": "<path d=\"M4.5 14 H19.5 L17.5 20.5 H6.5 Z\"/><path d=\"M5.4 17.2 H18.6\"/><path d=\"M12 3.5 V10.5 M8.5 7.5 L12 11 L15.5 7.5\"/>"
   },
   {
-    "slug": "agent-point",
-    "nameFr": "Point Agent",
-    "nameEn": "Cash Agent Booth",
-    "family": "tech-locale",
+    "slug": "edit",
+    "nameFr": "Modifier",
+    "nameEn": "Edit",
+    "family": "interface",
     "tags": [
-      "agent",
-      "guichet",
-      "depot",
-      "retrait",
-      "proximite",
-      "kiosque"
+      "modifier",
+      "éditer",
+      "crayon"
     ],
-    "country": "Kenya / Ouganda / Tanzanie",
-    "countryCode": "KE",
-    "people": "Panafricain",
-    "culturalNote": "Sous son parasol ou dans sa cabine jaune ou orange, l’agent mobile money est le visage humain qui convertit instantanément le cash en bits numériques.",
-    "recommendedUse": "Points relais, support utilisateur en direct, partenaires agréés.",
-    "verifiedBy": "BUNI FinTech Observatory",
+    "country": "Sans attribution culturelle",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Crayon ou stylet incliné avec un trait de base ; icône utilitaire conservée proche des conventions pour la lisibilité.",
+    "recommendedUse": "Modifier, renommer ou éditer un élément.",
+    "verifiedBy": "Documentation BUNI-ICON Core 60",
     "license": "CC BY 4.0",
-    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M12 2a8 8 0 0 0-8 8h16a8 8 0 0 0-8-8z\" />\n  <path d=\"M12 2v20\" />\n  <path d=\"M4 10l2 11h12l2-11\" />\n  <circle cx=\"12\" cy=\"14\" r=\"1.5\" />\n  <path d=\"M8 21h8\" />\n</svg>",
-    "body": "<path d=\"M12 2a8 8 0 0 0-8 8h16a8 8 0 0 0-8-8z\" /><path d=\"M12 2v20\" /><path d=\"M4 10l2 11h12l2-11\" /><circle cx=\"12\" cy=\"14\" r=\"1.5\" /><path d=\"M8 21h8\" />"
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M4.5 19.5 L5.5 15 L16.5 4 L20 7.5 L9 18.5 Z\"/>\n  <path d=\"M14 6.5 L17.5 10\"/>\n  <path d=\"M12.5 20.5 H20\"/>\n</svg>",
+    "body": "<path d=\"M4.5 19.5 L5.5 15 L16.5 4 L20 7.5 L9 18.5 Z\"/><path d=\"M14 6.5 L17.5 10\"/><path d=\"M12.5 20.5 H20\"/>"
   },
   {
-    "slug": "carte-sim",
-    "nameFr": "Carte SIM",
-    "nameEn": "SIM Card",
-    "family": "tech-locale",
+    "slug": "eye-off",
+    "nameFr": "Masquer",
+    "nameEn": "Hide",
+    "family": "interface",
     "tags": [
-      "sim",
-      "identite",
-      "gsm",
-      "reseau",
-      "puce",
-      "telecom"
+      "masquer",
+      "visibilité",
+      "confidentialité"
     ],
-    "country": "Panafricain",
-    "countryCode": "ZA",
-    "people": "Panafricain",
-    "culturalNote": "La minuscule carte à puce qui abrite l’identité numérique, le numéro de téléphone et la confiance de chaque citoyen connecté en Afrique.",
-    "recommendedUse": "Profil utilisateur, identité, sécurité SIM-swap, authentification.",
-    "verifiedBy": "BUNI Digital Sovereignty Lab",
+    "country": "Référence générique",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Œil barré, construit sur la même forme que l’icône eye.",
+    "recommendedUse": "Masquer un contenu ou un mot de passe.",
+    "verifiedBy": "Documentation BUNI-ICON Core 60",
     "license": "CC BY 4.0",
-    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M6 2h8l5 5v15H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z\" />\n  <rect x=\"8\" y=\"11\" width=\"8\" height=\"8\" rx=\"1\" />\n  <path d=\"M8 15h8\" />\n  <path d=\"M12 11v8\" />\n  <path d=\"M12 7v1\" />\n</svg>",
-    "body": "<path d=\"M6 2h8l5 5v15H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z\" /><rect x=\"8\" y=\"11\" width=\"8\" height=\"8\" rx=\"1\" /><path d=\"M8 15h8\" /><path d=\"M12 11v8\" /><path d=\"M12 7v1\" />"
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M2.5 12 Q12 4 21.5 12 Q12 20 2.5 12Z\"/>\n  <path d=\"M12 9.5 L14.5 12 L12 14.5 L9.5 12Z\"/>\n  <path d=\"M4 3.5 L20 20.5\"/>\n</svg>",
+    "body": "<path d=\"M2.5 12 Q12 4 21.5 12 Q12 20 2.5 12Z\"/><path d=\"M12 9.5 L14.5 12 L12 14.5 L9.5 12Z\"/><path d=\"M4 3.5 L20 20.5\"/>"
   },
   {
-    "slug": "compteur-prepaye",
-    "nameFr": "Compteur Électrique Prépayé",
-    "nameEn": "Prepaid Energy Meter",
-    "family": "tech-locale",
+    "slug": "eye",
+    "nameFr": "Visibilité",
+    "nameEn": "Visibility",
+    "family": "interface",
     "tags": [
-      "compteur",
-      "prepaye",
-      "electricite",
-      "energie",
-      "code-pin"
+      "visibilité",
+      "voir",
+      "aperçu"
     ],
-    "country": "Afrique du Sud / Ghana / Côte d’Ivoire",
-    "countryCode": "ZA",
-    "people": "Panafricain",
-    "culturalNote": "Le boîtier mural à clavier numérique (Cashpower) où l’on tape les 20 chiffres du jeton acheté au coin de la rue pour allumer la lumière du foyer.",
-    "recommendedUse": "Quota de requêtes, facturation à l’usage, limites de bande passante.",
-    "verifiedBy": "BUNI Tech Observatory",
+    "country": "Référence générique",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Œil avec une pupille en losange, de la même famille que search ; le losange rappelle des motifs textiles génériques.",
+    "recommendedUse": "Afficher, prévisualiser ou révéler un mot de passe.",
+    "verifiedBy": "Documentation BUNI-ICON Core 60",
     "license": "CC BY 4.0",
-    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <rect x=\"5\" y=\"2\" width=\"14\" height=\"20\" rx=\"2\" />\n  <rect x=\"8\" y=\"5\" width=\"8\" height=\"4\" rx=\"1\" />\n  <circle cx=\"8\" cy=\"13\" r=\".5\" fill=\"currentColor\" stroke=\"none\" />\n  <circle cx=\"12\" cy=\"13\" r=\".5\" fill=\"currentColor\" stroke=\"none\" />\n  <circle cx=\"16\" cy=\"13\" r=\".5\" fill=\"currentColor\" stroke=\"none\" />\n  <circle cx=\"8\" cy=\"16\" r=\".5\" fill=\"currentColor\" stroke=\"none\" />\n  <circle cx=\"12\" cy=\"16\" r=\".5\" fill=\"currentColor\" stroke=\"none\" />\n  <circle cx=\"16\" cy=\"16\" r=\".5\" fill=\"currentColor\" stroke=\"none\" />\n  <path d=\"M10 19h4\" />\n</svg>",
-    "body": "<rect x=\"5\" y=\"2\" width=\"14\" height=\"20\" rx=\"2\" /><rect x=\"8\" y=\"5\" width=\"8\" height=\"4\" rx=\"1\" /><circle cx=\"8\" cy=\"13\" r=\".5\" fill=\"currentColor\" stroke=\"none\" /><circle cx=\"12\" cy=\"13\" r=\".5\" fill=\"currentColor\" stroke=\"none\" /><circle cx=\"16\" cy=\"13\" r=\".5\" fill=\"currentColor\" stroke=\"none\" /><circle cx=\"8\" cy=\"16\" r=\".5\" fill=\"currentColor\" stroke=\"none\" /><circle cx=\"12\" cy=\"16\" r=\".5\" fill=\"currentColor\" stroke=\"none\" /><circle cx=\"16\" cy=\"16\" r=\".5\" fill=\"currentColor\" stroke=\"none\" /><path d=\"M10 19h4\" />"
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M2.5 12 Q12 4 21.5 12 Q12 20 2.5 12Z\"/>\n  <path d=\"M12 9.5 L14.5 12 L12 14.5 L9.5 12Z\"/>\n</svg>",
+    "body": "<path d=\"M2.5 12 Q12 4 21.5 12 Q12 20 2.5 12Z\"/><path d=\"M12 9.5 L14.5 12 L12 14.5 L9.5 12Z\"/>"
   },
   {
-    "slug": "cybercafe",
-    "nameFr": "Cybercafé",
-    "nameEn": "Cybercafe",
-    "family": "tech-locale",
+    "slug": "favorite",
+    "nameFr": "Favori / J’aime",
+    "nameEn": "Favorite / Like",
+    "family": "interface",
     "tags": [
-      "cybercafe",
-      "internet",
-      "connexion",
-      "communaute",
-      "ecran"
+      "favori",
+      "aimer",
+      "adinkra"
     ],
-    "country": "Ghana / Cameroun / Nigeria",
-    "countryCode": "GH",
-    "people": "Génération Web africaine",
-    "culturalNote": "Berceau des premiers codeurs, étudiants et entrepreneurs du continent, lieu mythique d’initiation aux autoroutes de l’information au son des ventilateurs.",
-    "recommendedUse": "Espace de travail, ressources publiques, sessions partagées, connexion.",
-    "verifiedBy": "BUNI Digital Heritage Project",
+    "country": "Ghana (Akan)",
+    "people": "Akan (référence Adinkra Akoma)",
+    "culturalNote": "Cœur géométrique à pointe et encoche centrale, inspiré de l’Akoma Adinkra (Akan, Ghana). Référence à une culture précise, à nommer comme telle et à ne pas présenter comme universelle.",
+    "recommendedUse": "Favori, j’aime et sauvegarde. Validation culturelle recommandée avant diffusion publique.",
+    "verifiedBy": "Documentation BUNI-ICON Core 30",
     "license": "CC BY 4.0",
-    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <rect x=\"2\" y=\"3\" width=\"14\" height=\"11\" rx=\"2\" />\n  <path d=\"M6 14v4\" />\n  <path d=\"M12 14v4\" />\n  <path d=\"M4 18h10\" />\n  <path d=\"M17 10h4a1 1 0 0 1 1 1v2a2 2 0 0 1-2 2h-3\" />\n  <path d=\"M19 6c.5 1 1.5 1 1.5 2\" />\n  <path d=\"M17 6c.5 1 1.5 1 1.5 2\" />\n</svg>",
-    "body": "<rect x=\"2\" y=\"3\" width=\"14\" height=\"11\" rx=\"2\" /><path d=\"M6 14v4\" /><path d=\"M12 14v4\" /><path d=\"M4 18h10\" /><path d=\"M17 10h4a1 1 0 0 1 1 1v2a2 2 0 0 1-2 2h-3\" /><path d=\"M19 6c.5 1 1.5 1 1.5 2\" /><path d=\"M17 6c.5 1 1.5 1 1.5 2\" />"
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M12 20 L4.5 12.2 C2.5 9.8 3.6 5.5 7.4 5.5 C9.5 5.5 11 6.8 12 8.5 C13 6.8 14.5 5.5 16.6 5.5 C20.4 5.5 21.5 9.8 19.5 12.2 Z\"/>\n  <path d=\"M12 8.5 V12\"/>\n</svg>",
+    "body": "<path d=\"M12 20 L4.5 12.2 C2.5 9.8 3.6 5.5 7.4 5.5 C9.5 5.5 11 6.8 12 8.5 C13 6.8 14.5 5.5 16.6 5.5 C20.4 5.5 21.5 9.8 19.5 12.2 Z\"/><path d=\"M12 8.5 V12\"/>"
   },
   {
-    "slug": "mobile-money",
-    "nameFr": "Mobile Money",
-    "nameEn": "Mobile Money",
-    "family": "tech-locale",
+    "slug": "file",
+    "nameFr": "Fichier",
+    "nameEn": "File",
+    "family": "interface",
     "tags": [
-      "mobile-money",
-      "paiement",
-      "fintech",
-      "transfert",
-      "m-pesa",
-      "wave"
+      "fichier",
+      "document",
+      "papier"
     ],
-    "country": "Kenya / Sénégal / Côte d’Ivoire",
-    "countryCode": "KE",
-    "people": "Panafricain",
-    "culturalNote": "Pionnière mondiale du paiement mobile sans compte bancaire, l’Afrique a réinventé la transaction financière pour inclure des centaines de millions d’usagers.",
-    "recommendedUse": "Transactions financières, paiements in-app, solde, retraits.",
-    "verifiedBy": "BUNI Inclusive FinTech Taskforce",
+    "country": "Référence générique",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Feuille à coin plié et quatre encoches, en référence à une pratique de comptage également évoquée par l’icône calendar.",
+    "recommendedUse": "Document ou fichier.",
+    "verifiedBy": "Documentation BUNI-ICON Core 60",
     "license": "CC BY 4.0",
-    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <rect x=\"5\" y=\"2\" width=\"14\" height=\"20\" rx=\"3\" />\n  <circle cx=\"12\" cy=\"18\" r=\"1\" fill=\"currentColor\" stroke=\"none\" />\n  <path d=\"M12 6v6\" />\n  <path d=\"M9 8.5h6\" />\n  <path d=\"M15 8l-3-2-3 2\" />\n  <path d=\"M9 10l3 2 3-2\" />\n</svg>",
-    "body": "<rect x=\"5\" y=\"2\" width=\"14\" height=\"20\" rx=\"3\" /><circle cx=\"12\" cy=\"18\" r=\"1\" fill=\"currentColor\" stroke=\"none\" /><path d=\"M12 6v6\" /><path d=\"M9 8.5h6\" /><path d=\"M15 8l-3-2-3 2\" /><path d=\"M9 10l3 2 3-2\" />"
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M6 3.5 H14 L19 8.5 V20.5 H6Z\"/>\n  <path d=\"M14 3.5 V8.5 H19\"/>\n  <path d=\"M9 13 V17 M11.5 13 V17 M14 13 V17 M16.5 13 V17\"/>\n</svg>",
+    "body": "<path d=\"M6 3.5 H14 L19 8.5 V20.5 H6Z\"/><path d=\"M14 3.5 V8.5 H19\"/><path d=\"M9 13 V17 M11.5 13 V17 M14 13 V17 M16.5 13 V17\"/>"
   },
   {
-    "slug": "panneau-solaire",
-    "nameFr": "Kit Solaire Autonome",
-    "nameEn": "Solar Panel Kit",
-    "family": "tech-locale",
+    "slug": "filter",
+    "nameFr": "Filtrer",
+    "nameEn": "Filter",
+    "family": "interface",
     "tags": [
-      "solaire",
-      "energie",
-      "autonomie",
-      "soleil",
-      "off-grid"
+      "filtre",
+      "tri",
+      "recherche"
     ],
-    "country": "Rwanda / Mali / Kenya",
-    "countryCode": "RW",
-    "people": "Panafricain",
-    "culturalNote": "Le saut technologique (« leapfrogging ») énergétique africain qui alimente smartphones, éclairages LED et pompes à eau au cœur des villages isolés.",
-    "recommendedUse": "Éco-conception, mode basse consommation, énergie propre, autonomie.",
-    "verifiedBy": "BUNI Clean Energy Council",
+    "country": "Sans attribution culturelle",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Entonnoir utilitaire sans référence culturelle spécifique.",
+    "recommendedUse": "Filtrer ou trier une liste.",
+    "verifiedBy": "Documentation BUNI-ICON Core 60",
     "license": "CC BY 4.0",
-    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M4 3l4 11h8l4-11H4z\" />\n  <path d=\"M8 3l1 11\" />\n  <path d=\"M16 3l-1 11\" />\n  <path d=\"M5.5 8.5h13\" />\n  <path d=\"M12 14v7\" />\n  <path d=\"M8 21h8\" />\n  <path d=\"M2 3l2 2\" />\n  <path d=\"M22 3l-2 2\" />\n</svg>",
-    "body": "<path d=\"M4 3l4 11h8l4-11H4z\" /><path d=\"M8 3l1 11\" /><path d=\"M16 3l-1 11\" /><path d=\"M5.5 8.5h13\" /><path d=\"M12 14v7\" /><path d=\"M8 21h8\" /><path d=\"M2 3l2 2\" /><path d=\"M22 3l-2 2\" />"
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M3.5 5.5 H20.5 L14 13 V19.5 L10 17.5 V13 Z\"/>\n</svg>",
+    "body": "<path d=\"M3.5 5.5 H20.5 L14 13 V19.5 L10 17.5 V13 Z\"/>"
   },
   {
-    "slug": "recharge-credit",
-    "nameFr": "Carte de Recharge",
-    "nameEn": "Scratch Recharge Card",
-    "family": "tech-locale",
+    "slug": "folder",
+    "nameFr": "Dossier",
+    "nameEn": "Folder",
+    "family": "interface",
     "tags": [
-      "recharge",
-      "credit",
-      "airtime",
-      "telecom",
-      "gratter"
+      "dossier",
+      "rangement",
+      "fichier"
     ],
-    "country": "Nigeria / RDC / Cameroun",
-    "countryCode": "NG",
-    "people": "Panafricain",
-    "culturalNote": "La petite carte cartonnée à gratter avec une pièce de monnaie pour dévoiler les chiffres secrets de crédit d’appel et de mégas Internet.",
-    "recommendedUse": "Coupons de réduction, clés de licence, activation d’accès, jetons.",
-    "verifiedBy": "BUNI Heritage Lab",
+    "country": "Référence générique",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Dossier marqué d’un zigzag décoratif inspiré de motifs textiles génériques.",
+    "recommendedUse": "Dossiers et rangement de fichiers.",
+    "verifiedBy": "Documentation BUNI-ICON Core 60",
     "license": "CC BY 4.0",
-    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <rect x=\"3\" y=\"4\" width=\"18\" height=\"16\" rx=\"2\" />\n  <rect x=\"6\" y=\"9\" width=\"12\" height=\"6\" rx=\"1\" stroke-dasharray=\"2 2\" />\n  <path d=\"M8 12h2\" />\n  <path d=\"M11 12h2\" />\n  <path d=\"M14 12h2\" />\n  <path d=\"M6 6h2\" />\n  <path d=\"M16 6h2\" />\n</svg>",
-    "body": "<rect x=\"3\" y=\"4\" width=\"18\" height=\"16\" rx=\"2\" /><rect x=\"6\" y=\"9\" width=\"12\" height=\"6\" rx=\"1\" stroke-dasharray=\"2 2\" /><path d=\"M8 12h2\" /><path d=\"M11 12h2\" /><path d=\"M14 12h2\" /><path d=\"M6 6h2\" /><path d=\"M16 6h2\" />"
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M3 7 V18 a1.5 1.5 0 0 0 1.5 1.5 H19.5 a1.5 1.5 0 0 0 1.5 -1.5 V9.5 a1.5 1.5 0 0 0 -1.5 -1.5 H12 L10 5.5 H4.5 A1.5 1.5 0 0 0 3 7Z\"/>\n  <path d=\"M7.5 15 l1.5 -1.3 l1.5 1.3 l1.5 -1.3 l1.5 1.3\"/>\n</svg>",
+    "body": "<path d=\"M3 7 V18 a1.5 1.5 0 0 0 1.5 1.5 H19.5 a1.5 1.5 0 0 0 1.5 -1.5 V9.5 a1.5 1.5 0 0 0 -1.5 -1.5 H12 L10 5.5 H4.5 A1.5 1.5 0 0 0 3 7Z\"/><path d=\"M7.5 15 l1.5 -1.3 l1.5 1.3 l1.5 -1.3 l1.5 1.3\"/>"
   },
   {
-    "slug": "ussd",
-    "nameFr": "Code USSD",
-    "nameEn": "USSD Dialing",
-    "family": "tech-locale",
+    "slug": "gallery",
+    "nameFr": "Galerie",
+    "nameEn": "Gallery",
+    "family": "interface",
     "tags": [
-      "ussd",
-      "feature-phone",
-      "reseau",
-      "accessibilite",
-      "gsm"
+      "galerie",
+      "images",
+      "médias"
     ],
-    "country": "Afrique Subsaharienne",
-    "countryCode": "GH",
-    "people": "Panafricain",
-    "culturalNote": "Le protocole GSM des téléphones basiques (*144#, *555#) qui fait tourner l’économie informelle et la micro-assurance sans connexion Internet mobile.",
-    "recommendedUse": "Accès hors-ligne, commandes raccourcies, saisie rapide au clavier.",
-    "verifiedBy": "BUNI Digital Sovereignty Lab",
+    "country": "Référence générique",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Cadre avec soleil et chaîne de montagnes en zigzag, composition générique dont le zigzag rappelle des motifs de tissage.",
+    "recommendedUse": "Galerie, images et médias.",
+    "verifiedBy": "Documentation BUNI-ICON Core 30",
     "license": "CC BY 4.0",
-    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <rect x=\"4\" y=\"2\" width=\"16\" height=\"20\" rx=\"3\" />\n  <path d=\"M7 6h10\" />\n  <path d=\"M8 10l2 2m0-2l-2 2\" />\n  <circle cx=\"12\" cy=\"11\" r=\".5\" fill=\"currentColor\" stroke=\"none\" />\n  <path d=\"M15 9.5v3\" />\n  <path d=\"M7 15h2\" />\n  <path d=\"M11 15h2\" />\n  <path d=\"M15 15h2\" />\n  <circle cx=\"12\" cy=\"19\" r=\"1\" fill=\"currentColor\" stroke=\"none\" />\n</svg>",
-    "body": "<rect x=\"4\" y=\"2\" width=\"16\" height=\"20\" rx=\"3\" /><path d=\"M7 6h10\" /><path d=\"M8 10l2 2m0-2l-2 2\" /><circle cx=\"12\" cy=\"11\" r=\".5\" fill=\"currentColor\" stroke=\"none\" /><path d=\"M15 9.5v3\" /><path d=\"M7 15h2\" /><path d=\"M11 15h2\" /><path d=\"M15 15h2\" /><circle cx=\"12\" cy=\"19\" r=\"1\" fill=\"currentColor\" stroke=\"none\" />"
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <rect x=\"3.5\" y=\"4.5\" width=\"17\" height=\"15\" rx=\"1.5\"/>\n  <circle cx=\"8.5\" cy=\"9.2\" r=\"1.5\"/>\n  <path d=\"M3.5 16.5 L8.5 12 L12 15 L15 12.5 L20.5 17\"/>\n</svg>",
+    "body": "<rect x=\"3.5\" y=\"4.5\" width=\"17\" height=\"15\" rx=\"1.5\"/><circle cx=\"8.5\" cy=\"9.2\" r=\"1.5\"/><path d=\"M3.5 16.5 L8.5 12 L12 15 L15 12.5 L20.5 17\"/>"
   },
   {
-    "slug": "adinkrahene",
-    "nameFr": "Adinkrahene",
-    "nameEn": "Adinkrahene (Chief of Symbols)",
-    "family": "symboles",
+    "slug": "gift",
+    "nameFr": "Cadeau",
+    "nameEn": "Gift",
+    "family": "interface",
     "tags": [
-      "adinkrahene",
-      "adinkra",
-      "roi",
-      "leadership",
-      "grandeur",
-      "excellence"
-    ],
-    "country": "Ghana",
-    "countryCode": "GH",
-    "people": "Akan / Ashanti",
-    "culturalNote": "Le « Roi des symboles Adinkra », composé de cercles concentriques purs. Il inspire tous les autres motifs et incarne le leadership éclairé, la souveraineté intellectuelle et la quête d’excellence collective.",
-    "recommendedUse": "Badge d’administrateur suprême, certification officielle, plan premium, statut maître.",
-    "verifiedBy": "National Council on Art and Culture (Ghana)",
-    "license": "CC BY 4.0",
-    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <circle cx=\"12\" cy=\"12\" r=\"9\" />\n  <circle cx=\"12\" cy=\"12\" r=\"5.5\" />\n  <circle cx=\"12\" cy=\"12\" r=\"2\" />\n</svg>",
-    "body": "<circle cx=\"12\" cy=\"12\" r=\"9\" /><circle cx=\"12\" cy=\"12\" r=\"5.5\" /><circle cx=\"12\" cy=\"12\" r=\"2\" />"
-  },
-  {
-    "slug": "bese-saka",
-    "nameFr": "Bese Saka",
-    "nameEn": "Bese Saka (Sack of Cola)",
-    "family": "symboles",
-    "tags": [
-      "bese-saka",
-      "adinkra",
-      "abondance",
-      "prospérité",
-      "commerce",
+      "cadeau",
+      "offre",
       "partage"
     ],
-    "country": "Ghana / Nigeria",
-    "countryCode": "GH",
-    "people": "Akan / Hausa",
-    "culturalNote": "Le sac de noix de cola symbolise la prospérité féconde, le dynamisme des caravanes marchandes transsahariennes et la richesse partagée qui découle d’échanges commerciaux équitables.",
-    "recommendedUse": "Boutique, chiffre d’affaires, trésorerie, récompenses, programmes de fidélité.",
-    "verifiedBy": "Chambre Africaine des Métiers et des Traditions",
+    "country": "Référence générique",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Balluchon de tissu noué avec deux boucles et une bande, évoquant le nouage de pagnes et de tissus (référence générique).",
+    "recommendedUse": "Cadeau, offre et parrainage.",
+    "verifiedBy": "Documentation BUNI-ICON Core 30",
     "license": "CC BY 4.0",
-    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <circle cx=\"8\" cy=\"8\" r=\"4\" />\n  <circle cx=\"16\" cy=\"8\" r=\"4\" />\n  <circle cx=\"8\" cy=\"16\" r=\"4\" />\n  <circle cx=\"16\" cy=\"16\" r=\"4\" />\n  <path d=\"M12 4v16\" />\n  <path d=\"M4 12h16\" />\n</svg>",
-    "body": "<circle cx=\"8\" cy=\"8\" r=\"4\" /><circle cx=\"16\" cy=\"8\" r=\"4\" /><circle cx=\"8\" cy=\"16\" r=\"4\" /><circle cx=\"16\" cy=\"16\" r=\"4\" /><path d=\"M12 4v16\" /><path d=\"M4 12h16\" />"
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M12 10 C9 9.5 7 6 9 4.8 C10.7 4 12 7 12 10 C15 9.5 17 6 15 4.8 C13.3 4 12 7 12 10Z\"/>\n  <path d=\"M7.5 11 C4.5 13 4 19 7 20.5 H17 C20 19 19.5 13 16.5 11\"/>\n  <path d=\"M5.2 16 H18.8\"/>\n</svg>",
+    "body": "<path d=\"M12 10 C9 9.5 7 6 9 4.8 C10.7 4 12 7 12 10 C15 9.5 17 6 15 4.8 C13.3 4 12 7 12 10Z\"/><path d=\"M7.5 11 C4.5 13 4 19 7 20.5 H17 C20 19 19.5 13 16.5 11\"/><path d=\"M5.2 16 H18.8\"/>"
   },
   {
-    "slug": "duafe",
-    "nameFr": "Duafe",
-    "nameEn": "Duafe (Wooden Comb)",
-    "family": "symboles",
+    "slug": "globe",
+    "nameFr": "Globe",
+    "nameEn": "Globe",
+    "family": "interface",
     "tags": [
-      "duafe",
-      "adinkra",
-      "beaute",
-      "soin",
-      "amour",
-      "proprete"
+      "globe",
+      "langue",
+      "région"
     ],
-    "country": "Ghana",
-    "countryCode": "GH",
-    "people": "Akan / Fante",
-    "culturalNote": "Le peigne en bois traditionnel Akan incarne la beauté harmonieuse, la toilette soignée, la délicatesse des gestes et les vertus d’attention et de tendresse prodiguées à la communauté.",
-    "recommendedUse": "Outils de nettoyage, formatage de code, personnalisation de thème, soin utilisateur.",
-    "verifiedBy": "Centre for Indigenous Knowledge Systems, Kumasi",
+    "country": "Sans attribution culturelle",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Globe dessiné avec un méridien et un équateur, sans référence culturelle spécifique.",
+    "recommendedUse": "Langue, région ou site web.",
+    "verifiedBy": "Documentation BUNI-ICON Core 60",
     "license": "CC BY 4.0",
-    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M7 3h10a2 2 0 0 1 2 2v4a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V5a2 2 0 0 1 2-2z\" />\n  <circle cx=\"12\" cy=\"7\" r=\"1.5\" />\n  <path d=\"M7 12v9\" />\n  <path d=\"M10 12v9\" />\n  <path d=\"M12 12v9\" />\n  <path d=\"M14 12v9\" />\n  <path d=\"M17 12v9\" />\n</svg>",
-    "body": "<path d=\"M7 3h10a2 2 0 0 1 2 2v4a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V5a2 2 0 0 1 2-2z\" /><circle cx=\"12\" cy=\"7\" r=\"1.5\" /><path d=\"M7 12v9\" /><path d=\"M10 12v9\" /><path d=\"M12 12v9\" /><path d=\"M14 12v9\" /><path d=\"M17 12v9\" />"
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <circle cx=\"12\" cy=\"12\" r=\"9\"/>\n  <ellipse cx=\"12\" cy=\"12\" rx=\"3.8\" ry=\"9\"/>\n  <path d=\"M3 12 H21\"/>\n</svg>",
+    "body": "<circle cx=\"12\" cy=\"12\" r=\"9\"/><ellipse cx=\"12\" cy=\"12\" rx=\"3.8\" ry=\"9\"/><path d=\"M3 12 H21\"/>"
   },
   {
-    "slug": "dwennimmen",
-    "nameFr": "Dwennimmen",
-    "nameEn": "Dwennimmen (Ram’s Horns)",
-    "family": "symboles",
+    "slug": "help",
+    "nameFr": "Aide / Information",
+    "nameEn": "Help / Info",
+    "family": "interface",
     "tags": [
-      "dwennimmen",
-      "adinkra",
-      "force",
-      "humilite",
-      "bélier",
-      "sagesse"
+      "aide",
+      "information",
+      "interface"
     ],
-    "country": "Ghana / Côte d’Ivoire",
-    "countryCode": "GH",
-    "people": "Akan / Baoulé",
-    "culturalNote": "Représentation des cornes de bélier : bien que l’animal soit doté d’une force redoutable, il sait plier la tête avec humilité. Ce symbole enseigne que la puissance authentique s’accompagne toujours de modestie.",
-    "recommendedUse": "Comptes haute puissance, serveurs robustes, modération calme, intégrité.",
-    "verifiedBy": "Institute of African Studies, University of Ghana",
+    "country": "Ghana (inspiration Akan à valider)",
+    "people": "Akan (référence à valider)",
+    "culturalNote": "Bâton de parole stylisé avec pommeau annulaire, fût et deux bandes. Inspiration possible des bâtons d’okyeame chez les Akan (Ghana), à valider avec les communautés concernées ; ne pas le présenter comme pan-africain. Silhouette à distinguer d’un ankh.",
+    "recommendedUse": "Aide, information et infobulle. Validation culturelle recommandée avant diffusion publique.",
+    "verifiedBy": "Documentation BUNI-ICON Core 30",
     "license": "CC BY 4.0",
-    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M12 21v-8\" />\n  <path d=\"M12 13c-2-3-5-4-8-2-2 1-2 4 0 6 3 2 6 0 7-3\" />\n  <path d=\"M12 13c2-3 5-4 8-2 2 1 2 4 0 6-3 2-6 0-7-3\" />\n  <circle cx=\"12\" cy=\"5\" r=\"2\" />\n</svg>",
-    "body": "<path d=\"M12 21v-8\" /><path d=\"M12 13c-2-3-5-4-8-2-2 1-2 4 0 6 3 2 6 0 7-3\" /><path d=\"M12 13c2-3 5-4 8-2 2 1 2 4 0 6-3 2-6 0-7-3\" /><circle cx=\"12\" cy=\"5\" r=\"2\" />"
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <circle cx=\"12\" cy=\"5.5\" r=\"2.5\"/>\n  <path d=\"M12 8 V21\"/>\n  <path d=\"M9.8 12 H14.2 M9.8 15.5 H14.2\"/>\n</svg>",
+    "body": "<circle cx=\"12\" cy=\"5.5\" r=\"2.5\"/><path d=\"M12 8 V21\"/><path d=\"M9.8 12 H14.2 M9.8 15.5 H14.2\"/>"
   },
   {
-    "slug": "fawohodie",
-    "nameFr": "Fawohodie",
-    "nameEn": "Fawohodie (Independence)",
-    "family": "symboles",
+    "slug": "home",
+    "nameFr": "Accueil",
+    "nameEn": "Home",
+    "family": "interface",
     "tags": [
-      "fawohodie",
-      "adinkra",
-      "liberte",
-      "emancipation",
-      "independance",
-      "droits"
+      "accueil",
+      "navigation",
+      "habitat"
     ],
-    "country": "Ghana",
-    "countryCode": "GH",
-    "people": "Akan",
-    "culturalNote": "« Fawodhodie ene obre na enam » : Avec la liberté vient la responsabilité du labeur. Ce symbole célèbre l’émancipation totale des carcans, l’autonomie de pensée et la libre autodétermination des peuples.",
-    "recommendedUse": "Open source, export de données sans entrave, licence libre, désinscription sans friction.",
-    "verifiedBy": "BUNI Open Culture & Pan-African Rights Initiative",
+    "country": "Afrique subsaharienne",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Hutte ronde à toit conique de chaume, décorée de bandes et de zigzags, avec une porte en arche. Typologie répandue dans plusieurs régions d’Afrique subsaharienne ; motifs génériques, sans attribution à un peuple précis.",
+    "recommendedUse": "Accueil et lien vers la page d’accueil. Ne pas l’utiliser pour désigner un village ou un lieu rural.",
+    "verifiedBy": "Documentation BUNI-ICON Core 30",
     "license": "CC BY 4.0",
-    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <circle cx=\"12\" cy=\"12\" r=\"4\" />\n  <path d=\"M12 8V3m0 0l-3 3m3-3l3 3\" />\n  <path d=\"M12 16v5m0 0l-3-3m3 3l3-3\" />\n  <path d=\"M8 12H3m0 0l3-3m-3 3l3 3\" />\n  <path d=\"M16 12h5m0 0l-3-3m3 3l-3 3\" />\n</svg>",
-    "body": "<circle cx=\"12\" cy=\"12\" r=\"4\" /><path d=\"M12 8V3m0 0l-3 3m3-3l3 3\" /><path d=\"M12 16v5m0 0l-3-3m3 3l3-3\" /><path d=\"M8 12H3m0 0l3-3m-3 3l3 3\" /><path d=\"M16 12h5m0 0l-3-3m3 3l-3 3\" />"
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M12 4 L3.5 11.5 H20.5 Z\"/>\n  <path d=\"M12 4 V2.4 M10.6 4.9 L9.8 3.3 M13.4 4.9 L14.2 3.3\"/>\n  <path d=\"M12 7.2 V9\"/>\n  <path d=\"M5.6 11.5 L5 20.5 H19 L18.4 11.5\"/>\n  <path d=\"M10 20.5 V16.2 a2 2 0 0 1 4 0 V20.5\"/>\n  <path d=\"M6.2 16 l1.1 -1.5 l1.1 1.5 M15.6 16 l1.1 -1.5 l1.1 1.5\"/>\n</svg>",
+    "body": "<path d=\"M12 4 L3.5 11.5 H20.5 Z\"/><path d=\"M12 4 V2.4 M10.6 4.9 L9.8 3.3 M13.4 4.9 L14.2 3.3\"/><path d=\"M12 7.2 V9\"/><path d=\"M5.6 11.5 L5 20.5 H19 L18.4 11.5\"/><path d=\"M10 20.5 V16.2 a2 2 0 0 1 4 0 V20.5\"/><path d=\"M6.2 16 l1.1 -1.5 l1.1 1.5 M15.6 16 l1.1 -1.5 l1.1 1.5\"/>"
   },
   {
-    "slug": "gye-nyame",
-    "nameFr": "Gye Nyame",
-    "nameEn": "Gye Nyame",
-    "family": "symboles",
+    "slug": "idea",
+    "nameFr": "Idée",
+    "nameEn": "Idea",
+    "family": "interface",
     "tags": [
-      "gye-nyame",
-      "adinkra",
-      "transcendance",
-      "dieu",
-      "resilience",
-      "force"
+      "idée",
+      "astuce",
+      "suggestion"
     ],
-    "country": "Ghana",
-    "countryCode": "GH",
-    "people": "Akan / Ashanti",
-    "culturalNote": "« Gye Nyame » signifie « Rien sauf Dieu ». C’est l’expression suprême de la résilience, de l’humilité face aux forces de l’univers et de la certitude que toute adversité passagère sera surmontée par la dignité de l’esprit.",
-    "recommendedUse": "Protection de compte, statut inviolable, résilience système, authentification renforcée.",
-    "verifiedBy": "Asantehene Cultural Foundation & Manhyia Archives",
+    "country": "Référence générique",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Ampoule dont le filament en zigzag rappelle des motifs textiles génériques.",
+    "recommendedUse": "Astuce ou suggestion.",
+    "verifiedBy": "Documentation BUNI-ICON Core 60",
     "license": "CC BY 4.0",
-    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M12 2v20\" />\n  <path d=\"M12 6c-4 0-7 2.5-7 6s3 6 7 6\" />\n  <path d=\"M12 6c4 0 7 2.5 7 6s-3 6-7 6\" />\n  <path d=\"M9 10c-1 1-1 3 0 4\" />\n  <path d=\"M15 10c1 1 1 3 0 4\" />\n  <path d=\"M6 12h3\" />\n  <path d=\"M15 12h3\" />\n</svg>",
-    "body": "<path d=\"M12 2v20\" /><path d=\"M12 6c-4 0-7 2.5-7 6s3 6 7 6\" /><path d=\"M12 6c4 0 7 2.5 7 6s-3 6-7 6\" /><path d=\"M9 10c-1 1-1 3 0 4\" /><path d=\"M15 10c1 1 1 3 0 4\" /><path d=\"M6 12h3\" /><path d=\"M15 12h3\" />"
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M9 17.5 V16 A6 6 0 1 1 15 16 V17.5 Z\"/>\n  <path d=\"M9.7 20.5 H14.3\"/>\n  <path d=\"M10 12.5 l1 -1.3 l1 1.3 l1 -1.3 l1 1.3\"/>\n</svg>",
+    "body": "<path d=\"M9 17.5 V16 A6 6 0 1 1 15 16 V17.5 Z\"/><path d=\"M9.7 20.5 H14.3\"/><path d=\"M10 12.5 l1 -1.3 l1 1.3 l1 -1.3 l1 1.3\"/>"
   },
   {
-    "slug": "nkonsonkonson",
-    "nameFr": "Nkonsonkonson",
-    "nameEn": "Nkonsonkonson (Chain Links)",
-    "family": "symboles",
+    "slug": "link",
+    "nameFr": "Lien",
+    "nameEn": "Link",
+    "family": "interface",
     "tags": [
-      "nkonsonkonson",
-      "adinkra",
-      "solidarite",
-      "chaine",
-      "communaute",
-      "unite"
+      "lien",
+      "chaîne",
+      "connexion"
     ],
-    "country": "Ghana",
-    "countryCode": "GH",
-    "people": "Akan",
-    "culturalNote": "« Nous sommes liés ensemble comme les maillons d’une chaîne ; dans la vie comme dans l’épreuve, nul ne tombe seul ». Ce symbole rappelle la primauté du lien humain et la solidarité absolue du groupe.",
-    "recommendedUse": "Réseaux, API, intégrations partenaires, communauté, parrainage.",
-    "verifiedBy": "African Heritage Keepers Alliance",
+    "country": "Sans attribution culturelle",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Deux maillons de chaîne, forme utilitaire sans référence culturelle spécifique.",
+    "recommendedUse": "Représenter un lien ou copier une adresse.",
+    "verifiedBy": "Documentation BUNI-ICON Core 60",
     "license": "CC BY 4.0",
-    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <rect x=\"2\" y=\"7\" width=\"9\" height=\"10\" rx=\"3\" />\n  <rect x=\"13\" y=\"7\" width=\"9\" height=\"10\" rx=\"3\" />\n  <path d=\"M8 12h8\" />\n  <circle cx=\"6.5\" cy=\"12\" r=\"1.5\" />\n  <circle cx=\"17.5\" cy=\"12\" r=\"1.5\" />\n</svg>",
-    "body": "<rect x=\"2\" y=\"7\" width=\"9\" height=\"10\" rx=\"3\" /><rect x=\"13\" y=\"7\" width=\"9\" height=\"10\" rx=\"3\" /><path d=\"M8 12h8\" /><circle cx=\"6.5\" cy=\"12\" r=\"1.5\" /><circle cx=\"17.5\" cy=\"12\" r=\"1.5\" />"
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <rect x=\"3.45\" y=\"12.6\" width=\"10.5\" height=\"5.4\" rx=\"2.7\" transform=\"rotate(-45 8.7 15.3)\"/>\n  <rect x=\"10.05\" y=\"6\" width=\"10.5\" height=\"5.4\" rx=\"2.7\" transform=\"rotate(-45 15.3 8.7)\"/>\n</svg>",
+    "body": "<rect x=\"3.45\" y=\"12.6\" width=\"10.5\" height=\"5.4\" rx=\"2.7\" transform=\"rotate(-45 8.7 15.3)\"/><rect x=\"10.05\" y=\"6\" width=\"10.5\" height=\"5.4\" rx=\"2.7\" transform=\"rotate(-45 15.3 8.7)\"/>"
   },
   {
-    "slug": "sankofa",
-    "nameFr": "Sankofa",
-    "nameEn": "Sankofa",
-    "family": "symboles",
+    "slug": "location",
+    "nameFr": "Localisation",
+    "nameEn": "Location",
+    "family": "interface",
     "tags": [
-      "sankofa",
-      "adinkra",
-      "passe",
-      "futur",
-      "memoire",
-      "sagesse"
+      "localisation",
+      "position",
+      "baobab"
     ],
-    "country": "Ghana / Côte d’Ivoire",
-    "countryCode": "GH",
-    "people": "Akan / Ashanti",
-    "culturalNote": "« Se wo were fi na wosankofa a yenkyi » : Il n’est pas tabou de retourner chercher ce qu’on a oublié. L’oiseau dont les pattes vont vers l’avant pendant que son cou se tourne vers l’arrière pour saisir un œuf précieux symbolise l’enracinement nécessaire à toute innovation pérenne.",
-    "recommendedUse": "Boutons d’historique, restauration de version, undo, retours en arrière réconciliateurs.",
-    "verifiedBy": "Conseil Supérieur des Dignitaires Royaux Ashanti & BUNI Cultural Custodians",
+    "country": "Sahel, Afrique australe, Madagascar (références génériques)",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Baobab stylisé : tronc en bouteille et trois branches terminées par des feuillages. Le baobab sert de repère et de lieu de rassemblement dans de nombreuses régions.",
+    "recommendedUse": "Position, repère et point d’intérêt. Prévoir une info-bulle au premier usage.",
+    "verifiedBy": "Documentation BUNI-ICON Core 30",
     "license": "CC BY 4.0",
-    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M16 4c-2 0-3 1.5-4 3-1 2-2 4-5 4H4c0 3 2 6 6 6 3 0 5-1.5 6-4l2-4c.5-1 1-2 1-3 0-1-1-2-3-2z\" />\n  <circle cx=\"11\" cy=\"7\" r=\"1.5\" />\n  <path d=\"M15 5.5l1.5-1\" />\n  <path d=\"M9 17v4\" />\n  <path d=\"M12 17v4\" />\n  <path d=\"M7 21h7\" />\n</svg>",
-    "body": "<path d=\"M16 4c-2 0-3 1.5-4 3-1 2-2 4-5 4H4c0 3 2 6 6 6 3 0 5-1.5 6-4l2-4c.5-1 1-2 1-3 0-1-1-2-3-2z\" /><circle cx=\"11\" cy=\"7\" r=\"1.5\" /><path d=\"M15 5.5l1.5-1\" /><path d=\"M9 17v4\" /><path d=\"M12 17v4\" /><path d=\"M7 21h7\" />"
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M8.8 10.5 H15.2\"/>\n  <path d=\"M8.8 10.5 C9.8 14 9.6 17.5 8.2 21 M15.2 10.5 C14.2 14 14.4 17.5 15.8 21 M6 21 H18\"/>\n  <path d=\"M9.6 10.5 L6.4 7.4 M12 10.5 V6.2 M14.4 10.5 L17.6 7.4\"/>\n  <circle cx=\"5.6\" cy=\"6.4\" r=\"1.5\"/>\n  <circle cx=\"12\" cy=\"4.6\" r=\"1.5\"/>\n  <circle cx=\"18.4\" cy=\"6.4\" r=\"1.5\"/>\n</svg>",
+    "body": "<path d=\"M8.8 10.5 H15.2\"/><path d=\"M8.8 10.5 C9.8 14 9.6 17.5 8.2 21 M15.2 10.5 C14.2 14 14.4 17.5 15.8 21 M6 21 H18\"/><path d=\"M9.6 10.5 L6.4 7.4 M12 10.5 V6.2 M14.4 10.5 L17.6 7.4\"/><circle cx=\"5.6\" cy=\"6.4\" r=\"1.5\"/><circle cx=\"12\" cy=\"4.6\" r=\"1.5\"/><circle cx=\"18.4\" cy=\"6.4\" r=\"1.5\"/>"
+  },
+  {
+    "slug": "lock",
+    "nameFr": "Verrouillé / Confidentialité",
+    "nameEn": "Lock / Privacy",
+    "family": "interface",
+    "tags": [
+      "verrouillé",
+      "confidentialité",
+      "sécurité"
+    ],
+    "country": "Référence générique",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Bouclier fermé avec un trou de serrure, dans la même famille graphique que l’icône shield.",
+    "recommendedUse": "Contenu verrouillé, privé ou protégé.",
+    "verifiedBy": "Documentation BUNI-ICON Core 30",
+    "license": "CC BY 4.0",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M12 3.2 C17 7 17 17 12 20.8 C7 17 7 7 12 3.2Z\"/>\n  <circle cx=\"12\" cy=\"11\" r=\"1.6\"/>\n  <path d=\"M12 12.6 V16\"/>\n</svg>",
+    "body": "<path d=\"M12 3.2 C17 7 17 17 12 20.8 C7 17 7 7 12 3.2Z\"/><circle cx=\"12\" cy=\"11\" r=\"1.6\"/><path d=\"M12 12.6 V16\"/>"
+  },
+  {
+    "slug": "mail",
+    "nameFr": "E-mail / Messages",
+    "nameEn": "Mail / Messages",
+    "family": "interface",
+    "tags": [
+      "mail",
+      "message",
+      "courriel"
+    ],
+    "country": "Sans attribution culturelle",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Enveloppe avec rabat et plis diagonaux. La forme reste standard, sans motif culturel ajouté afin de préserver la lisibilité.",
+    "recommendedUse": "Messagerie et e-mail.",
+    "verifiedBy": "Documentation BUNI-ICON Core 30",
+    "license": "CC BY 4.0",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <rect x=\"3\" y=\"5.5\" width=\"18\" height=\"13\" rx=\"2\"/>\n  <path d=\"M3.6 7.2 L12 13 L20.4 7.2\"/>\n  <path d=\"M3.6 17.8 L9 12.2 M20.4 17.8 L15 12.2\"/>\n</svg>",
+    "body": "<rect x=\"3\" y=\"5.5\" width=\"18\" height=\"13\" rx=\"2\"/><path d=\"M3.6 7.2 L12 13 L20.4 7.2\"/><path d=\"M3.6 17.8 L9 12.2 M20.4 17.8 L15 12.2\"/>"
+  },
+  {
+    "slug": "map",
+    "nameFr": "Carte",
+    "nameEn": "Map",
+    "family": "interface",
+    "tags": [
+      "carte",
+      "itinéraire",
+      "navigation"
+    ],
+    "country": "Sans attribution géographique",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Carte dépliée en trois panneaux avec un tracé intérieur évoquant un chemin, sans reproduire de territoire réel.",
+    "recommendedUse": "Carte et itinéraire.",
+    "verifiedBy": "Documentation BUNI-ICON Core 30",
+    "license": "CC BY 4.0",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M3 6 L9 4 L15 6 L21 4 V18 L15 20 L9 18 L3 20Z\"/>\n  <path d=\"M9 4 V18 M15 6 V20\"/>\n  <path d=\"M11 14 l1 -1.2 l1 1.8 l1 -1.2\"/>\n</svg>",
+    "body": "<path d=\"M3 6 L9 4 L15 6 L21 4 V18 L15 20 L9 18 L3 20Z\"/><path d=\"M9 4 V18 M15 6 V20\"/><path d=\"M11 14 l1 -1.2 l1 1.8 l1 -1.2\"/>"
+  },
+  {
+    "slug": "menu",
+    "nameFr": "Menu",
+    "nameEn": "Menu",
+    "family": "interface",
+    "tags": [
+      "menu",
+      "navigation",
+      "interface"
+    ],
+    "country": "Afrique de l’Ouest (référence générique)",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Trois lignes, dont la ligne centrale en zigzag, inspirée de motifs géométriques de tissages d’Afrique de l’Ouest (référence générique).",
+    "recommendedUse": "Menu hamburger. Lisible dès 16 px ; éviter d’animer la ligne centrale sous 20 px.",
+    "verifiedBy": "Documentation BUNI-ICON Core 30",
+    "license": "CC BY 4.0",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M4 6.5 H20\"/>\n  <path d=\"M4 12 h4 l1 -1.5 l2 3 l2 -3 l2 3 l1 -1.5 h4\"/>\n  <path d=\"M4 17.5 H20\"/>\n</svg>",
+    "body": "<path d=\"M4 6.5 H20\"/><path d=\"M4 12 h4 l1 -1.5 l2 3 l2 -3 l2 3 l1 -1.5 h4\"/><path d=\"M4 17.5 H20\"/>"
+  },
+  {
+    "slug": "minus",
+    "nameFr": "Moins",
+    "nameEn": "Minus",
+    "family": "interface",
+    "tags": [
+      "moins",
+      "retirer",
+      "réduire"
+    ],
+    "country": "Sans attribution culturelle",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Trait horizontal, signe utilitaire conservé sans ornement pour la lisibilité.",
+    "recommendedUse": "Retirer un élément ou réduire une valeur.",
+    "verifiedBy": "Documentation BUNI-ICON Core 60",
+    "license": "CC BY 4.0",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M5 12 H19\"/>\n</svg>",
+    "body": "<path d=\"M5 12 H19\"/>"
+  },
+  {
+    "slug": "moon",
+    "nameFr": "Lune",
+    "nameEn": "Moon",
+    "family": "interface",
+    "tags": [
+      "lune",
+      "mode sombre",
+      "nuit"
+    ],
+    "country": "Sans attribution culturelle",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Croissant de lune accompagné d’un petit losange en forme d’étoile, sans référence culturelle spécifique.",
+    "recommendedUse": "Mode sombre ou nuit.",
+    "verifiedBy": "Documentation BUNI-ICON Core 60",
+    "license": "CC BY 4.0",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M20 14 A8.5 8.5 0 1 1 10 4 A6.7 6.7 0 0 0 20 14Z\"/>\n  <path d=\"M17.5 3.6 L18.9 5.2 L17.5 6.8 L16.1 5.2Z\"/>\n</svg>",
+    "body": "<path d=\"M20 14 A8.5 8.5 0 1 1 10 4 A6.7 6.7 0 0 0 20 14Z\"/><path d=\"M17.5 3.6 L18.9 5.2 L17.5 6.8 L16.1 5.2Z\"/>"
+  },
+  {
+    "slug": "music",
+    "nameFr": "Musique",
+    "nameEn": "Music",
+    "family": "interface",
+    "tags": [
+      "musique",
+      "audio",
+      "djembé"
+    ],
+    "country": "Afrique de l’Ouest",
+    "people": "Mandingues",
+    "culturalNote": "Tambour à gobelet avec cordage, inspiré du djembé d’Afrique de l’Ouest associé aux peuples mandingues ; forme simplifiée.",
+    "recommendedUse": "Musique et audio. Vérifier la lisibilité à petite taille, où la silhouette peut évoquer un entonnoir.",
+    "verifiedBy": "Documentation BUNI-ICON Core 60",
+    "license": "CC BY 4.0",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <ellipse cx=\"12\" cy=\"6\" rx=\"6\" ry=\"2\"/>\n  <path d=\"M6 6 C6 11 9.5 12 9.5 15.5 V19.5 C9.5 20.5 14.5 20.5 14.5 19.5 V15.5 C14.5 12 18 11 18 6\"/>\n  <path d=\"M6.9 9.6 Q12 12 17.1 9.6\"/>\n</svg>",
+    "body": "<ellipse cx=\"12\" cy=\"6\" rx=\"6\" ry=\"2\"/><path d=\"M6 6 C6 11 9.5 12 9.5 15.5 V19.5 C9.5 20.5 14.5 20.5 14.5 19.5 V15.5 C14.5 12 18 11 18 6\"/><path d=\"M6.9 9.6 Q12 12 17.1 9.6\"/>"
+  },
+  {
+    "slug": "pause",
+    "nameFr": "Pause",
+    "nameEn": "Pause",
+    "family": "interface",
+    "tags": [
+      "pause",
+      "lecture",
+      "audio"
+    ],
+    "country": "Sans attribution culturelle",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Deux barres verticales, icône utilitaire conventionnelle.",
+    "recommendedUse": "Mettre en pause une lecture audio ou vidéo.",
+    "verifiedBy": "Documentation BUNI-ICON Core 60",
+    "license": "CC BY 4.0",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M8.5 5.5 V18.5 M15.5 5.5 V18.5\"/>\n</svg>",
+    "body": "<path d=\"M8.5 5.5 V18.5 M15.5 5.5 V18.5\"/>"
+  },
+  {
+    "slug": "phone",
+    "nameFr": "Appel",
+    "nameEn": "Phone / Call",
+    "family": "interface",
+    "tags": [
+      "appel",
+      "contact",
+      "communication"
+    ],
+    "country": "Plusieurs régions (référence générique)",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Corne d’appel courbe avec bande et onde sonore, évoquant des cornes de signalisation utilisées dans plusieurs régions.",
+    "recommendedUse": "Appel et contact. La lecture peut être moins immédiate qu’un combiné ; tester en situation réelle.",
+    "verifiedBy": "Documentation BUNI-ICON Core 30",
+    "license": "CC BY 4.0",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M4.2 19.2 C4.5 12 8.5 6.5 13.5 4.5 L17 10 C12.5 11.5 9.5 15 6.8 20.8 Z\"/>\n  <path d=\"M20 5 C21.6 7 21.6 9.5 20 11.5\"/>\n  <path d=\"M7.4 13.2 L10.4 14.8\"/>\n</svg>",
+    "body": "<path d=\"M4.2 19.2 C4.5 12 8.5 6.5 13.5 4.5 L17 10 C12.5 11.5 9.5 15 6.8 20.8 Z\"/><path d=\"M20 5 C21.6 7 21.6 9.5 20 11.5\"/><path d=\"M7.4 13.2 L10.4 14.8\"/>"
+  },
+  {
+    "slug": "play",
+    "nameFr": "Lecture",
+    "nameEn": "Play",
+    "family": "interface",
+    "tags": [
+      "lecture",
+      "lire",
+      "audio",
+      "vidéo"
+    ],
+    "country": "Sans attribution culturelle",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Triangle dans un cercle, icône utilitaire conventionnelle sans référence culturelle spécifique.",
+    "recommendedUse": "Lancer une lecture audio ou vidéo.",
+    "verifiedBy": "Documentation BUNI-ICON Core 60",
+    "license": "CC BY 4.0",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <circle cx=\"12\" cy=\"12\" r=\"9.5\"/>\n  <path d=\"M10 8.5 L16 12 L10 15.5Z\"/>\n</svg>",
+    "body": "<circle cx=\"12\" cy=\"12\" r=\"9.5\"/><path d=\"M10 8.5 L16 12 L10 15.5Z\"/>"
+  },
+  {
+    "slug": "plus",
+    "nameFr": "Plus",
+    "nameEn": "Plus",
+    "family": "interface",
+    "tags": [
+      "plus",
+      "ajouter",
+      "créer"
+    ],
+    "country": "Sans attribution culturelle",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Croix droite, signe utilitaire conservé sans ornement pour la lisibilité.",
+    "recommendedUse": "Ajouter ou créer un élément.",
+    "verifiedBy": "Documentation BUNI-ICON Core 60",
+    "license": "CC BY 4.0",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M12 4.5 V19.5 M4.5 12 H19.5\"/>\n</svg>",
+    "body": "<path d=\"M12 4.5 V19.5 M4.5 12 H19.5\"/>"
+  },
+  {
+    "slug": "power",
+    "nameFr": "Alimentation",
+    "nameEn": "Power",
+    "family": "interface",
+    "tags": [
+      "alimentation",
+      "marche",
+      "arrêt"
+    ],
+    "country": "Sans attribution culturelle",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Trait et arc ouvert, icône utilitaire conventionnelle.",
+    "recommendedUse": "Marche, arrêt ou déconnexion.",
+    "verifiedBy": "Documentation BUNI-ICON Core 60",
+    "license": "CC BY 4.0",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M12 3.5 V11.5\"/>\n  <path d=\"M7.2 6.8 a7.5 7.5 0 1 0 9.6 0\"/>\n</svg>",
+    "body": "<path d=\"M12 3.5 V11.5\"/><path d=\"M7.2 6.8 a7.5 7.5 0 1 0 9.6 0\"/>"
+  },
+  {
+    "slug": "refresh",
+    "nameFr": "Actualiser",
+    "nameEn": "Refresh",
+    "family": "interface",
+    "tags": [
+      "actualiser",
+      "synchroniser",
+      "recharger"
+    ],
+    "country": "Sans attribution culturelle",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Deux flèches circulaires, icône utilitaire sans référence culturelle spécifique.",
+    "recommendedUse": "Actualiser ou synchroniser des données.",
+    "verifiedBy": "Documentation BUNI-ICON Core 60",
+    "license": "CC BY 4.0",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M18.5 8.5 A7.5 7.5 0 0 0 5 10\"/>\n  <path d=\"M18.5 4 V8.5 H14\"/>\n  <path d=\"M5.5 15.5 A7.5 7.5 0 0 0 19 14\"/>\n  <path d=\"M5.5 20 V15.5 H10\"/>\n</svg>",
+    "body": "<path d=\"M18.5 8.5 A7.5 7.5 0 0 0 5 10\"/><path d=\"M18.5 4 V8.5 H14\"/><path d=\"M5.5 15.5 A7.5 7.5 0 0 0 19 14\"/><path d=\"M5.5 20 V15.5 H10\"/>"
+  },
+  {
+    "slug": "search",
+    "nameFr": "Recherche",
+    "nameEn": "Search",
+    "family": "interface",
+    "tags": [
+      "recherche",
+      "loupe",
+      "navigation"
+    ],
+    "country": "Sans attribution géographique",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Œil stylisé prolongé d’un manche, pour une lecture claire comme icône de recherche.",
+    "recommendedUse": "Recherche et filtres. Garder le manche pour éviter une lecture comme icône de visibilité.",
+    "verifiedBy": "Documentation BUNI-ICON Core 30",
+    "license": "CC BY 4.0",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M2.5 10 Q10.5 2.5 18.5 10 Q10.5 17.5 2.5 10Z\"/>\n  <circle cx=\"10.5\" cy=\"10\" r=\"2.2\"/>\n  <path d=\"M16.6 14.6 L21.5 19.5\"/>\n</svg>",
+    "body": "<path d=\"M2.5 10 Q10.5 2.5 18.5 10 Q10.5 17.5 2.5 10Z\"/><circle cx=\"10.5\" cy=\"10\" r=\"2.2\"/><path d=\"M16.6 14.6 L21.5 19.5\"/>"
+  },
+  {
+    "slug": "settings",
+    "nameFr": "Réglages",
+    "nameEn": "Settings",
+    "family": "interface",
+    "tags": [
+      "réglages",
+      "préférences",
+      "interface"
+    ],
+    "country": "Référence générique",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Roue à rayons autour d’un moyeu, évoquant les mécanismes de métiers à tisser traditionnels (référence générique).",
+    "recommendedUse": "Réglages et préférences.",
+    "verifiedBy": "Documentation BUNI-ICON Core 30",
+    "license": "CC BY 4.0",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <circle cx=\"12\" cy=\"12\" r=\"6.2\"/>\n  <circle cx=\"12\" cy=\"12\" r=\"2.4\"/>\n  <path d=\"M18.2 12 L21.3 12 M16.38 16.38 L18.58 18.58 M12 18.2 L12 21.3 M7.62 16.38 L5.42 18.58 M5.8 12 L2.7 12 M7.62 7.62 L5.42 5.42 M12 5.8 L12 2.7 M16.38 7.62 L18.58 5.42\"/>\n</svg>",
+    "body": "<circle cx=\"12\" cy=\"12\" r=\"6.2\"/><circle cx=\"12\" cy=\"12\" r=\"2.4\"/><path d=\"M18.2 12 L21.3 12 M16.38 16.38 L18.58 18.58 M12 18.2 L12 21.3 M7.62 16.38 L5.42 18.58 M5.8 12 L2.7 12 M7.62 7.62 L5.42 5.42 M12 5.8 L12 2.7 M16.38 7.62 L18.58 5.42\"/>"
+  },
+  {
+    "slug": "share",
+    "nameFr": "Partager",
+    "nameEn": "Share",
+    "family": "interface",
+    "tags": [
+      "partage",
+      "réseau",
+      "communication"
+    ],
+    "country": "Sans attribution culturelle",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Trois nœuds reliés par deux lignes, représentant un réseau communautaire simplifié sans référence culturelle spécifique.",
+    "recommendedUse": "Partage et réseau.",
+    "verifiedBy": "Documentation BUNI-ICON Core 30",
+    "license": "CC BY 4.0",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <circle cx=\"6\" cy=\"12\" r=\"2.2\"/>\n  <circle cx=\"18\" cy=\"6\" r=\"2.2\"/>\n  <circle cx=\"18\" cy=\"18\" r=\"2.2\"/>\n  <path d=\"M7.97 11.02 L16.03 6.98 M7.97 12.98 L16.03 17.02\"/>\n</svg>",
+    "body": "<circle cx=\"6\" cy=\"12\" r=\"2.2\"/><circle cx=\"18\" cy=\"6\" r=\"2.2\"/><circle cx=\"18\" cy=\"18\" r=\"2.2\"/><path d=\"M7.97 11.02 L16.03 6.98 M7.97 12.98 L16.03 17.02\"/>"
+  },
+  {
+    "slug": "shield",
+    "nameFr": "Sécurité",
+    "nameEn": "Security",
+    "family": "interface",
+    "tags": [
+      "sécurité",
+      "protection",
+      "interface"
+    ],
+    "country": "Afrique de l’Est et australe (référence générique)",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Bouclier lancéolé avec deux lances croisées et un losange central, inspiré de formes de boucliers d’Afrique de l’Est et australe, sans attribution à un peuple unique.",
+    "recommendedUse": "Sécurité, protection et pare-feu.",
+    "verifiedBy": "Documentation BUNI-ICON Core 30",
+    "license": "CC BY 4.0",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M12 3 C17.5 7 17.5 17 12 21 C6.5 17 6.5 7 12 3Z\"/>\n  <path d=\"M12 9.8 L13.6 12 L12 14.2 L10.4 12 Z\"/>\n  <path d=\"M20 3.5 L15.9 8 M4 3.5 L8.1 8 M8.1 16 L4 20.5 M15.9 16 L20 20.5\"/>\n</svg>",
+    "body": "<path d=\"M12 3 C17.5 7 17.5 17 12 21 C6.5 17 6.5 7 12 3Z\"/><path d=\"M12 9.8 L13.6 12 L12 14.2 L10.4 12 Z\"/><path d=\"M20 3.5 L15.9 8 M4 3.5 L8.1 8 M8.1 16 L4 20.5 M15.9 16 L20 20.5\"/>"
+  },
+  {
+    "slug": "signal",
+    "nameFr": "Signal",
+    "nameEn": "Signal",
+    "family": "interface",
+    "tags": [
+      "signal",
+      "réseau",
+      "connexion"
+    ],
+    "country": "Référence générique",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Point émettant trois ondes, évocation libre de la transmission à distance, notamment par tambours ou cornes.",
+    "recommendedUse": "Réseau, connexion ou flux.",
+    "verifiedBy": "Documentation BUNI-ICON Core 60",
+    "license": "CC BY 4.0",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <circle cx=\"12\" cy=\"18.5\" r=\"1.2\"/>\n  <path d=\"M8.6 15 a5 5 0 0 1 6.8 0\"/>\n  <path d=\"M5.6 11.8 a9 9 0 0 1 12.8 0\"/>\n  <path d=\"M3 8.8 a13 13 0 0 1 18 0\"/>\n</svg>",
+    "body": "<circle cx=\"12\" cy=\"18.5\" r=\"1.2\"/><path d=\"M8.6 15 a5 5 0 0 1 6.8 0\"/><path d=\"M5.6 11.8 a9 9 0 0 1 12.8 0\"/><path d=\"M3 8.8 a13 13 0 0 1 18 0\"/>"
+  },
+  {
+    "slug": "star",
+    "nameFr": "Étoile / Note",
+    "nameEn": "Star / Rating",
+    "family": "interface",
+    "tags": [
+      "étoile",
+      "note",
+      "évaluation"
+    ],
+    "country": "Référence générique",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Étoile à huit branches. Les étoiles à plusieurs branches apparaissent dans diverses compositions textiles et décoratives (référence générique).",
+    "recommendedUse": "Note et mise en avant. Prévoir une variante à cinq branches pour une notation sur cinq niveaux.",
+    "verifiedBy": "Documentation BUNI-ICON Core 30",
+    "license": "CC BY 4.0",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M12 2.5 L13.68 7.93 L18.72 5.28 L16.07 10.32 L21.5 12 L16.07 13.68 L18.72 18.72 L13.68 16.07 L12 21.5 L10.32 16.07 L5.28 18.72 L7.93 13.68 L2.5 12 L7.93 10.32 L5.28 5.28 L10.32 7.93 Z\"/>\n</svg>",
+    "body": "<path d=\"M12 2.5 L13.68 7.93 L18.72 5.28 L16.07 10.32 L21.5 12 L16.07 13.68 L18.72 18.72 L13.68 16.07 L12 21.5 L10.32 16.07 L5.28 18.72 L7.93 13.68 L2.5 12 L7.93 10.32 L5.28 5.28 L10.32 7.93 Z\"/>"
+  },
+  {
+    "slug": "store",
+    "nameFr": "Boutique",
+    "nameEn": "Store",
+    "family": "interface",
+    "tags": [
+      "boutique",
+      "marché",
+      "vendeur"
+    ],
+    "country": "Référence panafricaine",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Étal de marché à auvent festonné ; le marché est un lieu central de la vie commerciale dans de nombreuses villes africaines.",
+    "recommendedUse": "Boutique, marché ou vendeur.",
+    "verifiedBy": "Documentation BUNI-ICON Core 60",
+    "license": "CC BY 4.0",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M3.5 9 L5 4.5 H19 L20.5 9\"/>\n  <path d=\"M3.5 9 q2.125 3 4.25 0 q2.125 3 4.25 0 q2.125 3 4.25 0 q2.125 3 4.25 0\"/>\n  <path d=\"M5 12 V20.5 H19 V12\"/>\n  <path d=\"M10 20.5 V15.5 H14 V20.5\"/>\n</svg>",
+    "body": "<path d=\"M3.5 9 L5 4.5 H19 L20.5 9\"/><path d=\"M3.5 9 q2.125 3 4.25 0 q2.125 3 4.25 0 q2.125 3 4.25 0 q2.125 3 4.25 0\"/><path d=\"M5 12 V20.5 H19 V12\"/><path d=\"M10 20.5 V15.5 H14 V20.5\"/>"
+  },
+  {
+    "slug": "sun",
+    "nameFr": "Soleil",
+    "nameEn": "Sun",
+    "family": "interface",
+    "tags": [
+      "soleil",
+      "mode clair",
+      "météo"
+    ],
+    "country": "Référence générique",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Disque entouré de douze rayons alternés, dont le rythme rappelle de façon générique des motifs de tissage.",
+    "recommendedUse": "Mode clair ou météo.",
+    "verifiedBy": "Documentation BUNI-ICON Core 60",
+    "license": "CC BY 4.0",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <circle cx=\"12\" cy=\"12\" r=\"3.4\"/>\n  <path d=\"M18.4 12 L21.2 12 M17.54 15.2 L18.93 16 M15.2 17.54 L16.6 19.97 M12 18.4 L12 20 M8.8 17.54 L7.4 19.97 M6.46 15.2 L5.07 16 M5.6 12 L2.8 12 M6.46 8.8 L5.07 8 M8.8 6.46 L7.4 4.03 M12 5.6 L12 4 M15.2 6.46 L16.6 4.03 M17.54 8.8 L18.93 8\"/>\n</svg>",
+    "body": "<circle cx=\"12\" cy=\"12\" r=\"3.4\"/><path d=\"M18.4 12 L21.2 12 M17.54 15.2 L18.93 16 M15.2 17.54 L16.6 19.97 M12 18.4 L12 20 M8.8 17.54 L7.4 19.97 M6.46 15.2 L5.07 16 M5.6 12 L2.8 12 M6.46 8.8 L5.07 8 M8.8 6.46 L7.4 4.03 M12 5.6 L12 4 M15.2 6.46 L16.6 4.03 M17.54 8.8 L18.93 8\"/>"
+  },
+  {
+    "slug": "tag",
+    "nameFr": "Étiquette",
+    "nameEn": "Tag",
+    "family": "interface",
+    "tags": [
+      "étiquette",
+      "prix",
+      "catégorie",
+      "promotion"
+    ],
+    "country": "Sans attribution culturelle",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Étiquette munie d’un trou, forme utilitaire sans référence culturelle spécifique.",
+    "recommendedUse": "Prix, catégorie ou promotion.",
+    "verifiedBy": "Documentation BUNI-ICON Core 60",
+    "license": "CC BY 4.0",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M4 4.5 H12 L20 12.5 L12.5 20 L4 11.5Z\"/>\n  <circle cx=\"8\" cy=\"8.5\" r=\"1.3\"/>\n</svg>",
+    "body": "<path d=\"M4 4.5 H12 L20 12.5 L12.5 20 L4 11.5Z\"/><circle cx=\"8\" cy=\"8.5\" r=\"1.3\"/>"
+  },
+  {
+    "slug": "trash",
+    "nameFr": "Supprimer",
+    "nameEn": "Delete",
+    "family": "interface",
+    "tags": [
+      "supprimer",
+      "effacer",
+      "jarre"
+    ],
+    "country": "Référence panafricaine",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Jarre en terre cuite à couvercle et bande en zigzag, forme générique inspirée de la poterie présente dans toute l’Afrique.",
+    "recommendedUse": "Supprimer. Tester l’icône, car la jarre peut aussi être interprétée comme un pot ou une conserve.",
+    "verifiedBy": "Documentation BUNI-ICON Core 60",
+    "license": "CC BY 4.0",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M6 9 H18\"/>\n  <path d=\"M9 9 V6.5 H15 V9\"/>\n  <path d=\"M12 6.5 V4.5\"/>\n  <path d=\"M7 9 C5.8 12.5 6 18 8.8 20.5 H15.2 C18 18 18.2 12.5 17 9\"/>\n  <path d=\"M7.3 14 l1.7 -1.3 l1.7 1.3 l1.7 -1.3 l1.7 1.3 l1.7 -1.3\"/>\n</svg>",
+    "body": "<path d=\"M6 9 H18\"/><path d=\"M9 9 V6.5 H15 V9\"/><path d=\"M12 6.5 V4.5\"/><path d=\"M7 9 C5.8 12.5 6 18 8.8 20.5 H15.2 C18 18 18.2 12.5 17 9\"/><path d=\"M7.3 14 l1.7 -1.3 l1.7 1.3 l1.7 -1.3 l1.7 1.3 l1.7 -1.3\"/>"
+  },
+  {
+    "slug": "unlock",
+    "nameFr": "Déverrouillé",
+    "nameEn": "Unlock",
+    "family": "interface",
+    "tags": [
+      "déverrouillé",
+      "accès",
+      "sécurité"
+    ],
+    "country": "Référence générique",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Bouclier ouvert en deux pans écartés. Forme abstraite à tester en situation réelle.",
+    "recommendedUse": "Accès autorisé et contenu déverrouillé.",
+    "verifiedBy": "Documentation BUNI-ICON Core 30",
+    "license": "CC BY 4.0",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M10 3.6 C5.4 7.6 5.4 16.4 10 20.4 Z\"/>\n  <path d=\"M14.6 5.4 C18.6 8.6 18.6 15.4 14.6 18.6\"/>\n  <circle cx=\"12.3\" cy=\"12\" r=\"1.2\"/>\n</svg>",
+    "body": "<path d=\"M10 3.6 C5.4 7.6 5.4 16.4 10 20.4 Z\"/><path d=\"M14.6 5.4 C18.6 8.6 18.6 15.4 14.6 18.6\"/><circle cx=\"12.3\" cy=\"12\" r=\"1.2\"/>"
+  },
+  {
+    "slug": "upload",
+    "nameFr": "Envoi",
+    "nameEn": "Upload",
+    "family": "interface",
+    "tags": [
+      "envoi",
+      "téléversement",
+      "fichier"
+    ],
+    "country": "Référence générique",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Flèche ascendante au-dessus d’un panier tressé, cohérente avec l’icône basket.",
+    "recommendedUse": "Envoi de fichier.",
+    "verifiedBy": "Documentation BUNI-ICON Core 30",
+    "license": "CC BY 4.0",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M4.5 14 H19.5 L17.5 20.5 H6.5 Z\"/>\n  <path d=\"M5.4 17.2 H18.6\"/>\n  <path d=\"M12 11 V3.5 M8.5 6.8 L12 3.3 L15.5 6.8\"/>\n</svg>",
+    "body": "<path d=\"M4.5 14 H19.5 L17.5 20.5 H6.5 Z\"/><path d=\"M5.4 17.2 H18.6\"/><path d=\"M12 11 V3.5 M8.5 6.8 L12 3.3 L15.5 6.8\"/>"
+  },
+  {
+    "slug": "user",
+    "nameFr": "Utilisateur",
+    "nameEn": "User",
+    "family": "interface",
+    "tags": [
+      "profil",
+      "compte",
+      "utilisateur"
+    ],
+    "country": "Sans attribution géographique",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Silhouette minimaliste de tête et d’épaules, volontairement neutre et universelle.",
+    "recommendedUse": "Compte, profil et avatar par défaut.",
+    "verifiedBy": "Documentation BUNI-ICON Core 30",
+    "license": "CC BY 4.0",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <circle cx=\"12\" cy=\"7.8\" r=\"3.6\"/>\n  <path d=\"M4.8 20.5 C4.8 16.4 8 13.8 12 13.8 S19.2 16.4 19.2 20.5\"/>\n</svg>",
+    "body": "<circle cx=\"12\" cy=\"7.8\" r=\"3.6\"/><path d=\"M4.8 20.5 C4.8 16.4 8 13.8 12 13.8 S19.2 16.4 19.2 20.5\"/>"
+  },
+  {
+    "slug": "users",
+    "nameFr": "Groupe",
+    "nameEn": "Team",
+    "family": "interface",
+    "tags": [
+      "équipe",
+      "groupe",
+      "communauté",
+      "contacts"
+    ],
+    "country": "Sans attribution culturelle",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Deux silhouettes neutres et universelles, sans référence culturelle spécifique.",
+    "recommendedUse": "Équipe, communauté ou contacts.",
+    "verifiedBy": "Documentation BUNI-ICON Core 60",
+    "license": "CC BY 4.0",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <circle cx=\"9\" cy=\"8.5\" r=\"3\"/>\n  <path d=\"M3 19.5 c0 -3.5 2.7 -5.5 6 -5.5 s6 2 6 5.5\"/>\n  <circle cx=\"17\" cy=\"9.5\" r=\"2.5\"/>\n  <path d=\"M16 14.2 c3 0 5 1.8 5 5.3\"/>\n</svg>",
+    "body": "<circle cx=\"9\" cy=\"8.5\" r=\"3\"/><path d=\"M3 19.5 c0 -3.5 2.7 -5.5 6 -5.5 s6 2 6 5.5\"/><circle cx=\"17\" cy=\"9.5\" r=\"2.5\"/><path d=\"M16 14.2 c3 0 5 1.8 5 5.3\"/>"
+  },
+  {
+    "slug": "wallet",
+    "nameFr": "Portefeuille",
+    "nameEn": "Wallet",
+    "family": "interface",
+    "tags": [
+      "portefeuille",
+      "paiement",
+      "argent"
+    ],
+    "country": "Référence générique",
+    "people": "Sans attribution culturelle spécifique",
+    "culturalNote": "Bourse à cordon plissée avec une bande en zigzag, de forme traditionnelle générique en cuir ou en tissu.",
+    "recommendedUse": "Paiement, portefeuille et moyen de paiement.",
+    "verifiedBy": "Documentation BUNI-ICON Core 30",
+    "license": "CC BY 4.0",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n  <path d=\"M9 6 L8.2 3.8 M12 5.5 V3.2 M15 6 L15.8 3.8\"/>\n  <path d=\"M8.8 7 H15.2\"/>\n  <path d=\"M8.8 7 L6.5 10 C4 13.5 4.5 20 9 20.5 H15 C19.5 20 20 13.5 17.5 10 L15.2 7\"/>\n  <path d=\"M8.5 15 l1.75 -1.5 l1.75 1.5 l1.75 -1.5 l1.75 1.5\"/>\n</svg>",
+    "body": "<path d=\"M9 6 L8.2 3.8 M12 5.5 V3.2 M15 6 L15.8 3.8\"/><path d=\"M8.8 7 H15.2\"/><path d=\"M8.8 7 L6.5 10 C4 13.5 4.5 20 9 20.5 H15 C19.5 20 20 13.5 17.5 10 L15.2 7\"/><path d=\"M8.5 15 l1.75 -1.5 l1.75 1.5 l1.75 -1.5 l1.75 1.5\"/>"
   }
 ];
 export const ICONIFY_DATA: IconifyData = {
   "prefix": "buni",
   "info": {
-    "name": "Buni African Icons",
-    "total": 30,
+    "name": "BUNI-ICON Core 30",
+    "total": 60,
     "author": {
       "name": "Buni Standard",
       "url": "https://buni.idem.africa"
@@ -720,207 +1184,381 @@ export const ICONIFY_DATA: IconifyData = {
       "url": "https://creativecommons.org/licenses/by/4.0/"
     },
     "samples": [
-      "calebasse",
-      "djembe",
-      "pagne",
-      "pirogue"
+      "arrow-left",
+      "arrow-right",
+      "basket",
+      "bell"
     ],
     "height": 24
   },
   "width": 24,
   "height": 24,
   "icons": {
-    "calebasse": {
-      "body": "<path d=\"M12 2v3\" /><path d=\"M10 5h4\" /><path d=\"M10 5c-1 2-2 3-2 5 0 1.5 1 2.5 1 4 0 4.4 2.7 8 6 8s6-3.6 6-8c0-1.5 1-2.5 1-4 0-2-1-3-2-5\" /><path d=\"M7 14c1.5 2 3.5 3 5 3s3.5-1 5-3\" /><circle cx=\"12\" cy=\"11\" r=\"1\" fill=\"currentColor\" stroke=\"none\" />",
+    "arrow-left": {
+      "body": "<path d=\"M3.5 12 L10 6.5 V17.5 Z\"/><path d=\"M10 12 H20.5\"/>",
       "width": 24,
       "height": 24
     },
-    "djembe": {
-      "body": "<ellipse cx=\"12\" cy=\"5\" rx=\"8\" ry=\"2.5\" /><path d=\"M4 5.5c0 4 3 6.5 6 7.5v5c-2.5 1-4 1.5-4 3h12c0-1.5-1.5-2-4-3v-5c3-1 6-3.5 6-7.5\" /><path d=\"M7 6.8l3 5.7 2-5.7 2 5.7 3-5.7\" /><path d=\"M9 18h6\" />",
+    "arrow-right": {
+      "body": "<path d=\"M5 6 L11 12 L5 18\"/><path d=\"M13 6 L19 12 L13 18\"/>",
       "width": 24,
       "height": 24
     },
-    "pagne": {
-      "body": "<path d=\"M4 4h16c.6 0 1 .4 1 1v14c0 .6-.4 1-1 1H4c-.6 0-1-.4-1-1V5c0-.6.4-1 1-1z\" /><path d=\"M4 9h16\" /><path d=\"M4 15h16\" /><path d=\"M9 4v16\" /><path d=\"M15 4v16\" /><path d=\"M6 12l3-3 3 3-3 3-3-3z\" /><path d=\"M12 12l3-3 3 3-3 3-3-3z\" />",
+    "basket": {
+      "body": "<path d=\"M4.5 10 H19.5 L17.5 20 H6.5 Z\"/><path d=\"M8 10 C8 4.5 16 4.5 16 10\"/><path d=\"M5.2 13.5 H18.8 M5.9 16.8 H18.1\"/>",
       "width": 24,
       "height": 24
     },
-    "pirogue": {
-      "body": "<path d=\"M2 13c3 3 7 5 10 5s7-2 10-5c-2-2-5-3-10-3s-8 1-10 3z\" /><path d=\"M7 11v-1\" /><path d=\"M12 11v-1\" /><path d=\"M17 11v-1\" /><path d=\"M18 6l-6 12\" /><path d=\"M19.5 4.5l-3 3\" /><path d=\"M4 17c2 2 5 2.5 8 2.5s6-.5 8-2.5\" />",
+    "bell": {
+      "body": "<path d=\"M6 17 C7.5 15 7.5 12.5 7.5 10 a4.5 4.5 0 0 1 9 0 C16.5 12.5 16.5 15 18 17 Z\"/><path d=\"M12 3.2 V5.5\"/><path d=\"M10.4 19.8 a1.6 1.6 0 0 0 3.2 0\"/><path d=\"M7.6 13.5 H16.4\"/>",
       "width": 24,
       "height": 24
     },
-    "poterie": {
-      "body": "<path d=\"M9 3h6\" /><path d=\"M10 3v2c-3 1.5-6 4-6 8 0 4.5 3.5 8 8 8s8-3.5 8-8c0-4-3-6.5-6-8V3\" /><path d=\"M4 11c-1.5 0-2 1-2 2 0 1.5 1 2.5 2.5 2.5\" /><path d=\"M20 11c1.5 0 2 1 2 2 0 1.5-1 2.5-2.5 2.5\" /><path d=\"M7 13h10\" /><path d=\"M8 16h8\" />",
+    "bookmark": {
+      "body": "<path d=\"M6.5 3.5 H17.5 V20.5 L12 16 L6.5 20.5 Z\"/>",
       "width": 24,
       "height": 24
     },
-    "tabouret-ashanti": {
-      "body": "<path d=\"M3 6c3 2 6 3 9 3s6-1 9-3\" /><path d=\"M2 5c2 3 5 4 10 4s8-1 10-4\" /><path d=\"M5 9v10\" /><path d=\"M19 9v10\" /><path d=\"M10 9v10\" /><path d=\"M14 9v10\" /><circle cx=\"12\" cy=\"14\" r=\"1.5\" /><path d=\"M2 19h20\" /><path d=\"M4 22h16\" />",
+    "calendar": {
+      "body": "<rect x=\"4.5\" y=\"5.5\" width=\"15\" height=\"14.5\" rx=\"2\"/><path d=\"M8.5 3.5 V7.5 M15.5 3.5 V7.5 M4.5 10 H19.5\"/><path d=\"M8 13 V17 M10.5 13 V17 M13 13 V17 M15.5 13 V17 M7 16.5 L16.5 13.5\"/>",
       "width": 24,
       "height": 24
     },
-    "bassine": {
-      "body": "<ellipse cx=\"12\" cy=\"7\" rx=\"9\" ry=\"2.5\" /><path d=\"M3 7.5l2 8c.5 2 3 3.5 7 3.5s6.5-1.5 7-3.5l2-8\" /><path d=\"M1 7h2\" /><path d=\"M21 7h2\" /><path d=\"M7 14c1.5 1 3 1.5 5 1.5s3.5-.5 5-1.5\" />",
+    "camera": {
+      "body": "<path d=\"M3.5 8 H7.5 L9 5.5 H15 L16.5 8 H20.5 V19 H3.5Z\"/><circle cx=\"12\" cy=\"13.5\" r=\"4\"/><path d=\"M12 11.5 L14 13.5 L12 15.5 L10 13.5Z\"/>",
       "width": 24,
       "height": 24
     },
-    "case": {
-      "body": "<path d=\"M12 2l-9 9h18L12 2z\" /><path d=\"M5 11v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9\" /><path d=\"M10 21v-5a2 2 0 0 1 4 0v5\" /><path d=\"M12 2v3\" /><path d=\"M7 11h10\" />",
+    "chart": {
+      "body": "<path d=\"M5.5 19.5 V13.5 M10.2 19.5 V7.5 M14.9 19.5 V11 M19.6 19.5 V4.5\"/><path d=\"M3 21.2 H21\"/>",
       "width": 24,
       "height": 24
     },
-    "foyer-charbon": {
-      "body": "<path d=\"M4 6h16l-2 9H6L4 6z\" /><path d=\"M3 6h18\" /><path d=\"M7 15l-2 6\" /><path d=\"M17 15l2 6\" /><path d=\"M12 15v6\" /><circle cx=\"8\" cy=\"10\" r=\"1\" fill=\"currentColor\" stroke=\"none\" /><circle cx=\"12\" cy=\"10\" r=\"1\" fill=\"currentColor\" stroke=\"none\" /><circle cx=\"16\" cy=\"10\" r=\"1\" fill=\"currentColor\" stroke=\"none\" />",
+    "chat": {
+      "body": "<path d=\"M4 6.5 a2 2 0 0 1 2 -2 H18 a2 2 0 0 1 2 2 V14.5 a2 2 0 0 1 -2 2 H11 L7 20 V16.5 H6 a2 2 0 0 1 -2 -2Z\"/><path d=\"M8 10.5 l1.5 -1.3 l1.5 1.3 l1.5 -1.3 l1.5 1.3 l1.5 -1.3\"/>",
       "width": 24,
       "height": 24
     },
-    "kiosque": {
-      "body": "<path d=\"M4 8l8-4 8 4v2H4V8z\" /><path d=\"M5 10v11\" /><path d=\"M19 10v11\" /><path d=\"M3 21h18\" /><path d=\"M5 14h14\" /><path d=\"M8 10v4\" /><path d=\"M16 10v4\" /><path d=\"M10 17h4v4h-4z\" />",
+    "check": {
+      "body": "<path d=\"M12 2.5 L21.5 12 L12 21.5 L2.5 12Z\"/><path d=\"M8 12.2 L10.8 15 L16 9.2\"/>",
       "width": 24,
       "height": 24
     },
-    "marche": {
-      "body": "<path d=\"M3 9l9-5 9 5v2H3V9z\" /><path d=\"M5 11v8\" /><path d=\"M19 11v8\" /><path d=\"M3 19h18\" /><circle cx=\"9\" cy=\"15\" r=\"1.5\" /><circle cx=\"15\" cy=\"15\" r=\"1.5\" /><path d=\"M12 4v2\" />",
+    "clock": {
+      "body": "<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M6.5 12 H17.5\"/><path d=\"M10 12 L12 5.5 L14 12\"/><path d=\"M18.58 15.8 L17.28 15.05 M12 19.6 L12 18.1 M5.42 15.8 L6.72 15.05\"/>",
       "width": 24,
       "height": 24
     },
-    "mortier-pilon": {
-      "body": "<path d=\"M5 9c0 3 2.5 5 5 5.5V18c-2 0-3 1-3 2h10c0-1-1-2-3-2v-3.5c2.5-.5 5-2.5 5-5.5H5z\" /><path d=\"M12 2l2 11h-4l2-11z\" /><path d=\"M4 9h16\" />",
+    "close": {
+      "body": "<path d=\"M6 6 L18 18 M18 6 L6 18\"/>",
       "width": 24,
       "height": 24
     },
-    "moto-taxi": {
-      "body": "<circle cx=\"5\" cy=\"17\" r=\"3\" /><circle cx=\"19\" cy=\"17\" r=\"3\" /><path d=\"M5 17h4l3-6h5l2 6\" /><path d=\"M12 11l-2-4H7\" /><circle cx=\"12\" cy=\"5\" r=\"1.5\" /><path d=\"M12 6.5v4\" /><path d=\"M14 9h3\" />",
+    "cloud": {
+      "body": "<path d=\"M7 18.5 A4 4 0 0 1 6.6 10.6 A6 6 0 0 1 18.2 10.8 A3.9 3.9 0 0 1 17.5 18.5 Z\"/><path d=\"M9 14.8 l1.5 -1.3 l1.5 1.3 l1.5 -1.3 l1.5 1.3\"/>",
       "width": 24,
       "height": 24
     },
-    "theiere-ataya": {
-      "body": "<path d=\"M11 2h2\" /><path d=\"M12 2v2\" /><path d=\"M9 4h6\" /><path d=\"M8 6c-2 3-2 8 0 11 1 1.5 2.5 2 4 2s3-.5 4-2c2-3 2-8 0-11\" /><path d=\"M7 10C3 10 3 14 6 15\" /><path d=\"M16 8c3 0 5 1 5 4s-2 5-5 5\" /><path d=\"M6 19h12\" />",
+    "copy": {
+      "body": "<rect x=\"8.5\" y=\"8.5\" width=\"11.5\" height=\"11.5\" rx=\"2\"/><path d=\"M15.5 8.5 V6 a2 2 0 0 0 -2 -2 H6 a2 2 0 0 0 -2 2 V13.5 a2 2 0 0 0 2 2 H8.5\"/>",
       "width": 24,
       "height": 24
     },
-    "agent-point": {
-      "body": "<path d=\"M12 2a8 8 0 0 0-8 8h16a8 8 0 0 0-8-8z\" /><path d=\"M12 2v20\" /><path d=\"M4 10l2 11h12l2-11\" /><circle cx=\"12\" cy=\"14\" r=\"1.5\" /><path d=\"M8 21h8\" />",
+    "cowrie": {
+      "body": "<g transform=\"rotate(-12 12 12)\"><ellipse cx=\"12\" cy=\"12\" rx=\"6.2\" ry=\"8.8\"/><path d=\"M12.6 3.5 C10.8 8.5 10.8 15.5 12.6 20.5\"/><path d=\"M9.4 8.5 l1.5 .4 M9.2 12 h1.7 M9.4 15.5 l1.5 -.4 M14.4 9 l-1.2 .3 M14.6 12 h-1.4 M14.4 15 l-1.2 -.3\"/></g>",
       "width": 24,
       "height": 24
     },
-    "carte-sim": {
-      "body": "<path d=\"M6 2h8l5 5v15H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z\" /><rect x=\"8\" y=\"11\" width=\"8\" height=\"8\" rx=\"1\" /><path d=\"M8 15h8\" /><path d=\"M12 11v8\" /><path d=\"M12 7v1\" />",
+    "delivery": {
+      "body": "<path d=\"M2.5 14 H21.5 C20 18 17 19.5 14 19.5 H10 C7 19.5 4 18 2.5 14Z\"/><rect x=\"7\" y=\"9.2\" width=\"5.5\" height=\"4.8\" rx=\"0.8\"/><path d=\"M18.5 4 L13.8 13\"/>",
       "width": 24,
       "height": 24
     },
-    "compteur-prepaye": {
-      "body": "<rect x=\"5\" y=\"2\" width=\"14\" height=\"20\" rx=\"2\" /><rect x=\"8\" y=\"5\" width=\"8\" height=\"4\" rx=\"1\" /><circle cx=\"8\" cy=\"13\" r=\".5\" fill=\"currentColor\" stroke=\"none\" /><circle cx=\"12\" cy=\"13\" r=\".5\" fill=\"currentColor\" stroke=\"none\" /><circle cx=\"16\" cy=\"13\" r=\".5\" fill=\"currentColor\" stroke=\"none\" /><circle cx=\"8\" cy=\"16\" r=\".5\" fill=\"currentColor\" stroke=\"none\" /><circle cx=\"12\" cy=\"16\" r=\".5\" fill=\"currentColor\" stroke=\"none\" /><circle cx=\"16\" cy=\"16\" r=\".5\" fill=\"currentColor\" stroke=\"none\" /><path d=\"M10 19h4\" />",
+    "download": {
+      "body": "<path d=\"M4.5 14 H19.5 L17.5 20.5 H6.5 Z\"/><path d=\"M5.4 17.2 H18.6\"/><path d=\"M12 3.5 V10.5 M8.5 7.5 L12 11 L15.5 7.5\"/>",
       "width": 24,
       "height": 24
     },
-    "cybercafe": {
-      "body": "<rect x=\"2\" y=\"3\" width=\"14\" height=\"11\" rx=\"2\" /><path d=\"M6 14v4\" /><path d=\"M12 14v4\" /><path d=\"M4 18h10\" /><path d=\"M17 10h4a1 1 0 0 1 1 1v2a2 2 0 0 1-2 2h-3\" /><path d=\"M19 6c.5 1 1.5 1 1.5 2\" /><path d=\"M17 6c.5 1 1.5 1 1.5 2\" />",
+    "edit": {
+      "body": "<path d=\"M4.5 19.5 L5.5 15 L16.5 4 L20 7.5 L9 18.5 Z\"/><path d=\"M14 6.5 L17.5 10\"/><path d=\"M12.5 20.5 H20\"/>",
       "width": 24,
       "height": 24
     },
-    "mobile-money": {
-      "body": "<rect x=\"5\" y=\"2\" width=\"14\" height=\"20\" rx=\"3\" /><circle cx=\"12\" cy=\"18\" r=\"1\" fill=\"currentColor\" stroke=\"none\" /><path d=\"M12 6v6\" /><path d=\"M9 8.5h6\" /><path d=\"M15 8l-3-2-3 2\" /><path d=\"M9 10l3 2 3-2\" />",
+    "eye-off": {
+      "body": "<path d=\"M2.5 12 Q12 4 21.5 12 Q12 20 2.5 12Z\"/><path d=\"M12 9.5 L14.5 12 L12 14.5 L9.5 12Z\"/><path d=\"M4 3.5 L20 20.5\"/>",
       "width": 24,
       "height": 24
     },
-    "panneau-solaire": {
-      "body": "<path d=\"M4 3l4 11h8l4-11H4z\" /><path d=\"M8 3l1 11\" /><path d=\"M16 3l-1 11\" /><path d=\"M5.5 8.5h13\" /><path d=\"M12 14v7\" /><path d=\"M8 21h8\" /><path d=\"M2 3l2 2\" /><path d=\"M22 3l-2 2\" />",
+    "eye": {
+      "body": "<path d=\"M2.5 12 Q12 4 21.5 12 Q12 20 2.5 12Z\"/><path d=\"M12 9.5 L14.5 12 L12 14.5 L9.5 12Z\"/>",
       "width": 24,
       "height": 24
     },
-    "recharge-credit": {
-      "body": "<rect x=\"3\" y=\"4\" width=\"18\" height=\"16\" rx=\"2\" /><rect x=\"6\" y=\"9\" width=\"12\" height=\"6\" rx=\"1\" stroke-dasharray=\"2 2\" /><path d=\"M8 12h2\" /><path d=\"M11 12h2\" /><path d=\"M14 12h2\" /><path d=\"M6 6h2\" /><path d=\"M16 6h2\" />",
+    "favorite": {
+      "body": "<path d=\"M12 20 L4.5 12.2 C2.5 9.8 3.6 5.5 7.4 5.5 C9.5 5.5 11 6.8 12 8.5 C13 6.8 14.5 5.5 16.6 5.5 C20.4 5.5 21.5 9.8 19.5 12.2 Z\"/><path d=\"M12 8.5 V12\"/>",
       "width": 24,
       "height": 24
     },
-    "ussd": {
-      "body": "<rect x=\"4\" y=\"2\" width=\"16\" height=\"20\" rx=\"3\" /><path d=\"M7 6h10\" /><path d=\"M8 10l2 2m0-2l-2 2\" /><circle cx=\"12\" cy=\"11\" r=\".5\" fill=\"currentColor\" stroke=\"none\" /><path d=\"M15 9.5v3\" /><path d=\"M7 15h2\" /><path d=\"M11 15h2\" /><path d=\"M15 15h2\" /><circle cx=\"12\" cy=\"19\" r=\"1\" fill=\"currentColor\" stroke=\"none\" />",
+    "file": {
+      "body": "<path d=\"M6 3.5 H14 L19 8.5 V20.5 H6Z\"/><path d=\"M14 3.5 V8.5 H19\"/><path d=\"M9 13 V17 M11.5 13 V17 M14 13 V17 M16.5 13 V17\"/>",
       "width": 24,
       "height": 24
     },
-    "adinkrahene": {
-      "body": "<circle cx=\"12\" cy=\"12\" r=\"9\" /><circle cx=\"12\" cy=\"12\" r=\"5.5\" /><circle cx=\"12\" cy=\"12\" r=\"2\" />",
+    "filter": {
+      "body": "<path d=\"M3.5 5.5 H20.5 L14 13 V19.5 L10 17.5 V13 Z\"/>",
       "width": 24,
       "height": 24
     },
-    "bese-saka": {
-      "body": "<circle cx=\"8\" cy=\"8\" r=\"4\" /><circle cx=\"16\" cy=\"8\" r=\"4\" /><circle cx=\"8\" cy=\"16\" r=\"4\" /><circle cx=\"16\" cy=\"16\" r=\"4\" /><path d=\"M12 4v16\" /><path d=\"M4 12h16\" />",
+    "folder": {
+      "body": "<path d=\"M3 7 V18 a1.5 1.5 0 0 0 1.5 1.5 H19.5 a1.5 1.5 0 0 0 1.5 -1.5 V9.5 a1.5 1.5 0 0 0 -1.5 -1.5 H12 L10 5.5 H4.5 A1.5 1.5 0 0 0 3 7Z\"/><path d=\"M7.5 15 l1.5 -1.3 l1.5 1.3 l1.5 -1.3 l1.5 1.3\"/>",
       "width": 24,
       "height": 24
     },
-    "duafe": {
-      "body": "<path d=\"M7 3h10a2 2 0 0 1 2 2v4a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V5a2 2 0 0 1 2-2z\" /><circle cx=\"12\" cy=\"7\" r=\"1.5\" /><path d=\"M7 12v9\" /><path d=\"M10 12v9\" /><path d=\"M12 12v9\" /><path d=\"M14 12v9\" /><path d=\"M17 12v9\" />",
+    "gallery": {
+      "body": "<rect x=\"3.5\" y=\"4.5\" width=\"17\" height=\"15\" rx=\"1.5\"/><circle cx=\"8.5\" cy=\"9.2\" r=\"1.5\"/><path d=\"M3.5 16.5 L8.5 12 L12 15 L15 12.5 L20.5 17\"/>",
       "width": 24,
       "height": 24
     },
-    "dwennimmen": {
-      "body": "<path d=\"M12 21v-8\" /><path d=\"M12 13c-2-3-5-4-8-2-2 1-2 4 0 6 3 2 6 0 7-3\" /><path d=\"M12 13c2-3 5-4 8-2 2 1 2 4 0 6-3 2-6 0-7-3\" /><circle cx=\"12\" cy=\"5\" r=\"2\" />",
+    "gift": {
+      "body": "<path d=\"M12 10 C9 9.5 7 6 9 4.8 C10.7 4 12 7 12 10 C15 9.5 17 6 15 4.8 C13.3 4 12 7 12 10Z\"/><path d=\"M7.5 11 C4.5 13 4 19 7 20.5 H17 C20 19 19.5 13 16.5 11\"/><path d=\"M5.2 16 H18.8\"/>",
       "width": 24,
       "height": 24
     },
-    "fawohodie": {
-      "body": "<circle cx=\"12\" cy=\"12\" r=\"4\" /><path d=\"M12 8V3m0 0l-3 3m3-3l3 3\" /><path d=\"M12 16v5m0 0l-3-3m3 3l3-3\" /><path d=\"M8 12H3m0 0l3-3m-3 3l3 3\" /><path d=\"M16 12h5m0 0l-3-3m3 3l-3 3\" />",
+    "globe": {
+      "body": "<circle cx=\"12\" cy=\"12\" r=\"9\"/><ellipse cx=\"12\" cy=\"12\" rx=\"3.8\" ry=\"9\"/><path d=\"M3 12 H21\"/>",
       "width": 24,
       "height": 24
     },
-    "gye-nyame": {
-      "body": "<path d=\"M12 2v20\" /><path d=\"M12 6c-4 0-7 2.5-7 6s3 6 7 6\" /><path d=\"M12 6c4 0 7 2.5 7 6s-3 6-7 6\" /><path d=\"M9 10c-1 1-1 3 0 4\" /><path d=\"M15 10c1 1 1 3 0 4\" /><path d=\"M6 12h3\" /><path d=\"M15 12h3\" />",
+    "help": {
+      "body": "<circle cx=\"12\" cy=\"5.5\" r=\"2.5\"/><path d=\"M12 8 V21\"/><path d=\"M9.8 12 H14.2 M9.8 15.5 H14.2\"/>",
       "width": 24,
       "height": 24
     },
-    "nkonsonkonson": {
-      "body": "<rect x=\"2\" y=\"7\" width=\"9\" height=\"10\" rx=\"3\" /><rect x=\"13\" y=\"7\" width=\"9\" height=\"10\" rx=\"3\" /><path d=\"M8 12h8\" /><circle cx=\"6.5\" cy=\"12\" r=\"1.5\" /><circle cx=\"17.5\" cy=\"12\" r=\"1.5\" />",
+    "home": {
+      "body": "<path d=\"M12 4 L3.5 11.5 H20.5 Z\"/><path d=\"M12 4 V2.4 M10.6 4.9 L9.8 3.3 M13.4 4.9 L14.2 3.3\"/><path d=\"M12 7.2 V9\"/><path d=\"M5.6 11.5 L5 20.5 H19 L18.4 11.5\"/><path d=\"M10 20.5 V16.2 a2 2 0 0 1 4 0 V20.5\"/><path d=\"M6.2 16 l1.1 -1.5 l1.1 1.5 M15.6 16 l1.1 -1.5 l1.1 1.5\"/>",
       "width": 24,
       "height": 24
     },
-    "sankofa": {
-      "body": "<path d=\"M16 4c-2 0-3 1.5-4 3-1 2-2 4-5 4H4c0 3 2 6 6 6 3 0 5-1.5 6-4l2-4c.5-1 1-2 1-3 0-1-1-2-3-2z\" /><circle cx=\"11\" cy=\"7\" r=\"1.5\" /><path d=\"M15 5.5l1.5-1\" /><path d=\"M9 17v4\" /><path d=\"M12 17v4\" /><path d=\"M7 21h7\" />",
+    "idea": {
+      "body": "<path d=\"M9 17.5 V16 A6 6 0 1 1 15 16 V17.5 Z\"/><path d=\"M9.7 20.5 H14.3\"/><path d=\"M10 12.5 l1 -1.3 l1 1.3 l1 -1.3 l1 1.3\"/>",
+      "width": 24,
+      "height": 24
+    },
+    "link": {
+      "body": "<rect x=\"3.45\" y=\"12.6\" width=\"10.5\" height=\"5.4\" rx=\"2.7\" transform=\"rotate(-45 8.7 15.3)\"/><rect x=\"10.05\" y=\"6\" width=\"10.5\" height=\"5.4\" rx=\"2.7\" transform=\"rotate(-45 15.3 8.7)\"/>",
+      "width": 24,
+      "height": 24
+    },
+    "location": {
+      "body": "<path d=\"M8.8 10.5 H15.2\"/><path d=\"M8.8 10.5 C9.8 14 9.6 17.5 8.2 21 M15.2 10.5 C14.2 14 14.4 17.5 15.8 21 M6 21 H18\"/><path d=\"M9.6 10.5 L6.4 7.4 M12 10.5 V6.2 M14.4 10.5 L17.6 7.4\"/><circle cx=\"5.6\" cy=\"6.4\" r=\"1.5\"/><circle cx=\"12\" cy=\"4.6\" r=\"1.5\"/><circle cx=\"18.4\" cy=\"6.4\" r=\"1.5\"/>",
+      "width": 24,
+      "height": 24
+    },
+    "lock": {
+      "body": "<path d=\"M12 3.2 C17 7 17 17 12 20.8 C7 17 7 7 12 3.2Z\"/><circle cx=\"12\" cy=\"11\" r=\"1.6\"/><path d=\"M12 12.6 V16\"/>",
+      "width": 24,
+      "height": 24
+    },
+    "mail": {
+      "body": "<rect x=\"3\" y=\"5.5\" width=\"18\" height=\"13\" rx=\"2\"/><path d=\"M3.6 7.2 L12 13 L20.4 7.2\"/><path d=\"M3.6 17.8 L9 12.2 M20.4 17.8 L15 12.2\"/>",
+      "width": 24,
+      "height": 24
+    },
+    "map": {
+      "body": "<path d=\"M3 6 L9 4 L15 6 L21 4 V18 L15 20 L9 18 L3 20Z\"/><path d=\"M9 4 V18 M15 6 V20\"/><path d=\"M11 14 l1 -1.2 l1 1.8 l1 -1.2\"/>",
+      "width": 24,
+      "height": 24
+    },
+    "menu": {
+      "body": "<path d=\"M4 6.5 H20\"/><path d=\"M4 12 h4 l1 -1.5 l2 3 l2 -3 l2 3 l1 -1.5 h4\"/><path d=\"M4 17.5 H20\"/>",
+      "width": 24,
+      "height": 24
+    },
+    "minus": {
+      "body": "<path d=\"M5 12 H19\"/>",
+      "width": 24,
+      "height": 24
+    },
+    "moon": {
+      "body": "<path d=\"M20 14 A8.5 8.5 0 1 1 10 4 A6.7 6.7 0 0 0 20 14Z\"/><path d=\"M17.5 3.6 L18.9 5.2 L17.5 6.8 L16.1 5.2Z\"/>",
+      "width": 24,
+      "height": 24
+    },
+    "music": {
+      "body": "<ellipse cx=\"12\" cy=\"6\" rx=\"6\" ry=\"2\"/><path d=\"M6 6 C6 11 9.5 12 9.5 15.5 V19.5 C9.5 20.5 14.5 20.5 14.5 19.5 V15.5 C14.5 12 18 11 18 6\"/><path d=\"M6.9 9.6 Q12 12 17.1 9.6\"/>",
+      "width": 24,
+      "height": 24
+    },
+    "pause": {
+      "body": "<path d=\"M8.5 5.5 V18.5 M15.5 5.5 V18.5\"/>",
+      "width": 24,
+      "height": 24
+    },
+    "phone": {
+      "body": "<path d=\"M4.2 19.2 C4.5 12 8.5 6.5 13.5 4.5 L17 10 C12.5 11.5 9.5 15 6.8 20.8 Z\"/><path d=\"M20 5 C21.6 7 21.6 9.5 20 11.5\"/><path d=\"M7.4 13.2 L10.4 14.8\"/>",
+      "width": 24,
+      "height": 24
+    },
+    "play": {
+      "body": "<circle cx=\"12\" cy=\"12\" r=\"9.5\"/><path d=\"M10 8.5 L16 12 L10 15.5Z\"/>",
+      "width": 24,
+      "height": 24
+    },
+    "plus": {
+      "body": "<path d=\"M12 4.5 V19.5 M4.5 12 H19.5\"/>",
+      "width": 24,
+      "height": 24
+    },
+    "power": {
+      "body": "<path d=\"M12 3.5 V11.5\"/><path d=\"M7.2 6.8 a7.5 7.5 0 1 0 9.6 0\"/>",
+      "width": 24,
+      "height": 24
+    },
+    "refresh": {
+      "body": "<path d=\"M18.5 8.5 A7.5 7.5 0 0 0 5 10\"/><path d=\"M18.5 4 V8.5 H14\"/><path d=\"M5.5 15.5 A7.5 7.5 0 0 0 19 14\"/><path d=\"M5.5 20 V15.5 H10\"/>",
+      "width": 24,
+      "height": 24
+    },
+    "search": {
+      "body": "<path d=\"M2.5 10 Q10.5 2.5 18.5 10 Q10.5 17.5 2.5 10Z\"/><circle cx=\"10.5\" cy=\"10\" r=\"2.2\"/><path d=\"M16.6 14.6 L21.5 19.5\"/>",
+      "width": 24,
+      "height": 24
+    },
+    "settings": {
+      "body": "<circle cx=\"12\" cy=\"12\" r=\"6.2\"/><circle cx=\"12\" cy=\"12\" r=\"2.4\"/><path d=\"M18.2 12 L21.3 12 M16.38 16.38 L18.58 18.58 M12 18.2 L12 21.3 M7.62 16.38 L5.42 18.58 M5.8 12 L2.7 12 M7.62 7.62 L5.42 5.42 M12 5.8 L12 2.7 M16.38 7.62 L18.58 5.42\"/>",
+      "width": 24,
+      "height": 24
+    },
+    "share": {
+      "body": "<circle cx=\"6\" cy=\"12\" r=\"2.2\"/><circle cx=\"18\" cy=\"6\" r=\"2.2\"/><circle cx=\"18\" cy=\"18\" r=\"2.2\"/><path d=\"M7.97 11.02 L16.03 6.98 M7.97 12.98 L16.03 17.02\"/>",
+      "width": 24,
+      "height": 24
+    },
+    "shield": {
+      "body": "<path d=\"M12 3 C17.5 7 17.5 17 12 21 C6.5 17 6.5 7 12 3Z\"/><path d=\"M12 9.8 L13.6 12 L12 14.2 L10.4 12 Z\"/><path d=\"M20 3.5 L15.9 8 M4 3.5 L8.1 8 M8.1 16 L4 20.5 M15.9 16 L20 20.5\"/>",
+      "width": 24,
+      "height": 24
+    },
+    "signal": {
+      "body": "<circle cx=\"12\" cy=\"18.5\" r=\"1.2\"/><path d=\"M8.6 15 a5 5 0 0 1 6.8 0\"/><path d=\"M5.6 11.8 a9 9 0 0 1 12.8 0\"/><path d=\"M3 8.8 a13 13 0 0 1 18 0\"/>",
+      "width": 24,
+      "height": 24
+    },
+    "star": {
+      "body": "<path d=\"M12 2.5 L13.68 7.93 L18.72 5.28 L16.07 10.32 L21.5 12 L16.07 13.68 L18.72 18.72 L13.68 16.07 L12 21.5 L10.32 16.07 L5.28 18.72 L7.93 13.68 L2.5 12 L7.93 10.32 L5.28 5.28 L10.32 7.93 Z\"/>",
+      "width": 24,
+      "height": 24
+    },
+    "store": {
+      "body": "<path d=\"M3.5 9 L5 4.5 H19 L20.5 9\"/><path d=\"M3.5 9 q2.125 3 4.25 0 q2.125 3 4.25 0 q2.125 3 4.25 0 q2.125 3 4.25 0\"/><path d=\"M5 12 V20.5 H19 V12\"/><path d=\"M10 20.5 V15.5 H14 V20.5\"/>",
+      "width": 24,
+      "height": 24
+    },
+    "sun": {
+      "body": "<circle cx=\"12\" cy=\"12\" r=\"3.4\"/><path d=\"M18.4 12 L21.2 12 M17.54 15.2 L18.93 16 M15.2 17.54 L16.6 19.97 M12 18.4 L12 20 M8.8 17.54 L7.4 19.97 M6.46 15.2 L5.07 16 M5.6 12 L2.8 12 M6.46 8.8 L5.07 8 M8.8 6.46 L7.4 4.03 M12 5.6 L12 4 M15.2 6.46 L16.6 4.03 M17.54 8.8 L18.93 8\"/>",
+      "width": 24,
+      "height": 24
+    },
+    "tag": {
+      "body": "<path d=\"M4 4.5 H12 L20 12.5 L12.5 20 L4 11.5Z\"/><circle cx=\"8\" cy=\"8.5\" r=\"1.3\"/>",
+      "width": 24,
+      "height": 24
+    },
+    "trash": {
+      "body": "<path d=\"M6 9 H18\"/><path d=\"M9 9 V6.5 H15 V9\"/><path d=\"M12 6.5 V4.5\"/><path d=\"M7 9 C5.8 12.5 6 18 8.8 20.5 H15.2 C18 18 18.2 12.5 17 9\"/><path d=\"M7.3 14 l1.7 -1.3 l1.7 1.3 l1.7 -1.3 l1.7 1.3 l1.7 -1.3\"/>",
+      "width": 24,
+      "height": 24
+    },
+    "unlock": {
+      "body": "<path d=\"M10 3.6 C5.4 7.6 5.4 16.4 10 20.4 Z\"/><path d=\"M14.6 5.4 C18.6 8.6 18.6 15.4 14.6 18.6\"/><circle cx=\"12.3\" cy=\"12\" r=\"1.2\"/>",
+      "width": 24,
+      "height": 24
+    },
+    "upload": {
+      "body": "<path d=\"M4.5 14 H19.5 L17.5 20.5 H6.5 Z\"/><path d=\"M5.4 17.2 H18.6\"/><path d=\"M12 11 V3.5 M8.5 6.8 L12 3.3 L15.5 6.8\"/>",
+      "width": 24,
+      "height": 24
+    },
+    "user": {
+      "body": "<circle cx=\"12\" cy=\"7.8\" r=\"3.6\"/><path d=\"M4.8 20.5 C4.8 16.4 8 13.8 12 13.8 S19.2 16.4 19.2 20.5\"/>",
+      "width": 24,
+      "height": 24
+    },
+    "users": {
+      "body": "<circle cx=\"9\" cy=\"8.5\" r=\"3\"/><path d=\"M3 19.5 c0 -3.5 2.7 -5.5 6 -5.5 s6 2 6 5.5\"/><circle cx=\"17\" cy=\"9.5\" r=\"2.5\"/><path d=\"M16 14.2 c3 0 5 1.8 5 5.3\"/>",
+      "width": 24,
+      "height": 24
+    },
+    "wallet": {
+      "body": "<path d=\"M9 6 L8.2 3.8 M12 5.5 V3.2 M15 6 L15.8 3.8\"/><path d=\"M8.8 7 H15.2\"/><path d=\"M8.8 7 L6.5 10 C4 13.5 4.5 20 9 20.5 H15 C19.5 20 20 13.5 17.5 10 L15.2 7\"/><path d=\"M8.5 15 l1.75 -1.5 l1.75 1.5 l1.75 -1.5 l1.75 1.5\"/>",
       "width": 24,
       "height": 24
     }
   },
   "categories": {
-    "Objets & Artisanat": [
-      "calebasse",
-      "djembe",
-      "pagne",
-      "pirogue",
-      "poterie",
-      "tabouret-ashanti"
-    ],
-    "Vie Quotidienne": [
-      "bassine",
-      "case",
-      "foyer-charbon",
-      "kiosque",
-      "marche",
-      "mortier-pilon",
-      "moto-taxi",
-      "theiere-ataya"
-    ],
-    "Tech Locale": [
-      "agent-point",
-      "carte-sim",
-      "compteur-prepaye",
-      "cybercafe",
-      "mobile-money",
-      "panneau-solaire",
-      "recharge-credit",
-      "ussd"
-    ],
-    "Symboles & Adinkra": [
-      "adinkrahene",
-      "bese-saka",
-      "duafe",
-      "dwennimmen",
-      "fawohodie",
-      "gye-nyame",
-      "nkonsonkonson",
-      "sankofa"
+    "Interface": [
+      "arrow-left",
+      "arrow-right",
+      "basket",
+      "bell",
+      "bookmark",
+      "calendar",
+      "camera",
+      "chart",
+      "chat",
+      "check",
+      "clock",
+      "close",
+      "cloud",
+      "copy",
+      "cowrie",
+      "delivery",
+      "download",
+      "edit",
+      "eye-off",
+      "eye",
+      "favorite",
+      "file",
+      "filter",
+      "folder",
+      "gallery",
+      "gift",
+      "globe",
+      "help",
+      "home",
+      "idea",
+      "link",
+      "location",
+      "lock",
+      "mail",
+      "map",
+      "menu",
+      "minus",
+      "moon",
+      "music",
+      "pause",
+      "phone",
+      "play",
+      "plus",
+      "power",
+      "refresh",
+      "search",
+      "settings",
+      "share",
+      "shield",
+      "signal",
+      "star",
+      "store",
+      "sun",
+      "tag",
+      "trash",
+      "unlock",
+      "upload",
+      "user",
+      "users",
+      "wallet"
     ]
   }
 };
 export const ICONS_BY_SLUG: Record<string, BuniIconMeta> = Object.fromEntries(ICONS_CATALOG.map(i => [i.slug, i]));
-export const TOTAL_ICONS = 30;
+export const TOTAL_ICONS = 60;

@@ -1,0 +1,13 @@
+{
+  "slug": "idea",
+  "nameFr": "Idée",
+  "nameEn": "Idea",
+  "family": "interface",
+  "tags": ["idée", "astuce", "suggestion"],
+  "country": "Référence générique",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Ampoule dont le filament en zigzag rappelle des motifs textiles génériques.",
+  "recommendedUse": "Astuce ou suggestion.",
+  "verifiedBy": "Documentation BUNI-ICON Core 60",
+  "license": "CC BY 4.0"
+}

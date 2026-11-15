@@ -1,26 +1,27 @@
 {
   "nav": {
     "catalog": "Catalogue",
-    "families": "Familles",
+    "families": "Sélection",
     "iconify": "Iconify Spec",
     "github": "Code Source",
-    "searchPlaceholder": "Rechercher une icône (ex: calebasse, USSD, sankofa)...",
+    "searchPlaceholder": "Rechercher une icône (ex. home, wallet, panier)...",
     "switchLang": "EN"
   },
   "home": {
-    "title": "Chaque icône a une histoire.",
-    "subtitle": "La bibliothèque souveraine d’icônes vectorielles ancrées dans les cultures, l’artisanat et le quotidien africains. Zéro artifice, pixel habité, copier-coller libre.",
+    "title": "BUNI-ICON Core 30",
+    "subtitle": "Trente icônes d’interface SVG au trait minimaliste, sur une grille 24×24. Explorez, personnalisez et copiez-les librement.",
     "ctaExplore": "Explorer le catalogue",
     "ctaIconify": "Utiliser avec Iconify",
-    "popular": "Icônes emblématiques",
+    "popular": "Core 30",
     "viewAll": "Voir toutes les icônes"
   },
   "catalog": {
     "title": "Catalogue des Icônes",
-    "subtitle": "Explorez nos icônes vectorielles par famille, pays d’origine ou mot-clé.",
+    "subtitle": "Explorez les 30 icônes d’interface Core 30 et recherchez par nom ou mot-clé.",
     "search": "Filtrer les icônes...",
     "allFamilies": "Toutes les familles",
     "allCountries": "Tous les pays",
+    "core30": "Collection Core 30 · 30 icônes",
     "size": "Taille",
     "stroke": "Épaisseur",
     "found": "{count} icône(s) trouvée(s)",
@@ -30,11 +31,11 @@
   },
   "detail": {
     "back": "Retour au catalogue",
-    "culturalSheet": "Fiche Culturelle & Patrimoniale",
-    "meaning": "Signification & Contexte",
+    "culturalSheet": "À propos de l’icône",
+    "meaning": "Conception et références",
     "recommendedUse": "Usages recommandés en interface",
-    "verifiedBy": "Vérifié par",
-    "origin": "Origine & Peuple",
+    "verifiedBy": "Source",
+    "origin": "Contexte",
     "country": "Pays",
     "license": "Licence d'usage",
     "copySvg": "Copier SVG",
@@ -48,7 +49,7 @@
     "strokeWidth": "Épaisseur de trait"
   },
   "footer": {
-    "manifesto": "Buni Icon est un standard libre conçu pour enrichir les interfaces numériques du continent et du monde entier avec l'imaginaire africain.",
+    "manifesto": "BUNI-ICON Core 30 est une collection de 30 icônes SVG d’interface, conçues pour être simples à personnaliser et à intégrer.",
     "linksStandard": "Standard",
     "linksResources": "Ressources",
     "rights": "© 2026 BUNI Standard. Icônes sous licence Creative Commons Attribution 4.0 International (CC BY 4.0)."

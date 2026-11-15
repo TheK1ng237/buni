@@ -1,0 +1,17 @@
+{
+  "slug": "lock",
+  "nameFr": "Verrouillé / Confidentialité",
+  "nameEn": "Lock / Privacy",
+  "family": "interface",
+  "tags": [
+    "verrouillé",
+    "confidentialité",
+    "sécurité"
+  ],
+  "country": "Référence générique",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Bouclier fermé avec un trou de serrure, dans la même famille graphique que l’icône shield.",
+  "recommendedUse": "Contenu verrouillé, privé ou protégé.",
+  "verifiedBy": "Documentation BUNI-ICON Core 30",
+  "license": "CC BY 4.0"
+}

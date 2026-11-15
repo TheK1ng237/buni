@@ -1,0 +1,13 @@
+{
+  "slug": "moon",
+  "nameFr": "Lune",
+  "nameEn": "Moon",
+  "family": "interface",
+  "tags": ["lune", "mode sombre", "nuit"],
+  "country": "Sans attribution culturelle",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Croissant de lune accompagné d’un petit losange en forme d’étoile, sans référence culturelle spécifique.",
+  "recommendedUse": "Mode sombre ou nuit.",
+  "verifiedBy": "Documentation BUNI-ICON Core 60",
+  "license": "CC BY 4.0"
+}

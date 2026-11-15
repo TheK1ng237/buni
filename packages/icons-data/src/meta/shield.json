@@ -1,0 +1,17 @@
+{
+  "slug": "shield",
+  "nameFr": "Sécurité",
+  "nameEn": "Security",
+  "family": "interface",
+  "tags": [
+    "sécurité",
+    "protection",
+    "interface"
+  ],
+  "country": "Afrique de l’Est et australe (référence générique)",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Bouclier lancéolé avec deux lances croisées et un losange central, inspiré de formes de boucliers d’Afrique de l’Est et australe, sans attribution à un peuple unique.",
+  "recommendedUse": "Sécurité, protection et pare-feu.",
+  "verifiedBy": "Documentation BUNI-ICON Core 30",
+  "license": "CC BY 4.0"
+}

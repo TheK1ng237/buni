@@ -1,0 +1,13 @@
+{
+  "slug": "plus",
+  "nameFr": "Plus",
+  "nameEn": "Plus",
+  "family": "interface",
+  "tags": ["plus", "ajouter", "créer"],
+  "country": "Sans attribution culturelle",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Croix droite, signe utilitaire conservé sans ornement pour la lisibilité.",
+  "recommendedUse": "Ajouter ou créer un élément.",
+  "verifiedBy": "Documentation BUNI-ICON Core 60",
+  "license": "CC BY 4.0"
+}

@@ -1,0 +1,17 @@
+{
+  "slug": "arrow-left",
+  "nameFr": "Retour",
+  "nameEn": "Back",
+  "family": "interface",
+  "tags": [
+    "retour",
+    "navigation",
+    "flèche"
+  ],
+  "country": "Référence générique",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Pointe triangulaire avec hampe, inspirée de formes génériques de pointes d’armes d’hast.",
+  "recommendedUse": "Retour arrière. En interface RTL, inverser le côté de l’icône.",
+  "verifiedBy": "Documentation BUNI-ICON Core 30",
+  "license": "CC BY 4.0"
+}

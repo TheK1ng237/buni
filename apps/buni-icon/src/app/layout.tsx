@@ -17,22 +17,19 @@ export const jetbrains = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://icons.buni.africa'),
   title: {
-    template: '%s | Buni Icon — L’Iconify de l’Afrique',
-    default: 'Buni Icon — L’Iconify de l’Afrique | Standard d’icônes africaines',
+    template: '%s | BUNI-ICON Core 30',
+    default: 'BUNI-ICON Core 30 | Icônes d’interface',
   },
   description:
-    'La bibliothèque souveraine d’icônes SVG africaines : artisanat, vie quotidienne, tech locale et symboles Adinkra vérifiés. Grille 24×24, trait pur, zéro artifice.',
+    'Collection de 30 icônes SVG d’interface en outline minimaliste. Grille 24×24, couleur currentColor et exports SVG, React et Iconify.',
   keywords: [
     'buni',
     'icons',
-    'african icons',
+    'core 30',
     'iconify',
     'svg',
-    'adinkra',
-    'sankofa',
-    'ghana',
-    'senegal',
-    'nigeria',
+    'interface',
+    'outline',
     'open source',
   ],
   authors: [{ name: 'Buni Collective', url: 'https://buni.idem.africa' }],
@@ -41,8 +38,8 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'fr_FR',
     siteName: 'Buni Icon',
-    title: 'Buni Icon — L’Iconify de l’Afrique',
-    description: 'Le standard vectoriel des cultures et usages africains.',
+    title: 'BUNI-ICON Core 30',
+    description: '30 icônes SVG minimalistes pour les interfaces.',
   },
 };
 
@@ -72,4 +69,3 @@ export default function RootLayout({
     </html>
   );
 }
-

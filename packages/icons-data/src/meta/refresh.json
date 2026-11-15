@@ -1,0 +1,13 @@
+{
+  "slug": "refresh",
+  "nameFr": "Actualiser",
+  "nameEn": "Refresh",
+  "family": "interface",
+  "tags": ["actualiser", "synchroniser", "recharger"],
+  "country": "Sans attribution culturelle",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Deux flèches circulaires, icône utilitaire sans référence culturelle spécifique.",
+  "recommendedUse": "Actualiser ou synchroniser des données.",
+  "verifiedBy": "Documentation BUNI-ICON Core 60",
+  "license": "CC BY 4.0"
+}

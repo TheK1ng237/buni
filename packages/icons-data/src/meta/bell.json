@@ -1,0 +1,13 @@
+{
+  "slug": "bell",
+  "nameFr": "Notification",
+  "nameEn": "Notification",
+  "family": "interface",
+  "tags": ["notification", "alerte", "cloche"],
+  "country": "Référence générique",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Clochette métallique à battant, inspirée de cloches de signalisation, dont l’agogô yoruba est un exemple.",
+  "recommendedUse": "Notifications et alertes.",
+  "verifiedBy": "Documentation BUNI-ICON Core 60",
+  "license": "CC BY 4.0"
+}

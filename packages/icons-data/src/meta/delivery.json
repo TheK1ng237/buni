@@ -1,0 +1,13 @@
+{
+  "slug": "delivery",
+  "nameFr": "Livraison",
+  "nameEn": "Delivery",
+  "family": "interface",
+  "tags": ["livraison", "transport", "colis"],
+  "country": "Référence panafricaine",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Pirogue transportant un colis avec une pagaie ; la pirogue sert au transport de marchandises sur de nombreux fleuves et lacs africains.",
+  "recommendedUse": "Livraison et suivi de commande. Tester sa lisibilité, car la pirogue est moins immédiate qu’un camion.",
+  "verifiedBy": "Documentation BUNI-ICON Core 60",
+  "license": "CC BY 4.0"
+}

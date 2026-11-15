@@ -8,7 +8,7 @@ const pkgRoot = path.resolve(__dirname, '..');
 const svgDir = path.join(pkgRoot, 'src', 'svg');
 const metaDir = path.join(pkgRoot, 'src', 'meta');
 
-const families = ['objets-artisanat', 'vie-quotidienne', 'tech-locale', 'symboles'];
+const families = ['interface'];
 let hasError = false;
 let totalChecked = 0;
 
@@ -100,16 +100,13 @@ for (const family of families) {
       hasError = true;
     }
 
-    // Exigence renforcée pour la famille "symboles"
-    if (family === 'symboles') {
-      if (!meta.culturalNote || meta.culturalNote.trim().length < 25) {
-        console.error(`❌ [${slug}] Fiche culturelle complète requise pour la famille "symboles" (culturalNote trop court)`);
-        hasError = true;
-      }
-      if (!meta.verifiedBy || meta.verifiedBy.trim().length === 0) {
-        console.error(`❌ [${slug}] Champ "verifiedBy" obligatoire pour la famille "symboles"`);
-        hasError = true;
-      }
+    if (!meta.culturalNote || meta.culturalNote.trim().length < 25) {
+      console.error(`❌ [${slug}] Contexte ou description requis (culturalNote trop court)`);
+      hasError = true;
+    }
+    if (!meta.recommendedUse || meta.recommendedUse.trim().length === 0) {
+      console.error(`❌ [${slug}] Usage recommandé manquant`);
+      hasError = true;
     }
   }
 }
@@ -120,4 +117,3 @@ if (hasError) {
 } else {
   console.log(`\n✨ [icons:lint] Succès : ${totalChecked} icônes vérifiées conformes aux Quatre Lois de BUNI.`);
 }
-

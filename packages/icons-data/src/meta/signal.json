@@ -1,0 +1,13 @@
+{
+  "slug": "signal",
+  "nameFr": "Signal",
+  "nameEn": "Signal",
+  "family": "interface",
+  "tags": ["signal", "réseau", "connexion"],
+  "country": "Référence générique",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Point émettant trois ondes, évocation libre de la transmission à distance, notamment par tambours ou cornes.",
+  "recommendedUse": "Réseau, connexion ou flux.",
+  "verifiedBy": "Documentation BUNI-ICON Core 60",
+  "license": "CC BY 4.0"
+}

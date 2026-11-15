@@ -1,0 +1,13 @@
+{
+  "slug": "minus",
+  "nameFr": "Moins",
+  "nameEn": "Minus",
+  "family": "interface",
+  "tags": ["moins", "retirer", "réduire"],
+  "country": "Sans attribution culturelle",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Trait horizontal, signe utilitaire conservé sans ornement pour la lisibilité.",
+  "recommendedUse": "Retirer un élément ou réduire une valeur.",
+  "verifiedBy": "Documentation BUNI-ICON Core 60",
+  "license": "CC BY 4.0"
+}

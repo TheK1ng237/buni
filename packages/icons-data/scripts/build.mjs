@@ -13,21 +13,13 @@ if (!fs.existsSync(distDir)) {
   fs.mkdirSync(distDir, { recursive: true });
 }
 
-const families = ['objets-artisanat', 'vie-quotidienne', 'tech-locale', 'symboles'];
+const families = ['interface'];
 const iconifyIcons = {};
 const catalog = [];
-const categories = {
-  'Objets & Artisanat': [],
-  'Vie Quotidienne': [],
-  'Tech Locale': [],
-  'Symboles & Adinkra': [],
-};
+const categories = { Interface: [] };
 
 const familyLabels = {
-  'objets-artisanat': 'Objets & Artisanat',
-  'vie-quotidienne': 'Vie Quotidienne',
-  'tech-locale': 'Tech Locale',
-  'symboles': 'Symboles & Adinkra',
+  interface: 'Interface',
 };
 
 console.log('⚡ [icons:build] Compilation des icônes BUNI...');
@@ -95,7 +87,7 @@ for (const family of families) {
 const iconifyData = {
   prefix: 'buni',
   info: {
-    name: 'Buni African Icons',
+    name: 'BUNI-ICON Core 30',
     total: catalog.length,
     author: {
       name: 'Buni Standard',
@@ -125,7 +117,7 @@ const tsTypeDefinitions = `export interface BuniIconMeta {
   slug: string;
   nameFr: string;
   nameEn: string;
-  family: 'objets-artisanat' | 'vie-quotidienne' | 'tech-locale' | 'symboles';
+  family: 'interface';
   tags: string[];
   country: string;
   countryCode?: string;

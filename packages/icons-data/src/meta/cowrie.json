@@ -1,0 +1,17 @@
+{
+  "slug": "cowrie",
+  "nameFr": "Cauri",
+  "nameEn": "Cowrie",
+  "family": "interface",
+  "tags": [
+    "cauri",
+    "monnaie",
+    "paiement"
+  ],
+  "country": "Afrique (notamment Afrique de l’Ouest)",
+  "people": "Référence africaine générique",
+  "culturalNote": "Coquillage cauri à fente centrale dentelée. Les cauris ont servi de monnaie dans une large partie de l’Afrique, notamment en Afrique de l’Ouest, et restent un symbole de valeur.",
+  "recommendedUse": "Devise, solde et prix.",
+  "verifiedBy": "Documentation BUNI-ICON Core 30",
+  "license": "CC BY 4.0"
+}

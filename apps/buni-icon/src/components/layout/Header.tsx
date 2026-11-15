@@ -26,14 +26,14 @@ export function Header() {
         <div className="flex items-center gap-6">
           <Link href={`/${locale}` as any} className="flex items-center gap-2.5 group">
             <div className="w-8 h-8 rounded-avs bg-avs-primary text-avs-secondary flex items-center justify-center font-bold text-base shadow-avs group-hover:scale-105 transition-transform">
-              <BuniIcon name="sankofa" size={20} strokeWidth={2} />
+              <BuniIcon name="home" size={20} strokeWidth={2} />
             </div>
             <div className="flex flex-col">
               <span className="font-display font-black tracking-wider text-lg leading-none text-avs-accent">
                 BUNI<span className="text-avs-primary">.</span>ICON
               </span>
               <span className="text-xs text-avs-accent/60">
-                Iconify Afrique
+                Core 30 · SVG
               </span>
             </div>
           </Link>

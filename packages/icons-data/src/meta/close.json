@@ -1,0 +1,17 @@
+{
+  "slug": "close",
+  "nameFr": "Fermer",
+  "nameEn": "Close",
+  "family": "interface",
+  "tags": [
+    "fermer",
+    "annuler",
+    "interface"
+  ],
+  "country": "Sans attribution géographique",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Deux lignes croisées, dans une forme volontairement simple.",
+  "recommendedUse": "Fermer, annuler ou supprimer un tag.",
+  "verifiedBy": "Documentation BUNI-ICON Core 30",
+  "license": "CC BY 4.0"
+}

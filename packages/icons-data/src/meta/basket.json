@@ -1,0 +1,17 @@
+{
+  "slug": "basket",
+  "nameFr": "Panier",
+  "nameEn": "Basket",
+  "family": "interface",
+  "tags": [
+    "panier",
+    "achat",
+    "vannerie"
+  ],
+  "country": "Afrique (référence générique)",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Panier tressé à anse avec deux bandes de vannerie, savoir-faire présent dans toute l’Afrique ; forme générique.",
+  "recommendedUse": "Panier d’achat. Compléter par un badge numérique dans l’interface.",
+  "verifiedBy": "Documentation BUNI-ICON Core 30",
+  "license": "CC BY 4.0"
+}

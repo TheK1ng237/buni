@@ -1,0 +1,17 @@
+{
+  "slug": "gift",
+  "nameFr": "Cadeau",
+  "nameEn": "Gift",
+  "family": "interface",
+  "tags": [
+    "cadeau",
+    "offre",
+    "partage"
+  ],
+  "country": "Référence générique",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Balluchon de tissu noué avec deux boucles et une bande, évoquant le nouage de pagnes et de tissus (référence générique).",
+  "recommendedUse": "Cadeau, offre et parrainage.",
+  "verifiedBy": "Documentation BUNI-ICON Core 30",
+  "license": "CC BY 4.0"
+}

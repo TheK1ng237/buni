@@ -1,0 +1,17 @@
+{
+  "slug": "unlock",
+  "nameFr": "Déverrouillé",
+  "nameEn": "Unlock",
+  "family": "interface",
+  "tags": [
+    "déverrouillé",
+    "accès",
+    "sécurité"
+  ],
+  "country": "Référence générique",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Bouclier ouvert en deux pans écartés. Forme abstraite à tester en situation réelle.",
+  "recommendedUse": "Accès autorisé et contenu déverrouillé.",
+  "verifiedBy": "Documentation BUNI-ICON Core 30",
+  "license": "CC BY 4.0"
+}

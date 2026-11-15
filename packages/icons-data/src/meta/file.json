@@ -1,0 +1,13 @@
+{
+  "slug": "file",
+  "nameFr": "Fichier",
+  "nameEn": "File",
+  "family": "interface",
+  "tags": ["fichier", "document", "papier"],
+  "country": "Référence générique",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Feuille à coin plié et quatre encoches, en référence à une pratique de comptage également évoquée par l’icône calendar.",
+  "recommendedUse": "Document ou fichier.",
+  "verifiedBy": "Documentation BUNI-ICON Core 60",
+  "license": "CC BY 4.0"
+}
