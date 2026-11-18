@@ -14,6 +14,14 @@ export interface DashboardStats {
   };
 }
 
+export interface ActivityStats {
+  total: number;
+  downloads: number;
+  favorites: number;
+  comments: number;
+  reviews: number;
+}
+
 export interface DashboardActivity {
   id: string;
   action: string;
@@ -34,24 +42,13 @@ export interface UserPattern {
 
 class DashboardService {
   async getStats(): Promise<DashboardStats> {
-    try {
-      const response = await get<{ success: boolean; data: DashboardStats }>('/api/v1/users/me/stats');
-      return response.data;
-    } catch (error) {
-      console.error('Failed to fetch stats:', error);
-      return {
-        patternsCreated: 0,
-        downloadsTotal: 0,
-        totalViews: 0,
-        favoritesCount: 0,
-        trends: {
-          patternsTrend: '+0 ce mois',
-          downloadsTrend: '+0% vs mois dernier',
-          viewsTrend: '+0 ce mois',
-          favoritesTrend: '+0 nouveaux',
-        },
-      };
-    }
+    const response = await get<{ success: boolean; data: DashboardStats }>('/api/v1/users/me/stats');
+    return response.data;
+  }
+
+  async getActivityStats(): Promise<ActivityStats> {
+    const response = await get<{ success: boolean; data: ActivityStats }>('/api/v1/activities/me/stats');
+    return response.data;
   }
 
   async getRecentPatterns(limit: number = 5): Promise<UserPattern[]> {

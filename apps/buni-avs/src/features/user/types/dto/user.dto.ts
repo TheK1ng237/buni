@@ -24,6 +24,11 @@ export interface UserStatsDto {
   patternsCreated: number;
   totalViews: number;
   memberSince: string;
+  patternsByStatus: {
+    published: number;
+    draft: number;
+    review: number;
+  };
   downloadsTotal?: number;
   favoritesCount?: number;
   commentsCount?: number;

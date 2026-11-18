@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion';
 import { useTranslations } from '@/i18n';
+import { formatNumber } from '@buni/utils';
+import { usePlatformStats } from '@/features/analytics/hooks/usePlatformStats';
 
 interface Stat {
   value: string;
@@ -9,18 +11,34 @@ interface Stat {
   detail: string;
 }
 
-const getStats = (t: (key: string) => string) => ({
-  hero: { value: t('stats.hero.value'), label: t('stats.hero.label'), detail: t('stats.hero.detail') },
+const getStats = (
+  t: (key: string) => string,
+  platformStats?: { totalPatterns: number; totalCountries: number; totalArtisans: number }
+) => ({
+  hero: {
+    value: platformStats ? formatNumber(platformStats.totalPatterns) : '—',
+    label: t('stats.hero.label'),
+    detail: t('stats.hero.detail'),
+  },
   supporting: [
-    { value: t('stats.countries.value'),    label: t('stats.countries.label'), detail: t('stats.countries.detail') },
-    { value: t('stats.artisans.value'),   label: t('stats.artisans.label'), detail: t('stats.artisans.detail') },
+    {
+      value: platformStats ? formatNumber(platformStats.totalCountries) : '—',
+      label: t('stats.countries.label'),
+      detail: t('stats.countries.detail'),
+    },
+    {
+      value: platformStats ? formatNumber(platformStats.totalArtisans) : '—',
+      label: t('stats.artisans.label'),
+      detail: t('stats.artisans.detail'),
+    },
     { value: t('stats.archive.value'),  label: t('stats.archive.label'), detail: t('stats.archive.detail') },
   ]
 });
 
 export function StatsComposition() {
   const t = useTranslations('about');
-  const { hero, supporting } = getStats(t);
+  const { data: platformStats } = usePlatformStats();
+  const { hero, supporting } = getStats(t, platformStats);
 
   return (
     <div className="grid gap-4 sm:grid-cols-3 sm:grid-rows-2 sm:gap-5">

@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { motion,  useMotionValue,  } from 'framer-motion';
 import {
   ArrowRight,
@@ -19,6 +19,8 @@ import { Route } from 'next';
 import { HeroSection } from '../../components/layout/HeroSection';
 import { useTranslations } from '@/i18n';
 import { PATTERN_CATALOG } from '@buni/patterns';
+import { formatNumber } from '@buni/utils';
+import { usePlatformStats } from '@/features/analytics/hooks/usePlatformStats';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // DATA (moved inside component for i18n)
@@ -45,28 +47,6 @@ const itemFade = {
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
-// HOOKS
-// ─────────────────────────────────────────────────────────────────────────────
-
-function useCounter(target: number, duration = 1400) {
-  const [val, setVal]         = useState(0);
-  const [started, setStarted] = useState(false);
-  useEffect(() => {
-    if (!started) return;
-    let start = 0;
-    const step = target / (duration / 16);
-    const id = setInterval(() => {
-      start += step;
-      if (start >= target) { setVal(target); clearInterval(id); }
-      else setVal(Math.floor(start));
-    }, 16);
-    return () => clearInterval(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [started]);
-  return { val, trigger: () => setStarted(true) };
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
 // SUB-COMPONENTS
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -87,16 +67,11 @@ function SectionLabel({ label }: { label: string }) {
 
 export default function HomePage() {
   const t = useTranslations('home');
+  const { data: platformStats, isError: platformStatsError } = usePlatformStats();
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
 
-  // Data with i18n
-  const STATS = [
-    { value: 1248, display: '1 248', label: t('stats.patterns'),   sub: t('stats.vectorized')  },
-    { value: 54,   display: '54',    label: t('stats.countries'),     sub: t('stats.represented') },
-    { value: 312,  display: '312',   label: t('stats.artisans'), sub: t('stats.verified')    },
-    { value: 98,   display: '98k',   label: t('stats.downloads'),       sub: t('stats.thisMonth')     },
-  ] as const;
+  const formatStat = (value?: number) => value === undefined ? '—' : formatNumber(value);
 
   const MARQUEE_ITEMS = PATTERN_CATALOG.map((pattern) => pattern.type.toUpperCase());
   const galleryLayout: Record<string, { className: string; minHeight: string }> = {
@@ -141,10 +116,10 @@ export default function HomePage() {
   ] as const;
 
   const PIVOT_STATS = [
-    { num: '1 248', label: t('pivotStats.documentedPatterns'),    accentClass: 'text-avs-primary' },
-    { num: '54',    label: t('pivotStats.representedCountries'),     accentClass: 'text-avs-kente'   },
-    { num: '312',   label: t('pivotStats.verifiedArtisans'),    accentClass: 'text-avs-ndop'    },
-    { num: '98k',   label: t('pivotStats.downloadsPerMonth'), accentClass: 'text-avs-indigo'  },
+    { num: formatStat(platformStats?.totalPatterns), label: t('pivotStats.documentedPatterns'), accentClass: 'text-avs-primary' },
+    { num: formatStat(platformStats?.totalCountries), label: t('pivotStats.representedCountries'), accentClass: 'text-avs-kente' },
+    { num: formatStat(platformStats?.totalArtisans), label: t('pivotStats.verifiedArtisans'), accentClass: 'text-avs-ndop' },
+    { num: formatStat(platformStats?.totalDownloads), label: t('pivotStats.downloadsPerMonth'), accentClass: 'text-avs-indigo' },
   ] as const;
 
   const BENTO = [
@@ -330,7 +305,7 @@ export default function HomePage() {
             style={{ fontSize: 'clamp(8rem,22vw,20rem)' }}
             aria-hidden
           >
-            1248
+            {formatStat(platformStats?.totalPatterns)}
           </div>
 
           <div className="relative mx-auto max-w-6xl px-6 lg:px-8">
@@ -397,6 +372,11 @@ export default function HomePage() {
                   </div>
                 ))}
               </motion.div>
+              {platformStatsError && (
+                <p role="status" className="mt-4 text-xs text-avs-secondary/50">
+                  {t('stats.unavailable')}
+                </p>
+              )}
             </div>
           </div>
         </section>
@@ -694,7 +674,9 @@ export default function HomePage() {
                 ))}
               </div>
               <p className="text-sm text-avs-secondary/60 mt-5 md:mt-0">
-                +312 artisans nous ont déjà rejoints
+                {t('communityCount', {
+                  count: formatStat(platformStats?.totalArtisans),
+                })}
               </p>
             </motion.div>
 
@@ -706,7 +688,9 @@ export default function HomePage() {
               className="mt-6 flex items-center justify-center gap-2 font-mono text-[10px] tracking-[.16em] uppercase text-avs-secondary/25"
             >
               <Download size={10} />
-              98k téléchargements ce mois — aucun compte requis
+              {t('downloadsTotal', {
+                count: formatStat(platformStats?.totalDownloads),
+              })}
             </motion.p>
           </div>
         </section>

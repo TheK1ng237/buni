@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo, useEffect } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -33,6 +34,7 @@ import { useFeaturePattern, useToggleFeature, useUnfeaturePattern, useDeletePatt
 import { usePatterns } from '@/features/patterns/hooks/usePatterns';
 import { mapPatternDtoToModel } from '@/features/patterns/mappers/pattern.mapper';
 import { patternService } from '@/features/patterns/services/pattern.service';
+import { userService } from '@/features/user/services/user.service';
 
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -255,6 +257,16 @@ export default function MyPatternsPage() {
   const t = useTranslations('dashboard.patterns');
   const { user, isAdmin, isCurator } = useAuth();
   const { data: rawPatterns = [], isLoading } = usePatterns();
+  const { data: adminStats, isLoading: isAdminStatsLoading, isError: isAdminStatsError } = useQuery({
+    queryKey: ['platform-stats'],
+    queryFn: () => userService.getPlatformStats(),
+    enabled: isAdmin,
+  });
+  const { data: ownStats, isLoading: isOwnStatsLoading, isError: isOwnStatsError } = useQuery({
+    queryKey: ['user-stats', user?.id],
+    queryFn: () => userService.getStats(),
+    enabled: !isAdmin && Boolean(user),
+  });
   const deleteMutation = useDeletePattern();
 
   const [search, setSearch] = useState('');
@@ -303,15 +315,21 @@ export default function MyPatternsPage() {
     return allPatterns;
   }, [rawPatterns, isAdmin, user]);
 
-  const stats = useMemo(
-    () => ({
-      published: patterns.filter((p) => p.status === 'published').length,
-      drafts: patterns.filter((p) => p.status === 'draft').length,
-      review: patterns.filter((p) => p.status === 'review').length,
-      totalViews: patterns.reduce((s, p) => s + p.views, 0),
-    }),
-    [patterns]
-  );
+  const statusStats = adminStats?.patternsByStatus ?? ownStats?.patternsByStatus;
+  const statsLoading = isAdmin ? isAdminStatsLoading : isOwnStatsLoading;
+  const statsError = isAdmin ? isAdminStatsError : isOwnStatsError;
+  const stats = {
+    published: statusStats?.published ?? 0,
+    drafts: statusStats?.draft ?? 0,
+    review: statusStats?.review ?? 0,
+    totalViews: adminStats?.totalViews ?? ownStats?.totalViews ?? 0,
+  };
+  const totalPatternCount = adminStats?.totalPatterns ?? ownStats?.patternsCreated;
+  const patternCountLabel = statsLoading
+    ? '…'
+    : statsError
+      ? '—'
+      : t('subtitle', { count: totalPatternCount ?? 0 });
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase();
@@ -467,7 +485,7 @@ export default function MyPatternsPage() {
                 {t('title')}
               </h1>
               <p className="text-avs-accent/35 mt-0.5 text-xs">
-                {t('subtitle', { count: patterns.length })}
+                {patternCountLabel}
               </p>
             </div>
           </div>
@@ -489,11 +507,16 @@ export default function MyPatternsPage() {
         {/* ══ STAT CARDS — même patron que profil ════════════════════════════ */}
         {(isAdmin ) && (
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-            <KpiCard label={t('stats.published')} value={stats.published} icon={CheckCircle2} color="#4A6741" patternCss="avs-pattern-kente-royale" topAccent format={formatNumber} delay={0.1} />
-            <KpiCard label={t('stats.draft')} value={stats.drafts} icon={FileText} color="#8B5CF6" patternCss="avs-pattern-ndop-sultan" topAccent format={formatNumber} delay={0.17} />
-            <KpiCard label={t('stats.review')} value={stats.review} icon={Hourglass} color="#D4A017" patternCss="avs-pattern-bogolan-fanga" topAccent format={formatNumber} delay={0.24} />
-            <KpiCard label={t('stats.totalViews')} value={stats.totalViews} icon={BarChart3} color="#C0573E" patternCss="avs-pattern-adinkra-sankofa" topAccent format={formatNumber} delay={0.31} />
+            <KpiCard label={t('stats.published')} value={statsLoading ? '…' : statsError ? '—' : stats.published} icon={CheckCircle2} color="#4A6741" patternCss="avs-pattern-kente-royale" topAccent format={formatNumber} delay={0.1} />
+            <KpiCard label={t('stats.draft')} value={statsLoading ? '…' : statsError ? '—' : stats.drafts} icon={FileText} color="#8B5CF6" patternCss="avs-pattern-ndop-sultan" topAccent format={formatNumber} delay={0.17} />
+            <KpiCard label={t('stats.review')} value={statsLoading ? '…' : statsError ? '—' : stats.review} icon={Hourglass} color="#D4A017" patternCss="avs-pattern-bogolan-fanga" topAccent format={formatNumber} delay={0.24} />
+            <KpiCard label={t('stats.totalViews')} value={statsLoading ? '…' : statsError ? '—' : stats.totalViews} icon={BarChart3} color="#C0573E" patternCss="avs-pattern-adinkra-sankofa" topAccent format={formatNumber} delay={0.31} />
           </div>
+        )}
+        {statsError && (
+          <p role="status" className="text-sm text-red-600">
+            {t('stats.unavailable')}
+          </p>
         )}
 
         {/* ══ FILTERS ═════════════════════════════════════════════════════════ */}

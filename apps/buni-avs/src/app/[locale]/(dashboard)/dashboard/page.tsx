@@ -354,6 +354,7 @@ export default function DashboardPage() {
   const [activity, setActivity] = useState<DashboardActivity[]>([]);
   const [loading, setLoading]   = useState(true);
   const [platformStats, setPlatformStats] = useState<any>(null);
+  const [statsError, setStatsError] = useState(false);
   const [isCuratorModalOpen, setIsCuratorModalOpen] = useState(false);
 
   const roleLower = user?.role?.toLowerCase() ?? '';
@@ -382,17 +383,7 @@ export default function DashboardPage() {
             });
           } catch (err) {
             console.error('Failed to fetch platform stats:', err);
-            setPlatformStats({
-              totalUsers: 0,
-              totalPatterns: 0,
-              totalDownloads: 0,
-              totalViews: 0,
-              verifiedUsers: 0,
-              admins: 0,
-              curators: 0,
-              contributors: 0,
-              patternsByStatus: { published: 0, draft: 0, review: 0 },
-            });
+            setStatsError(true);
           }
 
           try {
@@ -424,6 +415,7 @@ export default function DashboardPage() {
         }
       } catch (error) {
         console.error('Failed to fetch dashboard data:', error);
+        setStatsError(true);
       } finally {
         setLoading(false);
       }
@@ -467,52 +459,40 @@ export default function DashboardPage() {
   const kpiCards: KpiCardProps[] = isAdminUser ? [
     {
       label: t('kpi.totalUsers') || 'Utilisateurs Totaux',
-      value: platformStats?.totalUsers ?? 0,
-      trend: t('trends.thisMonth'),
+      value: platformStats?.totalUsers ?? (statsError ? '—' : 0),
       icon: Users, color: '#C0573E', patternCss: 'avs-pattern-kente-royale', delay: 0.1, format: formatNumber,
-      progress: Math.min(100, ((platformStats?.totalUsers ?? 0) / ((platformStats?.totalUsers ?? 0) * 1.35 || 1)) * 100),
     },
     {
       label: t('kpi.totalPatterns') || 'Motifs Totaux',
-      value: platformStats?.totalPatterns ?? 0,
-      trend: t('trends.thisMonth'),
+      value: platformStats?.totalPatterns ?? (statsError ? '—' : 0),
       icon: Layers, color: '#4F7CFF', patternCss: 'avs-pattern-ndop-sultan', delay: 0.17, format: formatNumber,
-      progress: Math.min(100, ((platformStats?.totalPatterns ?? 0) / ((platformStats?.totalPatterns ?? 0) * 1.35 || 1)) * 100),
     },
     {
       label: t('kpi.downloads') || 'Téléchargements',
-      value: platformStats?.totalDownloads ?? 0,
-      trend: t('trends.vsLastMonth'),
+      value: platformStats?.totalDownloads ?? (statsError ? '—' : 0),
       icon: Download, color: '#8B5CF6', patternCss: 'avs-pattern-bogolan-fanga', delay: 0.24, format: formatNumber,
-      progress: Math.min(100, ((platformStats?.totalDownloads ?? 0) / ((platformStats?.totalDownloads ?? 0) * 1.35 || 1)) * 100),
     },
     {
       label: t('kpi.totalViews') || 'Vues Totales',
-      value: platformStats?.totalViews ?? 0,
-      trend: t('trends.thisMonth'),
+      value: platformStats?.totalViews ?? (statsError ? '—' : 0),
       icon: Eye, color: '#F59E0B', patternCss: 'avs-pattern-adinkra-sankofa', delay: 0.31, format: formatNumber,
-      progress: Math.min(100, ((platformStats?.totalViews ?? 0) / ((platformStats?.totalViews ?? 0) * 1.35 || 1)) * 100),
     },
   ] : [
     {
-      label: t('kpi.myPatterns'),     value: stats?.patternsCreated  ?? 0, trend: stats?.trends?.patternsTrend ?? t('trends.thisMonth'),
+      label: t('kpi.myPatterns'),     value: stats?.patternsCreated  ?? (statsError ? '—' : 0),
       icon: Layers,   color: '#C0573E', patternCss: 'avs-pattern-kente-royale',  delay: 0.1, format: formatNumber,
-      progress: Math.min(100, ((stats?.patternsCreated ?? 0) / ((stats?.patternsCreated ?? 0) * 1.35 || 1)) * 100),
     },
     {
-      label: t('kpi.downloads'),value: stats?.downloadsTotal ?? 0, trend: stats?.trends?.downloadsTrend ?? t('trends.vsLastMonth'),
+      label: t('kpi.downloads'),value: stats?.downloadsTotal ?? (statsError ? '—' : 0),
       icon: Download, color: '#4F7CFF', patternCss: 'avs-pattern-ndop-sultan',   delay: 0.17, format: formatNumber,
-      progress: Math.min(100, ((stats?.downloadsTotal ?? 0) / ((stats?.downloadsTotal ?? 0) * 1.35 || 1)) * 100),
     },
     {
-      label: t('kpi.totalViews'),   value: stats?.totalViews     ?? 0, trend: stats?.trends?.viewsTrend ?? t('trends.thisMonth'),
+      label: t('kpi.totalViews'),   value: stats?.totalViews     ?? (statsError ? '—' : 0),
       icon: Eye,      color: '#8B5CF6', patternCss: 'avs-pattern-bogolan-fanga', delay: 0.24, format: formatNumber,
-      progress: Math.min(100, ((stats?.totalViews ?? 0) / ((stats?.totalViews ?? 0) * 1.35 || 1)) * 100),
     },
     {
-      label: t('kpi.favorites'),  value: stats?.favoritesCount ?? 0, trend: stats?.trends?.favoritesTrend ?? t('trends.new'),
+      label: t('kpi.favorites'),  value: stats?.favoritesCount ?? (statsError ? '—' : 0),
       icon: Star,     color: '#F59E0B', patternCss: 'avs-pattern-adinkra-sankofa', delay: 0.31, format: formatNumber,
-      progress: Math.min(100, ((stats?.favoritesCount ?? 0) / ((stats?.favoritesCount ?? 0) * 1.35 || 1)) * 100),
     },
   ];
 
@@ -551,6 +531,11 @@ export default function DashboardPage() {
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {kpiCards.map((card, i) => <KpiCard key={typeof card.label === 'string' ? card.label : i} {...card} />)}
             </div>
+          )}
+          {statsError && !loading && (
+            <p role="status" className="mt-3 text-sm text-red-600">
+              {t('statsUnavailable')}
+            </p>
           )}
         </section>
 

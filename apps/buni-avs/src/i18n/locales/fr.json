@@ -57,10 +57,10 @@
     "title2": "a une histoire",
     "title3": "Nous l'avons codée.",
     "description": "vérifient l'origine, la symbolique et les droits d'usage de chaque motif avant qu'il ne devienne un token — prêt pour la production, sans compte requis.",
-    "artisansCount": "312 artisans-conservateurs",
+    "artisansCount": "{count} artisans-conservateurs",
     "exploreSystem": "Explorer le système",
     "viewDocs": "Voir la documentation",
-    "communityProof": "+312 artisans",
+    "communityProof": "Communauté d'artisans",
     "verifyEachPattern": "vérifient chaque motif",
     "verifiedProvenance": "Provenance vérifiée",
     "footnote1": "motifs documentés",
@@ -81,7 +81,8 @@
       "artisans": "Artisans",
       "verified": "vérifiés",
       "downloads": "DL",
-      "thisMonth": "ce mois"
+      "thisMonth": "au total",
+      "unavailable": "Statistiques indisponibles pour le moment."
     },
     "gallery": {
       "label": "Patrimoine · Motifs en vedette",
@@ -106,7 +107,7 @@
       "description": "Tout est accessible sans compte, comme PrimeReact. La connaissance africaine appartient à l'humanité.",
       "patternLibrary": {
         "title": "Bibliothèque de motifs",
-        "desc": "+1 200 motifs par région, époque et symbolisme. SVG, PNG, JSON, CSS."
+        "desc": "Motifs classés par région, époque et symbolisme. SVG, PNG, JSON, CSS."
       },
       "designTokens": {
         "title": "Design tokens culturels",
@@ -114,7 +115,7 @@
       },
       "artisanCommunity": {
         "title": "Communauté d'artisans",
-        "desc": "312 artisans vérifiés valident chaque entrée. La source primaire, toujours."
+        "desc": "Des artisans vérifiés valident chaque entrée. La source primaire, toujours."
       },
       "documentation": {
         "title": "Composants & Documentation",
@@ -125,8 +126,10 @@
       "documentedPatterns": "Motifs documentés",
       "representedCountries": "Pays représentés",
       "verifiedArtisans": "Artisans vérifiés",
-      "downloadsPerMonth": "Téléchargements/mois"
+      "downloadsPerMonth": "Téléchargements au total"
     },
+    "communityCount": "+{count} artisans nous ont déjà rejoints",
+    "downloadsTotal": "{count} téléchargements au total — aucun compte requis",
     "bento": {
       "label": "Pourquoi AVS",
       "copyPaste": {
@@ -260,9 +263,9 @@
     "loading": "Création du compte…",
     "perks": {
       "title": "Pourquoi rejoindre ?",
-      "patterns": "Accès à 1 248 motifs haute résolution",
+      "patterns": "Accès aux motifs haute résolution",
       "tokens": "Palette de design tokens prêts à l'emploi",
-      "community": "Communauté de 312 artisans vérifiés",
+      "community": "Communauté d'artisans vérifiés",
       "downloads": "Téléchargement SVG, PNG et JSON illimité"
     },
     "stats": {
@@ -373,7 +376,7 @@
     },
     "infrastructure": {
       "motifs": "Motifs",
-      "motifsDetail": "1 248 motifs vectorisés et sourcés",
+      "motifsDetail": "Motifs vectorisés et sourcés",
       "designTokens": "Design Tokens",
       "designTokensDetail": "Couleur, espace, rythme — nommés",
       "palettes": "Palettes",
@@ -429,23 +432,23 @@
       "label": "Où en est le standard",
       "title": "Deux ans de terrain, en chiffres",
       "hero": {
-        "value": "1 248",
+        "value": "—",
         "label": "Motifs documentés",
         "detail": "Vectorisés, sourcés, prêts pour la production"
       },
       "countries": {
-        "value": "54",
+        "value": "—",
         "label": "Pays représentés",
-        "detail": "Sur les 54 pays du continent"
+        "detail": "Pays ayant des motifs publiés"
       },
       "artisans": {
-        "value": "312",
+        "value": "—",
         "label": "Artisans vérifiés",
         "detail": "Droit de regard permanent sur leur patrimoine"
       },
       "archive": {
-        "value": "5 ans",
-        "label": "D'archive vivante",
+        "value": "2024",
+        "label": "Archive vivante depuis",
         "detail": "De recherche terrain continue depuis 2024"
       }
     },
@@ -473,7 +476,7 @@
         "02": {
           "title": "Lancement v1.0",
           "objective": "Sortir un socle solide, documenté et utilisable en production.",
-          "metric": "1 248 motifs · 312 artisans vérifiés",
+          "metric": "Catalogue ouvert · validation par des artisans",
           "deliverables": [
             "Bibliothèque ouverte de motifs documentés",
             "Intégrations Figma & Tailwind",
@@ -568,7 +571,7 @@
     "cta": {
       "title": "Rejoignez le standard.",
       "button": "Contribuer au standard",
-      "footer": "312 artisans · 54 pays · CC BY 4.0 · Gratuit"
+      "footer": "Artisans vérifiés · Pays représentés · CC BY 4.0 · Gratuit"
     }
   },
   "coffee": {
@@ -1193,7 +1196,7 @@
       },
       "motifs": {
         "label": "Motifs",
-        "description": "1 248 motifs documentés et sourcés.",
+        "description": "Motifs documentés et sourcés.",
         "pages": {
           "intro": "Introduction",
           "utiliser-patterns-code": "Utiliser dans votre code",
@@ -1687,7 +1690,7 @@
       "title": "Prêt à contribuer au",
       "titleHighlight": "standard africain",
       "titleEnd": "?",
-      "description": "Rejoignez 312 artisans, chercheurs et designers qui construisent ensemble la plus grande archive visuelle africaine open-source.",
+      "description": "Rejoignez des artisans, chercheurs et designers qui construisent ensemble une archive visuelle africaine open-source.",
       "createAccount": "Créer un compte gratuit",
       "explorePatterns": "Explorer les motifs"
     }
@@ -1832,6 +1835,7 @@
         "new": "+0 nouveaux"
       },
       "statsLabel": "Statistiques clés",
+      "statsUnavailable": "Impossible de charger les statistiques depuis le serveur.",
       "recentPatternsLabel": "Motifs récents",
       "recentPatterns": {
         "title": "Motifs récents",
@@ -1898,7 +1902,8 @@
         "published": "Publiés",
         "drafts": "Brouillons",
         "review": "En révision",
-        "totalViews": "Vues totales"
+        "totalViews": "Vues totales",
+        "unavailable": "Impossible de charger les statistiques depuis le serveur."
       },
       "status": {
         "published": "Publié",

@@ -1,5 +1,81 @@
 import { del, get, patch, post } from '@buni/api';
+import type { PatternDto } from '@/features/patterns/types';
 import type { SymbolApiResponse, SymbolInput, SymbolRecord } from '../types/symbol.types';
+
+interface PatternSymbolDto {
+  id: string;
+  name: string;
+  nameFr: string;
+  cssPreview: string;
+  imageUrl: string;
+  meaning: string;
+  usage: string;
+  sacred: boolean;
+}
+
+interface PatternListWithSymbolsResponse {
+  success: boolean;
+  message: string;
+  data: {
+    data: Array<Omit<PatternDto, 'symbols'> & { symbols?: PatternSymbolDto[] }>;
+    meta: { totalPages: number };
+  };
+}
+
+function isHttp404(error: unknown): boolean {
+  if (typeof error !== 'object' || error === null || !('response' in error)) return false;
+  const response = error.response;
+  return typeof response === 'object'
+    && response !== null
+    && 'status' in response
+    && response.status === 404;
+}
+
+function mapPatternsToSymbols(
+  patterns: Array<Omit<PatternDto, 'symbols'> & { symbols?: PatternSymbolDto[] }>
+): SymbolRecord[] {
+  return patterns.flatMap((pattern) =>
+    (pattern.symbols ?? []).map((symbol) => ({
+      ...symbol,
+      patternId: pattern.id,
+      pattern: {
+        id: pattern.id,
+        slug: pattern.slug,
+        name: pattern.name,
+        nameLocal: pattern.nameLocal ?? pattern.name,
+        type: pattern.type,
+        status: pattern.status,
+        sources: pattern.sources ?? [],
+        origin: pattern.origin
+          ? {
+              people: pattern.origin.people,
+              region: pattern.origin.region,
+              country: pattern.origin.country,
+              flag: pattern.origin.flag ?? '',
+            }
+          : null,
+      },
+    }))
+  );
+}
+
+async function listFromPatterns(): Promise<SymbolRecord[]> {
+  const symbols: SymbolRecord[] = [];
+  let page = 1;
+  let totalPages = 1;
+
+  do {
+    const response = await get<PatternListWithSymbolsResponse>('/api/v1/patterns', {
+      page,
+      perPage: 100,
+    });
+    symbols.push(...mapPatternsToSymbols(response.data.data));
+    totalPages = response.data.meta.totalPages;
+    page += 1;
+  } while (page <= totalPages);
+
+  return symbols;
+}
 
 function toSymbolFormData(data: SymbolInput, image?: File): FormData {
   const formData = new FormData();
@@ -12,10 +88,21 @@ function toSymbolFormData(data: SymbolInput, image?: File): FormData {
 
 export const symbolService = {
   async list(): Promise<SymbolRecord[]> {
-    const response = await get<SymbolApiResponse<SymbolRecord[]>>(
-      '/api/v1/patterns/symbols/catalog'
-    );
-    return response.data ?? [];
+    try {
+      const response = await get<SymbolApiResponse<SymbolRecord[]>>(
+        '/api/v1/patterns/symbols/catalog'
+      );
+      return response.data ?? [];
+    } catch (error) {
+      if (!isHttp404(error)) throw error;
+      try {
+        const response = await get<SymbolApiResponse<SymbolRecord[]>>('/api/v1/patterns/symbols');
+        return response.data ?? [];
+      } catch (aliasError) {
+        if (!isHttp404(aliasError)) throw aliasError;
+        return listFromPatterns();
+      }
+    }
   },
 
   async create(patternId: string, data: SymbolInput, image?: File): Promise<SymbolRecord> {
