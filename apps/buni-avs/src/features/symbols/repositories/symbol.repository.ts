@@ -6,12 +6,12 @@ export const symbolRepository = {
     return symbolService.list();
   },
 
-  create(patternId: string, data: SymbolInput): Promise<SymbolRecord> {
-    return symbolService.create(patternId, data);
+  create(patternId: string, data: SymbolInput, image?: File): Promise<SymbolRecord> {
+    return symbolService.create(patternId, data, image);
   },
 
-  update(id: string, data: SymbolInput): Promise<SymbolRecord> {
-    return symbolService.update(id, data);
+  update(id: string, data: SymbolInput, image?: File): Promise<SymbolRecord> {
+    return symbolService.update(id, data, image);
   },
 
   delete(id: string): Promise<void> {

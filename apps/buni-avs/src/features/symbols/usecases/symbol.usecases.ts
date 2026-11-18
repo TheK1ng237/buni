@@ -10,12 +10,16 @@ export function listManagedSymbols(): Promise<SymbolRecord[]> {
   return symbolRepository.findAll();
 }
 
-export function createSymbol(patternId: string, data: SymbolInput): Promise<SymbolRecord> {
-  return symbolRepository.create(patternId, data);
+export function createSymbol(
+  patternId: string,
+  data: SymbolInput,
+  image?: File
+): Promise<SymbolRecord> {
+  return symbolRepository.create(patternId, data, image);
 }
 
-export function updateSymbol(id: string, data: SymbolInput): Promise<SymbolRecord> {
-  return symbolRepository.update(id, data);
+export function updateSymbol(id: string, data: SymbolInput, image?: File): Promise<SymbolRecord> {
+  return symbolRepository.update(id, data, image);
 }
 
 export function deleteSymbol(id: string): Promise<void> {

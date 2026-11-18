@@ -34,8 +34,15 @@ export function useManagedSymbols() {
 export function useCreateSymbol() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: ({ patternId, data }: { patternId: string; data: SymbolInput }) =>
-      createSymbol(patternId, data),
+    mutationFn: ({
+      patternId,
+      data,
+      image,
+    }: {
+      patternId: string;
+      data: SymbolInput;
+      image?: File;
+    }) => createSymbol(patternId, data, image),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: symbolKeys.all }),
   });
 }
@@ -43,7 +50,8 @@ export function useCreateSymbol() {
 export function useUpdateSymbol() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: ({ id, data }: { id: string; data: SymbolInput }) => updateSymbol(id, data),
+    mutationFn: ({ id, data, image }: { id: string; data: SymbolInput; image?: File }) =>
+      updateSymbol(id, data, image),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: symbolKeys.all }),
   });
 }

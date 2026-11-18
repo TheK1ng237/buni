@@ -24,6 +24,7 @@ import {
   useUpdateSymbol,
 } from '../hooks/useSymbols';
 import type { SymbolInput, SymbolRecord } from '../types/symbol.types';
+import { SymbolImageUpload } from './SymbolImageUpload';
 
 const EMPTY_FORM: SymbolInput = {
   name: '',
@@ -47,6 +48,7 @@ export function SymbolsDashboard() {
   const [editing, setEditing] = useState<SymbolRecord | null>(null);
   const [patternId, setPatternId] = useState('');
   const [form, setForm] = useState<SymbolInput>(EMPTY_FORM);
+  const [imageFile, setImageFile] = useState<File | null>(null);
   const [deletingId, setDeletingId] = useState<string | null>(null);
   const [actionError, setActionError] = useState('');
   const [notice, setNotice] = useState('');
@@ -77,6 +79,7 @@ export function SymbolsDashboard() {
     setEditing(null);
     setPatternId(patterns[0]?.id ?? '');
     setForm(EMPTY_FORM);
+    setImageFile(null);
     setActionError('');
     setNotice('');
     setEditorOpen(true);
@@ -94,6 +97,7 @@ export function SymbolsDashboard() {
       usage: symbol.usage,
       sacred: symbol.sacred,
     });
+    setImageFile(null);
     setActionError('');
     setNotice('');
     setEditorOpen(true);
@@ -107,13 +111,18 @@ export function SymbolsDashboard() {
     setNotice('');
     try {
       if (editing) {
-        await updateMutation.mutateAsync({ id: editing.id, data: form });
+        await updateMutation.mutateAsync({
+          id: editing.id,
+          data: form,
+          image: imageFile ?? undefined,
+        });
         setNotice('Le symbole a été mis à jour.');
       } else {
-        await createMutation.mutateAsync({ patternId, data: form });
+        await createMutation.mutateAsync({ patternId, data: form, image: imageFile ?? undefined });
         setNotice('Le symbole a été ajouté à l’encyclopédie.');
       }
       setEditorOpen(false);
+      setImageFile(null);
     } catch (saveError) {
       setActionError(saveError instanceof Error ? saveError.message : 'Enregistrement impossible.');
     }
@@ -351,16 +360,12 @@ export function SymbolsDashboard() {
                   placeholder="Précisez les usages, les personnes concernées et les éventuelles restrictions…"
                 />
               </label>
-              <label className="text-xs font-bold md:col-span-2">
-                URL de l’image (facultatif)
-                <input
-                  type="url"
-                  value={form.imageUrl}
-                  onChange={(event) => setForm({ ...form, imageUrl: event.target.value })}
-                  className="avs-input mt-2 text-sm"
-                  placeholder="https://…"
-                />
-              </label>
+              <SymbolImageUpload
+                currentImageUrl={form.imageUrl}
+                file={imageFile}
+                onFileChange={setImageFile}
+                disabled={createMutation.isPending || updateMutation.isPending}
+              />
               <label className="border-avs-accent/10 bg-avs-accent/[0.02] flex items-start gap-3 rounded-xl border p-4 text-sm md:col-span-2">
                 <input
                   type="checkbox"
