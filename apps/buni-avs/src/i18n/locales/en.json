@@ -788,6 +788,42 @@
       "close": "Close"
     }
   },
+  "symbols": {
+    "header": {
+      "label": "Cultural documentation · {count} symbols",
+      "title": "Symbol Encyclopedia",
+      "description": "Explore meanings, cultural contexts, and sources for symbols documented in AVS patterns."
+    },
+    "search": {
+      "label": "Search symbols",
+      "placeholder": "Symbol, meaning, culture, or country…",
+      "clear": "Clear search"
+    },
+    "filters": {
+      "label": "Filter symbols by type"
+    },
+    "types": {
+      "ALL": "All",
+      "KENTE": "Kente",
+      "NDOP": "Ndop",
+      "BOGOLAN": "Bogolan",
+      "ADINKRA": "Adinkra"
+    },
+    "list": {
+      "count": "{count} symbol{count, plural, one {} other {s}}",
+      "label": "Symbol list",
+      "emptyTitle": "No symbols found",
+      "emptyDescription": "Try another search or filter."
+    },
+    "detail": {
+      "restricted": "Ritual or restricted context",
+      "meaning": "Documented meaning",
+      "context": "Documented context and usage",
+      "parentPattern": "Related pattern",
+      "sources": "References for the related pattern",
+      "select": "Select a symbol to view its entry."
+    }
+  },
   "colors": {
     "hero": {
       "label": "Color Picker",

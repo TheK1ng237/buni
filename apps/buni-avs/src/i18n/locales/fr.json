@@ -748,6 +748,42 @@
       "close": "Fermer"
     }
   },
+  "symbols": {
+    "header": {
+      "label": "Documentation culturelle · {count} symboles",
+      "title": "Encyclopédie des Symboles",
+      "description": "Explorez les significations, les contextes culturels et les sources des symboles documentés dans les motifs AVS."
+    },
+    "search": {
+      "label": "Rechercher un symbole",
+      "placeholder": "Symbole, sens, culture ou pays…",
+      "clear": "Effacer la recherche"
+    },
+    "filters": {
+      "label": "Filtrer les symboles par type"
+    },
+    "types": {
+      "ALL": "Tous",
+      "KENTE": "Kente",
+      "NDOP": "Ndop",
+      "BOGOLAN": "Bogolan",
+      "ADINKRA": "Adinkra"
+    },
+    "list": {
+      "count": "{count} symbole{count, plural, one {} other {s}}",
+      "label": "Liste des symboles",
+      "emptyTitle": "Aucun symbole trouvé",
+      "emptyDescription": "Essayez une autre recherche ou un autre filtre."
+    },
+    "detail": {
+      "restricted": "Contexte rituel ou réservé",
+      "meaning": "Signification documentée",
+      "context": "Contexte et usages documentés",
+      "parentPattern": "Motif associé",
+      "sources": "Références du motif associé",
+      "select": "Sélectionnez un symbole pour consulter sa fiche."
+    }
+  },
   "colors": {
     "hero": {
       "label": "Color Picker",

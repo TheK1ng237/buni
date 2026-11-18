@@ -194,6 +194,13 @@ function getNavItems(t: any): NavItem[] {
           available: true,
         },
         {
+          href: '/symbols',
+          label: 'Encyclopédie des symboles',
+          icon: 'pi pi-compass',
+          desc: 'Explorez leur signification et leur contexte culturel',
+          available: true,
+        },
+        {
           href: '/colors',
           label: 'Palettes & Token',
           icon: 'pi pi-palette',
