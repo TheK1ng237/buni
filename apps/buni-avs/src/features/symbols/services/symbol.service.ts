@@ -22,15 +22,6 @@ interface PatternListWithSymbolsResponse {
   };
 }
 
-function isHttp404(error: unknown): boolean {
-  if (typeof error !== 'object' || error === null || !('response' in error)) return false;
-  const response = error.response;
-  return typeof response === 'object'
-    && response !== null
-    && 'status' in response
-    && response.status === 404;
-}
-
 function mapPatternsToSymbols(
   patterns: Array<Omit<PatternDto, 'symbols'> & { symbols?: PatternSymbolDto[] }>
 ): SymbolRecord[] {
@@ -88,21 +79,7 @@ function toSymbolFormData(data: SymbolInput, image?: File): FormData {
 
 export const symbolService = {
   async list(): Promise<SymbolRecord[]> {
-    try {
-      const response = await get<SymbolApiResponse<SymbolRecord[]>>(
-        '/api/v1/patterns/symbols/catalog'
-      );
-      return response.data ?? [];
-    } catch (error) {
-      if (!isHttp404(error)) throw error;
-      try {
-        const response = await get<SymbolApiResponse<SymbolRecord[]>>('/api/v1/patterns/symbols');
-        return response.data ?? [];
-      } catch (aliasError) {
-        if (!isHttp404(aliasError)) throw aliasError;
-        return listFromPatterns();
-      }
-    }
+    return listFromPatterns();
   },
 
   async create(patternId: string, data: SymbolInput, image?: File): Promise<SymbolRecord> {
