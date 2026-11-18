@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PatternSheet } from './pattern-sheet';
-import { PATTERNS_DOCS } from '../mock';
+import { PATTERNS_DOCS } from '@/features/patterns/data/patterns-docs';
 import { patternRepository } from '@/features/patterns/repositories/pattern.repository';
 import { useTranslations } from '@/i18n';
 

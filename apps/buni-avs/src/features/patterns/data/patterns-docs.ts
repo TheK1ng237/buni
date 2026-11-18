@@ -1,7 +1,7 @@
 import { PATTERN_CATALOG, type Pattern } from '@buni/patterns';
 
 /**
- * SVG PATTERNS DATA
+ * Pattern documentation data.
  * 
  * Add new patterns here with their documentation.
  * This file is separate from the component for easy maintenance.

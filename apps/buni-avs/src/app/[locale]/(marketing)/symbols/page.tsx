@@ -1,4 +1,4 @@
-import { SymbolsContent } from './symbols-content';
+import { SymbolsEncyclopedia } from '@/features/symbols/components/SymbolsEncyclopedia';
 
 export const metadata = {
   title: 'Encyclopédie des Symboles Africains | Buni',
@@ -7,5 +7,5 @@ export const metadata = {
 };
 
 export default function SymbolsPage() {
-  return <SymbolsContent />;
+  return <SymbolsEncyclopedia />;
 }
