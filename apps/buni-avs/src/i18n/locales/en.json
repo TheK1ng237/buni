@@ -797,7 +797,8 @@
     "search": {
       "label": "Search symbols",
       "placeholder": "Symbol, meaning, culture, or country…",
-      "clear": "Clear search"
+      "clear": "Clear search",
+      "reset": "Reset filters"
     },
     "filters": {
       "label": "Filter symbols by type"
@@ -805,23 +806,38 @@
     "types": {
       "ALL": "All",
       "KENTE": "Kente",
+      "KUBA": "Kuba",
+      "NDEBELE": "Ndebele",
+      "BERBER": "Berber",
+      "WAX": "Wax",
       "NDOP": "Ndop",
       "BOGOLAN": "Bogolan",
       "ADINKRA": "Adinkra"
     },
-    "list": {
-      "count": "{count} symbol{count, plural, one {} other {s}}",
-      "label": "Symbol list",
-      "emptyTitle": "No symbols found",
-      "emptyDescription": "Try another search or filter."
+    "stats": {
+      "symbols": "documented symbols",
+      "cultures": "cultural origins"
     },
+    "catalog": {
+      "title": "Explore symbols",
+      "count": "{count} entr{count, plural, one {y} other {ies}}",
+      "updating": "Syncing",
+      "emptyTitle": "No symbols found",
+      "emptyDescription": "Change your search or choose a different filter."
+    },
+    "loadError": "The remote catalog could not be refreshed.",
+    "loadErrorFallback": "Previously available entries remain accessible.",
+    "copyError": "Could not copy the entry link.",
     "detail": {
       "restricted": "Ritual or restricted context",
       "meaning": "Documented meaning",
       "context": "Documented context and usage",
       "parentPattern": "Related pattern",
       "sources": "References for the related pattern",
-      "select": "Select a symbol to view its entry."
+      "select": "Select a symbol to view its entry.",
+      "close": "Close entry",
+      "share": "Copy link",
+      "copied": "Link copied"
     }
   },
   "colors": {
@@ -1867,6 +1883,10 @@
         "newPattern": {
           "label": "New pattern",
           "sub": "Submit to catalog"
+        },
+        "symbols": {
+          "label": "Manage symbols",
+          "sub": "Create and document"
         },
         "library": {
           "label": "Library",

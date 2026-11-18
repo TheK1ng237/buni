@@ -694,6 +694,9 @@ export default function DashboardPage() {
             <PanelHeader title={t('quickActions.title')} patternCss="avs-pattern-kuba-kasai" />
             <div className="grid grid-cols-2 gap-3 p-4 sm:grid-cols-4 lg:grid-cols-6">
               <QuickAction href="/patternsDashboard/new" icon={Plus}    label={t('quickActions.newPattern.label')}  sub={t('quickActions.newPattern.sub')} accent />
+              {(isCurator || isAdminUser) && (
+                <QuickAction href="/symbolsDashboard" icon={Sparkles} label={t('quickActions.symbols.label')} sub={t('quickActions.symbols.sub')} />
+              )}
               <QuickAction href="/patterns"              icon={Layers}  label={t('quickActions.library.label')}   sub={t('quickActions.library.sub')} />
               <QuickAction href="/profile"               icon={User}    label={t('quickActions.profile.label')}     sub={t('quickActions.profile.sub')} />
               <QuickAction href="/activity"              icon={Activity} label={t('quickActions.activity.label')} sub={t('quickActions.activity.sub')} />

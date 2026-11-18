@@ -757,7 +757,8 @@
     "search": {
       "label": "Rechercher un symbole",
       "placeholder": "Symbole, sens, culture ou pays…",
-      "clear": "Effacer la recherche"
+      "clear": "Effacer la recherche",
+      "reset": "Réinitialiser les filtres"
     },
     "filters": {
       "label": "Filtrer les symboles par type"
@@ -765,23 +766,38 @@
     "types": {
       "ALL": "Tous",
       "KENTE": "Kente",
+      "KUBA": "Kuba",
+      "NDEBELE": "Ndebele",
+      "BERBER": "Berbère",
+      "WAX": "Wax",
       "NDOP": "Ndop",
       "BOGOLAN": "Bogolan",
       "ADINKRA": "Adinkra"
     },
-    "list": {
-      "count": "{count} symbole{count, plural, one {} other {s}}",
-      "label": "Liste des symboles",
-      "emptyTitle": "Aucun symbole trouvé",
-      "emptyDescription": "Essayez une autre recherche ou un autre filtre."
+    "stats": {
+      "symbols": "symboles documentés",
+      "cultures": "origines culturelles"
     },
+    "catalog": {
+      "title": "Explorer les symboles",
+      "count": "{count} fiche{count, plural, one {} other {s}}",
+      "updating": "Synchronisation",
+      "emptyTitle": "Aucun symbole trouvé",
+      "emptyDescription": "Modifiez votre recherche ou choisissez un autre filtre."
+    },
+    "loadError": "Le catalogue distant n’a pas pu être actualisé.",
+    "loadErrorFallback": "Les fiches déjà disponibles restent consultables.",
+    "copyError": "Impossible de copier le lien de cette fiche.",
     "detail": {
       "restricted": "Contexte rituel ou réservé",
       "meaning": "Signification documentée",
       "context": "Contexte et usages documentés",
       "parentPattern": "Motif associé",
       "sources": "Références du motif associé",
-      "select": "Sélectionnez un symbole pour consulter sa fiche."
+      "select": "Sélectionnez un symbole pour consulter sa fiche.",
+      "close": "Fermer la fiche",
+      "share": "Copier le lien",
+      "copied": "Lien copié"
     }
   },
   "colors": {
@@ -1827,6 +1843,10 @@
         "newPattern": {
           "label": "Nouveau motif",
           "sub": "Soumettre au catalogue"
+        },
+        "symbols": {
+          "label": "Gérer les symboles",
+          "sub": "Créer et documenter"
         },
         "library": {
           "label": "Bibliothèque",
