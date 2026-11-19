@@ -52,7 +52,7 @@ function SymbolCardArtwork({ symbol }: { symbol: SymbolRecord }) {
   const cssPreview = symbol.cssPreview ?? '';
 
   return (
-    <div className="bg-avs-accent/5 relative flex h-44 items-center justify-center overflow-hidden rounded-2xl">
+    <div className="relative flex h-44 items-center justify-center overflow-hidden rounded-2xl">
       {symbol.imageUrl && !imageFailed ? (
         <img
           src={symbol.imageUrl}
@@ -587,7 +587,7 @@ export function SymbolsDashboard() {
                   className="group border-avs-accent/8 bg-avs-secondary shadow-avs hover:border-avs-primary/25 hover:shadow-avs-md relative isolate overflow-hidden rounded-3xl border p-3 transition duration-300 hover:-translate-y-1"
                 >
                   <div
-                    className={`${PATTERN_TEXTURES[symbol.pattern?.type ?? ''] ?? 'avs-pattern-adinkra-sankofa'} pointer-events-none absolute inset-0 z-0 opacity-[0.13]`}
+                    className={`${PATTERN_TEXTURES[symbol.pattern?.type ?? ''] ?? 'avs-pattern-adinkra-sankofa'} pointer-events-none absolute inset-x-0 top-[190px] bottom-0 z-0 opacity-[0.13]`}
                     aria-hidden
                   />
                   <div className="relative z-10">

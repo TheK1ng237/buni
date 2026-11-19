@@ -21,18 +21,27 @@ export function PatternsContent() {
   const [mobileDoc, setMobileDoc] = useState(false);
   const [patterns, setPatterns] = useState<any[]>([]);
 
-  // Load patterns: mocks first, then merge with backend
+  // Keep the built-in catalog available immediately, then prefer saved records.
   useEffect(() => {
     setPatterns(PATTERNS_DOCS);
 
     const loadPatternsFromBackend = async () => {
       try {
         const backendPatterns = await patternRepository.findAll();
-        const catalogKeys = new Set(PATTERNS_DOCS.flatMap((pattern) => [pattern.id, pattern.slug]));
-        const newPatterns = backendPatterns.filter(
-          (pattern) => !catalogKeys.has(pattern.id) && !catalogKeys.has(pattern.slug)
-        );
-        setPatterns([...PATTERNS_DOCS, ...newPatterns]);
+        const mergedPatterns = [...PATTERNS_DOCS];
+
+        for (const backendPattern of backendPatterns) {
+          const catalogIndex = mergedPatterns.findIndex(
+            (pattern) => pattern.id === backendPattern.id || pattern.slug === backendPattern.slug
+          );
+          if (catalogIndex === -1) {
+            mergedPatterns.push(backendPattern);
+          } else {
+            mergedPatterns[catalogIndex] = backendPattern;
+          }
+        }
+
+        setPatterns(mergedPatterns);
       } catch (error) {
         console.error('Error loading patterns from backend:', error);
         setPatterns(PATTERNS_DOCS);
@@ -75,7 +84,7 @@ export function PatternsContent() {
   return (
     <div className="bg-avs-secondary flex h-screen flex-col overflow-hidden">
       {/* TOPBAR */}
-      <div className="bg-avs-secondary border-avs-accent/10 relative shrink-0 overflow-hidden border-b px-4 sm:px-6 py-4 sm:py-5 backdrop-blur-xl">
+      <div className="bg-avs-secondary border-avs-accent/10 relative shrink-0 overflow-hidden border-b px-4 py-4 backdrop-blur-xl sm:px-6 sm:py-5">
         <div
           className="avs-pattern-wax-dakar pointer-events-none absolute inset-0 opacity-[0.03]"
           aria-hidden
@@ -83,15 +92,15 @@ export function PatternsContent() {
 
         <div className="relative flex flex-col gap-4 sm:gap-5">
           {/* Header section */}
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div className="flex-1">
               <div className="mb-2 flex items-center gap-2">
                 <div className="bg-avs-primary h-px w-4 sm:w-6" aria-hidden />
-                <span className="text-avs-primary font-mono text-[8px] sm:text-[9px] font-bold tracking-[0.24em] uppercase">
+                <span className="text-avs-primary font-mono text-[8px] font-bold tracking-[0.24em] uppercase sm:text-[9px]">
                   {t('header.label', { count: patterns.length })}
                 </span>
               </div>
-              <h1 className="font-display text-avs-accent text-2xl sm:text-4xl leading-none font-black tracking-tight">
+              <h1 className="font-display text-avs-accent text-2xl leading-none font-black tracking-tight sm:text-4xl">
                 {t('header.title')}
               </h1>
             </div>
@@ -101,10 +110,10 @@ export function PatternsContent() {
           </div>
 
           {/* Search + type filters */}
-          <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3">
-            <div className="relative flex-1 min-w-0">
+          <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+            <div className="relative min-w-0 flex-1">
               <i
-                className="pi pi-search text-avs-accent/40 absolute top-1/2 left-3 sm:left-3.5 -translate-y-1/2"
+                className="pi pi-search text-avs-accent/40 absolute top-1/2 left-3 -translate-y-1/2 sm:left-3.5"
                 style={{ fontSize: '12px' }}
                 aria-hidden
               />
@@ -135,7 +144,7 @@ export function PatternsContent() {
                 <button
                   key={type}
                   onClick={() => setActiveType(type)}
-                  className={`shrink-0 rounded-lg px-2.5 sm:px-3 py-1.5 font-mono text-[8px] sm:text-[9px] font-black tracking-[0.14em] uppercase transition-all duration-150 ${
+                  className={`shrink-0 rounded-lg px-2.5 py-1.5 font-mono text-[8px] font-black tracking-[0.14em] uppercase transition-all duration-150 sm:px-3 sm:text-[9px] ${
                     activeType === type
                       ? 'bg-avs-primary text-avs-secondary shadow-avs-sm'
                       : 'border-avs-accent/15 text-avs-accent/50 bg-avs-secondary hover:border-avs-primary/20 hover:text-avs-primary border'
@@ -153,10 +162,10 @@ export function PatternsContent() {
       <div className="flex flex-1 overflow-hidden">
         {/* SIDEBAR */}
         <aside
-          className={`bg-avs-secondary border-avs-accent/10 flex w-full sm:w-72 lg:w-80 shrink-0 flex-col overflow-hidden border-r ${mobileDoc ? 'hidden lg:flex' : 'flex'} `}
+          className={`bg-avs-secondary border-avs-accent/10 flex w-full shrink-0 flex-col overflow-hidden border-r sm:w-72 lg:w-80 ${mobileDoc ? 'hidden lg:flex' : 'flex'} `}
         >
-          <div className="border-avs-accent/10 flex items-center justify-between border-b px-3 sm:px-4 py-2.5 sm:py-3">
-            <p className="text-avs-accent/40 font-mono text-[8px] sm:text-[9px] font-bold tracking-[0.18em] uppercase">
+          <div className="border-avs-accent/10 flex items-center justify-between border-b px-3 py-2.5 sm:px-4 sm:py-3">
+            <p className="text-avs-accent/40 font-mono text-[8px] font-bold tracking-[0.18em] uppercase sm:text-[9px]">
               {t('sidebar.count', { count: filtered.length })}
             </p>
             {(search || activeType !== 'ALL') && (
@@ -165,7 +174,7 @@ export function PatternsContent() {
                   setSearch('');
                   setActiveType('ALL');
                 }}
-                className="text-avs-primary font-mono text-[8px] sm:text-[9px] font-bold tracking-wide underline underline-offset-3"
+                className="text-avs-primary font-mono text-[8px] font-bold tracking-wide underline underline-offset-3 sm:text-[9px]"
               >
                 {t('search.reset')}
               </button>
@@ -175,11 +184,13 @@ export function PatternsContent() {
           {filtered.length === 0 ? (
             <div className="flex flex-1 flex-col items-center justify-center gap-4 p-6 sm:p-8">
               <div
-                className="avs-pattern-wax-dakar h-16 w-16 sm:h-20 sm:w-20 rounded-full opacity-20"
+                className="avs-pattern-wax-dakar h-16 w-16 rounded-full opacity-20 sm:h-20 sm:w-20"
                 aria-hidden
               />
               <div className="text-center">
-                <p className="text-avs-accent/40 text-sm font-medium">{t('sidebar.noResults.title')}</p>
+                <p className="text-avs-accent/40 text-sm font-medium">
+                  {t('sidebar.noResults.title')}
+                </p>
                 <p className="text-avs-accent/30 mt-1 text-xs">{t('sidebar.noResults.subtitle')}</p>
               </div>
             </div>
@@ -203,16 +214,12 @@ export function PatternsContent() {
                         : 'hover:bg-avs-secondary-dark border-l-transparent'
                     } `}
                   >
-                    <div className="flex items-center gap-2.5 sm:gap-3 px-3 sm:px-4 py-2.5 sm:py-3.5">
+                    <div className="flex items-center gap-2.5 px-3 py-2.5 sm:gap-3 sm:px-4 sm:py-3.5">
                       <div
-                        className={`${p.previewClass || p.cssClass} relative h-10 w-10 sm:h-11 sm:w-11 shrink-0 overflow-hidden rounded-lg sm:rounded-xl ring-1 ring-black/10 transition-transform duration-300 group-hover:scale-105 dark:ring-white/10`}
+                        className={`${p.previewClass || p.cssClass} relative h-10 w-10 shrink-0 overflow-hidden rounded-lg ring-1 ring-black/10 transition-transform duration-300 group-hover:scale-105 sm:h-11 sm:w-11 sm:rounded-xl dark:ring-white/10`}
                       >
                         {p.imgUrl ? (
-                          <img
-                            src={p.imgUrl}
-                            alt={p.name}
-                            className="h-full w-full object-cover"
-                          />
+                          <img src={p.imgUrl} alt={p.name} className="h-full w-full object-cover" />
                         ) : null}
                       </div>
 
@@ -225,7 +232,7 @@ export function PatternsContent() {
                         <p className="text-avs-accent/40 mt-0.5 font-mono text-[8px] sm:text-[9px]">
                           {p.origin.flag} {p.origin.country}
                         </p>
-                        <p className="text-avs-accent/30 mt-0.5 text-[9px] sm:text-[10px] line-clamp-1">
+                        <p className="text-avs-accent/30 mt-0.5 line-clamp-1 text-[9px] sm:text-[10px]">
                           {p.origin.people}
                         </p>
                       </div>
@@ -244,10 +251,8 @@ export function PatternsContent() {
           ) : (
             <div className="flex h-full items-center justify-center">
               <div className="text-center">
-                <div className="avs-pattern-wax-dakar mx-auto mb-4 h-16 w-16 sm:h-20 sm:w-20 rounded-full opacity-20" />
-                <p className="text-avs-accent/40 text-sm">
-                  {t('main.selectPattern')}
-                </p>
+                <div className="avs-pattern-wax-dakar mx-auto mb-4 h-16 w-16 rounded-full opacity-20 sm:h-20 sm:w-20" />
+                <p className="text-avs-accent/40 text-sm">{t('main.selectPattern')}</p>
               </div>
             </div>
           )}
@@ -261,7 +266,7 @@ export function PatternsContent() {
               setSelected(null);
               router.push('/patterns', { scroll: false });
             }}
-            className="lg:hidden fixed bottom-6 right-6 bg-avs-primary text-avs-secondary shadow-avs-md flex h-12 w-12 items-center justify-center rounded-full z-50"
+            className="bg-avs-primary text-avs-secondary shadow-avs-md fixed right-6 bottom-6 z-50 flex h-12 w-12 items-center justify-center rounded-full lg:hidden"
             aria-label={t('mobile.close')}
           >
             <i className="pi pi-times" style={{ fontSize: '16px' }} />

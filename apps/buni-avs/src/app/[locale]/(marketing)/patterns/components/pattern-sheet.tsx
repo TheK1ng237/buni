@@ -12,7 +12,7 @@ import { formatNumber } from '@buni/utils';
 
 import { patternRepository } from '@/features/patterns/repositories/pattern.repository';
 import { PATTERN_CATALOG } from '@buni/patterns';
-import { createCssPatternSvg, saveBlob } from '@/features/patterns/utils/css-pattern-svg';
+import { saveBlob } from '@/features/patterns/utils/css-pattern-svg';
 
 const SECTIONS = [
   { id: 'histoire', label: 'Histoire' },
@@ -32,30 +32,24 @@ export function PatternSheet({ pattern }: { pattern: any }) {
   const [viewCount, setViewCount] = useState<number>(0);
 
   const contentRef = useRef<HTMLDivElement>(null);
-  const patternPreviewRef = useRef<HTMLDivElement>(null);
   const { add } = useToast();
   const patternImage = pattern.imgUrl;
   const previewClass = pattern.previewClass || pattern.cssClass;
+  const isCatalogPattern = PATTERN_CATALOG.some(
+    (catalogPattern) => catalogPattern.id === pattern.id
+  );
+  const metricsIdentifier = pattern.slug || pattern.id;
 
   const handleDownload = async (id: string, slug: string) => {
     if (isDownloading) return;
 
     setIsDownloading(true);
     try {
-      const backendBlob = await downloadPattern(id);
-      const isCatalogPattern = PATTERN_CATALOG.some((catalogPattern) => catalogPattern.id === id);
-      let blob = backendBlob;
-      if (isCatalogPattern) {
-        const previewElement = patternPreviewRef.current;
-        if (!previewElement) {
-          throw new Error('Aperçu du motif indisponible pour créer le fichier SVG.');
-        }
-        blob = createCssPatternSvg(previewElement, pattern.name);
-      }
+      const blob = await downloadPattern(isCatalogPattern ? metricsIdentifier : id);
       saveBlob(blob, `${slug}.svg`);
 
       try {
-        const stats = await patternRepository.stats(id);
+        const stats = await patternRepository.stats(metricsIdentifier);
         setDownloadCount(stats.downloads);
         setViewCount(stats.views);
       } catch (statsError) {
@@ -90,7 +84,7 @@ export function PatternSheet({ pattern }: { pattern: any }) {
     let active = true;
     const recordView = async () => {
       try {
-        const storageKey = `avs_viewed_${pattern.id}`;
+        const storageKey = `avs_viewed_${metricsIdentifier}`;
         let alreadyViewed = false;
         try {
           alreadyViewed = sessionStorage.getItem(storageKey) === 'true';
@@ -99,8 +93,8 @@ export function PatternSheet({ pattern }: { pattern: any }) {
         }
 
         const stats = alreadyViewed
-          ? await patternRepository.stats(pattern.id)
-          : await patternRepository.trackView(pattern.id);
+          ? await patternRepository.stats(metricsIdentifier)
+          : await patternRepository.trackView(metricsIdentifier);
         if (!alreadyViewed) {
           try {
             sessionStorage.setItem(storageKey, 'true');
@@ -126,7 +120,7 @@ export function PatternSheet({ pattern }: { pattern: any }) {
     return () => {
       active = false;
     };
-  }, [pattern.id, add]);
+  }, [pattern.id, pattern.slug, metricsIdentifier, add]);
 
   return (
     <div
@@ -139,10 +133,10 @@ export function PatternSheet({ pattern }: { pattern: any }) {
           <img
             src={patternImage}
             alt={pattern.name}
-            className="absolute inset-0 h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-contain"
           />
         ) : (
-          <div ref={patternPreviewRef} className={`${previewClass} absolute inset-0`} />
+          <div className={`${previewClass} absolute inset-0`} />
         )}
         <div className="absolute inset-0 bg-linear-to-b from-black/5 via-transparent to-black/10" />
 
@@ -161,8 +155,7 @@ export function PatternSheet({ pattern }: { pattern: any }) {
             {formatNumber(downloadCount)}
           </span>
           <span className="text-avs-secondary flex items-center gap-1.5 rounded-lg bg-black/30 px-2.5 py-1 font-mono text-[9px] font-semibold backdrop-blur-md sm:gap-2 sm:px-3 sm:py-1.5 sm:text-[10px]">
-            <i className="pi pi-eye" style={{ fontSize: '9px' }} /> {formatNumber(viewCount)}{' '}
-            vues
+            <i className="pi pi-eye" style={{ fontSize: '9px' }} /> {formatNumber(viewCount)} vues
           </span>
         </div>
 
@@ -293,7 +286,7 @@ export function PatternSheet({ pattern }: { pattern: any }) {
                       <img
                         src={sym.imageUrl}
                         alt={sym.name}
-                        className="h-full w-full object-containt"
+                        className="object-containt h-full w-full"
                       />
                     ) : (
                       <div className="h-full w-full" style={{ background: sym.cssPreview }} />
@@ -301,7 +294,6 @@ export function PatternSheet({ pattern }: { pattern: any }) {
                   </div>
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-1.5">
-                    
                       <p
                         className={`font-display text-sm leading-tight font-bold ${isOpen ? 'text-avs-primary' : 'text-avs-accent'}`}
                       >
@@ -334,53 +326,55 @@ export function PatternSheet({ pattern }: { pattern: any }) {
                       transition={{ duration: 0.2 }}
                       className="overflow-hidden"
                     >
-                      <div className="border-avs-primary/20  border-t px-3.5 pt-1  flex items-center md:space-x-10 space-x-2">
+                      <div className="border-avs-primary/20 flex items-center space-x-2 border-t px-3.5 pt-1 md:space-x-10">
                         <div className="">
-                          <div className="w-40 h-40 shrink-0 overflow-hidden rounded-xl ring-1 ring-black/10 dark:ring-white/10">
-                    {sym.imageUrl ? (
-                      <img
-                        src={sym.imageUrl}
-                        alt={sym.name}
-                        className="h-full w-full object-containt"
-                      />
-                    ) : (
-                      <div className="h-full w-full" style={{ background: sym.cssPreview }} />
-                    )}
-                  </div>
+                          <div className="h-40 w-40 shrink-0 overflow-hidden rounded-xl ring-1 ring-black/10 dark:ring-white/10">
+                            {sym.imageUrl ? (
+                              <img
+                                src={sym.imageUrl}
+                                alt={sym.name}
+                                className="object-containt h-full w-full"
+                              />
+                            ) : (
+                              <div
+                                className="h-full w-full"
+                                style={{ background: sym.cssPreview }}
+                              />
+                            )}
+                          </div>
                         </div>
                         <div className="space-y-3">
                           <div className="pt-3">
-                          
-                          <p className="text-avs-primary mb-1 font-mono text-[8px] font-black tracking-[0.16em] uppercase">
-                            Signification
-                          </p>
-                          <p className="text-avs-accent/70 text-xs leading-relaxed">
-                            {sym.meaning}
-                          </p>
-                        </div>
-                        <div>
-                          <p className="text-avs-primary mb-1 font-mono text-[8px] font-black tracking-[0.16em] uppercase">
-                            Usage cérémoniel
-                          </p>
-                          <p className="text-avs-accent/70 text-xs leading-relaxed">{sym.usage}</p>
-                        </div>
-                        
-                        </div>
-                        
-                      </div>
-                      {sym.sacred && (
-                          <div className="bg-avs-kente/8 border-avs-kente/20 flex items-start gap-2 rounded-xl border p-3 m-5">
-                            <i
-                              className="pi pi-info-circle text-avs-kente  shrink-0"
-                              style={{ fontSize: '11px' }}
-                            />
-                            <p className="text-avs-kente/85 text-[10px] leading-relaxed">
-                              Ce symbole est sacré ou réservé à certaines fonctions sociales. Son
-                              usage hors contexte traditionnel est considéré comme une transgression
-                              culturelle.
+                            <p className="text-avs-primary mb-1 font-mono text-[8px] font-black tracking-[0.16em] uppercase">
+                              Signification
+                            </p>
+                            <p className="text-avs-accent/70 text-xs leading-relaxed">
+                              {sym.meaning}
                             </p>
                           </div>
-                        )}
+                          <div>
+                            <p className="text-avs-primary mb-1 font-mono text-[8px] font-black tracking-[0.16em] uppercase">
+                              Usage cérémoniel
+                            </p>
+                            <p className="text-avs-accent/70 text-xs leading-relaxed">
+                              {sym.usage}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      {sym.sacred && (
+                        <div className="bg-avs-kente/8 border-avs-kente/20 m-5 flex items-start gap-2 rounded-xl border p-3">
+                          <i
+                            className="pi pi-info-circle text-avs-kente shrink-0"
+                            style={{ fontSize: '11px' }}
+                          />
+                          <p className="text-avs-kente/85 text-[10px] leading-relaxed">
+                            Ce symbole est sacré ou réservé à certaines fonctions sociales. Son
+                            usage hors contexte traditionnel est considéré comme une transgression
+                            culturelle.
+                          </p>
+                        </div>
+                      )}
                     </motion.div>
                   )}
                 </AnimatePresence>

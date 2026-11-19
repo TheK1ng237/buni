@@ -24,31 +24,23 @@ function SymbolArtwork({
   const [imageFailed, setImageFailed] = useState(false);
   const initial = name.trim().charAt(0).toLocaleUpperCase() || '?';
 
-  return (
-    <>
-      <span
-        className="avs-pattern-adinkra-sankofa pointer-events-none absolute inset-0 opacity-20"
-        aria-hidden
-      />
-      {imageUrl && !imageFailed ? (
-        <img
-          src={imageUrl}
-          alt={name}
-          loading="lazy"
-          decoding="async"
-          onError={() => setImageFailed(true)}
-          className="bg-avs-accent/10 absolute inset-0 h-full w-full object-contain p-3"
-        />
-      ) : (
-        <span
-          aria-label={name}
-          className="text-avs-secondary absolute inset-0 flex items-center justify-center text-5xl font-black"
-          style={{ backgroundColor: cssPreview || AVS_COLORS.primary }}
-        >
-          {initial}
-        </span>
-      )}
-    </>
+  return imageUrl && !imageFailed ? (
+    <img
+      src={imageUrl}
+      alt={name}
+      loading="lazy"
+      decoding="async"
+      onError={() => setImageFailed(true)}
+      className="absolute inset-0 h-full w-full object-contain"
+    />
+  ) : (
+    <span
+      aria-label={name}
+      className="text-avs-secondary absolute inset-0 flex items-center justify-center text-5xl font-black"
+      style={{ backgroundColor: cssPreview || AVS_COLORS.primary }}
+    >
+      {initial}
+    </span>
   );
 }
 
@@ -282,21 +274,14 @@ export function SymbolsEncyclopedia() {
                 key={symbol.id}
                 type="button"
                 onClick={() => selectSymbol(symbol)}
-                className="group border-avs-accent/8 bg-avs-secondary shadow-avs hover:border-avs-primary/25 hover:shadow-avs-md focus-visible:outline-avs-primary relative isolate flex h-[440px] flex-col overflow-hidden rounded-2xl border text-left transition duration-200 hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-offset-2"
+                className="group border-avs-accent/8 bg-avs-secondary shadow-avs hover:border-avs-primary/25 hover:shadow-avs-md focus-visible:outline-avs-primary relative isolate grid h-[420px] grid-rows-[3fr_1fr] overflow-hidden rounded-2xl border text-left transition duration-200 hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-offset-2"
               >
-                <div
-                  className={`${symbol.pattern.previewClass} pointer-events-none absolute inset-0 z-0 opacity-[0.08]`}
-                  aria-hidden
-                />
-                <div
-                  className={`${symbol.pattern.previewClass} relative z-10 h-3/4 w-full shrink-0 overflow-hidden`}
-                >
+                <div className="relative min-h-0 overflow-hidden">
                   <SymbolArtwork
                     name={symbol.name}
                     imageUrl={symbol.imageUrl}
                     cssPreview={symbol.cssPreview}
                   />
-                  <div className="from-avs-accent/20 absolute inset-0 bg-gradient-to-t to-transparent" />
                   <div className="absolute bottom-3 left-3 flex items-center gap-2">
                     <span className="bg-avs-accent/50 text-avs-secondary rounded-full px-2.5 py-1 font-mono text-[8px] font-bold tracking-[0.13em] uppercase backdrop-blur">
                       {symbol.pattern.type === 'UNIVERSAL'
@@ -310,8 +295,12 @@ export function SymbolsEncyclopedia() {
                     </span>
                   )}
                 </div>
-                <div className="bg-avs-secondary/90 relative z-10 flex min-h-0 flex-1 flex-col justify-between p-3 sm:p-4">
-                  <div className="flex items-start justify-between gap-3">
+                <div className="relative isolate flex min-h-0 flex-col justify-between overflow-hidden p-3 sm:p-4">
+                  <div
+                    className={`${symbol.pattern.previewClass} pointer-events-none absolute inset-0 z-0 opacity-[0.12]`}
+                    aria-hidden
+                  />
+                  <div className="relative z-10 flex items-start justify-between gap-3">
                     <div className="min-w-0">
                       <h3 className="font-display text-avs-accent truncate text-lg font-bold">
                         {symbol.name}
@@ -324,10 +313,10 @@ export function SymbolsEncyclopedia() {
                       <ChevronRight size={15} aria-hidden />
                     </span>
                   </div>
-                  <p className="text-avs-accent/65 line-clamp-1 text-xs leading-5">
+                  <p className="text-avs-accent/65 relative z-10 line-clamp-1 text-xs leading-5">
                     {symbol.meaning}
                   </p>
-                  <div className="border-avs-accent/6 mt-0 flex items-center justify-between gap-3 border-t pt-2">
+                  <div className="border-avs-accent/6 relative z-10 mt-0 flex items-center justify-between gap-3 border-t pt-2">
                     <span className="text-avs-accent/45 truncate text-[10px] font-semibold">
                       {symbol.pattern.flag} {symbol.pattern.name}
                     </span>
