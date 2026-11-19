@@ -36,6 +36,46 @@ const EMPTY_FORM: SymbolInput = {
   sacred: false,
 };
 
+const PATTERN_TEXTURES: Record<string, string> = {
+  ADINKRA: 'avs-pattern-adinkra-sankofa',
+  BOGOLAN: 'avs-pattern-bogolan-fanga',
+  KENTE: 'avs-pattern-kente-royale',
+  KUBA: 'avs-pattern-kuba-kasai',
+  NDEBELE: 'avs-pattern-wax-dakar',
+  NDOP: 'avs-pattern-ndop-sultan',
+  WAX: 'avs-pattern-wax-dakar',
+  BERBER: 'avs-pattern-wax-dakar',
+};
+
+function SymbolCardArtwork({ symbol }: { symbol: SymbolRecord }) {
+  const [imageFailed, setImageFailed] = useState(false);
+  const cssPreview = symbol.cssPreview ?? '';
+
+  return (
+    <div className="bg-avs-accent/5 relative flex h-44 items-center justify-center overflow-hidden rounded-2xl">
+      {symbol.imageUrl && !imageFailed ? (
+        <img
+          src={symbol.imageUrl}
+          alt={symbol.name}
+          loading="lazy"
+          decoding="async"
+          onError={() => setImageFailed(true)}
+          className="h-full w-full object-contain p-2 transition-transform duration-300 group-hover:scale-105"
+        />
+      ) : (
+        <span
+          className="border-avs-secondary/35 text-avs-secondary shadow-avs-md flex h-24 w-24 items-center justify-center rounded-full border text-5xl font-black"
+          style={{
+            backgroundColor: /^#[0-9A-Fa-f]{6}$/.test(cssPreview) ? cssPreview : AVS_COLORS.primary,
+          }}
+        >
+          {symbol.name.trim().charAt(0).toLocaleUpperCase() || '?'}
+        </span>
+      )}
+    </div>
+  );
+}
+
 export function SymbolsDashboard() {
   const { user, isCurator } = useAuth();
   const { data: patterns = [], isLoading: patternsLoading } = usePatterns({ perPage: 100 });
@@ -50,6 +90,7 @@ export function SymbolsDashboard() {
   const [form, setForm] = useState<SymbolInput>(EMPTY_FORM);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [deleteTarget, setDeleteTarget] = useState<SymbolRecord | null>(null);
   const [actionError, setActionError] = useState('');
   const [notice, setNotice] = useState('');
 
@@ -129,7 +170,7 @@ export function SymbolsDashboard() {
   }
 
   async function deleteSymbol(symbol: SymbolRecord) {
-    if (!canManageSymbols || !window.confirm(`Supprimer « ${symbol.name} » ?`)) return;
+    if (!canManageSymbols) return;
 
     setDeletingId(symbol.id);
     setActionError('');
@@ -137,6 +178,7 @@ export function SymbolsDashboard() {
     try {
       await deleteMutation.mutateAsync(symbol.id);
       setNotice('Le symbole a été supprimé.');
+      setDeleteTarget(null);
     } catch (deleteError) {
       setActionError(
         deleteError instanceof Error ? deleteError.message : 'Suppression impossible.'
@@ -208,21 +250,20 @@ export function SymbolsDashboard() {
           <div className="relative flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
             <div className="max-w-2xl">
               <span className="border-avs-secondary/15 bg-avs-secondary/5 text-avs-kente inline-flex items-center gap-2 rounded-full border px-3 py-1.5 font-mono text-[9px] font-bold tracking-[0.14em] uppercase">
-                <BookOpen size={12} /> Patrimoine vivant · fiches reliées aux motifs
+                <BookOpen size={12} /> Patrimoine vivant · fiches libres ou reliées
               </span>
               <h2 className="font-display mt-5 text-3xl leading-tight font-black sm:text-4xl">
                 Documenter un symbole,
                 <br className="hidden sm:block" /> c’est transmettre son contexte.
               </h2>
               <p className="text-avs-secondary/60 mt-3 max-w-xl text-sm leading-6">
-                Créez des fiches sourcées, associez-les à un motif et partagez leur signification
-                avec la communauté.
+                Créez des fiches sourcées, librement ou en les associant à un motif, et partagez
+                leur signification avec la communauté.
               </p>
             </div>
             <button
               type="button"
               onClick={openCreateForm}
-              disabled={patterns.length === 0}
               className="bg-avs-primary text-avs-secondary shadow-avs-md inline-flex shrink-0 items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-bold transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-50"
             >
               <Plus size={16} /> Nouveau symbole
@@ -251,162 +292,243 @@ export function SymbolsDashboard() {
         )}
 
         {editorOpen && (
-          <section className="border-avs-accent/10 bg-avs-secondary shadow-avs mt-8 rounded-3xl border p-5 sm:p-8">
-            <div className="mb-6 flex items-start justify-between gap-4">
-              <div>
-                <p className="text-avs-primary font-mono text-[9px] font-bold tracking-[0.16em] uppercase">
-                  {editing ? 'Modifier une fiche' : 'Nouvelle fiche'}
-                </p>
-                <h2 className="font-display mt-1 text-xl font-black">
-                  {editing ? editing.name : 'Décrire un symbole culturel'}
-                </h2>
-              </div>
-              <button
-                type="button"
-                onClick={() => setEditorOpen(false)}
-                aria-label="Fermer le formulaire"
-                className="text-avs-accent/45 hover:bg-avs-accent/5 hover:text-avs-accent rounded-lg p-2"
-              >
-                <X size={18} />
-              </button>
-            </div>
-
-            <form onSubmit={saveSymbol} className="grid gap-5 md:grid-cols-2">
-              <label className="text-xs font-bold">
-                Motif associé
-                <select
-                  value={patternId}
-                  disabled={Boolean(editing) || patternsLoading}
-                  onChange={(event) => setPatternId(event.target.value)}
-                  className="avs-input mt-2 text-sm"
-                >
-                  <option value="">
-                    Symbole libre — aucun motif associé
-                  </option>
-                  {patterns.map((pattern) => (
-                    <option key={pattern.id} value={pattern.id}>
-                      {pattern.name} · {pattern.origin.country}
-                    </option>
-                  ))}
-                </select>
-              </label>
-              <label className="text-xs font-bold">
-                Nom d’origine
-                <input
-                  required
-                  minLength={2}
-                  maxLength={128}
-                  value={form.name}
-                  onChange={(event) => setForm({ ...form, name: event.target.value })}
-                  className="avs-input mt-2 text-sm"
-                  placeholder="Sankofa"
-                />
-              </label>
-              <label className="text-xs font-bold">
-                Nom ou traduction française
-                <input
-                  required
-                  minLength={2}
-                  maxLength={128}
-                  value={form.nameFr}
-                  onChange={(event) => setForm({ ...form, nameFr: event.target.value })}
-                  className="avs-input mt-2 text-sm"
-                  placeholder="Revenir en arrière pour avancer"
-                />
-              </label>
-              <label className="text-xs font-bold">
-                Couleur de repère
-                <span className="mt-2 flex gap-2">
-                  <input
-                    type="color"
-                    value={form.cssPreview}
-                    onChange={(event) => setForm({ ...form, cssPreview: event.target.value })}
-                    aria-label="Choisir la couleur du symbole"
-                    className="border-avs-accent/10 bg-avs-secondary h-11 w-14 cursor-pointer rounded-lg border p-1"
-                  />
-                  <input
-                    required
-                    pattern="^#[0-9A-Fa-f]{6}$"
-                    value={form.cssPreview}
-                    onChange={(event) => setForm({ ...form, cssPreview: event.target.value })}
-                    className="avs-input font-mono text-sm uppercase"
-                  />
-                </span>
-              </label>
-              <label className="text-xs font-bold md:col-span-2">
-                Signification
-                <textarea
-                  required
-                  minLength={10}
-                  maxLength={2000}
-                  rows={3}
-                  value={form.meaning}
-                  onChange={(event) => setForm({ ...form, meaning: event.target.value })}
-                  className="avs-input mt-2 resize-y text-sm"
-                  placeholder="Sens documenté et formulation contextualisée…"
-                />
-              </label>
-              <label className="text-xs font-bold md:col-span-2">
-                Contextes et usages documentés
-                <textarea
-                  required
-                  minLength={3}
-                  maxLength={1000}
-                  rows={3}
-                  value={form.usage}
-                  onChange={(event) => setForm({ ...form, usage: event.target.value })}
-                  className="avs-input mt-2 resize-y text-sm"
-                  placeholder="Précisez les usages, les personnes concernées et les éventuelles restrictions…"
-                />
-              </label>
-              <SymbolImageUpload
-                currentImageUrl={form.imageUrl}
-                file={imageFile}
-                onFileChange={setImageFile}
-                disabled={createMutation.isPending || updateMutation.isPending}
-              />
-              <label className="border-avs-accent/10 bg-avs-accent/[0.02] flex items-start gap-3 rounded-xl border p-4 text-sm md:col-span-2">
-                <input
-                  type="checkbox"
-                  checked={form.sacred}
-                  onChange={(event) => setForm({ ...form, sacred: event.target.checked })}
-                  className="accent-avs-primary mt-0.5"
-                />
-                <span>
-                  <span className="block font-bold">Contexte rituel ou réservé</span>
-                  <span className="text-avs-accent/55 mt-1 block text-xs leading-5 font-normal">
-                    Signalez les symboles dont l’usage doit être abordé avec précaution ou selon des
-                    règles culturelles spécifiques.
-                  </span>
-                </span>
-              </label>
-              <div className="flex flex-col-reverse gap-3 pt-1 sm:flex-row sm:justify-end md:col-span-2">
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+            <button
+              type="button"
+              aria-label="Fermer la fenêtre"
+              onClick={() => {
+                if (!createMutation.isPending && !updateMutation.isPending) setEditorOpen(false);
+              }}
+              disabled={createMutation.isPending || updateMutation.isPending}
+              className="absolute inset-0 cursor-default"
+            />
+            <section
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="symbol-editor-title"
+              className="border-avs-accent/10 bg-avs-secondary shadow-avs relative z-10 max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-3xl border p-5 sm:p-8"
+            >
+              <div className="mb-6 flex items-start justify-between gap-4">
+                <div>
+                  <p className="text-avs-primary font-mono text-[9px] font-bold tracking-[0.16em] uppercase">
+                    {editing ? 'Modifier une fiche' : 'Nouvelle fiche'}
+                  </p>
+                  <h2 id="symbol-editor-title" className="font-display mt-1 text-xl font-black">
+                    {editing ? editing.name : 'Décrire un symbole culturel'}
+                  </h2>
+                </div>
                 <button
                   type="button"
                   onClick={() => setEditorOpen(false)}
-                  className="border-avs-accent/15 text-avs-accent/65 hover:bg-avs-accent/[0.03] rounded-xl border px-5 py-2.5 text-sm font-semibold"
+                  aria-label="Fermer le formulaire"
+                  className="text-avs-accent/45 hover:bg-avs-accent/5 hover:text-avs-accent rounded-lg p-2"
+                >
+                  <X size={18} />
+                </button>
+              </div>
+
+              {actionError && (
+                <p
+                  role="alert"
+                  className="mb-5 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800"
+                >
+                  {actionError}
+                </p>
+              )}
+
+              <form onSubmit={saveSymbol} className="grid gap-5 md:grid-cols-2">
+                <label className="text-xs font-bold">
+                  Motif associé
+                  <select
+                    value={patternId}
+                    disabled={Boolean(editing) || patternsLoading}
+                    onChange={(event) => setPatternId(event.target.value)}
+                    className="avs-input mt-2 text-sm"
+                  >
+                    <option value="">Symbole libre — aucun motif associé</option>
+                    {patterns.map((pattern) => (
+                      <option key={pattern.id} value={pattern.id}>
+                        {pattern.name} · {pattern.origin.country}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <label className="text-xs font-bold">
+                  Nom d’origine
+                  <input
+                    required
+                    minLength={2}
+                    maxLength={128}
+                    value={form.name}
+                    onChange={(event) => setForm({ ...form, name: event.target.value })}
+                    className="avs-input mt-2 text-sm"
+                    placeholder="Sankofa"
+                  />
+                </label>
+                <label className="text-xs font-bold">
+                  Nom ou traduction française
+                  <input
+                    required
+                    minLength={2}
+                    maxLength={128}
+                    value={form.nameFr}
+                    onChange={(event) => setForm({ ...form, nameFr: event.target.value })}
+                    className="avs-input mt-2 text-sm"
+                    placeholder="Revenir en arrière pour avancer"
+                  />
+                </label>
+                <label className="text-xs font-bold">
+                  Couleur de repère
+                  <span className="mt-2 flex gap-2">
+                    <input
+                      type="color"
+                      value={form.cssPreview}
+                      onChange={(event) => setForm({ ...form, cssPreview: event.target.value })}
+                      aria-label="Choisir la couleur du symbole"
+                      className="border-avs-accent/10 bg-avs-secondary h-11 w-14 cursor-pointer rounded-lg border p-1"
+                    />
+                    <input
+                      required
+                      pattern="^#[0-9A-Fa-f]{6}$"
+                      value={form.cssPreview}
+                      onChange={(event) => setForm({ ...form, cssPreview: event.target.value })}
+                      className="avs-input font-mono text-sm uppercase"
+                    />
+                  </span>
+                </label>
+                <label className="text-xs font-bold md:col-span-2">
+                  Signification
+                  <textarea
+                    required
+                    minLength={10}
+                    maxLength={2000}
+                    rows={3}
+                    value={form.meaning}
+                    onChange={(event) => setForm({ ...form, meaning: event.target.value })}
+                    className="avs-input mt-2 resize-y text-sm"
+                    placeholder="Sens documenté et formulation contextualisée…"
+                  />
+                </label>
+                <label className="text-xs font-bold md:col-span-2">
+                  Contextes et usages documentés
+                  <textarea
+                    required
+                    minLength={3}
+                    maxLength={1000}
+                    rows={3}
+                    value={form.usage}
+                    onChange={(event) => setForm({ ...form, usage: event.target.value })}
+                    className="avs-input mt-2 resize-y text-sm"
+                    placeholder="Précisez les usages, les personnes concernées et les éventuelles restrictions…"
+                  />
+                </label>
+                <SymbolImageUpload
+                  currentImageUrl={form.imageUrl}
+                  file={imageFile}
+                  onFileChange={setImageFile}
+                  disabled={createMutation.isPending || updateMutation.isPending}
+                />
+                <label className="border-avs-accent/10 bg-avs-accent/[0.02] flex items-start gap-3 rounded-xl border p-4 text-sm md:col-span-2">
+                  <input
+                    type="checkbox"
+                    checked={form.sacred}
+                    onChange={(event) => setForm({ ...form, sacred: event.target.checked })}
+                    className="accent-avs-primary mt-0.5"
+                  />
+                  <span>
+                    <span className="block font-bold">Contexte rituel ou réservé</span>
+                    <span className="text-avs-accent/55 mt-1 block text-xs leading-5 font-normal">
+                      Signalez les symboles dont l’usage doit être abordé avec précaution ou selon
+                      des règles culturelles spécifiques.
+                    </span>
+                  </span>
+                </label>
+                <div className="flex flex-col-reverse gap-3 pt-1 sm:flex-row sm:justify-end md:col-span-2">
+                  <button
+                    type="button"
+                    onClick={() => setEditorOpen(false)}
+                    className="border-avs-accent/15 text-avs-accent/65 hover:bg-avs-accent/[0.03] rounded-xl border px-5 py-2.5 text-sm font-semibold"
+                  >
+                    Annuler
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={createMutation.isPending || updateMutation.isPending}
+                    className="bg-avs-primary text-avs-secondary inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-bold disabled:opacity-60"
+                  >
+                    {createMutation.isPending || updateMutation.isPending ? (
+                      <LoaderCircle size={15} className="animate-spin" />
+                    ) : (
+                      <Check size={15} />
+                    )}
+                    {createMutation.isPending || updateMutation.isPending
+                      ? 'Enregistrement…'
+                      : editing
+                        ? 'Enregistrer les modifications'
+                        : 'Créer le symbole'}
+                  </button>
+                </div>
+              </form>
+            </section>
+          </div>
+        )}
+
+        {deleteTarget && (
+          <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/50 p-4">
+            <button
+              type="button"
+              aria-label="Annuler la suppression"
+              onClick={() => setDeleteTarget(null)}
+              disabled={deletingId !== null}
+              className="absolute inset-0 cursor-default"
+            />
+            <section
+              role="alertdialog"
+              aria-modal="true"
+              aria-labelledby="symbol-delete-title"
+              aria-describedby="symbol-delete-description"
+              className="border-avs-accent/10 bg-avs-secondary shadow-avs relative z-10 w-full max-w-md rounded-2xl border p-6"
+            >
+              <h2 id="symbol-delete-title" className="font-display text-lg font-bold">
+                Supprimer ce symbole ?
+              </h2>
+              <p
+                id="symbol-delete-description"
+                className="text-avs-accent/60 mt-2 text-sm leading-6"
+              >
+                La fiche « {deleteTarget.name} » sera supprimée définitivement.
+              </p>
+              {actionError && (
+                <p
+                  role="alert"
+                  className="mt-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800"
+                >
+                  {actionError}
+                </p>
+              )}
+              <div className="mt-6 flex justify-end gap-3">
+                <button
+                  type="button"
+                  onClick={() => setDeleteTarget(null)}
+                  disabled={deletingId !== null}
+                  className="border-avs-accent/15 text-avs-accent/65 rounded-xl border px-4 py-2.5 text-sm font-semibold disabled:opacity-50"
                 >
                   Annuler
                 </button>
                 <button
-                  type="submit"
-                  disabled={createMutation.isPending || updateMutation.isPending}
-                  className="bg-avs-primary text-avs-secondary inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-bold disabled:opacity-60"
+                  type="button"
+                  onClick={() => void deleteSymbol(deleteTarget)}
+                  disabled={deletingId !== null}
+                  className="inline-flex items-center gap-2 rounded-xl bg-red-600 px-4 py-2.5 text-sm font-bold text-white disabled:opacity-60"
                 >
-                  {createMutation.isPending || updateMutation.isPending ? (
+                  {deletingId === deleteTarget.id && (
                     <LoaderCircle size={15} className="animate-spin" />
-                  ) : (
-                    <Check size={15} />
                   )}
-                  {createMutation.isPending || updateMutation.isPending
-                    ? 'Enregistrement…'
-                    : editing
-                      ? 'Enregistrer les modifications'
-                      : 'Créer le symbole'}
+                  Supprimer
                 </button>
               </div>
-            </form>
-          </section>
+            </section>
+          </div>
         )}
 
         <section className="mt-9">
@@ -462,56 +584,62 @@ export function SymbolsDashboard() {
               {filteredSymbols.map((symbol) => (
                 <article
                   key={symbol.id}
-                  className="group border-avs-accent/8 bg-avs-secondary shadow-avs hover:border-avs-primary/25 hover:shadow-avs-md rounded-2xl border p-5 transition hover:-translate-y-0.5"
+                  className="group border-avs-accent/8 bg-avs-secondary shadow-avs hover:border-avs-primary/25 hover:shadow-avs-md relative isolate overflow-hidden rounded-3xl border p-3 transition duration-300 hover:-translate-y-1"
                 >
-                  <div className="flex items-start gap-3">
-                    <span
-                      className="border-avs-accent/5 text-avs-secondary flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border text-lg font-black"
-                      style={{ backgroundColor: symbol.cssPreview || AVS_COLORS.primary }}
-                    >
-                      {symbol.name.slice(0, 1)}
-                    </span>
-                    <div className="min-w-0 flex-1">
-                      <h3 className="font-display truncate font-bold">{symbol.name}</h3>
-                      <p className="text-avs-accent/45 mt-0.5 truncate text-xs italic">
-                        {symbol.nameFr}
-                      </p>
+                  <div
+                    className={`${PATTERN_TEXTURES[symbol.pattern?.type ?? ''] ?? 'avs-pattern-adinkra-sankofa'} pointer-events-none absolute inset-0 z-0 opacity-[0.13]`}
+                    aria-hidden
+                  />
+                  <div className="relative z-10">
+                    <SymbolCardArtwork symbol={symbol} />
+                    <div className="px-2 pt-4">
+                      <div className="flex items-start gap-3">
+                        <div className="min-w-0 flex-1">
+                          <h3 className="font-display truncate font-bold">{symbol.name}</h3>
+                          <p className="text-avs-accent/45 mt-0.5 truncate text-xs italic">
+                            {symbol.nameFr}
+                          </p>
+                        </div>
+                        {symbol.sacred && (
+                          <span className="bg-avs-primary/8 text-avs-primary rounded-full px-2 py-1 text-[9px] font-bold">
+                            Rituel
+                          </span>
+                        )}
+                      </div>
                     </div>
-                    {symbol.sacred && (
-                      <span className="bg-avs-primary/8 text-avs-primary rounded-full px-2 py-1 text-[9px] font-bold">
-                        Rituel
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-avs-accent/60 mt-4 line-clamp-2 text-xs leading-5">
-                    {symbol.meaning}
-                  </p>
-                  <p className="border-avs-accent/6 text-avs-accent/45 mt-3 truncate border-t pt-3 text-[10px] font-semibold">
-                    {symbol.pattern
-                      ? `${symbol.pattern.name} · ${symbol.pattern.origin?.country ?? 'Origine à documenter'}`
-                      : 'Symbole libre · aucun motif associé'}
-                  </p>
-                  <div className="mt-4 flex justify-end gap-2">
-                    <button
-                      type="button"
-                      onClick={() => openEditForm(symbol)}
-                      className="border-avs-accent/10 text-avs-accent/60 hover:border-avs-primary/25 hover:text-avs-primary inline-flex items-center gap-1.5 rounded-lg border px-3 py-2 text-xs font-semibold transition"
-                    >
-                      <Pencil size={12} /> Modifier
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => void deleteSymbol(symbol)}
-                      disabled={deletingId === symbol.id}
-                      aria-label={`Supprimer ${symbol.name}`}
-                      className="inline-flex items-center justify-center rounded-lg border border-red-100 px-3 py-2 text-red-500 transition hover:bg-red-50 disabled:opacity-50"
-                    >
-                      {deletingId === symbol.id ? (
-                        <LoaderCircle size={13} className="animate-spin" />
-                      ) : (
-                        <Trash2 size={13} />
-                      )}
-                    </button>
+                    <p className="text-avs-accent/60 mt-3 line-clamp-2 min-h-10 px-2 text-xs leading-5">
+                      {symbol.meaning}
+                    </p>
+                    <p className="border-avs-accent/6 text-avs-accent/45 mt-3 truncate border-t px-2 pt-3 text-[10px] font-semibold">
+                      {symbol.pattern
+                        ? `${symbol.pattern.name} · ${symbol.pattern.origin?.country ?? 'Origine à documenter'}`
+                        : 'Symbole libre · aucun motif associé'}
+                    </p>
+                    <div className="mt-3 flex justify-end gap-2 px-2 pb-2">
+                      <button
+                        type="button"
+                        onClick={() => openEditForm(symbol)}
+                        className="border-avs-accent/10 text-avs-accent/60 hover:border-avs-primary/25 hover:text-avs-primary inline-flex items-center gap-1.5 rounded-lg border px-3 py-2 text-xs font-semibold transition"
+                      >
+                        <Pencil size={12} /> Modifier
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setActionError('');
+                          setDeleteTarget(symbol);
+                        }}
+                        disabled={deletingId === symbol.id}
+                        aria-label={`Supprimer ${symbol.name}`}
+                        className="inline-flex items-center justify-center rounded-lg border border-red-100 px-3 py-2 text-red-500 transition hover:bg-red-50 disabled:opacity-50"
+                      >
+                        {deletingId === symbol.id ? (
+                          <LoaderCircle size={13} className="animate-spin" />
+                        ) : (
+                          <Trash2 size={13} />
+                        )}
+                      </button>
+                    </div>
                   </div>
                 </article>
               ))}

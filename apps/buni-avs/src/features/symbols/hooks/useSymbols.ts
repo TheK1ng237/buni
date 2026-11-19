@@ -19,7 +19,7 @@ export function useSymbols(fallback: SymbolEntry[]) {
   return useQuery({
     queryKey: symbolKeys.all,
     queryFn: () => listSymbols(fallback),
-    initialData: fallback,
+    placeholderData: fallback,
     staleTime: 60_000,
   });
 }
