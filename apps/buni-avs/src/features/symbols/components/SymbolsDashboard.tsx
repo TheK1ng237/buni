@@ -62,8 +62,8 @@ export function SymbolsDashboard() {
         symbol.nameFr,
         symbol.meaning,
         symbol.usage,
-        symbol.pattern.name,
-        symbol.pattern.origin?.country ?? '',
+        symbol.pattern?.name ?? 'symbole libre',
+        symbol.pattern?.origin?.country ?? '',
       ]
         .join(' ')
         .toLocaleLowerCase()
@@ -87,7 +87,7 @@ export function SymbolsDashboard() {
 
   function openEditForm(symbol: SymbolRecord) {
     setEditing(symbol);
-    setPatternId(symbol.patternId);
+    setPatternId(symbol.patternId ?? '');
     setForm({
       name: symbol.name,
       nameFr: symbol.nameFr,
@@ -275,14 +275,13 @@ export function SymbolsDashboard() {
               <label className="text-xs font-bold">
                 Motif associé
                 <select
-                  required
                   value={patternId}
                   disabled={Boolean(editing) || patternsLoading}
                   onChange={(event) => setPatternId(event.target.value)}
                   className="avs-input mt-2 text-sm"
                 >
-                  <option value="" disabled>
-                    Choisir un motif
+                  <option value="">
+                    Symbole libre — aucun motif associé
                   </option>
                   {patterns.map((pattern) => (
                     <option key={pattern.id} value={pattern.id}>
@@ -391,7 +390,7 @@ export function SymbolsDashboard() {
                 </button>
                 <button
                   type="submit"
-                  disabled={createMutation.isPending || updateMutation.isPending || !patternId}
+                  disabled={createMutation.isPending || updateMutation.isPending}
                   className="bg-avs-primary text-avs-secondary inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-bold disabled:opacity-60"
                 >
                   {createMutation.isPending || updateMutation.isPending ? (
@@ -488,8 +487,9 @@ export function SymbolsDashboard() {
                     {symbol.meaning}
                   </p>
                   <p className="border-avs-accent/6 text-avs-accent/45 mt-3 truncate border-t pt-3 text-[10px] font-semibold">
-                    {symbol.pattern.name} ·{' '}
-                    {symbol.pattern.origin?.country ?? 'Origine à documenter'}
+                    {symbol.pattern
+                      ? `${symbol.pattern.name} · ${symbol.pattern.origin?.country ?? 'Origine à documenter'}`
+                      : 'Symbole libre · aucun motif associé'}
                   </p>
                   <div className="mt-4 flex justify-end gap-2">
                     <button

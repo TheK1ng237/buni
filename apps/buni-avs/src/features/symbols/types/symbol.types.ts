@@ -2,7 +2,7 @@ import type { PatternSymbol, PatternType } from '@buni/patterns';
 
 export interface SymbolRecord extends PatternSymbol {
   id: string;
-  patternId: string;
+  patternId: string | null;
   pattern: {
     id: string;
     slug: string;
@@ -17,7 +17,7 @@ export interface SymbolRecord extends PatternSymbol {
       country: string;
       flag: string;
     } | null;
-  };
+  } | null;
 }
 
 export interface SymbolInput {

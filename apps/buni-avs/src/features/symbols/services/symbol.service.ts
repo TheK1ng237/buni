@@ -65,7 +65,8 @@ async function listFromPatterns(): Promise<SymbolRecord[]> {
     page += 1;
   } while (page <= totalPages);
 
-  return symbols;
+  const standaloneResponse = await get<SymbolApiResponse<SymbolRecord[]>>('/api/v1/patterns/symbols');
+  return [...symbols, ...(standaloneResponse.data ?? [])];
 }
 
 function toSymbolFormData(data: SymbolInput, image?: File): FormData {
@@ -82,9 +83,12 @@ export const symbolService = {
     return listFromPatterns();
   },
 
-  async create(patternId: string, data: SymbolInput, image?: File): Promise<SymbolRecord> {
+  async create(patternId: string | null, data: SymbolInput, image?: File): Promise<SymbolRecord> {
+    const endpoint = patternId
+      ? `/api/v1/patterns/${encodeURIComponent(patternId)}/symbols`
+      : '/api/v1/patterns/symbols';
     const response = await post<SymbolApiResponse<SymbolRecord>>(
-      `/api/v1/patterns/${encodeURIComponent(patternId)}/symbols`,
+      endpoint,
       toSymbolFormData(data, image)
     );
     if (!response.data) throw new Error('Le backend n’a pas retourné le symbole créé.');

@@ -11,7 +11,7 @@ export function listManagedSymbols(): Promise<SymbolRecord[]> {
 }
 
 export function createSymbol(
-  patternId: string,
+  patternId: string | null,
   data: SymbolInput,
   image?: File
 ): Promise<SymbolRecord> {

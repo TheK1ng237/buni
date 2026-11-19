@@ -39,7 +39,7 @@ export function useCreateSymbol() {
       data,
       image,
     }: {
-      patternId: string;
+      patternId: string | null;
       data: SymbolInput;
       image?: File;
     }) => createSymbol(patternId, data, image),

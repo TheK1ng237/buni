@@ -20,6 +20,7 @@ function normalize(value: string) {
 }
 
 export function mapSymbolRecord(symbol: SymbolRecord): SymbolEntry {
+  const pattern = symbol.pattern;
   return {
     id: symbol.id,
     name: symbol.name,
@@ -29,17 +30,29 @@ export function mapSymbolRecord(symbol: SymbolRecord): SymbolEntry {
     sacred: symbol.sacred,
     cssPreview: symbol.cssPreview,
     imageUrl: symbol.imageUrl,
-    pattern: {
-      id: symbol.pattern.id,
-      slug: symbol.pattern.slug,
-      name: symbol.pattern.name || symbol.pattern.nameLocal,
-      type: symbol.pattern.type,
-      country: symbol.pattern.origin?.country ?? '',
-      people: symbol.pattern.origin?.people ?? '',
-      flag: symbol.pattern.origin?.flag ?? '',
-      sources: symbol.pattern.sources ?? [],
-      previewClass: PREVIEW_CLASSES[symbol.pattern.type] ?? 'avs-pattern-wax-dakar',
-    },
+    pattern: pattern
+      ? {
+          id: pattern.id,
+          slug: pattern.slug,
+          name: pattern.name || pattern.nameLocal,
+          type: pattern.type,
+          country: pattern.origin?.country ?? '',
+          people: pattern.origin?.people ?? '',
+          flag: pattern.origin?.flag ?? '',
+          sources: pattern.sources ?? [],
+          previewClass: PREVIEW_CLASSES[pattern.type] ?? 'avs-pattern-wax-dakar',
+        }
+      : {
+          id: '',
+          slug: `standalone-${symbol.id}`,
+          name: 'Symbole libre',
+          type: 'UNIVERSAL',
+          country: '',
+          people: '',
+          flag: '',
+          sources: [],
+          previewClass: 'bg-avs-secondary',
+        },
   };
 }
 

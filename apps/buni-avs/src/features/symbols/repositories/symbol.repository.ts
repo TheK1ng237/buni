@@ -6,7 +6,7 @@ export const symbolRepository = {
     return symbolService.list();
   },
 
-  create(patternId: string, data: SymbolInput, image?: File): Promise<SymbolRecord> {
+  create(patternId: string | null, data: SymbolInput, image?: File): Promise<SymbolRecord> {
     return symbolService.create(patternId, data, image);
   },
 
