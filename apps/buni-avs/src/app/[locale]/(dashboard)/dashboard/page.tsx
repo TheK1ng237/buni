@@ -199,6 +199,7 @@ function ActivityItem({ item, index }: { item: DashboardActivity; index: number 
       </div>
       <div className="min-w-0 flex-1">
         <p className="text-[12px] leading-snug text-avs-accent/55">
+          {item.actor && <span className="font-semibold text-avs-primary">{item.actor} </span>}
           {item.action}{' '}
           <span className="font-semibold text-avs-accent">{item.target}</span>
         </p>
@@ -389,7 +390,9 @@ export default function DashboardPage() {
           try {
             const [p, a] = await Promise.all([
               dashboardService.getGlobalRecentPatterns(5),
-              dashboardService.getGlobalActivity(6),
+              isSuperAdminUser
+                ? dashboardService.getGlobalActivity(6)
+                : dashboardService.getActivity(6),
             ]);
             setPatterns(p);
             setActivity(a);
@@ -540,7 +543,7 @@ export default function DashboardPage() {
         </section>
 
         {/* ══ ADMIN STATS PANEL ═════════════════════════════════════════ */}
-        {isAdminUser && (
+        {isSuperAdminUser && (
           <motion.section
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}

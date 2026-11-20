@@ -1736,6 +1736,7 @@
     "activity": {
       "title": "Mon activité",
       "subtitle": "Consultez toutes vos interactions avec la plateforme",
+      "loadError": "Impossible de charger le journal d’activité. Veuillez réessayer.",
       "types": {
         "download": "Téléchargement",
         "favorite": "Favori",

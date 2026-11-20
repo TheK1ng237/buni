@@ -72,7 +72,7 @@ function ActivityItem({ item, index, t }: { item: DashboardActivity; index: numb
       </div>
 
       <div className="min-w-0 flex-1">
-        <p className="truncate font-semibold text-avs-accent">{item.action}</p>
+        <p className="truncate font-semibold text-avs-accent">        {item.actor ? `${item.actor} ${item.action}` : item.action}</p>
         <p className="truncate text-xs text-avs-accent/45">{item.target}</p>
       </div>
 
@@ -93,28 +93,38 @@ function ActivityItem({ item, index, t }: { item: DashboardActivity; index: numb
 export default function ActivityPage() {
   const t = useTranslations('dashboard.activity');
   const { user, isAuthenticated } = useAuth();
+  const isSuperAdmin = user?.role.toLowerCase() === 'super_admin';
   const [filter, setFilter] = useState<string>('all');
 
-  const { data: activities = [], isLoading } = useQuery({
-    queryKey: ['user-activity', filter],
-    queryFn: () => dashboardService.getActivity(50),
+  const { data: activities = [], isLoading, isError } = useQuery({
+    queryKey: ['user-activity', filter, user?.id, isSuperAdmin],
+    queryFn: () =>
+      isSuperAdmin ? dashboardService.getGlobalActivity(100) : dashboardService.getActivity(50),
     enabled: !!user,
   });
   const { data: activityStats, isError: activityStatsError } = useQuery({
     queryKey: ['user-activity-stats', user?.id],
     queryFn: () => dashboardService.getActivityStats(),
-    enabled: !!user,
+    enabled: !!user && !isSuperAdmin,
   });
 
   const filteredActivities = filter === 'all'
     ? activities
     : activities.filter((a) => a.type === filter);
   const activityCountByFilter: Record<string, number | undefined> = {
-    all: activityStats?.total,
-    download: activityStats?.downloads,
-    favorite: activityStats?.favorites,
-    comment: activityStats?.comments,
-    review: activityStats?.reviews,
+    all: isSuperAdmin ? activities.length : activityStats?.total,
+    download: isSuperAdmin
+      ? activities.filter((activity) => activity.type === 'download').length
+      : activityStats?.downloads,
+    favorite: isSuperAdmin
+      ? activities.filter((activity) => activity.type === 'favorite').length
+      : activityStats?.favorites,
+    comment: isSuperAdmin
+      ? activities.filter((activity) => activity.type === 'comment').length
+      : activityStats?.comments,
+    review: isSuperAdmin
+      ? activities.filter((activity) => activity.type === 'review').length
+      : activityStats?.reviews,
   };
   const filteredActivityCount = activityCountByFilter[filter];
 
@@ -150,22 +160,24 @@ export default function ActivityPage() {
         </motion.div>
 
         {/* ══ STATS ═══════════════════════════════════════════════════════ */}
-        <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
-        >
-          {[
-            { label: t('stats.total'), value: activityStats?.total ?? '—', icon: Activity, color: '#C0573E', patternCss: 'avs-pattern-kente-royale', delay: 0.2 },
-            { label: t('stats.downloads'), value: activityStats?.downloads ?? '—', icon: Download, color: '#4F7CFF', patternCss: 'avs-pattern-ndop-sultan', delay: 0.28 },
-            { label: t('stats.favorites'), value: activityStats?.favorites ?? '—', icon: Heart, color: '#EC4899', patternCss: 'avs-pattern-adinkra-sankofa', delay: 0.36 },
-            { label: t('stats.reviews'), value: activityStats?.reviews ?? '—', icon: Star, color: '#F59E0B', patternCss: 'avs-pattern-wax-dakar', delay: 0.44 },
-          ].map((stat) => (
-            <KpiCard key={String(stat.label)} {...stat} format={formatNumber} />
-          ))}
-        </motion.div>
-        {activityStatsError && (
+        {!isSuperAdmin && (
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
+          >
+            {[
+              { label: t('stats.total'), value: activityStats?.total ?? '—', icon: Activity, color: '#C0573E', patternCss: 'avs-pattern-kente-royale', delay: 0.2 },
+              { label: t('stats.downloads'), value: activityStats?.downloads ?? '—', icon: Download, color: '#4F7CFF', patternCss: 'avs-pattern-ndop-sultan', delay: 0.28 },
+              { label: t('stats.favorites'), value: activityStats?.favorites ?? '—', icon: Heart, color: '#EC4899', patternCss: 'avs-pattern-adinkra-sankofa', delay: 0.36 },
+              { label: t('stats.reviews'), value: activityStats?.reviews ?? '—', icon: Star, color: '#F59E0B', patternCss: 'avs-pattern-wax-dakar', delay: 0.44 },
+            ].map((stat) => (
+              <KpiCard key={String(stat.label)} {...stat} format={formatNumber} />
+            ))}
+          </motion.div>
+        )}
+        {!isSuperAdmin && activityStatsError && (
           <p role="status" className="text-sm text-red-600">
             {t('stats.unavailable')}
           </p>
@@ -212,6 +224,12 @@ export default function ActivityPage() {
                 </div>
               ))}
             </div>
+          </Panel>
+        ) : isError ? (
+          <Panel>
+            <p role="alert" className="px-5 py-8 text-center text-sm text-red-600">
+              {t('loadError')}
+            </p>
           </Panel>
         ) : filteredActivities.length === 0 ? (
           <Panel>

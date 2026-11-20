@@ -1776,6 +1776,7 @@
     "activity": {
       "title": "My Activity",
       "subtitle": "View all your interactions with the platform",
+      "loadError": "Could not load the activity log. Please try again.",
       "types": {
         "download": "Download",
         "favorite": "Favorite",

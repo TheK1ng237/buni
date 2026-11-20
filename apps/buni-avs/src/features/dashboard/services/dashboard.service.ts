@@ -26,10 +26,16 @@ export interface DashboardActivity {
   action: string;
   target: string;
   timestamp: string;
+  actor?: string;
   type: 'comment' | 'download' | 'review' | 'favorite';
 }
 
 const GLOBAL_ACTIVITY_LABELS: Record<string, Pick<DashboardActivity, 'action' | 'type'>> = {
+  CREATED: { action: 'a créé', type: 'review' },
+  UPDATED: { action: 'a modifié', type: 'review' },
+  PUBLISHED: { action: 'a publié', type: 'review' },
+  DELETED: { action: 'a supprimé', type: 'review' },
+  AUTHENTICATED: { action: 's’est connecté', type: 'review' },
   COMMENTED: { action: 'Commentaire sur', type: 'comment' },
   DOWNLOADED: { action: 'Téléchargement de', type: 'download' },
   REVIEWED: { action: 'Validation approuvée —', type: 'review' },
@@ -114,35 +120,33 @@ class DashboardService {
   }
 
   async getGlobalActivity(limit: number = 6): Promise<DashboardActivity[]> {
-    try {
-      const response = await get<{
-        success: boolean;
-        data: Array<{
-          id: string;
-          action: string;
-          target: string;
-          targetId: string;
-          createdAt: string;
-        }>;
-      }>(`/api/v1/activities/global?perPage=${limit}`);
-      return (response.data ?? []).map((activity) => {
-        const action =
-          GLOBAL_ACTIVITY_LABELS[activity.action] ??
-          ({
-            action: `${activity.action.toLocaleLowerCase().replaceAll('_', ' ')} —`,
-            type: 'review',
-          } satisfies Pick<DashboardActivity, 'action' | 'type'>);
-        return {
-          id: activity.id,
-          ...action,
-          target: activity.target || activity.targetId,
-          timestamp: activity.createdAt,
-        };
-      });
-    } catch (error) {
-      console.error('Failed to fetch global activity:', error);
-      return [];
-    }
+    const response = await get<{
+      success: boolean;
+      data: Array<{
+        id: string;
+        action: string;
+        target: string;
+        targetId: string;
+        createdAt: string;
+        actorName: string | null;
+        actorEmail: string;
+      }>;
+    }>(`/api/v1/activities/global?perPage=${limit}`);
+    return (response.data ?? []).map((activity) => {
+      const action =
+        GLOBAL_ACTIVITY_LABELS[activity.action] ??
+        ({
+          action: `${activity.action.toLocaleLowerCase().replaceAll('_', ' ')} —`,
+          type: 'review',
+        } satisfies Pick<DashboardActivity, 'action' | 'type'>);
+      return {
+        id: activity.id,
+        ...action,
+        target: activity.target || activity.targetId,
+        timestamp: activity.createdAt,
+        actor: activity.actorName || activity.actorEmail,
+      };
+    });
   }
 }
 
