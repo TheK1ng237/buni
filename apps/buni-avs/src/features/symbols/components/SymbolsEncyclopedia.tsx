@@ -10,7 +10,18 @@ import { LOCAL_SYMBOLS } from '../data/symbol.mapper';
 import type { SymbolEntry } from '../types/symbol.types';
 import { AVS_COLORS } from '@/core/constants/avs';
 
-const TYPES = ['ALL', 'ADINKRA', 'BOGOLAN', 'KENTE', 'KUBA', 'NDEBELE', 'NDOP', 'WAX', 'BERBER'];
+const TYPES = [
+  'ALL',
+  'ADINKRA',
+  'BOGOLAN',
+  'KENTE',
+  'KUBA',
+  'NDEBELE',
+  'NDOP',
+  'WAX',
+  'BERBER',
+  'UNIVERSAL',
+];
 
 function SymbolArtwork({
   name,
@@ -288,9 +299,7 @@ export function SymbolsEncyclopedia() {
                   />
                   <div className="absolute bottom-3 left-3 flex items-center gap-2">
                     <span className="bg-avs-accent/50 text-avs-secondary rounded-full px-2.5 py-1 font-mono text-[8px] font-bold tracking-[0.13em] uppercase backdrop-blur">
-                      {symbol.pattern.type === 'UNIVERSAL'
-                        ? t('types.ALL')
-                        : t(`types.${symbol.pattern.type.toUpperCase()}` as 'types.ALL')}
+                      {t(`types.${symbol.pattern.type.toUpperCase()}` as 'types.ALL')}
                     </span>
                   </div>
                   {symbol.sacred && (

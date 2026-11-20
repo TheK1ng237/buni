@@ -815,7 +815,8 @@
       "WAX": "Wax",
       "NDOP": "Ndop",
       "BOGOLAN": "Bogolan",
-      "ADINKRA": "Adinkra"
+      "ADINKRA": "Adinkra",
+      "UNIVERSAL": "Universal"
     },
     "stats": {
       "symbols": "documented symbols",
