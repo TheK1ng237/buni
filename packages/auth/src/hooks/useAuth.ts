@@ -32,6 +32,6 @@ export function useLogout() {
 
   return useCallback(async () => {
     logout();
-    router.push('/' as any);
+    router.replace('/auth/login' as any);
   }, [logout, router]);
 }
