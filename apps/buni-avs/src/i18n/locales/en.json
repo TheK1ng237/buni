@@ -1777,6 +1777,12 @@
       "title": "My Activity",
       "subtitle": "View all your interactions with the platform",
       "loadError": "Could not load the activity log. Please try again.",
+      "details": {
+        "action": "Action",
+        "target": "Target",
+        "actor": "Actor",
+        "date": "Date"
+      },
       "types": {
         "download": "Download",
         "favorite": "Favorite",
@@ -1882,6 +1888,12 @@
         "title": "Recent patterns",
         "viewAll": "View all patterns"
       },
+      "activityDetails": {
+        "action": "Action",
+        "target": "Target",
+        "actor": "Actor",
+        "date": "Date"
+      },
       "quickActionsLabel": "Quick actions",
       "quickActions": {
         "title": "Quick actions",
@@ -1983,7 +1995,9 @@
         "viewDetails": "View details",
         "removeFeatured": "Remove featured",
         "makeFeatured": "Make featured",
-        "delete": "Delete"
+        "delete": "Delete",
+        "featureErrorTitle": "Update failed",
+        "featureError": "Could not update this pattern's featured status. Please try again."
       },
       "empty": {
         "noResults": "No results",

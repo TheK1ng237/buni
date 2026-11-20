@@ -46,6 +46,7 @@ export interface UserPattern {
   id: string;
   name: string;
   type: string;
+  imgUrl?: string;
   status: 'published' | 'draft' | 'review';
   viewCount: number;
   downloadCount: number;
@@ -76,6 +77,7 @@ class DashboardService {
         id: p.id,
         name: p.name,
         type: p.type,
+        imgUrl: p.imgUrl,
         status: p.status,
         viewCount: p.views || 0,
         downloadCount: p.downloads || 0,
@@ -108,6 +110,7 @@ class DashboardService {
         id: p.id,
         name: p.name,
         type: p.type,
+        imgUrl: p.imgUrl,
         status: p.status?.toLowerCase() as 'published' | 'draft' | 'review',
         viewCount: p.views || 0,
         downloadCount: p.downloads || 0,

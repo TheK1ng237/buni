@@ -26,7 +26,7 @@ import {
   Loader2,
 } from 'lucide-react';
 import { formatDate, formatNumber } from '@buni/utils';
-import { KpiCard } from '@buni/ui';
+import { KpiCard, useToast } from '@buni/ui';
 import { useAuth } from '@buni/auth';
 import { useTranslations } from '@/i18n';
 
@@ -34,12 +34,12 @@ import { Route } from 'next';
 import type { Pattern, PatternStatus, PatternSymbol } from '@buni/patterns';
 import {
   useFeaturePattern,
-  useToggleFeature,
   useUnfeaturePattern,
   useDeletePattern,
 } from '@/features/patterns/hooks/usePatternActions';
 import { usePatterns } from '@/features/patterns/hooks/usePatterns';
 import { userService } from '@/features/user/services/user.service';
+import { PatternThumbnail } from '@/features/patterns/components/PatternThumbnail';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // TYPES
@@ -137,18 +137,19 @@ function ActionMenu({
   pattern,
   onDelete,
   onToggleFeatured,
+  isFeatureUpdating,
   isAdmin,
   isCurator,
 }: {
   pattern: Pattern;
   onDelete: (id: string) => void;
   onToggleFeatured: (id: string, shouldFeature: boolean) => void;
+  isFeatureUpdating: boolean;
   isAdmin: boolean;
   isCurator: boolean;
 }) {
   const t = useTranslations('dashboard.patterns');
   const [open, setOpen] = useState(false);
-  const featureToggle = useToggleFeature();
 
   const canManageStatus = isAdmin;
 
@@ -174,14 +175,14 @@ function ActionMenu({
               className="border-avs-accent/9 bg-avs-secondary shadow-avs-lg absolute right-0 z-20 mt-1.5 w-48 overflow-hidden rounded-xl border"
             >
               <Link
-                href={`/patternsDashboard/${pattern.slug}?edit=true` as Route}
+                href={`/patternsDashboard/${pattern.slug || pattern.id}?edit=true` as Route}
                 onClick={() => setOpen(false)}
                 className="text-avs-accent/70 hover:bg-avs-primary/5 hover:text-avs-primary flex items-center gap-2.5 px-4 py-2.5 text-sm"
               >
                 <Edit2 size={13} /> {t('actions.edit')}
               </Link>
               <Link
-                href={`/patternsDashboard/${pattern.slug}` as Route}
+                href={`/patternsDashboard/${pattern.slug || pattern.id}` as Route}
                 onClick={() => setOpen(false)}
                 className="text-avs-accent/70 hover:bg-avs-primary/5 hover:text-avs-primary flex items-center gap-2.5 px-4 py-2.5 text-sm"
               >
@@ -190,10 +191,10 @@ function ActionMenu({
               {canManageStatus && (
                 <button
                   onClick={() => {
-                    featureToggle.mutate(pattern.id, !pattern.featured);
+                    onToggleFeatured(pattern.id, !pattern.featured);
                     setOpen(false);
                   }}
-                  disabled={featureToggle.isLoading}
+                  disabled={isFeatureUpdating}
                   className="text-avs-accent/70 hover:bg-avs-primary/5 hover:text-avs-primary flex w-full items-center gap-2.5 px-4 py-2.5 text-sm transition-opacity disabled:opacity-50"
                 >
                   {pattern.featured ? (
@@ -255,6 +256,7 @@ function EmptyState({ search, t }: { search: string; t: any }) {
 export default function MyPatternsPage() {
   const t = useTranslations('dashboard.patterns');
   const { user, isAdmin, isCurator } = useAuth();
+  const { add } = useToast();
   const {
     data: rawPatterns = [],
     isLoading,
@@ -395,11 +397,16 @@ export default function MyPatternsPage() {
   };
 
   const handleToggleFeatured = (id: string, shouldFeature: boolean) => {
-    if (shouldFeature) {
-      featureMutation.mutate(id);
-    } else {
-      unfeatureMutation.mutate(id);
-    }
+    const options = {
+      onError: () =>
+        add({
+          variant: 'error' as const,
+          title: t('actions.featureErrorTitle'),
+          message: t('actions.featureError'),
+        }),
+    };
+    if (shouldFeature) featureMutation.mutate(id, options);
+    else unfeatureMutation.mutate(id, options);
   };
 
   const toggleSelect = (id: string) =>
@@ -523,7 +530,7 @@ export default function MyPatternsPage() {
               delay={0.1}
             />
             <KpiCard
-              label={t('stats.draft')}
+              label={t('stats.drafts')}
               value={statsLoading ? '…' : statsError ? '—' : stats.drafts}
               icon={FileText}
               color="#8B5CF6"
@@ -732,9 +739,11 @@ export default function MyPatternsPage() {
                     aria-label={t('table.select', { name: p.name })}
                   />
 
-                  <div
-                    className={`${p.cssClass} border-avs-accent/10 h-10 w-10 overflow-hidden rounded-xl border transition-transform duration-300 group-hover:scale-105`}
-                    aria-hidden
+                  <PatternThumbnail
+                    src={p.svgUrl || p.imgUrl}
+                    patternClass={p.cssClass}
+                    alt={p.name}
+                    className="h-10 w-10 rounded-xl border border-avs-accent/10 transition-transform duration-300 group-hover:scale-105"
                   />
 
                   <div className="min-w-0">
@@ -769,6 +778,7 @@ export default function MyPatternsPage() {
                     pattern={p}
                     onDelete={handleDelete}
                     onToggleFeatured={handleToggleFeatured}
+                    isFeatureUpdating={featureMutation.isPending || unfeatureMutation.isPending}
                     isAdmin={isAdmin}
                     isCurator={isCurator}
                   />

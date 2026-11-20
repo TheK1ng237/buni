@@ -1737,6 +1737,12 @@
       "title": "Mon activité",
       "subtitle": "Consultez toutes vos interactions avec la plateforme",
       "loadError": "Impossible de charger le journal d’activité. Veuillez réessayer.",
+      "details": {
+        "action": "Action",
+        "target": "Élément concerné",
+        "actor": "Auteur",
+        "date": "Date"
+      },
       "types": {
         "download": "Téléchargement",
         "favorite": "Favori",
@@ -1842,6 +1848,12 @@
         "title": "Motifs récents",
         "viewAll": "Voir tous les motifs"
       },
+      "activityDetails": {
+        "action": "Action",
+        "target": "Élément concerné",
+        "actor": "Auteur",
+        "date": "Date"
+      },
       "quickActionsLabel": "Actions rapides",
       "quickActions": {
         "title": "Actions rapides",
@@ -1943,7 +1955,9 @@
         "viewDetails": "Voir détails",
         "removeFeatured": "Retirer vedette",
         "makeFeatured": "Mettre en vedette",
-        "delete": "Supprimer"
+        "delete": "Supprimer",
+        "featureErrorTitle": "Mise à jour impossible",
+        "featureError": "Impossible de modifier la mise en avant du motif. Veuillez réessayer."
       },
       "empty": {
         "noResults": "Aucun résultat",

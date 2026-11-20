@@ -56,32 +56,53 @@ function ActivityItem({ item, index, t }: { item: DashboardActivity; index: numb
   const config = getActivityConfig(t)[item.type];
   if (!config) return null;
   const Icon = config.icon;
+  const [expanded, setExpanded] = useState(false);
 
   return (
     <motion.div
       initial={{ opacity: 0, x: -8 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.35, delay: index * 0.05, ease: 'easeOut' }}
-      className="group flex items-center gap-4 rounded-xl border border-avs-accent/6 bg-avs-secondary p-4 transition-all hover:border-avs-primary/20 hover:bg-avs-primary/[0.02]"
+      className="overflow-hidden rounded-xl border border-avs-accent/6 bg-avs-secondary transition-all hover:border-avs-primary/20 hover:bg-avs-primary/[0.02]"
     >
-      <div
-        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-transform group-hover:scale-110"
-        style={{ background: `${config.color}14` }}
+      <button
+        type="button"
+        aria-expanded={expanded}
+        onClick={() => setExpanded((value) => !value)}
+        className="group flex w-full items-center gap-4 p-4 text-left"
       >
-        <Icon size={18} style={{ color: config.color }} />
-      </div>
+        <div
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-transform group-hover:scale-110"
+          style={{ background: `${config.color}14` }}
+        >
+          <Icon size={18} style={{ color: config.color }} />
+        </div>
 
-      <div className="min-w-0 flex-1">
-        <p className="truncate font-semibold text-avs-accent">        {item.actor ? `${item.actor} ${item.action}` : item.action}</p>
-        <p className="truncate text-xs text-avs-accent/45">{item.target}</p>
-      </div>
+        <div className="min-w-0 flex-1">
+          <p className="truncate font-semibold text-avs-accent">
+            {item.actor ? `${item.actor} ${item.action}` : item.action}
+          </p>
+          <p className="truncate text-xs text-avs-accent/45">{item.target}</p>
+        </div>
 
-      <div className="flex shrink-0 items-center gap-1.5 whitespace-nowrap text-xs text-avs-accent/40">
-        <Clock size={13} />
-        {timeAgo(item.timestamp)}
-      </div>
+        <div className="flex shrink-0 items-center gap-1.5 whitespace-nowrap text-xs text-avs-accent/40">
+          <Clock size={13} />
+          {timeAgo(item.timestamp)}
+        </div>
 
-      <ChevronRight className="shrink-0 text-avs-accent/20 transition-colors group-hover:text-avs-primary/40" size={16} />
+        <ChevronRight
+          className={`shrink-0 text-avs-accent/20 transition-all group-hover:text-avs-primary/40 ${expanded ? 'rotate-90' : ''}`}
+          size={16}
+        />
+      </button>
+      {expanded && (
+        <div className="space-y-1 border-t border-avs-accent/6 px-4 pb-4 pt-3 pl-[4.5rem] text-xs text-avs-accent/55">
+          <p>{t('details.action')}: {item.action}</p>
+          <p>{t('details.target')}: {item.target}</p>
+          {item.actor && <p>{t('details.actor')}: {item.actor}</p>}
+          <p>{t('details.date')}: {new Date(item.timestamp).toLocaleString()}</p>
+        </div>
+      )}
     </motion.div>
   );
 }

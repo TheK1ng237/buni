@@ -20,6 +20,7 @@ import { userService } from '@/features/user/services/user.service';
 import ViewerDashboard from './viewer-dashboard';
 import CuratorModal from '@/components/curator-modal';
 import { CSS_PATTERN_MAP } from '@buni/patterns';
+import { PatternThumbnail } from '@/features/patterns/components/PatternThumbnail';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // TYPES & CONFIG
@@ -144,9 +145,12 @@ function PatternRow({ pattern, index, t }: { pattern: UserPattern; index: number
         transition={{ duration: 0.35, delay: index * 0.06, ease: 'easeOut' }}
         className="group flex items-center gap-4 px-5 py-3.5 transition-colors duration-150 hover:bg-avs-accent/3 cursor-pointer"
       >
-        <div className={`${patCss} relative h-10 w-10 shrink-0 rounded-lg overflow-hidden ring-1 ring-avs-accent/10`}>
-          <div className="absolute inset-0 bg-avs-accent/10" />
-        </div>
+        <PatternThumbnail
+          src={pattern.imgUrl}
+          patternClass={patCss}
+          alt={pattern.name}
+          className="h-10 w-10 shrink-0 rounded-lg ring-1 ring-avs-accent/10"
+        />
 
         <div className="min-w-0 flex-1">
           <p className="truncate text-[13px] font-semibold text-avs-accent transition-colors duration-150 group-hover:text-avs-primary">
@@ -180,33 +184,64 @@ function PatternRow({ pattern, index, t }: { pattern: UserPattern; index: number
 // ACTIVITY ITEM
 // ─────────────────────────────────────────────────────────────────────────────
 
-function ActivityItem({ item, index }: { item: DashboardActivity; index: number }) {
+function ActivityItem({
+  item,
+  index,
+  t,
+}: {
+  item: DashboardActivity;
+  index: number;
+  t: (key: string) => string;
+}) {
   const conf = ACTIVITY_CONFIG[item.type] ?? ACTIVITY_CONFIG.comment!;
   const Icon = conf.icon;
+  const [expanded, setExpanded] = useState(false);
 
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3, delay: index * 0.05 }}
-      className="flex items-start gap-3.5 px-5 py-3.5 hover:bg-avs-accent/3 transition-colors duration-150"
+      className="transition-colors duration-150 hover:bg-avs-accent/3"
     >
-      <div
-        className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg mt-0.5"
-        style={{ background: `${conf.color}14` }}
+      <button
+        type="button"
+        aria-expanded={expanded}
+        onClick={() => setExpanded((value) => !value)}
+        className="flex w-full items-start gap-3.5 px-5 py-3.5 text-left"
       >
-        <Icon size={12} style={{ color: conf.color }} aria-hidden />
-      </div>
-      <div className="min-w-0 flex-1">
-        <p className="text-[12px] leading-snug text-avs-accent/55">
-          {item.actor && <span className="font-semibold text-avs-primary">{item.actor} </span>}
-          {item.action}{' '}
-          <span className="font-semibold text-avs-accent">{item.target}</span>
-        </p>
-        <p className="mt-1 flex items-center gap-1 text-[10px] font-mono text-avs-accent/30">
-          <Clock size={8} aria-hidden /> {timeAgo(item.timestamp)}
-        </p>
-      </div>
+        <div
+          className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg"
+          style={{ background: `${conf.color}14` }}
+        >
+          <Icon size={12} style={{ color: conf.color }} aria-hidden />
+        </div>
+        <div className="min-w-0 flex-1">
+          <p className="text-[12px] leading-snug text-avs-accent/55">
+            {item.actor && <span className="font-semibold text-avs-primary">{item.actor} </span>}
+            {item.action}{' '}
+            <span className="font-semibold text-avs-accent">{item.target}</span>
+          </p>
+          <p className="mt-1 flex items-center gap-1 text-[10px] font-mono text-avs-accent/30">
+            <Clock size={8} aria-hidden /> {timeAgo(item.timestamp)}
+          </p>
+        </div>
+        <ChevronRight
+          size={14}
+          aria-hidden
+          className={`mt-1 shrink-0 text-avs-accent/30 transition-transform ${expanded ? 'rotate-90' : ''}`}
+        />
+      </button>
+      {expanded && (
+        <div className="ml-12 space-y-1 px-5 pb-3 text-[11px] text-avs-accent/55">
+          <p>{t('activityDetails.action')}: {item.action}</p>
+          <p>{t('activityDetails.target')}: {item.target}</p>
+          {item.actor && <p>{t('activityDetails.actor')}: {item.actor}</p>}
+          <p>
+            {t('activityDetails.date')}: {new Date(item.timestamp).toLocaleString()}
+          </p>
+        </div>
+      )}
     </motion.div>
   );
 }
@@ -660,7 +695,7 @@ export default function DashboardPage() {
                 </div>
               ) : activity.length > 0 ? (
                 <div className="divide-y divide-avs-accent/5 max-h-[420px] overflow-y-auto [scrollbar-width:thin]">
-                  {activity.map((item, i) => <ActivityItem key={item.id} item={item} index={i} />)}
+                  {activity.map((item, i) => <ActivityItem key={item.id} item={item} index={i} t={t} />)}
                 </div>
               ) : (
                 <div className="flex flex-col items-center justify-center py-14">
