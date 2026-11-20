@@ -143,7 +143,7 @@ export function Footer() {
           >
             <div className="lg:col-span-2">
               <div className="mb-3 flex items-center gap-2">
-                <div className="h-px w-6" style={{ background: '#C0573E' }} aria-hidden />
+                
                 <span className="font-mono text-[9px] font-bold tracking-[0.24em] uppercase" style={{ color: '#C0573E' }}>
                   Newsletter
                 </span>

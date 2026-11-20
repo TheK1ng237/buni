@@ -332,7 +332,7 @@ export default function LoginPage() {
             {/* Heading */}
             <div className="mb-8">
               <div className="mb-3 flex items-center gap-2">
-                <div className="bg-avs-primary h-px w-6" aria-hidden />
+               
                 <span className="text-avs-primary font-mono text-[9px] tracking-[0.24em] uppercase">
                   {t('heading.label')}
                 </span>

@@ -170,7 +170,7 @@ export default function ActivityPage() {
           <div className="avs-pattern-wax-dakar absolute inset-0 opacity-[0.03]" aria-hidden />
           <div className="relative">
             <div className="mb-2 flex items-center gap-2">
-              <div className="h-px w-6 bg-avs-primary" aria-hidden />
+             
               <span className="font-mono text-[9px] font-bold uppercase tracking-[0.22em] text-avs-primary">{t('title')}</span>
             </div>
             <h1 className="font-display text-2xl font-black leading-none text-avs-accent sm:text-3xl" style={{ letterSpacing: '-0.02em' }}>

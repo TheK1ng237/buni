@@ -137,7 +137,7 @@ export function MinimalistCoffeeSection() {
         {/* Heading */}
         <div className="mb-6">
           <div className="mb-2 flex items-center gap-2">
-            <div className="bg-avs-primary h-px w-6" aria-hidden />
+            
             <span className="text-avs-primary font-mono text-[10px] tracking-[0.2em] uppercase font-bold">
               {t('header.eyebrow')}
             </span>

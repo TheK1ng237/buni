@@ -105,11 +105,11 @@ export function PaymentModal({ isOpen, onClose }: PaymentModalProps) {
                   <Heart className="h-6 w-6 text-avs-kente fill-avs-kente" />
                 </div>
                 <div className="mb-2 flex items-center justify-center gap-2">
-                  <div className="bg-avs-primary h-px w-6" aria-hidden />
+                 
                   <span className="text-avs-primary font-mono text-[10px] tracking-[0.2em] uppercase font-bold">
                     {t('header.eyebrow')}
                   </span>
-                  <div className="bg-avs-primary h-px w-6" aria-hidden />
+                  
                 </div>
                 <h2
                   id="payment-modal-title"
