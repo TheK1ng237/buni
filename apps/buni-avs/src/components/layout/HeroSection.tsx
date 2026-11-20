@@ -393,16 +393,34 @@ export function HeroSection() {
         {/* ══════════════════════════════════════════
              Version ordinateur
           ══════════════════════════════════════════ */}
-        <div className="mx-auto hidden w-full px-4 pt-12 sm:px-6 sm:pt-14 md:flex lg:px-8  h-screen">
-          <div className="flex w-full justify-center  items-center">
-            <div className="w-[50%]">
+        <div className="mx-auto hidden min-h-[calc(100svh-4rem)] w-full max-w-[1440px] grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] items-center gap-12 px-8 py-16 lg:grid xl:gap-20 xl:px-14">
+            <div className="order-1 min-w-0">
+              <motion.div
+                initial={{ opacity: 0, x: -28 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.9, delay: 0.3, ease }}
+                className="mx-auto w-full max-w-[610px]"
+              >
+                <PatternInspector
+                  active={active!}
+                  index={index}
+                  onSelect={handleSelect}
+                  paused={paused}
+                  copiedHex={copiedHex}
+                  onCopy={handleCopy}
+                  reduceMotion={!!reduceMotion}
+                />
+              </motion.div>
+            </div>
+
+            <div className="order-2 min-w-0">
               <motion.h1
                 id="hero-title"
                 initial={{ opacity: 0, y: 28 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.75, delay: 0.1, ease }}
-                className="font-display w-full leading-[.92] font-black tracking-[-0.03em]"
-                style={{ fontSize: 'clamp(2rem,8vw,5rem)', color: 'var(--hp-text)' }}
+                className="font-display w-full max-w-[12ch] leading-[.94] font-black tracking-[-0.035em]"
+                style={{ fontSize: 'clamp(2.75rem,5.1vw,5rem)', color: 'var(--hp-text)' }}
               >
                 <span className="block">{t('title1')}</span>
                 <span className="block" style={{ color: '#C0573E' }}>
@@ -430,7 +448,7 @@ export function HeroSection() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.7, delay: 0.42, ease }}
-                    className="pt-10 flex gap-3 sm:mt-8 "
+                    className="mt-8 flex flex-wrap gap-3"
                   >
                     <Link
                       href={'/patterns' as Route}
@@ -467,66 +485,54 @@ export function HeroSection() {
 
               
             </div>
-
-            <div className="w-[50%]">
-              <motion.div
-                initial={{ opacity: 0, x: 28 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.9, delay: 0.3, ease }}
-                className="relative order-1 lg:order-2 lg:col-span-1 lg:mt-0"
-              >
-
-                <PatternInspector
-                  active={active!}
-                  index={index}
-                  onSelect={handleSelect}
-                  paused={paused}
-                  copiedHex={copiedHex}
-                  onCopy={handleCopy}
-                  reduceMotion={!!reduceMotion}
-                />
-              </motion.div>
-            </div>
-          </div>
-          {/* ══════════════════════════════════════════
-              Version mobile
-          ══════════════════════════════════════════ */}
         </div>
-        <div className="flex md:hidden">
+        <div className="flex lg:hidden">
           <motion.div
             style={{ opacity: heroOpacity, y: heroTranslate }}
             className="relative flex min-h-screen flex-col"
           >
-            {/* ══════════════════════════════════════════
-              HEADLINE — full width, editorial, footnoted
-          ══════════════════════════════════════════ */}
             <div className="mx-auto w-full max-w-7xl px-4 pt-12 sm:px-6 sm:pt-14 lg:px-8">
-              <motion.h1
-                id="hero-title"
-                initial={{ opacity: 0, y: 28 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.75, delay: 0.1, ease }}
-                className="font-display leading-[.92] font-black tracking-[-0.03em]"
-                style={{ fontSize: 'clamp(2rem,8vw,5rem)', color: 'var(--hp-text)' }}
-              >
-                <span className="block">{t('title1')}</span>
-                <span className="block" style={{ color: '#C0573E' }}>
-                  {t('title2')}
-                </span>
-                <span className="block">{t('title3')}</span>
-              </motion.h1>
+              <div className="grid grid-cols-1 gap-8 sm:gap-10">
+                {/* Motif first on mobile, matching the desktop left column */}
+                <motion.div
+                  initial={{ opacity: 0, x: -28 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.9, delay: 0.3, ease }}
+                  className="relative order-1"
+                >
+                  <PatternInspector
+                    active={active!}
+                    index={index}
+                    onSelect={handleSelect}
+                    paused={paused}
+                    copiedHex={copiedHex}
+                    onCopy={handleCopy}
+                    reduceMotion={!!reduceMotion}
+                  />
+                </motion.div>
 
-              {/* ══════════════════════════════════════════
-              ASYMMETRIC ROW — copy left, live system right
-          ══════════════════════════════════════════ */}
-              <div className="mt-8 grid grid-cols-1 gap-8 sm:mt-10 lg:grid-cols-2 lg:gap-12">
-                {/* — Left: explanation, CTAs, social proof — */}
-                <div className="order-2 lg:order-1 lg:col-span-1">
+                {/* Editorial text follows the motif on mobile, matching desktop right */}
+                <div className="order-2">
+                  <motion.h1
+                    id="hero-title"
+                    initial={{ opacity: 0, y: 28 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.75, delay: 0.1, ease }}
+                    className="font-display leading-[.92] font-black tracking-[-0.03em]"
+                    style={{ fontSize: 'clamp(2rem,8vw,5rem)', color: 'var(--hp-text)' }}
+                  >
+                    <span className="block">{t('title1')}</span>
+                    <span className="block" style={{ color: '#C0573E' }}>
+                      {t('title2')}
+                    </span>
+                    <span className="block">{t('title3')}</span>
+                  </motion.h1>
+
                   <motion.p
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.7, delay: 0.34, ease }}
-                    className="max-w-md text-[14px] leading-[1.7] sm:text-[15px] sm:leading-[1.8]"
+                    className="mt-6 max-w-md text-[14px] leading-[1.7] sm:text-[15px] sm:leading-[1.8]"
                     style={{ color: 'var(--hp-muted)' }}
                   >
                     <strong style={{ color: 'var(--hp-text)', fontWeight: 600 }}>
@@ -569,47 +575,8 @@ export function HeroSection() {
                       {t('viewDocs')}
                     </Link>
                   </motion.div>
-
-                  
                 </div>
-
-                {/* — Right: the live inspector, offset lower for editorial asymmetry — */}
-                <motion.div
-                  initial={{ opacity: 0, x: 28 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.9, delay: 0.3, ease }}
-                  className="relative order-1 lg:order-2 lg:col-span-1 lg:mt-0"
-                >
-                  {/* floating verified badge - desktop only */}
-                  <motion.div
-                    className="avs-chip-float-a absolute -top-4 left-2 z-10 hidden sm:-top-6 sm:left-4 lg:block"
-                    style={reduceMotion ? undefined : { x: chipX, y: chipY }}
-                  >
-                    <FormatChip labelKey="verifiedProvenance" bg="rgba(74,103,65,.9)" />
-                  </motion.div>
-
-                  {/* floating format chips - desktop only */}
-                  <motion.div
-                    className="avs-chip-float-b absolute top-6 -right-2 z-10 flex hidden flex-col gap-1.5 sm:top-8 sm:-right-3 lg:flex"
-                    style={reduceMotion ? undefined : { x: chipX, y: chipY }}
-                  >
-                    <FormatChip labelKey="tailwind" bg="rgba(42,74,107,.9)" />
-                    <FormatChip labelKey="figma" bg="rgba(212,160,23,.9)" />
-                  </motion.div>
-
-                  <PatternInspector
-                    active={active!}
-                    index={index}
-                    onSelect={handleSelect}
-                    paused={paused}
-                    copiedHex={copiedHex}
-                    onCopy={handleCopy}
-                    reduceMotion={!!reduceMotion}
-                  />
-                </motion.div>
               </div>
-
-              
             </div>
           </motion.div>
         </div>
