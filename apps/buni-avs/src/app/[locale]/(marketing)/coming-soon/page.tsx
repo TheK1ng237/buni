@@ -432,7 +432,7 @@ export default function BuniComingSoonPage() {
 
         <div className="flex items-center gap-4">
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/company/buni-africa"
             target="_blank"
             rel="noopener noreferrer"
             className="p-2.5 rounded-full bg-[#0F1523]/80 backdrop-blur-md hover:bg-[#172033] text-[#8E9BB0] hover:text-[#F5EBE0] transition-colors border border-[#C8A96E]/15 flex items-center justify-center"
@@ -450,7 +450,7 @@ export default function BuniComingSoonPage() {
             <i className="pi pi-twitter" style={{ fontSize: '14px' }} />
           </a>
           <a
-            href="https://instagram.com"
+            href="https://www.instagram.com/buni.africa"
             target="_blank"
             rel="noopener noreferrer"
             className="p-2.5 rounded-full bg-[#0F1523]/80 backdrop-blur-md hover:bg-[#172033] text-[#8E9BB0] hover:text-[#F5EBE0] transition-colors border border-[#C8A96E]/15 flex items-center justify-center"
@@ -459,7 +459,7 @@ export default function BuniComingSoonPage() {
             <i className="pi pi-instagram" style={{ fontSize: '14px' }} />
           </a>
           <a
-            href="https://github.com"
+            href="https://github.com/TheK1ng237/buni"
             target="_blank"
             rel="noopener noreferrer"
             className="p-2.5 rounded-full bg-[#0F1523]/80 backdrop-blur-md hover:bg-[#172033] text-[#8E9BB0] hover:text-[#F5EBE0] transition-colors border border-[#C8A96E]/15 flex items-center justify-center"

@@ -94,12 +94,7 @@ export function PatternsContent() {
           {/* Header section */}
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div className="flex-1">
-              <div className="mb-2 flex items-center gap-2">
-                <div className="bg-avs-primary h-px w-4 sm:w-6" aria-hidden />
-                <span className="text-avs-primary font-mono text-[8px] font-bold tracking-[0.24em] uppercase sm:text-[9px]">
-                  {t('header.label', { count: patterns.length })}
-                </span>
-              </div>
+              
               <h1 className="font-display text-avs-accent text-2xl leading-none font-black tracking-tight sm:text-4xl">
                 {t('header.title')}
               </h1>

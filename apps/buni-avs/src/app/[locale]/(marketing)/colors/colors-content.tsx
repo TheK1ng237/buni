@@ -236,7 +236,7 @@ export function ColorsContent() {
                 />
                 <div className="relative px-7 py-6">
                   <div className="mb-1 flex items-center gap-2">
-                    <div className="h-px w-6" style={{ background: combo.accentHex }} aria-hidden />
+                   
                     <p className={`font-mono text-[9px] font-bold tracking-[0.22em] uppercase ${combo.accentClass}`}>{combo.origin}</p>
                   </div>
                   <h2 className="font-display text-2xl font-black leading-tight text-avs-secondary" style={{ letterSpacing: '-0.02em' }}>{combo.name}</h2>

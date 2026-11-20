@@ -383,7 +383,7 @@ export default function ContributorsPage() {
           <div className="relative mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-6 sm:px-6 lg:px-8">
             <div>
               <div className="mb-2 flex items-center gap-2">
-                <div className="h-px w-6 bg-avs-primary" aria-hidden />
+               
                 <span className="font-mono text-[9px] font-bold tracking-[0.24em] uppercase text-avs-primary">
                   {t('title')}
                 </span>

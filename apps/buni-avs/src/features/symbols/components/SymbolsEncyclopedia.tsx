@@ -10,7 +10,18 @@ import { LOCAL_SYMBOLS } from '../data/symbol.mapper';
 import type { SymbolEntry } from '../types/symbol.types';
 import { AVS_COLORS } from '@/core/constants/avs';
 
-const TYPES = ['ALL', 'ADINKRA', 'BOGOLAN', 'KENTE', 'KUBA', 'NDEBELE', 'NDOP', 'WAX', 'BERBER'];
+const TYPES = [
+  'ALL',
+  'ADINKRA',
+  'BOGOLAN',
+  'KENTE',
+  'KUBA',
+  'NDEBELE',
+  'NDOP',
+  'WAX',
+  'BERBER',
+  'UNIVERSAL',
+];
 
 function SymbolArtwork({
   name,
@@ -152,10 +163,7 @@ export function SymbolsEncyclopedia() {
         <div className="bg-avs-primary/25 pointer-events-none absolute -top-32 right-[-8%] -z-10 h-96 w-96 rounded-full blur-3xl" />
 
         <div className="mx-auto max-w-7xl px-5 pt-12 pb-10 sm:px-8 sm:pt-16 sm:pb-14">
-          <div className="text-avs-kente flex items-center gap-2 font-mono text-[9px] font-bold tracking-[0.2em] uppercase">
-            <BookOpen size={13} aria-hidden />
-            {t('header.label', { count: publishedSymbols.length })}
-          </div>
+          
           <div className="mt-5 grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
             <div>
               <h1 className="font-display max-w-3xl text-4xl leading-[1.04] font-black tracking-tight sm:text-6xl">
@@ -288,9 +296,7 @@ export function SymbolsEncyclopedia() {
                   />
                   <div className="absolute bottom-3 left-3 flex items-center gap-2">
                     <span className="bg-avs-accent/50 text-avs-secondary rounded-full px-2.5 py-1 font-mono text-[8px] font-bold tracking-[0.13em] uppercase backdrop-blur">
-                      {symbol.pattern.type === 'UNIVERSAL'
-                        ? t('types.ALL')
-                        : t(`types.${symbol.pattern.type.toUpperCase()}` as 'types.ALL')}
+                      {t(`types.${symbol.pattern.type.toUpperCase()}` as 'types.ALL')}
                     </span>
                   </div>
                   {symbol.sacred && (

@@ -578,7 +578,7 @@ export default function SettingsPage() {
           <div className="avs-pattern-ndop-sultan absolute inset-x-0 top-0 h-px opacity-70" aria-hidden />
           <div className="mx-auto max-w-5xl px-4 py-5 sm:px-6 lg:px-8">
             <div className="flex items-center gap-3">
-              <div className="h-px w-6 bg-avs-primary" aria-hidden />
+              
               <span className="font-mono text-[9px] font-bold tracking-[0.24em] uppercase text-avs-primary">{t('account')}</span>
             </div>
             <h1 className="mt-1 font-display font-black leading-none text-avs-accent" style={{ fontSize: 'clamp(1.25rem,3vw,1.75rem)', letterSpacing: '-0.02em' }}>

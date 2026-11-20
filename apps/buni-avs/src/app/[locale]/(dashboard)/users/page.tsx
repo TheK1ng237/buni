@@ -359,7 +359,7 @@ export default function UsersManagementPage() {
           <div className="relative flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <div className="mb-2 flex items-center gap-2">
-                <div className="h-px w-6 bg-avs-primary" aria-hidden />
+               
                 <span className="font-mono text-[9px] font-bold uppercase tracking-[0.22em] text-avs-primary">
                   {t('header.admin')}
                 </span>

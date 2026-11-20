@@ -378,7 +378,7 @@ export default function RegisterPage() {
             {/* Heading */}
             <div className="mb-8">
               <div className="mb-3 flex items-center gap-2">
-                <div className="h-px w-6 bg-avs-primary" aria-hidden />
+                
                 <span className="font-mono text-[9px] tracking-[0.24em] uppercase text-avs-primary">{t('heading.label')}</span>
               </div>
               <h1 className="font-display font-black leading-none text-avs-accent" style={{ fontSize: 'clamp(1.75rem,4vw,2.5rem)', letterSpacing: '-0.025em' }}>

@@ -704,7 +704,7 @@
   },
   "patterns": {
     "header": {
-      "label": "Documentation culturelle · {count} motifs",
+      
       "title": "Encyclopédie des Motifs",
       "description": "Fiches ethnographiques complètes — symboles constitutifs, histoire, technique, sources primaires."
     },
@@ -775,7 +775,8 @@
       "WAX": "Wax",
       "NDOP": "Ndop",
       "BOGOLAN": "Bogolan",
-      "ADINKRA": "Adinkra"
+      "ADINKRA": "Adinkra",
+      "UNIVERSAL": "Universel"
     },
     "stats": {
       "symbols": "symboles documentés",

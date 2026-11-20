@@ -235,7 +235,7 @@ export function DocsSidebar({ open, onClose }: { open: boolean; onClose: () => v
       >
         {[
           {
-            href: 'https://github.com/avs-standard',
+            href: 'https://github.com/TheK1ng237/buni',
             label: t('quickAccess.github'),
             icon: 'pi-github',
             external: true,
