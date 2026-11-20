@@ -1,0 +1,13 @@
+{
+  "slug": "music",
+  "nameFr": "Musique",
+  "nameEn": "Music",
+  "family": "interface",
+  "tags": ["musique", "audio", "djembé"],
+  "country": "Afrique de l’Ouest",
+  "people": "Mandingues",
+  "culturalNote": "Tambour à gobelet avec cordage, inspiré du djembé d’Afrique de l’Ouest associé aux peuples mandingues ; forme simplifiée.",
+  "recommendedUse": "Musique et audio. Vérifier la lisibilité à petite taille, où la silhouette peut évoquer un entonnoir.",
+  "verifiedBy": "Documentation BUNI-ICON Core 60",
+  "license": "CC BY 4.0"
+}

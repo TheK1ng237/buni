@@ -1,0 +1,17 @@
+{
+  "slug": "location",
+  "nameFr": "Localisation",
+  "nameEn": "Location",
+  "family": "interface",
+  "tags": [
+    "localisation",
+    "position",
+    "baobab"
+  ],
+  "country": "Sahel, Afrique australe, Madagascar (références génériques)",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Baobab stylisé : tronc en bouteille et trois branches terminées par des feuillages. Le baobab sert de repère et de lieu de rassemblement dans de nombreuses régions.",
+  "recommendedUse": "Position, repère et point d’intérêt. Prévoir une info-bulle au premier usage.",
+  "verifiedBy": "Documentation BUNI-ICON Core 30",
+  "license": "CC BY 4.0"
+}

@@ -16,6 +16,8 @@ import { ArrowRight, Check, Command, Copy, MoveDown } from 'lucide-react';
 import { useTranslations } from '@/i18n';
 import { useTheme } from 'next-themes';
 import { PATTERN_CATALOG } from '@buni/patterns';
+import { formatNumber } from '@buni/utils';
+import { usePlatformStats } from '@/features/analytics/hooks/usePlatformStats';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // DATA — the hero IS a live instance of the design system, not a picture of it
@@ -41,13 +43,6 @@ const PATTERNS: readonly PatternFamily[] = PATTERN_CATALOG.map((pattern) => ({
   symbolism: pattern.symbolism,
   colors: pattern.colors,
 }));
-
-const FOOTNOTES = [
-  { index: 0,  value: '1 248', labelKey: 'footnote1' },
-  { index: 1,  value: '54', labelKey: 'footnote2' },
-  { index: 2,  value: '312', labelKey: 'footnote3' },
-  { index: 3,  value: '0', labelKey: 'footnote4' },
-] as const;
 
 const COMMUNITY_AVATARS = [
   { letter: 'A', bg: '#C0573E' },
@@ -306,6 +301,8 @@ export function HeroSection() {
   const heroRef = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion();
   const t = useTranslations('hero');
+  const { data: platformStats } = usePlatformStats();
+  const artisanCount = platformStats ? formatNumber(platformStats.totalArtisans) : '—';
   const { theme } = useTheme();
 
   // Scroll-linked exit for the whole hero
@@ -424,7 +421,7 @@ export function HeroSection() {
                     style={{ color: 'var(--hp-muted)' }}
                   >
                     <strong style={{ color: 'var(--hp-text)', fontWeight: 600 }}>
-                      {t('artisansCount')}
+                      {t('artisansCount', { count: artisanCount })}
                     </strong>{' '}
                     {t('description')}<sup className="avs-footnote-mark">04</sup>
                   </motion.p>
@@ -533,7 +530,7 @@ export function HeroSection() {
                     style={{ color: 'var(--hp-muted)' }}
                   >
                     <strong style={{ color: 'var(--hp-text)', fontWeight: 600 }}>
-                      {t('artisansCount')}
+                      {t('artisansCount', { count: artisanCount })}
                     </strong>{' '}
                     {t('description')}<sup className="avs-footnote-mark">04</sup>
                   </motion.p>

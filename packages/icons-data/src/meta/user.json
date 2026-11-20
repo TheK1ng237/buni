@@ -1,0 +1,17 @@
+{
+  "slug": "user",
+  "nameFr": "Utilisateur",
+  "nameEn": "User",
+  "family": "interface",
+  "tags": [
+    "profil",
+    "compte",
+    "utilisateur"
+  ],
+  "country": "Sans attribution géographique",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Silhouette minimaliste de tête et d’épaules, volontairement neutre et universelle.",
+  "recommendedUse": "Compte, profil et avatar par défaut.",
+  "verifiedBy": "Documentation BUNI-ICON Core 30",
+  "license": "CC BY 4.0"
+}

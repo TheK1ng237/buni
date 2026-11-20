@@ -1,0 +1,57 @@
+{
+  "nav": {
+    "catalog": "Catalog",
+    "families": "Highlights",
+    "iconify": "Iconify Spec",
+    "github": "Source Code",
+    "searchPlaceholder": "Search an icon (e.g. home, wallet, basket)...",
+    "switchLang": "FR"
+  },
+  "home": {
+    "title": "BUNI-ICON Core 30",
+    "subtitle": "Thirty minimal outline interface icons in SVG, designed on a 24×24 grid. Explore, customize, and copy them freely.",
+    "ctaExplore": "Explore catalog",
+    "ctaIconify": "Use with Iconify",
+    "popular": "Core 30",
+    "viewAll": "View all icons"
+  },
+  "catalog": {
+    "title": "Icon Catalog",
+    "subtitle": "Explore the 30 Core 30 interface icons and search by name or keyword.",
+    "search": "Filter icons...",
+    "allFamilies": "All families",
+    "allCountries": "All countries",
+    "core30": "Core 30 collection · 30 icons",
+    "size": "Size",
+    "stroke": "Stroke",
+    "found": "{count} icon(s) found",
+    "noResults": "No icons match your search criteria.",
+    "reset": "Reset filters",
+    "quickCopy": "Copy SVG"
+  },
+  "detail": {
+    "back": "Back to catalog",
+    "culturalSheet": "About this icon",
+    "meaning": "Design and references",
+    "recommendedUse": "Recommended UI usage",
+    "verifiedBy": "Source",
+    "origin": "Context",
+    "country": "Country",
+    "license": "Usage license",
+    "copySvg": "Copy SVG",
+    "copyJsx": "Copy React JSX",
+    "copyIconify": "Copy Iconify name",
+    "downloadPng": "Download PNG",
+    "copyJson": "Copy JSON Metadata",
+    "copied": "Copied to clipboard!",
+    "customize": "Customize preview",
+    "color": "Pigment",
+    "strokeWidth": "Stroke width"
+  },
+  "footer": {
+    "manifesto": "BUNI-ICON Core 30 is a collection of 30 interface SVG icons, designed for straightforward customization and integration.",
+    "linksStandard": "Standard",
+    "linksResources": "Resources",
+    "rights": "© 2026 BUNI Standard. Icons licensed under Creative Commons Attribution 4.0 International (CC BY 4.0)."
+  }
+}

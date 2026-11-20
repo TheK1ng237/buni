@@ -1,0 +1,13 @@
+{
+  "slug": "play",
+  "nameFr": "Lecture",
+  "nameEn": "Play",
+  "family": "interface",
+  "tags": ["lecture", "lire", "audio", "vidéo"],
+  "country": "Sans attribution culturelle",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Triangle dans un cercle, icône utilitaire conventionnelle sans référence culturelle spécifique.",
+  "recommendedUse": "Lancer une lecture audio ou vidéo.",
+  "verifiedBy": "Documentation BUNI-ICON Core 60",
+  "license": "CC BY 4.0"
+}

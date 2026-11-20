@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -17,28 +18,32 @@ import {
   Layers,
   EyeOff,
   Filter,
-  ArrowLeft,FileText,
+  ArrowLeft,
+  FileText,
   Hourglass,
   BarChart3,
   X,
+  Loader2,
 } from 'lucide-react';
 import { formatDate, formatNumber } from '@buni/utils';
-import { KpiCard } from '@buni/ui';
+import { KpiCard, useToast } from '@buni/ui';
 import { useAuth } from '@buni/auth';
 import { useTranslations } from '@/i18n';
 
 import { Route } from 'next';
 import type { Pattern, PatternStatus, PatternSymbol } from '@buni/patterns';
-import { useFeaturePattern, useToggleFeature, useUnfeaturePattern, useDeletePattern } from '@/features/patterns/hooks/usePatternActions';
+import {
+  useFeaturePattern,
+  useUnfeaturePattern,
+  useDeletePattern,
+} from '@/features/patterns/hooks/usePatternActions';
 import { usePatterns } from '@/features/patterns/hooks/usePatterns';
-import { mapPatternDtoToModel } from '@/features/patterns/mappers/pattern.mapper';
-import { patternService } from '@/features/patterns/services/pattern.service';
-
+import { userService } from '@/features/user/services/user.service';
+import { PatternThumbnail } from '@/features/patterns/components/PatternThumbnail';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // TYPES
 // ─────────────────────────────────────────────────────────────────────────────
-
 
 type SortKey = 'name' | 'views' | 'downloads' | 'updatedAt';
 
@@ -46,10 +51,9 @@ type SortKey = 'name' | 'views' | 'downloads' | 'updatedAt';
 // STATUS CONFIG
 // ─────────────────────────────────────────────────────────────────────────────
 
-function getStatusConfig(t: any): Record<
-  PatternStatus,
-  { label: string; icon: typeof CheckCircle2; pill: string; dot: string }
-> {
+function getStatusConfig(
+  t: any
+): Record<PatternStatus, { label: string; icon: typeof CheckCircle2; pill: string; dot: string }> {
   return {
     published: {
       label: t('status.published'),
@@ -80,7 +84,6 @@ function getStatusFilters(t: any): { value: PatternStatus | 'all'; label: string
     { value: 'review', label: t('filter.review') },
   ];
 }
-
 
 // ─────────────────────────────────────────────────────────────────────────────
 // STATUS BADGE
@@ -134,18 +137,19 @@ function ActionMenu({
   pattern,
   onDelete,
   onToggleFeatured,
+  isFeatureUpdating,
   isAdmin,
   isCurator,
 }: {
   pattern: Pattern;
   onDelete: (id: string) => void;
   onToggleFeatured: (id: string, shouldFeature: boolean) => void;
+  isFeatureUpdating: boolean;
   isAdmin: boolean;
   isCurator: boolean;
 }) {
   const t = useTranslations('dashboard.patterns');
   const [open, setOpen] = useState(false);
-  const featureToggle = useToggleFeature();
 
   const canManageStatus = isAdmin;
 
@@ -171,14 +175,14 @@ function ActionMenu({
               className="border-avs-accent/9 bg-avs-secondary shadow-avs-lg absolute right-0 z-20 mt-1.5 w-48 overflow-hidden rounded-xl border"
             >
               <Link
-                href={`/patternsDashboard/${pattern.slug}?edit=true` as Route}
+                href={`/patternsDashboard/${pattern.slug || pattern.id}?edit=true` as Route}
                 onClick={() => setOpen(false)}
                 className="text-avs-accent/70 hover:bg-avs-primary/5 hover:text-avs-primary flex items-center gap-2.5 px-4 py-2.5 text-sm"
               >
                 <Edit2 size={13} /> {t('actions.edit')}
               </Link>
               <Link
-                href={`/patternsDashboard/${pattern.slug}` as Route}
+                href={`/patternsDashboard/${pattern.slug || pattern.id}` as Route}
                 onClick={() => setOpen(false)}
                 className="text-avs-accent/70 hover:bg-avs-primary/5 hover:text-avs-primary flex items-center gap-2.5 px-4 py-2.5 text-sm"
               >
@@ -187,10 +191,10 @@ function ActionMenu({
               {canManageStatus && (
                 <button
                   onClick={() => {
-                    featureToggle.mutate(pattern.id, !pattern.featured);
+                    onToggleFeatured(pattern.id, !pattern.featured);
                     setOpen(false);
                   }}
-                  disabled={featureToggle.isLoading}
+                  disabled={isFeatureUpdating}
                   className="text-avs-accent/70 hover:bg-avs-primary/5 hover:text-avs-primary flex w-full items-center gap-2.5 px-4 py-2.5 text-sm transition-opacity disabled:opacity-50"
                 >
                   {pattern.featured ? (
@@ -234,16 +238,14 @@ function EmptyState({ search, t }: { search: string; t: any }) {
         {search ? t('empty.noResults') : t('empty.noPatterns')}
       </p>
       <p className="text-avs-accent/40 max-w-xs text-sm">
-        {search
-          ? t('empty.noResultsSearch', { search })
-          : t('empty.noPatternsDesc')}
+        {search ? t('empty.noResultsSearch', { search }) : t('empty.noPatternsDesc')}
       </p>
       {!search && (
         <Link href={'/dashboard/patterns/new' as Route} className="avs-btn-primary mt-2 gap-2">
           <Plus size={14} /> {t('empty.createFirst')}
         </Link>
       )}
-    </div> 
+    </div>
   );
 }
 
@@ -254,7 +256,31 @@ function EmptyState({ search, t }: { search: string; t: any }) {
 export default function MyPatternsPage() {
   const t = useTranslations('dashboard.patterns');
   const { user, isAdmin, isCurator } = useAuth();
-  const { data: rawPatterns = [], isLoading } = usePatterns();
+  const { add } = useToast();
+  const {
+    data: rawPatterns = [],
+    isLoading,
+    isError: patternsError,
+    refetch: refetchPatterns,
+  } = usePatterns();
+  const {
+    data: adminStats,
+    isLoading: isAdminStatsLoading,
+    isError: isAdminStatsError,
+  } = useQuery({
+    queryKey: ['platform-stats'],
+    queryFn: () => userService.getPlatformStats(),
+    enabled: isAdmin,
+  });
+  const {
+    data: ownStats,
+    isLoading: isOwnStatsLoading,
+    isError: isOwnStatsError,
+  } = useQuery({
+    queryKey: ['user-stats', user?.id],
+    queryFn: () => userService.getStats(),
+    enabled: !isAdmin && Boolean(user),
+  });
   const deleteMutation = useDeletePattern();
 
   const [search, setSearch] = useState('');
@@ -290,28 +316,30 @@ export default function MyPatternsPage() {
     }
   };
 
-  const patterns = useMemo(() => {
-    let allPatterns = rawPatterns.map((p) => ({
-      ...p,
-      status: normalizeStatus(p.status),
-    }));
-
-    if (!isAdmin && user) {
-      allPatterns = allPatterns.filter((p: any) => p.authorId === user.id || p.createdById === user.id);
-    }
-
-    return allPatterns;
-  }, [rawPatterns, isAdmin, user]);
-
-  const stats = useMemo(
-    () => ({
-      published: patterns.filter((p) => p.status === 'published').length,
-      drafts: patterns.filter((p) => p.status === 'draft').length,
-      review: patterns.filter((p) => p.status === 'review').length,
-      totalViews: patterns.reduce((s, p) => s + p.views, 0),
-    }),
-    [patterns]
+  const patterns = useMemo(
+    () =>
+      rawPatterns.map((p) => ({
+        ...p,
+        status: normalizeStatus(p.status),
+      })),
+    [rawPatterns]
   );
+
+  const statusStats = adminStats?.patternsByStatus ?? ownStats?.patternsByStatus;
+  const statsLoading = isAdmin ? isAdminStatsLoading : isOwnStatsLoading;
+  const statsError = isAdmin ? isAdminStatsError : isOwnStatsError;
+  const stats = {
+    published: statusStats?.published ?? 0,
+    drafts: statusStats?.draft ?? 0,
+    review: statusStats?.review ?? 0,
+    totalViews: adminStats?.totalViews ?? ownStats?.totalViews ?? 0,
+  };
+  const totalPatternCount = adminStats?.totalPatterns ?? ownStats?.patternsCreated;
+  const patternCountLabel = statsLoading
+    ? '…'
+    : statsError
+      ? '—'
+      : t('subtitle', { count: totalPatternCount ?? 0 });
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase();
@@ -369,13 +397,17 @@ export default function MyPatternsPage() {
   };
 
   const handleToggleFeatured = (id: string, shouldFeature: boolean) => {
-    if (shouldFeature) {
-      featureMutation.mutate(id);
-    } else {
-      unfeatureMutation.mutate(id);
-    }
+    const options = {
+      onError: () =>
+        add({
+          variant: 'error' as const,
+          title: t('actions.featureErrorTitle'),
+          message: t('actions.featureError'),
+        }),
+    };
+    if (shouldFeature) featureMutation.mutate(id, options);
+    else unfeatureMutation.mutate(id, options);
   };
-
 
   const toggleSelect = (id: string) =>
     setSelected((prev) => {
@@ -466,9 +498,7 @@ export default function MyPatternsPage() {
               >
                 {t('title')}
               </h1>
-              <p className="text-avs-accent/35 mt-0.5 text-xs">
-                {t('subtitle', { count: patterns.length })}
-              </p>
+              <p className="text-avs-accent/35 mt-0.5 text-xs">{patternCountLabel}</p>
             </div>
           </div>
 
@@ -487,12 +517,68 @@ export default function MyPatternsPage() {
 
       <div className="mx-auto max-w-5xl space-y-6 px-4 py-8 sm:px-6 lg:px-8">
         {/* ══ STAT CARDS — même patron que profil ════════════════════════════ */}
-        {(isAdmin ) && (
+        {isAdmin && (
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-            <KpiCard label={t('stats.published')} value={stats.published} icon={CheckCircle2} color="#4A6741" patternCss="avs-pattern-kente-royale" topAccent format={formatNumber} delay={0.1} />
-            <KpiCard label={t('stats.draft')} value={stats.drafts} icon={FileText} color="#8B5CF6" patternCss="avs-pattern-ndop-sultan" topAccent format={formatNumber} delay={0.17} />
-            <KpiCard label={t('stats.review')} value={stats.review} icon={Hourglass} color="#D4A017" patternCss="avs-pattern-bogolan-fanga" topAccent format={formatNumber} delay={0.24} />
-            <KpiCard label={t('stats.totalViews')} value={stats.totalViews} icon={BarChart3} color="#C0573E" patternCss="avs-pattern-adinkra-sankofa" topAccent format={formatNumber} delay={0.31} />
+            <KpiCard
+              label={t('stats.published')}
+              value={statsLoading ? '…' : statsError ? '—' : stats.published}
+              icon={CheckCircle2}
+              color="#4A6741"
+              patternCss="avs-pattern-kente-royale"
+              topAccent
+              format={formatNumber}
+              delay={0.1}
+            />
+            <KpiCard
+              label={t('stats.drafts')}
+              value={statsLoading ? '…' : statsError ? '—' : stats.drafts}
+              icon={FileText}
+              color="#8B5CF6"
+              patternCss="avs-pattern-ndop-sultan"
+              topAccent
+              format={formatNumber}
+              delay={0.17}
+            />
+            <KpiCard
+              label={t('stats.review')}
+              value={statsLoading ? '…' : statsError ? '—' : stats.review}
+              icon={Hourglass}
+              color="#D4A017"
+              patternCss="avs-pattern-bogolan-fanga"
+              topAccent
+              format={formatNumber}
+              delay={0.24}
+            />
+            <KpiCard
+              label={t('stats.totalViews')}
+              value={statsLoading ? '…' : statsError ? '—' : stats.totalViews}
+              icon={BarChart3}
+              color="#C0573E"
+              patternCss="avs-pattern-adinkra-sankofa"
+              topAccent
+              format={formatNumber}
+              delay={0.31}
+            />
+          </div>
+        )}
+        {statsError && (
+          <p role="status" className="text-sm text-red-600">
+            {t('stats.unavailable')}
+          </p>
+        )}
+        {patternsError && (
+          <div
+            role="alert"
+            className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-red-500/20 bg-red-500/5 px-4 py-3 text-sm text-red-700"
+          >
+            <span>Impossible de charger les motifs. Vérifiez votre connexion puis réessayez.</span>
+            <button
+              type="button"
+              onClick={() => void refetchPatterns()}
+              className="rounded-lg border border-red-500/20 px-3 py-1.5 font-semibold hover:bg-red-500/10"
+            >
+              Réessayer
+            </button>
           </div>
         )}
 
@@ -527,16 +613,18 @@ export default function MyPatternsPage() {
             </AnimatePresence>
           </div>
 
-          {(isAdmin ) && (
+          {isAdmin && (
             <div className="flex items-center gap-1.5">
               <Filter size={12} className="text-avs-accent/30 shrink-0" aria-hidden />
               {getStatusFilters(t).map(({ value, label }) => {
                 const isActive = statusF === value;
-                const statusConfig = value !== 'all' ? getStatusConfig(t)[value as PatternStatus] : null;
-                const activeStyle = value === 'all' 
-                  ? 'bg-avs-primary text-avs-secondary shadow-avs'
-                  : statusConfig?.pill || 'bg-avs-primary text-avs-secondary shadow-avs';
-                
+                const statusConfig =
+                  value !== 'all' ? getStatusConfig(t)[value as PatternStatus] : null;
+                const activeStyle =
+                  value === 'all'
+                    ? 'bg-avs-primary text-avs-secondary shadow-avs'
+                    : statusConfig?.pill || 'bg-avs-primary text-avs-secondary shadow-avs';
+
                 return (
                   <button
                     key={value}
@@ -603,14 +691,34 @@ export default function MyPatternsPage() {
             <span className="text-avs-accent/30 font-mono text-[9px] font-bold tracking-[0.14em] uppercase">
               {t('table.status')}
             </span>
-            <SortBtn col="views" label={t('table.views')} sortKey={sortKey} toggleSort={toggleSort} />
-            <SortBtn col="downloads" label={t('table.downloads')} sortKey={sortKey} toggleSort={toggleSort} />
-            <SortBtn col="updatedAt" label={t('table.modified')} sortKey={sortKey} toggleSort={toggleSort} />
+            <SortBtn
+              col="views"
+              label={t('table.views')}
+              sortKey={sortKey}
+              toggleSort={toggleSort}
+            />
+            <SortBtn
+              col="downloads"
+              label={t('table.downloads')}
+              sortKey={sortKey}
+              toggleSort={toggleSort}
+            />
+            <SortBtn
+              col="updatedAt"
+              label={t('table.modified')}
+              sortKey={sortKey}
+              toggleSort={toggleSort}
+            />
             <span />
           </div>
 
           {/* Rows */}
-          {filtered.length === 0 ? (
+          {isLoading ? (
+            <div className="text-avs-accent/50 flex items-center justify-center gap-3 px-6 py-16 text-sm">
+              <Loader2 size={18} className="text-avs-primary animate-spin" aria-hidden />
+              Chargement des motifs…
+            </div>
+          ) : filtered.length === 0 ? (
             <EmptyState search={search} t={t} />
           ) : (
             <AnimatePresence initial={false}>
@@ -631,9 +739,11 @@ export default function MyPatternsPage() {
                     aria-label={t('table.select', { name: p.name })}
                   />
 
-                  <div
-                    className={`${p.cssClass} border-avs-accent/10 h-10 w-10 overflow-hidden rounded-xl border transition-transform duration-300 group-hover:scale-105`}
-                    aria-hidden
+                  <PatternThumbnail
+                    src={p.svgUrl || p.imgUrl}
+                    patternClass={p.cssClass}
+                    alt={p.name}
+                    className="h-10 w-10 rounded-xl border border-avs-accent/10 transition-transform duration-300 group-hover:scale-105"
                   />
 
                   <div className="min-w-0">
@@ -661,15 +771,14 @@ export default function MyPatternsPage() {
                     {formatNumber(p.downloads)}
                   </p>
                   <p className="text-avs-accent/35 font-mono text-[10px]">
-                    {p.updatedAt
-                      ? formatDate(p.updatedAt, 'fr-FR')
-                      : '—'}
+                    {p.updatedAt ? formatDate(p.updatedAt, 'fr-FR') : '—'}
                   </p>
 
                   <ActionMenu
                     pattern={p}
                     onDelete={handleDelete}
                     onToggleFeatured={handleToggleFeatured}
+                    isFeatureUpdating={featureMutation.isPending || unfeatureMutation.isPending}
                     isAdmin={isAdmin}
                     isCurator={isCurator}
                   />

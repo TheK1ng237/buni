@@ -13,6 +13,8 @@ import { GoogleLoginButton, GithubLoginButton } from '@buni/auth';
 import { authService } from '@/features/auth/services/auth.service';
 import { useAuthStore } from '@buni/auth';
 import { useLocale, useTranslations } from '@/i18n';
+import { usePlatformStats } from '@/features/analytics/hooks/usePlatformStats';
+import { formatNumber } from '@buni/utils';
 
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -104,6 +106,7 @@ function Field({ id, label, error, children }: {
 
 export default function RegisterPage() {
   const t = useTranslations('register');
+  const { data: platformStats } = usePlatformStats();
   const { locale } = useLocale();
   const { mutate, isPending, error } = useRegister();
   const { add } = useToast();
@@ -329,10 +332,16 @@ export default function RegisterPage() {
 
               {/* Stats pills */}
               <div className="mt-8 flex flex-wrap gap-2">
-                {[{ v: '1 248', l: t('stats.patterns') }, { v: '312', l: t('stats.artisans') }, { v: '54', l: t('stats.countries') }].map(({ v, l }) => (
-                  <div key={l} className="rounded-xl px-3.5 py-2 bg-avs-secondary/6 border border-avs-secondary/9">
-                    <span className="font-display text-lg font-black text-avs-secondary" style={{ letterSpacing: '-0.02em' }}>{v}</span>
-                    <span className="ml-1.5 font-mono text-[9px] text-avs-secondary/40">{l}</span>
+                {[
+                  { value: platformStats?.totalPatterns, label: t('stats.patterns') },
+                  { value: platformStats?.totalArtisans, label: t('stats.artisans') },
+                  { value: platformStats?.totalCountries, label: t('stats.countries') },
+                ].map(({ value, label }) => (
+                  <div key={label} className="rounded-xl px-3.5 py-2 bg-avs-secondary/6 border border-avs-secondary/9">
+                    <span className="font-display text-lg font-black text-avs-secondary" style={{ letterSpacing: '-0.02em' }}>
+                      {value === undefined ? '—' : formatNumber(value)}
+                    </span>
+                    <span className="ml-1.5 font-mono text-[9px] text-avs-secondary/40">{label}</span>
                   </div>
                 ))}
               </div>

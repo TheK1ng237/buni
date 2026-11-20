@@ -1,0 +1,17 @@
+{
+  "slug": "gallery",
+  "nameFr": "Galerie",
+  "nameEn": "Gallery",
+  "family": "interface",
+  "tags": [
+    "galerie",
+    "images",
+    "médias"
+  ],
+  "country": "Référence générique",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Cadre avec soleil et chaîne de montagnes en zigzag, composition générique dont le zigzag rappelle des motifs de tissage.",
+  "recommendedUse": "Galerie, images et médias.",
+  "verifiedBy": "Documentation BUNI-ICON Core 30",
+  "license": "CC BY 4.0"
+}

@@ -194,6 +194,13 @@ function getNavItems(t: any): NavItem[] {
           available: true,
         },
         {
+          href: '/symbols',
+          label: 'Encyclopédie des symboles',
+          icon: 'pi pi-compass',
+          desc: 'Explorez leur signification et leur contexte culturel',
+          available: true,
+        },
+        {
           href: '/colors',
           label: 'Palettes & Token',
           icon: 'pi pi-palette',
@@ -524,13 +531,12 @@ function UserMenu({
   navT,
   authT,
 }: {
-  user: { name: string; email: string; role: string };
+  user: { name?: string | null; email: string; role: string };
   onLogout: () => Promise<void>;
   navT: any;
   authT: any;
 }) {
   const [open, setOpen] = useState(false);
-  const [isLoggingOut, setIsLoggingOut] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -557,7 +563,7 @@ function UserMenu({
         <div className="avs-pattern-ndop-sultan ring-avs-accent/10 relative h-7 w-7 shrink-0 overflow-hidden rounded-full ring-1">
           <div className="absolute inset-0 flex items-center justify-center bg-black/25">
             <span className="font-display text-avs-secondary text-xs font-black drop-shadow">
-              {user.name.charAt(0).toUpperCase()}
+              {(user.name || user.email || '?').charAt(0).toUpperCase()}
             </span>
           </div>
         </div>
@@ -590,12 +596,14 @@ function UserMenu({
                   <div className="avs-pattern-kente-royale ring-avs-secondary/20 relative h-9 w-9 shrink-0 overflow-hidden rounded-full ring-2">
                     <div className="absolute inset-0 flex items-center justify-center bg-black/25">
                       <span className="font-display text-avs-secondary text-sm font-black drop-shadow">
-                        {user.name.charAt(0).toUpperCase()}
+                        {(user.name || user.email || '?').charAt(0).toUpperCase()}
                       </span>
                     </div>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-avs-accent truncate text-sm font-bold">{user.name}</p>
+                    <p className="text-avs-accent truncate text-sm font-bold">
+                      {user.name || user.email}
+                    </p>
                     <p className="text-avs-accent/35 truncate text-[11px] capitalize">
                       {user.role?.replace('_', ' ')}
                     </p>
@@ -633,18 +641,14 @@ function UserMenu({
               <button
                 onClick={async () => {
                   setOpen(false);
-                  setIsLoggingOut(true);
                   await onLogout();
                 }}
-                disabled={isLoggingOut}
-                className="text-avs-accent/55 flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-all duration-150 hover:bg-red-500/8 hover:text-red-500 disabled:opacity-50"
+                className="text-avs-accent/55 flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-all duration-150 hover:bg-red-500/8 hover:text-red-500"
               >
                 <div className="bg-avs-accent/4 flex h-7 w-7 items-center justify-center rounded-lg">
                   <LogOut size={14} />
                 </div>
-                <span className="font-medium">
-                  {isLoggingOut ? authT('signingOut') : authT('logout')}
-                </span>
+                <span className="font-medium">{authT('logout')}</span>
               </button>
             </div>
           </motion.div>
@@ -753,7 +757,7 @@ function MobileLink({
 export function Header() {
   const pathname = usePathname();
   const router = useRouter();
-  const { user, isAuthenticated, isHydrated } = useAuth();
+  const { user, isAuthenticated } = useAuth();
   const storeLogout = useLogout();
   const { theme, setTheme } = useTheme();
   const t = useTranslations('common');
@@ -765,7 +769,6 @@ export function Header() {
   const [premiumOpen, setPremiumOpen] = useState(false);
   const [, startTransition] = useTransition();
   const [comingSoon, setComingSoon] = useState<ModalData | null>(null);
-  const [authState, setAuthState] = useState({ isAuthenticated, user });
   
   // Use absolute path to bypass i18n middleware for static assets
 
@@ -774,16 +777,8 @@ export function Header() {
     (item) => item.href === '/documentation' && item.available !== false
   );
 
-  useEffect(() => {
-    setAuthState({ isAuthenticated, user });
-  }, [isAuthenticated, user]);
-
   const handleLogout = async () => {
-    try {
-      await authService.logout();
-    } catch (err) {
-      console.error('Logout error:', err);
-    }
+    void authService.logout();
     await storeLogout();
   };
 
@@ -902,11 +897,9 @@ export function Header() {
             </button>
 
             {/* Auth area */}
-            {!isHydrated ? (
-              <div className="bg-avs-accent/4 h-9 w-28 animate-pulse rounded-xl" />
-            ) : authState.isAuthenticated && authState.user ? (
+            {isAuthenticated && user ? (
               <UserMenu
-                user={authState.user as { name: string; email: string; role: string }}
+                user={user}
                 onLogout={handleLogout}
                 navT={navT}
                 authT={authT}
@@ -1058,7 +1051,7 @@ export function Header() {
                         onClick={() => setMobileOpen(false)}
                       />
                     </div>
-                    {authState.isAuthenticated && authState.user && (
+                    {isAuthenticated && user && (
                       <MobileLink
                         href="/dashboard"
                         icon={LayoutDashboard}
@@ -1100,24 +1093,22 @@ export function Header() {
 
                   {/* Auth */}
                   <div className="border-avs-accent/9 space-y-2 border-t pt-1">
-                    {!isHydrated ? (
-                      <div className="bg-avs-accent/4 h-10 animate-pulse rounded-xl" />
-                    ) : authState.isAuthenticated && authState.user ? (
+                    {isAuthenticated && user ? (
                       <>
                         <div className="bg-avs-primary/8 border-avs-primary/20 flex items-center gap-3 rounded-xl border p-3.5">
                           <div className="avs-pattern-kente-royale relative h-9 w-9 shrink-0 overflow-hidden rounded-full">
                             <div className="absolute inset-0 flex items-center justify-center bg-black/25">
                               <span className="font-display text-avs-secondary text-sm font-black">
-                                {(authState.user.name || '?').charAt(0).toUpperCase()}
+                                {(user.name || user.email || '?').charAt(0).toUpperCase()}
                               </span>
                             </div>
                           </div>
                           <div className="min-w-0">
                             <p className="text-avs-accent truncate text-sm font-bold">
-                              {authState.user.name || 'User'}
+                              {user.name || user.email}
                             </p>
                             <p className="text-avs-accent/35 truncate text-xs capitalize">
-                              {authState.user.role?.replace('_', ' ')}
+                              {user.role?.replace('_', ' ')}
                             </p>
                           </div>
                           <span className="ml-auto h-2 w-2 shrink-0 rounded-full bg-emerald-500" />

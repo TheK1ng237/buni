@@ -1,0 +1,13 @@
+{
+  "slug": "folder",
+  "nameFr": "Dossier",
+  "nameEn": "Folder",
+  "family": "interface",
+  "tags": ["dossier", "rangement", "fichier"],
+  "country": "Référence générique",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Dossier marqué d’un zigzag décoratif inspiré de motifs textiles génériques.",
+  "recommendedUse": "Dossiers et rangement de fichiers.",
+  "verifiedBy": "Documentation BUNI-ICON Core 60",
+  "license": "CC BY 4.0"
+}

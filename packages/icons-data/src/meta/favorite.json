@@ -1,0 +1,17 @@
+{
+  "slug": "favorite",
+  "nameFr": "Favori / J’aime",
+  "nameEn": "Favorite / Like",
+  "family": "interface",
+  "tags": [
+    "favori",
+    "aimer",
+    "adinkra"
+  ],
+  "country": "Ghana (Akan)",
+  "people": "Akan (référence Adinkra Akoma)",
+  "culturalNote": "Cœur géométrique à pointe et encoche centrale, inspiré de l’Akoma Adinkra (Akan, Ghana). Référence à une culture précise, à nommer comme telle et à ne pas présenter comme universelle.",
+  "recommendedUse": "Favori, j’aime et sauvegarde. Validation culturelle recommandée avant diffusion publique.",
+  "verifiedBy": "Documentation BUNI-ICON Core 30",
+  "license": "CC BY 4.0"
+}

@@ -1,0 +1,17 @@
+{
+  "slug": "search",
+  "nameFr": "Recherche",
+  "nameEn": "Search",
+  "family": "interface",
+  "tags": [
+    "recherche",
+    "loupe",
+    "navigation"
+  ],
+  "country": "Sans attribution géographique",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Œil stylisé prolongé d’un manche, pour une lecture claire comme icône de recherche.",
+  "recommendedUse": "Recherche et filtres. Garder le manche pour éviter une lecture comme icône de visibilité.",
+  "verifiedBy": "Documentation BUNI-ICON Core 30",
+  "license": "CC BY 4.0"
+}

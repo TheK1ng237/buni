@@ -1,0 +1,13 @@
+{
+  "slug": "cloud",
+  "nameFr": "Nuage",
+  "nameEn": "Cloud",
+  "family": "interface",
+  "tags": ["nuage", "stockage", "météo"],
+  "country": "Référence générique",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Nuage décoré d’un zigzag inspiré de motifs textiles génériques.",
+  "recommendedUse": "Stockage en ligne ou météo.",
+  "verifiedBy": "Documentation BUNI-ICON Core 60",
+  "license": "CC BY 4.0"
+}

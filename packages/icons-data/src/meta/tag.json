@@ -1,0 +1,13 @@
+{
+  "slug": "tag",
+  "nameFr": "Étiquette",
+  "nameEn": "Tag",
+  "family": "interface",
+  "tags": ["étiquette", "prix", "catégorie", "promotion"],
+  "country": "Sans attribution culturelle",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Étiquette munie d’un trou, forme utilitaire sans référence culturelle spécifique.",
+  "recommendedUse": "Prix, catégorie ou promotion.",
+  "verifiedBy": "Documentation BUNI-ICON Core 60",
+  "license": "CC BY 4.0"
+}

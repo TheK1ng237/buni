@@ -1,0 +1,17 @@
+{
+  "slug": "settings",
+  "nameFr": "Réglages",
+  "nameEn": "Settings",
+  "family": "interface",
+  "tags": [
+    "réglages",
+    "préférences",
+    "interface"
+  ],
+  "country": "Référence générique",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Roue à rayons autour d’un moyeu, évoquant les mécanismes de métiers à tisser traditionnels (référence générique).",
+  "recommendedUse": "Réglages et préférences.",
+  "verifiedBy": "Documentation BUNI-ICON Core 30",
+  "license": "CC BY 4.0"
+}

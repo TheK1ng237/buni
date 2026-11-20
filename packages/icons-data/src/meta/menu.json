@@ -1,0 +1,17 @@
+{
+  "slug": "menu",
+  "nameFr": "Menu",
+  "nameEn": "Menu",
+  "family": "interface",
+  "tags": [
+    "menu",
+    "navigation",
+    "interface"
+  ],
+  "country": "Afrique de l’Ouest (référence générique)",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Trois lignes, dont la ligne centrale en zigzag, inspirée de motifs géométriques de tissages d’Afrique de l’Ouest (référence générique).",
+  "recommendedUse": "Menu hamburger. Lisible dès 16 px ; éviter d’animer la ligne centrale sous 20 px.",
+  "verifiedBy": "Documentation BUNI-ICON Core 30",
+  "license": "CC BY 4.0"
+}

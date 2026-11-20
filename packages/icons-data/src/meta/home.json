@@ -1,0 +1,17 @@
+{
+  "slug": "home",
+  "nameFr": "Accueil",
+  "nameEn": "Home",
+  "family": "interface",
+  "tags": [
+    "accueil",
+    "navigation",
+    "habitat"
+  ],
+  "country": "Afrique subsaharienne",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Hutte ronde à toit conique de chaume, décorée de bandes et de zigzags, avec une porte en arche. Typologie répandue dans plusieurs régions d’Afrique subsaharienne ; motifs génériques, sans attribution à un peuple précis.",
+  "recommendedUse": "Accueil et lien vers la page d’accueil. Ne pas l’utiliser pour désigner un village ou un lieu rural.",
+  "verifiedBy": "Documentation BUNI-ICON Core 30",
+  "license": "CC BY 4.0"
+}

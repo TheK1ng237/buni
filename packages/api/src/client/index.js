@@ -2,14 +2,16 @@ import axios from 'axios';
 import { useAuthStore } from '@buni/auth';
 const rawBase = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000';
 const BASE = rawBase.replace(/\/api(\/v1)?\/?$/, '');
+const REQUEST_TIMEOUT_MS = 60000;
 export const apiClient = axios.create({
     baseURL: typeof window === 'undefined' ? BASE : '',
-    timeout: 15000,
+    timeout: REQUEST_TIMEOUT_MS,
     headers: { 'Content-Type': 'application/json' },
 });
 apiClient.interceptors.request.use((config) => {
-    if (config.data instanceof FormData)
+    if (config.data instanceof FormData) {
         delete config.headers['Content-Type'];
+    }
     const token = useAuthStore.getState().token;
     if (token)
         config.headers.set('Authorization', `Bearer ${token}`);

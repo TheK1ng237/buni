@@ -20,6 +20,7 @@ import { userService } from '@/features/user/services/user.service';
 import ViewerDashboard from './viewer-dashboard';
 import CuratorModal from '@/components/curator-modal';
 import { CSS_PATTERN_MAP } from '@buni/patterns';
+import { PatternThumbnail } from '@/features/patterns/components/PatternThumbnail';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // TYPES & CONFIG
@@ -144,9 +145,12 @@ function PatternRow({ pattern, index, t }: { pattern: UserPattern; index: number
         transition={{ duration: 0.35, delay: index * 0.06, ease: 'easeOut' }}
         className="group flex items-center gap-4 px-5 py-3.5 transition-colors duration-150 hover:bg-avs-accent/3 cursor-pointer"
       >
-        <div className={`${patCss} relative h-10 w-10 shrink-0 rounded-lg overflow-hidden ring-1 ring-avs-accent/10`}>
-          <div className="absolute inset-0 bg-avs-accent/10" />
-        </div>
+        <PatternThumbnail
+          src={pattern.imgUrl}
+          patternClass={patCss}
+          alt={pattern.name}
+          className="h-10 w-10 shrink-0 rounded-lg ring-1 ring-avs-accent/10"
+        />
 
         <div className="min-w-0 flex-1">
           <p className="truncate text-[13px] font-semibold text-avs-accent transition-colors duration-150 group-hover:text-avs-primary">
@@ -180,32 +184,64 @@ function PatternRow({ pattern, index, t }: { pattern: UserPattern; index: number
 // ACTIVITY ITEM
 // ─────────────────────────────────────────────────────────────────────────────
 
-function ActivityItem({ item, index }: { item: DashboardActivity; index: number }) {
+function ActivityItem({
+  item,
+  index,
+  t,
+}: {
+  item: DashboardActivity;
+  index: number;
+  t: (key: string) => string;
+}) {
   const conf = ACTIVITY_CONFIG[item.type] ?? ACTIVITY_CONFIG.comment!;
   const Icon = conf.icon;
+  const [expanded, setExpanded] = useState(false);
 
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3, delay: index * 0.05 }}
-      className="flex items-start gap-3.5 px-5 py-3.5 hover:bg-avs-accent/3 transition-colors duration-150"
+      className="transition-colors duration-150 hover:bg-avs-accent/3"
     >
-      <div
-        className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg mt-0.5"
-        style={{ background: `${conf.color}14` }}
+      <button
+        type="button"
+        aria-expanded={expanded}
+        onClick={() => setExpanded((value) => !value)}
+        className="flex w-full items-start gap-3.5 px-5 py-3.5 text-left"
       >
-        <Icon size={12} style={{ color: conf.color }} aria-hidden />
-      </div>
-      <div className="min-w-0 flex-1">
-        <p className="text-[12px] leading-snug text-avs-accent/55">
-          {item.action}{' '}
-          <span className="font-semibold text-avs-accent">{item.target}</span>
-        </p>
-        <p className="mt-1 flex items-center gap-1 text-[10px] font-mono text-avs-accent/30">
-          <Clock size={8} aria-hidden /> {timeAgo(item.timestamp)}
-        </p>
-      </div>
+        <div
+          className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg"
+          style={{ background: `${conf.color}14` }}
+        >
+          <Icon size={12} style={{ color: conf.color }} aria-hidden />
+        </div>
+        <div className="min-w-0 flex-1">
+          <p className="text-[12px] leading-snug text-avs-accent/55">
+            {item.actor && <span className="font-semibold text-avs-primary">{item.actor} </span>}
+            {item.action}{' '}
+            <span className="font-semibold text-avs-accent">{item.target}</span>
+          </p>
+          <p className="mt-1 flex items-center gap-1 text-[10px] font-mono text-avs-accent/30">
+            <Clock size={8} aria-hidden /> {timeAgo(item.timestamp)}
+          </p>
+        </div>
+        <ChevronRight
+          size={14}
+          aria-hidden
+          className={`mt-1 shrink-0 text-avs-accent/30 transition-transform ${expanded ? 'rotate-90' : ''}`}
+        />
+      </button>
+      {expanded && (
+        <div className="ml-12 space-y-1 px-5 pb-3 text-[11px] text-avs-accent/55">
+          <p>{t('activityDetails.action')}: {item.action}</p>
+          <p>{t('activityDetails.target')}: {item.target}</p>
+          {item.actor && <p>{t('activityDetails.actor')}: {item.actor}</p>}
+          <p>
+            {t('activityDetails.date')}: {new Date(item.timestamp).toLocaleString()}
+          </p>
+        </div>
+      )}
     </motion.div>
   );
 }
@@ -354,6 +390,7 @@ export default function DashboardPage() {
   const [activity, setActivity] = useState<DashboardActivity[]>([]);
   const [loading, setLoading]   = useState(true);
   const [platformStats, setPlatformStats] = useState<any>(null);
+  const [statsError, setStatsError] = useState(false);
   const [isCuratorModalOpen, setIsCuratorModalOpen] = useState(false);
 
   const roleLower = user?.role?.toLowerCase() ?? '';
@@ -382,23 +419,15 @@ export default function DashboardPage() {
             });
           } catch (err) {
             console.error('Failed to fetch platform stats:', err);
-            setPlatformStats({
-              totalUsers: 0,
-              totalPatterns: 0,
-              totalDownloads: 0,
-              totalViews: 0,
-              verifiedUsers: 0,
-              admins: 0,
-              curators: 0,
-              contributors: 0,
-              patternsByStatus: { published: 0, draft: 0, review: 0 },
-            });
+            setStatsError(true);
           }
 
           try {
             const [p, a] = await Promise.all([
               dashboardService.getGlobalRecentPatterns(5),
-              dashboardService.getGlobalActivity(6),
+              isSuperAdminUser
+                ? dashboardService.getGlobalActivity(5)
+                : dashboardService.getActivity(5),
             ]);
             setPatterns(p);
             setActivity(a);
@@ -409,7 +438,7 @@ export default function DashboardPage() {
           const [s, p, a] = await Promise.all([
             dashboardService.getStats(),
             dashboardService.getRecentPatterns(5),
-            dashboardService.getActivity(6),
+            dashboardService.getActivity(5),
           ]);
           setStats(s);
           setPatterns(p);
@@ -424,6 +453,7 @@ export default function DashboardPage() {
         }
       } catch (error) {
         console.error('Failed to fetch dashboard data:', error);
+        setStatsError(true);
       } finally {
         setLoading(false);
       }
@@ -467,52 +497,40 @@ export default function DashboardPage() {
   const kpiCards: KpiCardProps[] = isAdminUser ? [
     {
       label: t('kpi.totalUsers') || 'Utilisateurs Totaux',
-      value: platformStats?.totalUsers ?? 0,
-      trend: t('trends.thisMonth'),
+      value: platformStats?.totalUsers ?? (statsError ? '—' : 0),
       icon: Users, color: '#C0573E', patternCss: 'avs-pattern-kente-royale', delay: 0.1, format: formatNumber,
-      progress: Math.min(100, ((platformStats?.totalUsers ?? 0) / ((platformStats?.totalUsers ?? 0) * 1.35 || 1)) * 100),
     },
     {
       label: t('kpi.totalPatterns') || 'Motifs Totaux',
-      value: platformStats?.totalPatterns ?? 0,
-      trend: t('trends.thisMonth'),
+      value: platformStats?.totalPatterns ?? (statsError ? '—' : 0),
       icon: Layers, color: '#4F7CFF', patternCss: 'avs-pattern-ndop-sultan', delay: 0.17, format: formatNumber,
-      progress: Math.min(100, ((platformStats?.totalPatterns ?? 0) / ((platformStats?.totalPatterns ?? 0) * 1.35 || 1)) * 100),
     },
     {
       label: t('kpi.downloads') || 'Téléchargements',
-      value: platformStats?.totalDownloads ?? 0,
-      trend: t('trends.vsLastMonth'),
+      value: platformStats?.totalDownloads ?? (statsError ? '—' : 0),
       icon: Download, color: '#8B5CF6', patternCss: 'avs-pattern-bogolan-fanga', delay: 0.24, format: formatNumber,
-      progress: Math.min(100, ((platformStats?.totalDownloads ?? 0) / ((platformStats?.totalDownloads ?? 0) * 1.35 || 1)) * 100),
     },
     {
       label: t('kpi.totalViews') || 'Vues Totales',
-      value: platformStats?.totalViews ?? 0,
-      trend: t('trends.thisMonth'),
+      value: platformStats?.totalViews ?? (statsError ? '—' : 0),
       icon: Eye, color: '#F59E0B', patternCss: 'avs-pattern-adinkra-sankofa', delay: 0.31, format: formatNumber,
-      progress: Math.min(100, ((platformStats?.totalViews ?? 0) / ((platformStats?.totalViews ?? 0) * 1.35 || 1)) * 100),
     },
   ] : [
     {
-      label: t('kpi.myPatterns'),     value: stats?.patternsCreated  ?? 0, trend: stats?.trends?.patternsTrend ?? t('trends.thisMonth'),
+      label: t('kpi.myPatterns'),     value: stats?.patternsCreated  ?? (statsError ? '—' : 0),
       icon: Layers,   color: '#C0573E', patternCss: 'avs-pattern-kente-royale',  delay: 0.1, format: formatNumber,
-      progress: Math.min(100, ((stats?.patternsCreated ?? 0) / ((stats?.patternsCreated ?? 0) * 1.35 || 1)) * 100),
     },
     {
-      label: t('kpi.downloads'),value: stats?.downloadsTotal ?? 0, trend: stats?.trends?.downloadsTrend ?? t('trends.vsLastMonth'),
+      label: t('kpi.downloads'),value: stats?.downloadsTotal ?? (statsError ? '—' : 0),
       icon: Download, color: '#4F7CFF', patternCss: 'avs-pattern-ndop-sultan',   delay: 0.17, format: formatNumber,
-      progress: Math.min(100, ((stats?.downloadsTotal ?? 0) / ((stats?.downloadsTotal ?? 0) * 1.35 || 1)) * 100),
     },
     {
-      label: t('kpi.totalViews'),   value: stats?.totalViews     ?? 0, trend: stats?.trends?.viewsTrend ?? t('trends.thisMonth'),
+      label: t('kpi.totalViews'),   value: stats?.totalViews     ?? (statsError ? '—' : 0),
       icon: Eye,      color: '#8B5CF6', patternCss: 'avs-pattern-bogolan-fanga', delay: 0.24, format: formatNumber,
-      progress: Math.min(100, ((stats?.totalViews ?? 0) / ((stats?.totalViews ?? 0) * 1.35 || 1)) * 100),
     },
     {
-      label: t('kpi.favorites'),  value: stats?.favoritesCount ?? 0, trend: stats?.trends?.favoritesTrend ?? t('trends.new'),
+      label: t('kpi.favorites'),  value: stats?.favoritesCount ?? (statsError ? '—' : 0),
       icon: Star,     color: '#F59E0B', patternCss: 'avs-pattern-adinkra-sankofa', delay: 0.31, format: formatNumber,
-      progress: Math.min(100, ((stats?.favoritesCount ?? 0) / ((stats?.favoritesCount ?? 0) * 1.35 || 1)) * 100),
     },
   ];
 
@@ -552,10 +570,15 @@ export default function DashboardPage() {
               {kpiCards.map((card, i) => <KpiCard key={typeof card.label === 'string' ? card.label : i} {...card} />)}
             </div>
           )}
+          {statsError && !loading && (
+            <p role="status" className="mt-3 text-sm text-red-600">
+              {t('statsUnavailable')}
+            </p>
+          )}
         </section>
 
         {/* ══ ADMIN STATS PANEL ═════════════════════════════════════════ */}
-        {isAdminUser && (
+        {isSuperAdminUser && (
           <motion.section
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
@@ -656,7 +679,12 @@ export default function DashboardPage() {
             aria-label="Activité récente"
           >
             <Panel className="h-full">
-              <PanelHeader title="Activité récente" patternCss="avs-pattern-adinkra-sankofa" />
+              <PanelHeader
+                title="Activité récente"
+                patternCss="avs-pattern-adinkra-sankofa"
+                href="/activity"
+                linkLabel={t('recentActivity.viewAll')}
+              />
 
               {loading ? (
                 <div className="divide-y divide-avs-accent/5">
@@ -671,8 +699,10 @@ export default function DashboardPage() {
                   ))}
                 </div>
               ) : activity.length > 0 ? (
-                <div className="divide-y divide-avs-accent/5 max-h-[420px] overflow-y-auto [scrollbar-width:thin]">
-                  {activity.map((item, i) => <ActivityItem key={item.id} item={item} index={i} />)}
+                <div className="divide-y divide-avs-accent/5">
+                  {activity.slice(0, 5).map((item, i) => (
+                    <ActivityItem key={item.id} item={item} index={i} t={t} />
+                  ))}
                 </div>
               ) : (
                 <div className="flex flex-col items-center justify-center py-14">
@@ -694,11 +724,14 @@ export default function DashboardPage() {
             <PanelHeader title={t('quickActions.title')} patternCss="avs-pattern-kuba-kasai" />
             <div className="grid grid-cols-2 gap-3 p-4 sm:grid-cols-4 lg:grid-cols-6">
               <QuickAction href="/patternsDashboard/new" icon={Plus}    label={t('quickActions.newPattern.label')}  sub={t('quickActions.newPattern.sub')} accent />
+              {(isCurator || isAdminUser) && (
+                <QuickAction href="/symbolsDashboard" icon={Sparkles} label={t('quickActions.symbols.label')} sub={t('quickActions.symbols.sub')} />
+              )}
               <QuickAction href="/patterns"              icon={Layers}  label={t('quickActions.library.label')}   sub={t('quickActions.library.sub')} />
               <QuickAction href="/profile"               icon={User}    label={t('quickActions.profile.label')}     sub={t('quickActions.profile.sub')} />
               <QuickAction href="/activity"              icon={Activity} label={t('quickActions.activity.label')} sub={t('quickActions.activity.sub')} />
               <QuickAction href="/colors"                icon={Palette} label={t('quickActions.palettes.label')}       sub={t('quickActions.palettes.sub')} />
-              {isAdminUser && (
+              {isSuperAdminUser && (
                 <QuickAction href="/users" icon={Users} label={t('quickActions.users.label') || 'Gestion Utilisateurs'} sub={t('quickActions.users.sub') || 'Consulter la liste'} />
               )}
             </div>

@@ -1,0 +1,14 @@
+{
+  "name": "@buni/icon-react",
+  "version": "0.1.0",
+  "description": "Composant React pour la bibliothèque d'icônes africaines BUNI",
+  "license": "Apache-2.0",
+  "main": "./src/index.tsx",
+  "types": "./src/index.tsx",
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0"
+  },
+  "dependencies": {
+    "@buni/icons-data": "workspace:*"
+  }
+}

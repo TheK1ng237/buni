@@ -141,7 +141,7 @@ export const NAV_SPACES: NavSpace[] = [
   },
   {
     slug: 'motifs', label: 'Motifs', icon: 'th-large', color: '#D4A017',
-    description: "1 248 motifs documentés et sourcés.",
+    description: "Motifs documentés et sourcés.",
     pages: [
       { slug: 'intro', title: 'Introduction' },
       { slug: 'utiliser-patterns-code', title: 'Utiliser dans votre code' },

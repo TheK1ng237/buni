@@ -1,15 +1,9 @@
 'use client';
 
-import {
-  useQuery,
-  useMutation,
-  useQueryClient,
-} from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useAuth } from '@buni/auth';
 
-import type {
-  Pattern,
-  PatternFilters,
-} from '../types';
+import type { Pattern, PatternFilters } from '../types';
 
 import { loadPatterns } from '../usecases/load-patterns.usecase';
 
@@ -24,49 +18,47 @@ import { loadFeaturedPatterns } from '../usecases/load-featured-patterns.usecase
 export const patternKeys = {
   all: ['patterns'] as const,
 
-  lists: () =>
-    [...patternKeys.all, 'list'] as const,
+  lists: () => [...patternKeys.all, 'list'] as const,
 
-  list: (filters: PatternFilters) =>
-    [...patternKeys.lists(), filters] as const,
+  list: (filters: PatternFilters, authScope = 'public') =>
+    [...patternKeys.lists(), authScope, filters] as const,
 
-  details: () =>
-    [...patternKeys.all, 'detail'] as const,
+  details: () => [...patternKeys.all, 'detail'] as const,
 
-  detail: (slug: string) =>
-    [...patternKeys.details(), slug] as const,
+  detail: (slug: string, authScope = 'public') =>
+    [...patternKeys.details(), authScope, slug] as const,
 
-  featured: () =>
-    [...patternKeys.all, 'featured'] as const,
+  featured: () => [...patternKeys.all, 'featured'] as const,
 };
 
 // ─────────────────────────────────────────────────────────────
 // Hooks
 // ─────────────────────────────────────────────────────────────
 
-export function usePatterns(
-  filters: PatternFilters = {}
-) {
+export function usePatterns(filters: PatternFilters = {}) {
+  const { isHydrated, user } = useAuth();
+  const authScope = user ? `${user.id}:${user.role}` : 'public';
+
   return useQuery({
-    queryKey: patternKeys.list(filters),
+    queryKey: patternKeys.list(filters, authScope),
 
-    queryFn: () =>
-      loadPatterns(filters),
+    queryFn: () => loadPatterns(filters),
 
-    placeholderData: prev => prev,
+    enabled: isHydrated,
+    placeholderData: (prev) => prev,
   });
 }
 
-export function usePattern(
-  slug: string
-) {
+export function usePattern(slug: string) {
+  const { isHydrated, user } = useAuth();
+  const authScope = user ? `${user.id}:${user.role}` : 'public';
+
   return useQuery({
-    queryKey: patternKeys.detail(slug),
+    queryKey: patternKeys.detail(slug, authScope),
 
-    queryFn: () =>
-      loadPattern(slug),
+    queryFn: () => loadPattern(slug),
 
-    enabled: !!slug,
+    enabled: !!slug && isHydrated,
 
     staleTime: 5 * 60 * 1000,
   });
@@ -76,8 +68,7 @@ export function useFeaturedPatterns() {
   return useQuery({
     queryKey: patternKeys.featured(),
 
-    queryFn: () =>
-      loadFeaturedPatterns(),
+    queryFn: () => loadFeaturedPatterns(),
 
     staleTime: 10 * 60 * 1000,
   });

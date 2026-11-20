@@ -1,4 +1,4 @@
-import { PATTERNS_DOCS } from '../../patterns/mock';
+import { PATTERNS_DOCS } from '@/features/patterns/data/patterns-docs';
 import { mapPatternDtoToModel } from '@/features/patterns/mappers/pattern.mapper';
 import type { Pattern, PatternDto } from '@/features/patterns/types';
 

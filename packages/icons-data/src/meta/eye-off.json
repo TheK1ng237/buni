@@ -1,0 +1,13 @@
+{
+  "slug": "eye-off",
+  "nameFr": "Masquer",
+  "nameEn": "Hide",
+  "family": "interface",
+  "tags": ["masquer", "visibilité", "confidentialité"],
+  "country": "Référence générique",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Œil barré, construit sur la même forme que l’icône eye.",
+  "recommendedUse": "Masquer un contenu ou un mot de passe.",
+  "verifiedBy": "Documentation BUNI-ICON Core 60",
+  "license": "CC BY 4.0"
+}

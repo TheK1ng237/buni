@@ -56,32 +56,53 @@ function ActivityItem({ item, index, t }: { item: DashboardActivity; index: numb
   const config = getActivityConfig(t)[item.type];
   if (!config) return null;
   const Icon = config.icon;
+  const [expanded, setExpanded] = useState(false);
 
   return (
     <motion.div
       initial={{ opacity: 0, x: -8 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.35, delay: index * 0.05, ease: 'easeOut' }}
-      className="group flex items-center gap-4 rounded-xl border border-avs-accent/6 bg-avs-secondary p-4 transition-all hover:border-avs-primary/20 hover:bg-avs-primary/[0.02]"
+      className="overflow-hidden rounded-xl border border-avs-accent/6 bg-avs-secondary transition-all hover:border-avs-primary/20 hover:bg-avs-primary/[0.02]"
     >
-      <div
-        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-transform group-hover:scale-110"
-        style={{ background: `${config.color}14` }}
+      <button
+        type="button"
+        aria-expanded={expanded}
+        onClick={() => setExpanded((value) => !value)}
+        className="group flex w-full items-center gap-4 p-4 text-left"
       >
-        <Icon size={18} style={{ color: config.color }} />
-      </div>
+        <div
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-transform group-hover:scale-110"
+          style={{ background: `${config.color}14` }}
+        >
+          <Icon size={18} style={{ color: config.color }} />
+        </div>
 
-      <div className="min-w-0 flex-1">
-        <p className="truncate font-semibold text-avs-accent">{item.action}</p>
-        <p className="truncate text-xs text-avs-accent/45">{item.target}</p>
-      </div>
+        <div className="min-w-0 flex-1">
+          <p className="truncate font-semibold text-avs-accent">
+            {item.actor ? `${item.actor} ${item.action}` : item.action}
+          </p>
+          <p className="truncate text-xs text-avs-accent/45">{item.target}</p>
+        </div>
 
-      <div className="flex shrink-0 items-center gap-1.5 whitespace-nowrap text-xs text-avs-accent/40">
-        <Clock size={13} />
-        {timeAgo(item.timestamp)}
-      </div>
+        <div className="flex shrink-0 items-center gap-1.5 whitespace-nowrap text-xs text-avs-accent/40">
+          <Clock size={13} />
+          {timeAgo(item.timestamp)}
+        </div>
 
-      <ChevronRight className="shrink-0 text-avs-accent/20 transition-colors group-hover:text-avs-primary/40" size={16} />
+        <ChevronRight
+          className={`shrink-0 text-avs-accent/20 transition-all group-hover:text-avs-primary/40 ${expanded ? 'rotate-90' : ''}`}
+          size={16}
+        />
+      </button>
+      {expanded && (
+        <div className="space-y-1 border-t border-avs-accent/6 px-4 pb-4 pt-3 pl-[4.5rem] text-xs text-avs-accent/55">
+          <p>{t('details.action')}: {item.action}</p>
+          <p>{t('details.target')}: {item.target}</p>
+          {item.actor && <p>{t('details.actor')}: {item.actor}</p>}
+          <p>{t('details.date')}: {new Date(item.timestamp).toLocaleString()}</p>
+        </div>
+      )}
     </motion.div>
   );
 }
@@ -93,25 +114,40 @@ function ActivityItem({ item, index, t }: { item: DashboardActivity; index: numb
 export default function ActivityPage() {
   const t = useTranslations('dashboard.activity');
   const { user, isAuthenticated } = useAuth();
+  const isSuperAdmin = user?.role.toLowerCase() === 'super_admin';
   const [filter, setFilter] = useState<string>('all');
 
-  const { data: activities = [], isLoading } = useQuery({
-    queryKey: ['user-activity', filter],
-    queryFn: () => dashboardService.getActivity(50),
+  const { data: activities = [], isLoading, isError } = useQuery({
+    queryKey: ['user-activity', filter, user?.id, isSuperAdmin],
+    queryFn: () =>
+      isSuperAdmin ? dashboardService.getGlobalActivity(100) : dashboardService.getActivity(50),
     enabled: !!user,
+  });
+  const { data: activityStats, isError: activityStatsError } = useQuery({
+    queryKey: ['user-activity-stats', user?.id],
+    queryFn: () => dashboardService.getActivityStats(),
+    enabled: !!user && !isSuperAdmin,
   });
 
   const filteredActivities = filter === 'all'
     ? activities
     : activities.filter((a) => a.type === filter);
-
-  const activityCounts = {
-    total: activities.length,
-    downloads: activities.filter((a) => a.type === 'download').length.toString(),
-    favorites: activities.filter((a) => a.type === 'favorite').length.toString(),
-    comments: activities.filter((a) => a.type === 'comment').length.toString(),
-    reviews: activities.filter((a) => a.type === 'review').length.toString(),
+  const activityCountByFilter: Record<string, number | undefined> = {
+    all: isSuperAdmin ? activities.length : activityStats?.total,
+    download: isSuperAdmin
+      ? activities.filter((activity) => activity.type === 'download').length
+      : activityStats?.downloads,
+    favorite: isSuperAdmin
+      ? activities.filter((activity) => activity.type === 'favorite').length
+      : activityStats?.favorites,
+    comment: isSuperAdmin
+      ? activities.filter((activity) => activity.type === 'comment').length
+      : activityStats?.comments,
+    review: isSuperAdmin
+      ? activities.filter((activity) => activity.type === 'review').length
+      : activityStats?.reviews,
   };
+  const filteredActivityCount = activityCountByFilter[filter];
 
   if (!isAuthenticated) {
     return (
@@ -145,21 +181,28 @@ export default function ActivityPage() {
         </motion.div>
 
         {/* ══ STATS ═══════════════════════════════════════════════════════ */}
-        <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
-        >
-          {[
-            { label: t('stats.total'), value: activityCounts.total, icon: Activity, color: '#C0573E', patternCss: 'avs-pattern-kente-royale', delay: 0.2 },
-            { label: t('stats.downloads'), value: activityCounts.downloads, icon: Download, color: '#4F7CFF', patternCss: 'avs-pattern-ndop-sultan', delay: 0.28 },
-            { label: t('stats.favorites'), value: activityCounts.favorites, icon: Heart, color: '#EC4899', patternCss: 'avs-pattern-adinkra-sankofa', delay: 0.36 },
-            { label: t('stats.reviews'), value: activityCounts.reviews, icon: Star, color: '#F59E0B', patternCss: 'avs-pattern-wax-dakar', delay: 0.44 },
-          ].map((stat) => (
-            <KpiCard key={String(stat.label)} {...stat} format={formatNumber} />
-          ))}
-        </motion.div>
+        {!isSuperAdmin && (
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
+          >
+            {[
+              { label: t('stats.total'), value: activityStats?.total ?? '—', icon: Activity, color: '#C0573E', patternCss: 'avs-pattern-kente-royale', delay: 0.2 },
+              { label: t('stats.downloads'), value: activityStats?.downloads ?? '—', icon: Download, color: '#4F7CFF', patternCss: 'avs-pattern-ndop-sultan', delay: 0.28 },
+              { label: t('stats.favorites'), value: activityStats?.favorites ?? '—', icon: Heart, color: '#EC4899', patternCss: 'avs-pattern-adinkra-sankofa', delay: 0.36 },
+              { label: t('stats.reviews'), value: activityStats?.reviews ?? '—', icon: Star, color: '#F59E0B', patternCss: 'avs-pattern-wax-dakar', delay: 0.44 },
+            ].map((stat) => (
+              <KpiCard key={String(stat.label)} {...stat} format={formatNumber} />
+            ))}
+          </motion.div>
+        )}
+        {!isSuperAdmin && activityStatsError && (
+          <p role="status" className="text-sm text-red-600">
+            {t('stats.unavailable')}
+          </p>
+        )}
 
         {/* ══ FILTRES ═════════════════════════════════════════════════════ */}
         <motion.div
@@ -183,7 +226,7 @@ export default function ActivityPage() {
             </select>
           </div>
           <div className="whitespace-nowrap font-mono text-[11px] text-avs-accent/40">
-            {filteredActivities.length} activité{filteredActivities.length !== 1 ? 's' : ''}
+            {filteredActivityCount ?? '—'} activité{filteredActivityCount !== 1 ? 's' : ''}
           </div>
         </motion.div>
 
@@ -202,6 +245,12 @@ export default function ActivityPage() {
                 </div>
               ))}
             </div>
+          </Panel>
+        ) : isError ? (
+          <Panel>
+            <p role="alert" className="px-5 py-8 text-center text-sm text-red-600">
+              {t('loadError')}
+            </p>
           </Panel>
         ) : filteredActivities.length === 0 ? (
           <Panel>

@@ -1,0 +1,17 @@
+{
+  "slug": "share",
+  "nameFr": "Partager",
+  "nameEn": "Share",
+  "family": "interface",
+  "tags": [
+    "partage",
+    "réseau",
+    "communication"
+  ],
+  "country": "Sans attribution culturelle",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Trois nœuds reliés par deux lignes, représentant un réseau communautaire simplifié sans référence culturelle spécifique.",
+  "recommendedUse": "Partage et réseau.",
+  "verifiedBy": "Documentation BUNI-ICON Core 30",
+  "license": "CC BY 4.0"
+}

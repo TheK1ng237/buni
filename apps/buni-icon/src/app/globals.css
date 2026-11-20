@@ -1,0 +1,158 @@
+/* ============================================================
+   BUNI ICON — L'Iconify de l'Afrique
+   Design System BUNI & AVS
+   ============================================================ */
+
+@import '@buni/tokens/css';
+@import '@buni/patterns/css';
+@import 'tailwindcss';
+@import 'primeicons/primeicons.css';
+
+:root {
+  --font-body: var(--font-buni-display), sans-serif;
+  --font-display: var(--font-buni-display), serif;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    color-scheme: light;
+    scroll-behavior: smooth;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply antialiased;
+    font-family: var(--font-body);
+    background-color: var(--color-light-bg);
+    color: var(--color-light-text);
+    line-height: 1.6;
+  }
+
+  html.dark body {
+    background-color: var(--color-dark-bg);
+    color: var(--color-dark-text);
+  }
+
+  html {
+    --color-avs-primary: #C0573E;
+    --color-avs-secondary: #F5EBE0;
+    --color-avs-accent: #1D1D1B;
+    --color-avs-kente: #D4A017;
+    --color-avs-ndop: #4A6741;
+    --color-avs-indigo: #2A4A6B;
+    --color-avs-earth: #8B4513;
+    --color-avs-raffia: #C8A96E;
+  }
+
+  html.dark {
+    --color-avs-primary: #E8755C;
+    --color-avs-secondary: #1A1916;
+    --color-avs-accent: #F5EBE0;
+    --color-avs-kente: #E8B828;
+    --color-avs-ndop: #5C7F52;
+    --color-avs-indigo: #3D5D7E;
+    --color-avs-earth: #A05523;
+    --color-avs-raffia: #D4BC7E;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-avs-primary);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .avs-container {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .avs-badge {
+    @apply inline-flex items-center px-2.5 py-0.5 text-[10px] font-bold tracking-[0.24em] uppercase;
+    border-radius: var(--radius-avs);
+  }
+
+  .avs-btn-primary {
+    @apply inline-flex cursor-pointer items-center justify-center gap-2 border-0 px-5 py-2.5 text-sm font-bold transition-all;
+    background-color: var(--color-avs-primary);
+    color: var(--color-avs-secondary);
+    border-radius: var(--radius-avs);
+    box-shadow: var(--shadow-avs);
+  }
+
+  .avs-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-avs-md);
+  }
+
+  .avs-btn-secondary {
+    @apply inline-flex cursor-pointer items-center justify-center gap-2 border-2 px-5 py-2.5 text-sm font-bold transition-all;
+    background: transparent;
+    color: var(--color-light-text);
+    border-color: var(--color-light-border);
+    border-radius: var(--radius-avs);
+  }
+
+  html.dark .avs-btn-secondary {
+    color: var(--color-dark-text);
+    border-color: var(--color-dark-border);
+  }
+
+  .avs-btn-secondary:hover {
+    border-color: var(--color-avs-primary);
+    color: var(--color-avs-primary);
+  }
+
+  .avs-card {
+    @apply border transition-all;
+    background-color: var(--color-light-surface);
+    border-color: var(--color-light-border);
+    border-radius: var(--radius-avs-lg);
+    box-shadow: var(--shadow-avs);
+  }
+
+  html.dark .avs-card {
+    background-color: var(--color-dark-surface);
+    border-color: var(--color-dark-border);
+  }
+}
+
+@keyframes avs-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-avs-marquee {
+  display: flex;
+  width: max-content;
+  animation: avs-marquee 35s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-avs-marquee {
+    animation: none;
+    overflow-x: auto;
+  }
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+

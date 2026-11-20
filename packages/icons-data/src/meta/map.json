@@ -1,0 +1,17 @@
+{
+  "slug": "map",
+  "nameFr": "Carte",
+  "nameEn": "Map",
+  "family": "interface",
+  "tags": [
+    "carte",
+    "itinéraire",
+    "navigation"
+  ],
+  "country": "Sans attribution géographique",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Carte dépliée en trois panneaux avec un tracé intérieur évoquant un chemin, sans reproduire de territoire réel.",
+  "recommendedUse": "Carte et itinéraire.",
+  "verifiedBy": "Documentation BUNI-ICON Core 30",
+  "license": "CC BY 4.0"
+}

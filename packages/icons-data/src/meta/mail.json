@@ -1,0 +1,17 @@
+{
+  "slug": "mail",
+  "nameFr": "E-mail / Messages",
+  "nameEn": "Mail / Messages",
+  "family": "interface",
+  "tags": [
+    "mail",
+    "message",
+    "courriel"
+  ],
+  "country": "Sans attribution culturelle",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Enveloppe avec rabat et plis diagonaux. La forme reste standard, sans motif culturel ajouté afin de préserver la lisibilité.",
+  "recommendedUse": "Messagerie et e-mail.",
+  "verifiedBy": "Documentation BUNI-ICON Core 30",
+  "license": "CC BY 4.0"
+}

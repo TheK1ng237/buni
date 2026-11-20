@@ -1,0 +1,13 @@
+{
+  "slug": "bookmark",
+  "nameFr": "Marque-page",
+  "nameEn": "Bookmark",
+  "family": "interface",
+  "tags": ["marque-page", "enregistrer", "favori"],
+  "country": "Référence générique",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Fanion à pointe en chevron ; sa géométrie fait écho à des motifs textiles sans référence culturelle spécifique.",
+  "recommendedUse": "Enregistrer un élément ou marquer une page.",
+  "verifiedBy": "Documentation BUNI-ICON Core 60",
+  "license": "CC BY 4.0"
+}

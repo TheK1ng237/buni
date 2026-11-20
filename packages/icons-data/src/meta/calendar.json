@@ -1,0 +1,17 @@
+{
+  "slug": "calendar",
+  "nameFr": "Calendrier",
+  "nameEn": "Calendar",
+  "family": "interface",
+  "tags": [
+    "calendrier",
+    "date",
+    "événement"
+  ],
+  "country": "Référence historique : RDC",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Calendrier avec cinq traits de comptage. Le comptage par encoches est une pratique ancienne et répandue ; l’os d’Ishango (RDC) constitue un repère historique.",
+  "recommendedUse": "Dates, événements et rendez-vous.",
+  "verifiedBy": "Documentation BUNI-ICON Core 30",
+  "license": "CC BY 4.0"
+}

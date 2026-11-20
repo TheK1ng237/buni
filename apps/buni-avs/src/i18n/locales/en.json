@@ -57,10 +57,10 @@
     "title2": "has a story",
     "title3": "We've coded it.",
     "description": "verify the origin, symbolism and usage rights of each pattern before it becomes a token — ready for production, no account required.",
-    "artisansCount": "312 artisan-conservators",
+    "artisansCount": "{count} artisan-conservators",
     "exploreSystem": "Explore the system",
     "viewDocs": "View documentation",
-    "communityProof": "+312 artisans",
+    "communityProof": "Artisan community",
     "verifyEachPattern": "verify each pattern",
     "verifiedProvenance": "Verified provenance",
     "footnote1": "documented patterns",
@@ -81,7 +81,8 @@
       "artisans": "Artisans",
       "verified": "verified",
       "downloads": "DL",
-      "thisMonth": "this month"
+      "thisMonth": "all time",
+      "unavailable": "Statistics are currently unavailable."
     },
     "gallery": {
       "label": "Heritage · Featured Patterns",
@@ -106,7 +107,7 @@
       "description": "Everything is accessible without an account, like PrimeReact. African knowledge belongs to humanity.",
       "patternLibrary": {
         "title": "Pattern Library",
-        "desc": "+1,200 patterns by region, era and symbolism. SVG, PNG, JSON, CSS."
+        "desc": "Patterns by region, era and symbolism. SVG, PNG, JSON, CSS."
       },
       "designTokens": {
         "title": "Cultural Design Tokens",
@@ -114,7 +115,7 @@
       },
       "artisanCommunity": {
         "title": "Artisan Community",
-        "desc": "312 verified artisans validate each entry. The primary source, always."
+        "desc": "Verified artisans validate each entry. The primary source, always."
       },
       "documentation": {
         "title": "Components & Documentation",
@@ -125,8 +126,10 @@
       "documentedPatterns": "Documented patterns",
       "representedCountries": "Countries represented",
       "verifiedArtisans": "Verified artisans",
-      "downloadsPerMonth": "Downloads/month"
+      "downloadsPerMonth": "Total downloads"
     },
+    "communityCount": "+{count} artisans have joined us",
+    "downloadsTotal": "{count} total downloads — no account required",
     "bento": {
       "label": "Why AVS",
       "copyPaste": {
@@ -259,9 +262,9 @@
     "loading": "Creating account…",
     "perks": {
       "title": "Why join?",
-      "patterns": "Access to 1,248 high-resolution patterns",
+      "patterns": "Access to high-resolution patterns",
       "tokens": "Ready-to-use design token palette",
-      "community": "Community of 312 verified artisans",
+      "community": "Community of verified artisans",
       "downloads": "Unlimited SVG, PNG and JSON downloads"
     },
     "stats": {
@@ -428,23 +431,23 @@
       "label": "Where the standard stands",
       "title": "Two years of fieldwork, in numbers",
       "hero": {
-        "value": "1,248",
+        "value": "—",
         "label": "Documented patterns",
         "detail": "Vectorized, sourced, ready for production"
       },
       "countries": {
-        "value": "54",
+        "value": "—",
         "label": "Countries represented",
-        "detail": "Out of 54 countries on the continent"
+        "detail": "Countries with published patterns"
       },
       "artisans": {
-        "value": "312",
+        "value": "—",
         "label": "Verified artisans",
         "detail": "Permanent oversight over their heritage"
       },
       "archive": {
-        "value": "5 years",
-        "label": "Of living archive",
+        "value": "2024",
+        "label": "Living archive since",
         "detail": "Continuous field research since 2024"
       }
     },
@@ -472,7 +475,7 @@
         "02": {
           "title": "v1.0 launch",
           "objective": "Release a solid, documented, production-ready foundation.",
-          "metric": "1,248 patterns · 312 verified artisans",
+          "metric": "Open catalog · artisan validation",
           "deliverables": [
             "Open library of documented patterns",
             "Figma & Tailwind integrations",
@@ -567,7 +570,7 @@
     "cta": {
       "title": "Join the standard.",
       "button": "Contribute to the standard",
-      "footer": "312 artisans · 54 countries · CC BY 4.0 · Free"
+      "footer": "Verified artisans · Countries represented · CC BY 4.0 · Free"
     }
   },
   "coffee": {
@@ -786,6 +789,58 @@
     },
     "mobile": {
       "close": "Close"
+    }
+  },
+  "symbols": {
+    "header": {
+      "label": "Cultural documentation · {count} symbols",
+      "title": "Symbol Encyclopedia",
+      "description": "Explore meanings, cultural contexts, and sources for symbols documented in AVS patterns."
+    },
+    "search": {
+      "label": "Search symbols",
+      "placeholder": "Symbol, meaning, culture, or country…",
+      "clear": "Clear search",
+      "reset": "Reset filters"
+    },
+    "filters": {
+      "label": "Filter symbols by type"
+    },
+    "types": {
+      "ALL": "All",
+      "KENTE": "Kente",
+      "KUBA": "Kuba",
+      "NDEBELE": "Ndebele",
+      "BERBER": "Berber",
+      "WAX": "Wax",
+      "NDOP": "Ndop",
+      "BOGOLAN": "Bogolan",
+      "ADINKRA": "Adinkra"
+    },
+    "stats": {
+      "symbols": "documented symbols",
+      "cultures": "cultural origins"
+    },
+    "catalog": {
+      "title": "Explore symbols",
+      "count": "{count} entr{count, plural, one {y} other {ies}}",
+      "updating": "Syncing",
+      "emptyTitle": "No symbols found",
+      "emptyDescription": "Change your search or choose a different filter."
+    },
+    "loadError": "The remote catalog could not be refreshed.",
+    "loadErrorFallback": "Previously available entries remain accessible.",
+    "copyError": "Could not copy the entry link.",
+    "detail": {
+      "restricted": "Ritual or restricted context",
+      "meaning": "Documented meaning",
+      "context": "Documented context and usage",
+      "parentPattern": "Related pattern",
+      "sources": "References for the related pattern",
+      "select": "Select a symbol to view its entry.",
+      "close": "Close entry",
+      "share": "Copy link",
+      "copied": "Link copied"
     }
   },
   "colors": {
@@ -1675,7 +1730,7 @@
       "title": "Ready to contribute to the",
       "titleHighlight": "African standard",
       "titleEnd": "?",
-      "description": "Join 312 artisans, researchers and designers building together the largest open-source African visual archive.",
+      "description": "Join artisans, researchers and designers building an open-source African visual archive together.",
       "createAccount": "Create a free account",
       "explorePatterns": "Explore patterns"
     }
@@ -1721,6 +1776,13 @@
     "activity": {
       "title": "My Activity",
       "subtitle": "View all your interactions with the platform",
+      "loadError": "Could not load the activity log. Please try again.",
+      "details": {
+        "action": "Action",
+        "target": "Target",
+        "actor": "Actor",
+        "date": "Date"
+      },
       "types": {
         "download": "Download",
         "favorite": "Favorite",
@@ -1820,10 +1882,20 @@
         "new": "+0 new"
       },
       "statsLabel": "Key statistics",
+      "statsUnavailable": "Could not load statistics from the server.",
       "recentPatternsLabel": "Recent patterns",
       "recentPatterns": {
         "title": "Recent patterns",
         "viewAll": "View all patterns"
+      },
+      "recentActivity": {
+        "viewAll": "View all activity"
+      },
+      "activityDetails": {
+        "action": "Action",
+        "target": "Target",
+        "actor": "Actor",
+        "date": "Date"
       },
       "quickActionsLabel": "Quick actions",
       "quickActions": {
@@ -1831,6 +1903,10 @@
         "newPattern": {
           "label": "New pattern",
           "sub": "Submit to catalog"
+        },
+        "symbols": {
+          "label": "Manage symbols",
+          "sub": "Create and document"
         },
         "library": {
           "label": "Library",
@@ -1882,7 +1958,8 @@
         "published": "Published",
         "drafts": "Drafts",
         "review": "In review",
-        "totalViews": "Total views"
+        "totalViews": "Total views",
+        "unavailable": "Could not load statistics from the server."
       },
       "status": {
         "published": "Published",
@@ -1921,7 +1998,9 @@
         "viewDetails": "View details",
         "removeFeatured": "Remove featured",
         "makeFeatured": "Make featured",
-        "delete": "Delete"
+        "delete": "Delete",
+        "featureErrorTitle": "Update failed",
+        "featureError": "Could not update this pattern's featured status. Please try again."
       },
       "empty": {
         "noResults": "No results",

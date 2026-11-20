@@ -1,0 +1,13 @@
+{
+  "slug": "chat",
+  "nameFr": "Discussion",
+  "nameEn": "Chat",
+  "family": "interface",
+  "tags": ["discussion", "message", "commentaire"],
+  "country": "Référence générique",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Bulle de dialogue marquée d’un zigzag inspiré de motifs textiles génériques.",
+  "recommendedUse": "Discussion et commentaires.",
+  "verifiedBy": "Documentation BUNI-ICON Core 60",
+  "license": "CC BY 4.0"
+}

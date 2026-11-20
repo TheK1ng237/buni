@@ -1,0 +1,17 @@
+{
+  "slug": "upload",
+  "nameFr": "Envoi",
+  "nameEn": "Upload",
+  "family": "interface",
+  "tags": [
+    "envoi",
+    "téléversement",
+    "fichier"
+  ],
+  "country": "Référence générique",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Flèche ascendante au-dessus d’un panier tressé, cohérente avec l’icône basket.",
+  "recommendedUse": "Envoi de fichier.",
+  "verifiedBy": "Documentation BUNI-ICON Core 30",
+  "license": "CC BY 4.0"
+}

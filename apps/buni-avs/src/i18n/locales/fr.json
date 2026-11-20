@@ -57,10 +57,10 @@
     "title2": "a une histoire",
     "title3": "Nous l'avons codée.",
     "description": "vérifient l'origine, la symbolique et les droits d'usage de chaque motif avant qu'il ne devienne un token — prêt pour la production, sans compte requis.",
-    "artisansCount": "312 artisans-conservateurs",
+    "artisansCount": "{count} artisans-conservateurs",
     "exploreSystem": "Explorer le système",
     "viewDocs": "Voir la documentation",
-    "communityProof": "+312 artisans",
+    "communityProof": "Communauté d'artisans",
     "verifyEachPattern": "vérifient chaque motif",
     "verifiedProvenance": "Provenance vérifiée",
     "footnote1": "motifs documentés",
@@ -81,7 +81,8 @@
       "artisans": "Artisans",
       "verified": "vérifiés",
       "downloads": "DL",
-      "thisMonth": "ce mois"
+      "thisMonth": "au total",
+      "unavailable": "Statistiques indisponibles pour le moment."
     },
     "gallery": {
       "label": "Patrimoine · Motifs en vedette",
@@ -106,7 +107,7 @@
       "description": "Tout est accessible sans compte, comme PrimeReact. La connaissance africaine appartient à l'humanité.",
       "patternLibrary": {
         "title": "Bibliothèque de motifs",
-        "desc": "+1 200 motifs par région, époque et symbolisme. SVG, PNG, JSON, CSS."
+        "desc": "Motifs classés par région, époque et symbolisme. SVG, PNG, JSON, CSS."
       },
       "designTokens": {
         "title": "Design tokens culturels",
@@ -114,7 +115,7 @@
       },
       "artisanCommunity": {
         "title": "Communauté d'artisans",
-        "desc": "312 artisans vérifiés valident chaque entrée. La source primaire, toujours."
+        "desc": "Des artisans vérifiés valident chaque entrée. La source primaire, toujours."
       },
       "documentation": {
         "title": "Composants & Documentation",
@@ -125,8 +126,10 @@
       "documentedPatterns": "Motifs documentés",
       "representedCountries": "Pays représentés",
       "verifiedArtisans": "Artisans vérifiés",
-      "downloadsPerMonth": "Téléchargements/mois"
+      "downloadsPerMonth": "Téléchargements au total"
     },
+    "communityCount": "+{count} artisans nous ont déjà rejoints",
+    "downloadsTotal": "{count} téléchargements au total — aucun compte requis",
     "bento": {
       "label": "Pourquoi AVS",
       "copyPaste": {
@@ -260,9 +263,9 @@
     "loading": "Création du compte…",
     "perks": {
       "title": "Pourquoi rejoindre ?",
-      "patterns": "Accès à 1 248 motifs haute résolution",
+      "patterns": "Accès aux motifs haute résolution",
       "tokens": "Palette de design tokens prêts à l'emploi",
-      "community": "Communauté de 312 artisans vérifiés",
+      "community": "Communauté d'artisans vérifiés",
       "downloads": "Téléchargement SVG, PNG et JSON illimité"
     },
     "stats": {
@@ -373,7 +376,7 @@
     },
     "infrastructure": {
       "motifs": "Motifs",
-      "motifsDetail": "1 248 motifs vectorisés et sourcés",
+      "motifsDetail": "Motifs vectorisés et sourcés",
       "designTokens": "Design Tokens",
       "designTokensDetail": "Couleur, espace, rythme — nommés",
       "palettes": "Palettes",
@@ -429,23 +432,23 @@
       "label": "Où en est le standard",
       "title": "Deux ans de terrain, en chiffres",
       "hero": {
-        "value": "1 248",
+        "value": "—",
         "label": "Motifs documentés",
         "detail": "Vectorisés, sourcés, prêts pour la production"
       },
       "countries": {
-        "value": "54",
+        "value": "—",
         "label": "Pays représentés",
-        "detail": "Sur les 54 pays du continent"
+        "detail": "Pays ayant des motifs publiés"
       },
       "artisans": {
-        "value": "312",
+        "value": "—",
         "label": "Artisans vérifiés",
         "detail": "Droit de regard permanent sur leur patrimoine"
       },
       "archive": {
-        "value": "5 ans",
-        "label": "D'archive vivante",
+        "value": "2024",
+        "label": "Archive vivante depuis",
         "detail": "De recherche terrain continue depuis 2024"
       }
     },
@@ -473,7 +476,7 @@
         "02": {
           "title": "Lancement v1.0",
           "objective": "Sortir un socle solide, documenté et utilisable en production.",
-          "metric": "1 248 motifs · 312 artisans vérifiés",
+          "metric": "Catalogue ouvert · validation par des artisans",
           "deliverables": [
             "Bibliothèque ouverte de motifs documentés",
             "Intégrations Figma & Tailwind",
@@ -568,7 +571,7 @@
     "cta": {
       "title": "Rejoignez le standard.",
       "button": "Contribuer au standard",
-      "footer": "312 artisans · 54 pays · CC BY 4.0 · Gratuit"
+      "footer": "Artisans vérifiés · Pays représentés · CC BY 4.0 · Gratuit"
     }
   },
   "coffee": {
@@ -746,6 +749,58 @@
     },
     "mobile": {
       "close": "Fermer"
+    }
+  },
+  "symbols": {
+    "header": {
+      "label": "Documentation culturelle · {count} symboles",
+      "title": "Encyclopédie des Symboles",
+      "description": "Explorez les significations, les contextes culturels et les sources des symboles documentés dans les motifs AVS."
+    },
+    "search": {
+      "label": "Rechercher un symbole",
+      "placeholder": "Symbole, sens, culture ou pays…",
+      "clear": "Effacer la recherche",
+      "reset": "Réinitialiser les filtres"
+    },
+    "filters": {
+      "label": "Filtrer les symboles par type"
+    },
+    "types": {
+      "ALL": "Tous",
+      "KENTE": "Kente",
+      "KUBA": "Kuba",
+      "NDEBELE": "Ndebele",
+      "BERBER": "Berbère",
+      "WAX": "Wax",
+      "NDOP": "Ndop",
+      "BOGOLAN": "Bogolan",
+      "ADINKRA": "Adinkra"
+    },
+    "stats": {
+      "symbols": "symboles documentés",
+      "cultures": "origines culturelles"
+    },
+    "catalog": {
+      "title": "Explorer les symboles",
+      "count": "{count} fiche{count, plural, one {} other {s}}",
+      "updating": "Synchronisation",
+      "emptyTitle": "Aucun symbole trouvé",
+      "emptyDescription": "Modifiez votre recherche ou choisissez un autre filtre."
+    },
+    "loadError": "Le catalogue distant n’a pas pu être actualisé.",
+    "loadErrorFallback": "Les fiches déjà disponibles restent consultables.",
+    "copyError": "Impossible de copier le lien de cette fiche.",
+    "detail": {
+      "restricted": "Contexte rituel ou réservé",
+      "meaning": "Signification documentée",
+      "context": "Contexte et usages documentés",
+      "parentPattern": "Motif associé",
+      "sources": "Références du motif associé",
+      "select": "Sélectionnez un symbole pour consulter sa fiche.",
+      "close": "Fermer la fiche",
+      "share": "Copier le lien",
+      "copied": "Lien copié"
     }
   },
   "colors": {
@@ -1141,7 +1196,7 @@
       },
       "motifs": {
         "label": "Motifs",
-        "description": "1 248 motifs documentés et sourcés.",
+        "description": "Motifs documentés et sourcés.",
         "pages": {
           "intro": "Introduction",
           "utiliser-patterns-code": "Utiliser dans votre code",
@@ -1635,7 +1690,7 @@
       "title": "Prêt à contribuer au",
       "titleHighlight": "standard africain",
       "titleEnd": "?",
-      "description": "Rejoignez 312 artisans, chercheurs et designers qui construisent ensemble la plus grande archive visuelle africaine open-source.",
+      "description": "Rejoignez des artisans, chercheurs et designers qui construisent ensemble une archive visuelle africaine open-source.",
       "createAccount": "Créer un compte gratuit",
       "explorePatterns": "Explorer les motifs"
     }
@@ -1681,6 +1736,13 @@
     "activity": {
       "title": "Mon activité",
       "subtitle": "Consultez toutes vos interactions avec la plateforme",
+      "loadError": "Impossible de charger le journal d’activité. Veuillez réessayer.",
+      "details": {
+        "action": "Action",
+        "target": "Élément concerné",
+        "actor": "Auteur",
+        "date": "Date"
+      },
       "types": {
         "download": "Téléchargement",
         "favorite": "Favori",
@@ -1780,10 +1842,20 @@
         "new": "+0 nouveaux"
       },
       "statsLabel": "Statistiques clés",
+      "statsUnavailable": "Impossible de charger les statistiques depuis le serveur.",
       "recentPatternsLabel": "Motifs récents",
       "recentPatterns": {
         "title": "Motifs récents",
         "viewAll": "Voir tous les motifs"
+      },
+      "recentActivity": {
+        "viewAll": "Voir toutes les activités"
+      },
+      "activityDetails": {
+        "action": "Action",
+        "target": "Élément concerné",
+        "actor": "Auteur",
+        "date": "Date"
       },
       "quickActionsLabel": "Actions rapides",
       "quickActions": {
@@ -1791,6 +1863,10 @@
         "newPattern": {
           "label": "Nouveau motif",
           "sub": "Soumettre au catalogue"
+        },
+        "symbols": {
+          "label": "Gérer les symboles",
+          "sub": "Créer et documenter"
         },
         "library": {
           "label": "Bibliothèque",
@@ -1842,7 +1918,8 @@
         "published": "Publiés",
         "drafts": "Brouillons",
         "review": "En révision",
-        "totalViews": "Vues totales"
+        "totalViews": "Vues totales",
+        "unavailable": "Impossible de charger les statistiques depuis le serveur."
       },
       "status": {
         "published": "Publié",
@@ -1881,7 +1958,9 @@
         "viewDetails": "Voir détails",
         "removeFeatured": "Retirer vedette",
         "makeFeatured": "Mettre en vedette",
-        "delete": "Supprimer"
+        "delete": "Supprimer",
+        "featureErrorTitle": "Mise à jour impossible",
+        "featureError": "Impossible de modifier la mise en avant du motif. Veuillez réessayer."
       },
       "empty": {
         "noResults": "Aucun résultat",

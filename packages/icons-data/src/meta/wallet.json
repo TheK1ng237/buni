@@ -1,0 +1,17 @@
+{
+  "slug": "wallet",
+  "nameFr": "Portefeuille",
+  "nameEn": "Wallet",
+  "family": "interface",
+  "tags": [
+    "portefeuille",
+    "paiement",
+    "argent"
+  ],
+  "country": "Référence générique",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Bourse à cordon plissée avec une bande en zigzag, de forme traditionnelle générique en cuir ou en tissu.",
+  "recommendedUse": "Paiement, portefeuille et moyen de paiement.",
+  "verifiedBy": "Documentation BUNI-ICON Core 30",
+  "license": "CC BY 4.0"
+}

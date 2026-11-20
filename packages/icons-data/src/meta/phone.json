@@ -1,0 +1,17 @@
+{
+  "slug": "phone",
+  "nameFr": "Appel",
+  "nameEn": "Phone / Call",
+  "family": "interface",
+  "tags": [
+    "appel",
+    "contact",
+    "communication"
+  ],
+  "country": "Plusieurs régions (référence générique)",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Corne d’appel courbe avec bande et onde sonore, évoquant des cornes de signalisation utilisées dans plusieurs régions.",
+  "recommendedUse": "Appel et contact. La lecture peut être moins immédiate qu’un combiné ; tester en situation réelle.",
+  "verifiedBy": "Documentation BUNI-ICON Core 30",
+  "license": "CC BY 4.0"
+}

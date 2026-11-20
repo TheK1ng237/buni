@@ -1,0 +1,17 @@
+{
+  "slug": "star",
+  "nameFr": "Étoile / Note",
+  "nameEn": "Star / Rating",
+  "family": "interface",
+  "tags": [
+    "étoile",
+    "note",
+    "évaluation"
+  ],
+  "country": "Référence générique",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Étoile à huit branches. Les étoiles à plusieurs branches apparaissent dans diverses compositions textiles et décoratives (référence générique).",
+  "recommendedUse": "Note et mise en avant. Prévoir une variante à cinq branches pour une notation sur cinq niveaux.",
+  "verifiedBy": "Documentation BUNI-ICON Core 30",
+  "license": "CC BY 4.0"
+}

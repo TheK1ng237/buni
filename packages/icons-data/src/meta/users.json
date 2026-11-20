@@ -1,0 +1,13 @@
+{
+  "slug": "users",
+  "nameFr": "Groupe",
+  "nameEn": "Team",
+  "family": "interface",
+  "tags": ["équipe", "groupe", "communauté", "contacts"],
+  "country": "Sans attribution culturelle",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Deux silhouettes neutres et universelles, sans référence culturelle spécifique.",
+  "recommendedUse": "Équipe, communauté ou contacts.",
+  "verifiedBy": "Documentation BUNI-ICON Core 60",
+  "license": "CC BY 4.0"
+}

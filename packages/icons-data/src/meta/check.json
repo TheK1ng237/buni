@@ -1,0 +1,17 @@
+{
+  "slug": "check",
+  "nameFr": "Validation",
+  "nameEn": "Check",
+  "family": "interface",
+  "tags": [
+    "validation",
+    "confirmation",
+    "interface"
+  ],
+  "country": "Référence générique",
+  "people": "Sans attribution culturelle spécifique",
+  "culturalNote": "Coche inscrite dans un losange, forme géométrique récurrente dans de nombreux textiles africains (référence générique).",
+  "recommendedUse": "Confirmation et tâche terminée.",
+  "verifiedBy": "Documentation BUNI-ICON Core 30",
+  "license": "CC BY 4.0"
+}
