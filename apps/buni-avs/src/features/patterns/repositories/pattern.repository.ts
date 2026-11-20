@@ -2,21 +2,60 @@ import { patternService } from '../services/pattern.service';
 
 import { mapPatternDtoToModel } from '../mappers/pattern.mapper';
 
-import type { Pattern, PatternFilters } from '../types';
+import type { Pattern, PatternDto, PatternFilters } from '../types';
+
+function getPatternPage(response: unknown): {
+  items: PatternDto[];
+  totalPages: number;
+} {
+  if (!response || typeof response !== 'object') {
+    throw new Error('Réponse invalide lors du chargement des motifs.');
+  }
+
+  const envelope = response as {
+    data?: unknown;
+    meta?: { totalPages?: number };
+  };
+  const payload = envelope.data;
+
+  if (Array.isArray(payload)) {
+    return { items: payload as PatternDto[], totalPages: envelope.meta?.totalPages ?? 1 };
+  }
+
+  if (payload && typeof payload === 'object') {
+    const page = payload as {
+      data?: unknown;
+      items?: unknown;
+      meta?: { totalPages?: number };
+    };
+    const items = Array.isArray(page.data)
+      ? page.data
+      : Array.isArray(page.items)
+        ? page.items
+        : null;
+
+    if (items) {
+      return { items: items as PatternDto[], totalPages: page.meta?.totalPages ?? 1 };
+    }
+  }
+
+  throw new Error('Format de réponse inattendu lors du chargement des motifs.');
+}
 
 export const patternRepository = {
   async findAll(filters: PatternFilters = {}): Promise<Pattern[]> {
     const perPage = 100;
     const firstPage = await patternService.list({ ...filters, page: 1, perPage });
-    const pages = firstPage.data.meta?.totalPages ?? 1;
+    const firstPageResult = getPatternPage(firstPage);
+    const pages = firstPageResult.totalPages;
     const remainingPages = await Promise.all(
       Array.from({ length: Math.max(0, pages - 1) }, (_, index) =>
         patternService.list({ ...filters, page: index + 2, perPage })
       )
     );
 
-    return [firstPage, ...remainingPages]
-      .flatMap((response) => response.data.data)
+    return [firstPageResult, ...remainingPages.map(getPatternPage)]
+      .flatMap((page) => page.items)
       .map(mapPatternDtoToModel);
   },
 

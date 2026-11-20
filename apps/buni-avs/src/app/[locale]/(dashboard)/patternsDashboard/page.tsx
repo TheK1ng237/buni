@@ -314,20 +314,14 @@ export default function MyPatternsPage() {
     }
   };
 
-  const patterns = useMemo(() => {
-    let allPatterns = rawPatterns.map((p) => ({
-      ...p,
-      status: normalizeStatus(p.status),
-    }));
-
-    if (!isAdmin && user) {
-      allPatterns = allPatterns.filter(
-        (p: any) => p.authorId === user.id || p.createdById === user.id
-      );
-    }
-
-    return allPatterns;
-  }, [rawPatterns, isAdmin, user]);
+  const patterns = useMemo(
+    () =>
+      rawPatterns.map((p) => ({
+        ...p,
+        status: normalizeStatus(p.status),
+      })),
+    [rawPatterns]
+  );
 
   const statusStats = adminStats?.patternsByStatus ?? ownStats?.patternsByStatus;
   const statsLoading = isAdmin ? isAdminStatsLoading : isOwnStatsLoading;
