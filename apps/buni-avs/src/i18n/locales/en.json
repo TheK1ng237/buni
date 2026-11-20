@@ -1888,6 +1888,9 @@
         "title": "Recent patterns",
         "viewAll": "View all patterns"
       },
+      "recentActivity": {
+        "viewAll": "View all activity"
+      },
       "activityDetails": {
         "action": "Action",
         "target": "Target",

@@ -426,8 +426,8 @@ export default function DashboardPage() {
             const [p, a] = await Promise.all([
               dashboardService.getGlobalRecentPatterns(5),
               isSuperAdminUser
-                ? dashboardService.getGlobalActivity(6)
-                : dashboardService.getActivity(6),
+                ? dashboardService.getGlobalActivity(5)
+                : dashboardService.getActivity(5),
             ]);
             setPatterns(p);
             setActivity(a);
@@ -438,7 +438,7 @@ export default function DashboardPage() {
           const [s, p, a] = await Promise.all([
             dashboardService.getStats(),
             dashboardService.getRecentPatterns(5),
-            dashboardService.getActivity(6),
+            dashboardService.getActivity(5),
           ]);
           setStats(s);
           setPatterns(p);
@@ -679,7 +679,12 @@ export default function DashboardPage() {
             aria-label="Activité récente"
           >
             <Panel className="h-full">
-              <PanelHeader title="Activité récente" patternCss="avs-pattern-adinkra-sankofa" />
+              <PanelHeader
+                title="Activité récente"
+                patternCss="avs-pattern-adinkra-sankofa"
+                href="/activity"
+                linkLabel={t('recentActivity.viewAll')}
+              />
 
               {loading ? (
                 <div className="divide-y divide-avs-accent/5">
@@ -694,8 +699,10 @@ export default function DashboardPage() {
                   ))}
                 </div>
               ) : activity.length > 0 ? (
-                <div className="divide-y divide-avs-accent/5 max-h-[420px] overflow-y-auto [scrollbar-width:thin]">
-                  {activity.map((item, i) => <ActivityItem key={item.id} item={item} index={i} t={t} />)}
+                <div className="divide-y divide-avs-accent/5">
+                  {activity.slice(0, 5).map((item, i) => (
+                    <ActivityItem key={item.id} item={item} index={i} t={t} />
+                  ))}
                 </div>
               ) : (
                 <div className="flex flex-col items-center justify-center py-14">

@@ -1848,6 +1848,9 @@
         "title": "Motifs récents",
         "viewAll": "Voir tous les motifs"
       },
+      "recentActivity": {
+        "viewAll": "Voir toutes les activités"
+      },
       "activityDetails": {
         "action": "Action",
         "target": "Élément concerné",
