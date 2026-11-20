@@ -28,6 +28,7 @@ export function mapSymbolRecord(symbol: SymbolRecord): SymbolEntry {
     meaning: symbol.meaning,
     usage: symbol.usage,
     sacred: symbol.sacred,
+    status: symbol.status,
     cssPreview: symbol.cssPreview,
     imageUrl: symbol.imageUrl,
     pattern: pattern
@@ -64,6 +65,7 @@ export const LOCAL_SYMBOLS: SymbolEntry[] = PATTERNS_DOCS.flatMap((pattern) =>
     meaning: symbol.meaning,
     usage: symbol.usage,
     sacred: symbol.sacred,
+    status: 'PUBLISHED',
     cssPreview: symbol.cssPreview,
     imageUrl: symbol.imageUrl,
     pattern: {

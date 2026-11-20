@@ -29,10 +29,12 @@ export function useFeaturePattern() {
     onMutate: async (id) => {
       await qc.cancelQueries({ queryKey: patternKeys.all });
 
-      qc.setQueriesData<Pattern[]>({ queryKey: patternKeys.all }, (old) =>
-        old?.map((p) =>
-          p.id === id ? { ...p, featured: true, updatedAt: new Date().toISOString() } : p
-        )
+      qc.setQueriesData<Pattern[]>({ queryKey: patternKeys.lists() }, (old) =>
+        Array.isArray(old)
+          ? old.map((p) =>
+              p.id === id ? { ...p, featured: true, updatedAt: new Date().toISOString() } : p
+            )
+          : old
       );
     },
     onSuccess: () => {
@@ -52,10 +54,12 @@ export function useUnfeaturePattern() {
     onMutate: async (id) => {
       await qc.cancelQueries({ queryKey: patternKeys.all });
 
-      qc.setQueriesData<Pattern[]>({ queryKey: patternKeys.all }, (old) =>
-        old?.map((p) =>
-          p.id === id ? { ...p, featured: false, updatedAt: new Date().toISOString() } : p
-        )
+      qc.setQueriesData<Pattern[]>({ queryKey: patternKeys.lists() }, (old) =>
+        Array.isArray(old)
+          ? old.map((p) =>
+              p.id === id ? { ...p, featured: false, updatedAt: new Date().toISOString() } : p
+            )
+          : old
       );
     },
     onSuccess: () => {
@@ -92,14 +96,17 @@ export function useUpdateStatus() {
   const qc = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ id, status }: { id: string; status: PatternStatus }) => updatePatternStatus(id, status),
+    mutationFn: ({ id, status }: { id: string; status: PatternStatus }) =>
+      updatePatternStatus(id, status),
     onMutate: async ({ id, status }) => {
       await qc.cancelQueries({ queryKey: patternKeys.all });
 
-      qc.setQueriesData<Pattern[]>({ queryKey: patternKeys.all }, (old) =>
-        old?.map((p) =>
-          p.id === id ? { ...p, status, updatedAt: new Date().toISOString() } : p
-        )
+      qc.setQueriesData<Pattern[]>({ queryKey: patternKeys.lists() }, (old) =>
+        Array.isArray(old)
+          ? old.map((p) =>
+              p.id === id ? { ...p, status, updatedAt: new Date().toISOString() } : p
+            )
+          : old
       );
     },
     onSuccess: () => {

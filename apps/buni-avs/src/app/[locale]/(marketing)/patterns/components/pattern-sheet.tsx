@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CopyBtn } from './copy-btn';
 import { ShareMenu } from './share-menu';
@@ -28,11 +29,12 @@ export function PatternSheet({ pattern }: { pattern: any }) {
   const [activeSymbol, setActiveSymbol] = useState<any>(null);
   const [activeSection, setActiveSection] = useState<SectionId>('histoire');
   const [isDownloading, setIsDownloading] = useState(false);
-  const [downloadCount, setDownloadCount] = useState<number>(0);
-  const [viewCount, setViewCount] = useState<number>(0);
+  const [downloadCount, setDownloadCount] = useState<number>(pattern.downloads ?? 0);
+  const [viewCount, setViewCount] = useState<number>(pattern.views ?? 0);
 
   const contentRef = useRef<HTMLDivElement>(null);
   const { add } = useToast();
+  const queryClient = useQueryClient();
   const patternImage = pattern.imgUrl;
   const previewClass = pattern.previewClass || pattern.cssClass;
   const isCatalogPattern = PATTERN_CATALOG.some(
@@ -84,7 +86,7 @@ export function PatternSheet({ pattern }: { pattern: any }) {
     let active = true;
     const recordView = async () => {
       try {
-        const storageKey = `avs_viewed_${metricsIdentifier}`;
+        const storageKey = `avs_viewed_v2_${pattern.id}`;
         let alreadyViewed = false;
         try {
           alreadyViewed = sessionStorage.getItem(storageKey) === 'true';
@@ -105,6 +107,7 @@ export function PatternSheet({ pattern }: { pattern: any }) {
         if (active) {
           setViewCount(stats.views);
           setDownloadCount(stats.downloads);
+          await queryClient.invalidateQueries({ queryKey: ['patterns'] });
         }
       } catch (error) {
         console.error('Unable to load pattern statistics:', error);
@@ -120,7 +123,7 @@ export function PatternSheet({ pattern }: { pattern: any }) {
     return () => {
       active = false;
     };
-  }, [pattern.id, pattern.slug, metricsIdentifier, add]);
+  }, [pattern.id, pattern.slug, metricsIdentifier, add, queryClient]);
 
   return (
     <div

@@ -146,6 +146,7 @@ function ToastAlerts({ toasts, onDismiss }: { toasts: Toast[]; onDismiss: (id: s
 export default function UsersManagementPage() {
   const t = useTranslations('dashboard.users');
   const { user: currentUser } = useAuth();
+  const isSuperAdmin = currentUser?.role.toLowerCase() === 'super_admin';
   const qc = useQueryClient();
 
   const [searchTerm, setSearchTerm] = useState('');
@@ -179,6 +180,7 @@ export default function UsersManagementPage() {
   const { data: users = [], isLoading } = useQuery({
     queryKey: ['users', { search: searchTerm, role: roleFilter }],
     queryFn: () => userService.getAllUsers({ search: searchTerm, role: roleFilter === 'all' ? undefined : roleFilter }),
+    enabled: isSuperAdmin,
   });
 
   const updateRoleMutation = useMutation({
@@ -284,8 +286,7 @@ export default function UsersManagementPage() {
     );
   }
 
-  const role = currentUser.role.toLowerCase();
-  if (role !== 'admin' && role !== 'super_admin') {
+  if (!isSuperAdmin) {
     return (
       <div className="flex min-h-[400px] items-center justify-center px-4">
         <div className="text-center">

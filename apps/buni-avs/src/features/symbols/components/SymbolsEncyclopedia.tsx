@@ -58,6 +58,10 @@ export function SymbolsEncyclopedia() {
     isFetching,
     error: symbolError,
   } = useSymbols(LOCAL_SYMBOLS);
+  const publishedSymbols = useMemo(
+    () => symbols.filter((symbol) => symbol.status === 'PUBLISHED'),
+    [symbols]
+  );
   const [search, setSearch] = useState('');
   const [activeType, setActiveType] = useState('ALL');
   const [selectedSymbol, setSelectedSymbol] = useState<SymbolEntry | null>(null);
@@ -74,9 +78,9 @@ export function SymbolsEncyclopedia() {
   useEffect(() => {
     const symbolId = new URLSearchParams(window.location.search).get('symbol');
     if (symbolId) {
-      setSelectedSymbol(symbols.find((symbol) => symbol.id === symbolId) ?? null);
+      setSelectedSymbol(publishedSymbols.find((symbol) => symbol.id === symbolId) ?? null);
     }
-  }, [symbols]);
+  }, [publishedSymbols]);
 
   useEffect(() => {
     if (!selectedSymbol) return;
@@ -94,7 +98,7 @@ export function SymbolsEncyclopedia() {
 
   const filteredSymbols = useMemo(() => {
     const query = normalize(search.trim());
-    return symbols.filter((symbol) => {
+    return publishedSymbols.filter((symbol) => {
       const matchesSearch =
         !query ||
         normalize(
@@ -111,10 +115,10 @@ export function SymbolsEncyclopedia() {
       const matchesType = activeType === 'ALL' || symbol.pattern.type.toUpperCase() === activeType;
       return matchesSearch && matchesType;
     });
-  }, [activeType, search, symbols]);
+  }, [activeType, search, publishedSymbols]);
 
   const cultureCount = new Set(
-    symbols.map((symbol) => `${symbol.pattern.people}:${symbol.pattern.country}`)
+    publishedSymbols.map((symbol) => `${symbol.pattern.people}:${symbol.pattern.country}`)
   ).size;
 
   async function copySymbolLink() {
@@ -150,7 +154,7 @@ export function SymbolsEncyclopedia() {
         <div className="mx-auto max-w-7xl px-5 pt-12 pb-10 sm:px-8 sm:pt-16 sm:pb-14">
           <div className="text-avs-kente flex items-center gap-2 font-mono text-[9px] font-bold tracking-[0.2em] uppercase">
             <BookOpen size={13} aria-hidden />
-            {t('header.label', { count: symbols.length })}
+            {t('header.label', { count: publishedSymbols.length })}
           </div>
           <div className="mt-5 grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
             <div>
@@ -163,7 +167,7 @@ export function SymbolsEncyclopedia() {
             </div>
             <div className="grid grid-cols-2 gap-3">
               <div className="border-avs-secondary/10 bg-avs-secondary/5 rounded-2xl border p-4 sm:p-5">
-                <p className="font-display text-avs-kente text-3xl font-black">{symbols.length}</p>
+                <p className="font-display text-avs-kente text-3xl font-black">{publishedSymbols.length}</p>
                 <p className="text-avs-secondary/55 mt-1 text-[11px]">{t('stats.symbols')}</p>
               </div>
               <div className="border-avs-secondary/10 bg-avs-secondary/5 rounded-2xl border p-4 sm:p-5">
@@ -231,7 +235,7 @@ export function SymbolsEncyclopedia() {
             className="mt-4 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-xs leading-5 text-amber-900"
           >
             {symbolError instanceof Error ? symbolError.message : t('loadError')}{' '}
-            {symbols.length > 0 && t('loadErrorFallback')}
+            {publishedSymbols.length > 0 && t('loadErrorFallback')}
           </p>
         )}
 

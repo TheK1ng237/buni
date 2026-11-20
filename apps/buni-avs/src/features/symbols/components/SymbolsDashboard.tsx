@@ -22,6 +22,7 @@ import {
   useDeleteSymbol,
   useManagedSymbols,
   useUpdateSymbol,
+  useUpdateSymbolStatus,
 } from '../hooks/useSymbols';
 import type { SymbolInput, SymbolRecord } from '../types/symbol.types';
 import { SymbolImageUpload } from './SymbolImageUpload';
@@ -82,6 +83,7 @@ export function SymbolsDashboard() {
   const { data: symbols = [], isLoading, error: loadError } = useManagedSymbols();
   const createMutation = useCreateSymbol();
   const updateMutation = useUpdateSymbol();
+  const updateStatusMutation = useUpdateSymbolStatus();
   const deleteMutation = useDeleteSymbol();
   const [search, setSearch] = useState('');
   const [editorOpen, setEditorOpen] = useState(false);
@@ -112,9 +114,10 @@ export function SymbolsDashboard() {
     );
   }, [search, symbols]);
 
+  const normalizedRole = (user?.role ?? '').toLocaleLowerCase();
+  const isAdminUser = ['admin', 'super_admin'].includes(normalizedRole);
   const canManageSymbols =
-    isCurator ||
-    ['curator', 'admin', 'super_admin'].includes((user?.role ?? '').toLocaleLowerCase());
+    isCurator || ['curator', 'admin', 'super_admin'].includes(normalizedRole);
 
   function openCreateForm() {
     setEditing(null);
@@ -188,6 +191,20 @@ export function SymbolsDashboard() {
     }
   }
 
+  async function changeSymbolStatus(symbol: SymbolRecord, status: SymbolRecord['status']) {
+    if (!isAdminUser) return;
+    setActionError('');
+    setNotice('');
+    try {
+      await updateStatusMutation.mutateAsync({ id: symbol.id, status });
+      setNotice('Le statut du symbole a été mis à jour.');
+    } catch (statusError) {
+      setActionError(
+        statusError instanceof Error ? statusError.message : 'Modification du statut impossible.'
+      );
+    }
+  }
+
   if (!canManageSymbols) {
     return (
       <main className="bg-avs-secondary min-h-screen px-5 py-16">
@@ -197,8 +214,8 @@ export function SymbolsDashboard() {
             Espace réservé aux curateurs
           </h1>
           <p className="text-avs-accent/60 mt-3 text-sm leading-6">
-            La création et la validation des fiches de symboles nécessitent un rôle curateur ou
-            administrateur.
+            La création et la gestion des fiches nécessitent un rôle curateur ou administrateur.
+            Seuls les administrateurs peuvent les publier.
           </p>
           <Link
             href="/dashboard"
@@ -606,6 +623,21 @@ export function SymbolsDashboard() {
                           </span>
                         )}
                       </div>
+                      <span
+                        className={`mt-2 inline-flex rounded-full px-2.5 py-1 text-[9px] font-bold ${
+                          symbol.status === 'PUBLISHED'
+                            ? 'bg-emerald-500/10 text-emerald-700'
+                            : 'bg-amber-500/10 text-amber-700'
+                        }`}
+                      >
+                        {symbol.status === 'PUBLISHED'
+                          ? 'Publié'
+                          : symbol.status === 'REVIEW'
+                            ? 'En révision'
+                            : symbol.status === 'REJECTED'
+                              ? 'Refusé'
+                              : 'Brouillon'}
+                      </span>
                     </div>
                     <p className="text-avs-accent/60 mt-3 line-clamp-2 min-h-10 px-2 text-xs leading-5">
                       {symbol.meaning}
@@ -616,6 +648,31 @@ export function SymbolsDashboard() {
                         : 'Symbole libre · aucun motif associé'}
                     </p>
                     <div className="mt-3 flex justify-end gap-2 px-2 pb-2">
+                      {isAdminUser && (
+                        <label className="sr-only" htmlFor={`symbol-status-${symbol.id}`}>
+                          Statut de {symbol.name}
+                        </label>
+                      )}
+                      {isAdminUser && (
+                        <select
+                          id={`symbol-status-${symbol.id}`}
+                          aria-label={`Statut de ${symbol.name}`}
+                          value={symbol.status}
+                          disabled={updateStatusMutation.isPending}
+                          onChange={(event) =>
+                            void changeSymbolStatus(
+                              symbol,
+                              event.target.value as SymbolRecord['status']
+                            )
+                          }
+                          className="border-avs-accent/10 bg-avs-secondary text-avs-accent/70 max-w-32 rounded-lg border px-2 py-2 text-[10px] font-semibold disabled:opacity-50"
+                        >
+                          <option value="DRAFT">Brouillon</option>
+                          <option value="REVIEW">En révision</option>
+                          <option value="PUBLISHED">Publié</option>
+                          <option value="REJECTED">Refusé</option>
+                        </select>
+                      )}
                       <button
                         type="button"
                         onClick={() => openEditForm(symbol)}

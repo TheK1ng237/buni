@@ -686,7 +686,7 @@ export default function DashboardPage() {
               <QuickAction href="/profile"               icon={User}    label={t('quickActions.profile.label')}     sub={t('quickActions.profile.sub')} />
               <QuickAction href="/activity"              icon={Activity} label={t('quickActions.activity.label')} sub={t('quickActions.activity.sub')} />
               <QuickAction href="/colors"                icon={Palette} label={t('quickActions.palettes.label')}       sub={t('quickActions.palettes.sub')} />
-              {isAdminUser && (
+              {isSuperAdminUser && (
                 <QuickAction href="/users" icon={Users} label={t('quickActions.users.label') || 'Gestion Utilisateurs'} sub={t('quickActions.users.sub') || 'Consulter la liste'} />
               )}
             </div>

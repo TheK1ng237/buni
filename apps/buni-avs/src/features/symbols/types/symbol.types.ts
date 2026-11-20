@@ -2,6 +2,8 @@ import type { PatternSymbol, PatternType } from '@buni/patterns';
 
 export interface SymbolRecord extends PatternSymbol {
   id: string;
+  status: 'DRAFT' | 'PUBLISHED' | 'REVIEW' | 'REJECTED';
+  createdById: string | null;
   patternId: string | null;
   pattern: {
     id: string;
@@ -37,6 +39,7 @@ export interface SymbolEntry {
   meaning: string;
   usage: string;
   sacred: boolean;
+  status: 'DRAFT' | 'PUBLISHED' | 'REVIEW' | 'REJECTED';
   cssPreview?: string;
   imageUrl?: string;
   pattern: {

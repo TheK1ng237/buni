@@ -12,6 +12,7 @@ interface PatternListResponse {
           id?: string;
           name: string;
           nameFr: string;
+          status: string;
           cssPreview: string;
           imageUrl?: string;
           meaning: string;
@@ -43,10 +44,14 @@ async function listCatalog(): Promise<SymbolRecord[]> {
       perPage: 100,
     });
     for (const pattern of patterns.data.data) {
+      if (pattern.status.toLocaleUpperCase() !== 'PUBLISHED') continue;
       for (const symbol of pattern.symbols ?? []) {
+        if (symbol.status !== 'PUBLISHED') continue;
         const record: SymbolRecord = {
           ...symbol,
           id: symbol.id ?? `pattern-symbol:${pattern.id}:${symbol.name.trim().toLocaleLowerCase()}`,
+          status: 'PUBLISHED',
+          createdById: null,
           imageUrl: symbol.imageUrl ?? '',
           patternId: pattern.id,
           pattern: {
@@ -78,6 +83,14 @@ async function listCatalog(): Promise<SymbolRecord[]> {
   return [...symbolsByKey.values()];
 }
 
+async function listManagedSymbols(): Promise<SymbolRecord[]> {
+  const response = await get<SymbolApiResponse<SymbolRecord[]>>('/api/v1/patterns/symbols');
+  if (!Array.isArray(response.data)) {
+    throw new Error('Le backend a retourné une liste de symboles invalide.');
+  }
+  return response.data;
+}
+
 function toSymbolFormData(data: SymbolInput, image?: File): FormData {
   const formData = new FormData();
   for (const [key, value] of Object.entries(data)) {
@@ -90,6 +103,10 @@ function toSymbolFormData(data: SymbolInput, image?: File): FormData {
 export const symbolService = {
   async list(): Promise<SymbolRecord[]> {
     return listCatalog();
+  },
+
+  async listManaged(): Promise<SymbolRecord[]> {
+    return listManagedSymbols();
   },
 
   async create(patternId: string | null, data: SymbolInput, image?: File): Promise<SymbolRecord> {
@@ -108,6 +125,15 @@ export const symbolService = {
     const response = await patch<SymbolApiResponse<SymbolRecord>>(
       `/api/v1/patterns/symbols/${encodeURIComponent(id)}`,
       toSymbolFormData(data, image)
+    );
+    if (!response.data) throw new Error('Le backend n’a pas retourné le symbole modifié.');
+    return response.data;
+  },
+
+  async updateStatus(id: string, status: SymbolRecord['status']): Promise<SymbolRecord> {
+    const response = await patch<SymbolApiResponse<SymbolRecord>>(
+      `/api/v1/patterns/symbols/${encodeURIComponent(id)}/status`,
+      { status }
     );
     if (!response.data) throw new Error('Le backend n’a pas retourné le symbole modifié.');
     return response.data;

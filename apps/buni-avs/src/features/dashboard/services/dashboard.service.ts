@@ -1,6 +1,5 @@
 import { get } from '@buni/api';
 
-
 export interface DashboardStats {
   patternsCreated: number;
   downloadsTotal: number;
@@ -30,6 +29,13 @@ export interface DashboardActivity {
   type: 'comment' | 'download' | 'review' | 'favorite';
 }
 
+const GLOBAL_ACTIVITY_LABELS: Record<string, Pick<DashboardActivity, 'action' | 'type'>> = {
+  COMMENTED: { action: 'Commentaire sur', type: 'comment' },
+  DOWNLOADED: { action: 'Téléchargement de', type: 'download' },
+  REVIEWED: { action: 'Validation approuvée —', type: 'review' },
+  FAVORITED: { action: 'Favori ajouté sur', type: 'favorite' },
+};
+
 export interface UserPattern {
   id: string;
   name: string;
@@ -42,18 +48,24 @@ export interface UserPattern {
 
 class DashboardService {
   async getStats(): Promise<DashboardStats> {
-    const response = await get<{ success: boolean; data: DashboardStats }>('/api/v1/users/me/stats');
+    const response = await get<{ success: boolean; data: DashboardStats }>(
+      '/api/v1/users/me/stats'
+    );
     return response.data;
   }
 
   async getActivityStats(): Promise<ActivityStats> {
-    const response = await get<{ success: boolean; data: ActivityStats }>('/api/v1/activities/me/stats');
+    const response = await get<{ success: boolean; data: ActivityStats }>(
+      '/api/v1/activities/me/stats'
+    );
     return response.data;
   }
 
   async getRecentPatterns(limit: number = 5): Promise<UserPattern[]> {
     try {
-      const response = await get<{ success: boolean; data: any[] }>(`/api/v1/users/me/patterns?limit=${limit}`);
+      const response = await get<{ success: boolean; data: any[] }>(
+        `/api/v1/users/me/patterns?limit=${limit}`
+      );
       return (response.data || []).map((p: any) => ({
         id: p.id,
         name: p.name,
@@ -71,7 +83,9 @@ class DashboardService {
 
   async getActivity(limit: number = 6): Promise<DashboardActivity[]> {
     try {
-      const response = await get<{ success: boolean; data: DashboardActivity[] }>(`/api/v1/users/me/activity?limit=${limit}`);
+      const response = await get<{ success: boolean; data: DashboardActivity[] }>(
+        `/api/v1/users/me/activity?limit=${limit}`
+      );
       return response.data || [];
     } catch (error) {
       console.error('Failed to fetch activity:', error);
@@ -81,7 +95,9 @@ class DashboardService {
 
   async getGlobalRecentPatterns(limit: number = 5): Promise<UserPattern[]> {
     try {
-      const response = await get<{ success: boolean; data: any[] }>(`/api/v1/patterns/recent/global?limit=${limit}`);
+      const response = await get<{ success: boolean; data: any[] }>(
+        `/api/v1/patterns/recent/global?limit=${limit}`
+      );
       return (response.data || []).map((p: any) => ({
         id: p.id,
         name: p.name,
@@ -99,8 +115,30 @@ class DashboardService {
 
   async getGlobalActivity(limit: number = 6): Promise<DashboardActivity[]> {
     try {
-      const response = await get<{ success: boolean; data: DashboardActivity[] }>(`/api/v1/activities/global?perPage=${limit}`);
-      return response.data || [];
+      const response = await get<{
+        success: boolean;
+        data: Array<{
+          id: string;
+          action: string;
+          target: string;
+          targetId: string;
+          createdAt: string;
+        }>;
+      }>(`/api/v1/activities/global?perPage=${limit}`);
+      return (response.data ?? []).map((activity) => {
+        const action =
+          GLOBAL_ACTIVITY_LABELS[activity.action] ??
+          ({
+            action: `${activity.action.toLocaleLowerCase().replaceAll('_', ' ')} —`,
+            type: 'review',
+          } satisfies Pick<DashboardActivity, 'action' | 'type'>);
+        return {
+          id: activity.id,
+          ...action,
+          target: activity.target || activity.targetId,
+          timestamp: activity.createdAt,
+        };
+      });
     } catch (error) {
       console.error('Failed to fetch global activity:', error);
       return [];

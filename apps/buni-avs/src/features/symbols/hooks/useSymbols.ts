@@ -1,12 +1,14 @@
 'use client';
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useAuth } from '@buni/auth';
 import {
   createSymbol,
   deleteSymbol,
   listManagedSymbols,
   listSymbols,
   updateSymbol,
+  updateSymbolStatus,
 } from '../usecases/symbol.usecases';
 import type { SymbolEntry, SymbolInput, SymbolRecord } from '../types/symbol.types';
 
@@ -25,9 +27,11 @@ export function useSymbols(fallback: SymbolEntry[]) {
 }
 
 export function useManagedSymbols() {
+  const { user } = useAuth();
   return useQuery({
-    queryKey: symbolKeys.managed,
+    queryKey: [...symbolKeys.managed, user?.id],
     queryFn: listManagedSymbols,
+    enabled: Boolean(user?.id),
   });
 }
 
@@ -52,6 +56,15 @@ export function useUpdateSymbol() {
   return useMutation({
     mutationFn: ({ id, data, image }: { id: string; data: SymbolInput; image?: File }) =>
       updateSymbol(id, data, image),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: symbolKeys.all }),
+  });
+}
+
+export function useUpdateSymbolStatus() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, status }: { id: string; status: SymbolRecord['status'] }) =>
+      updateSymbolStatus(id, status),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: symbolKeys.all }),
   });
 }
