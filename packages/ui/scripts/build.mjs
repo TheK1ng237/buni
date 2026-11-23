@@ -42,7 +42,7 @@ console.log('✓ Built dist/styles.css');
 const componentFiles = fs.readdirSync(componentsDir)
   .filter(f => f.endsWith('.tsx') && !f.includes('.test.') && !f.includes('.stories.'));
 
-console.log(\`\n📦 Processing \${componentFiles.length} components (auto-discovered)...\`);
+console.log(`\n📦 Processing ${componentFiles.length} components (auto-discovered)...`);
 
 const barrelExports = [];
 const barrelDtsExports = [];
@@ -58,20 +58,20 @@ for (const file of componentFiles) {
 
   // Generate .js re-export
   fs.writeFileSync(
-    path.join(componentsDistDir, \`\${componentName}.js\`),
-    \`export * from './\${file}';\n\`
+    path.join(componentsDistDir, `${componentName}.js`),
+    `export * from './${file}';\n`
   );
 
   // Generate .d.ts from source
   const dtsContent = generateComponentDts(content, componentName);
-  fs.writeFileSync(path.join(componentsDistDir, \`\${componentName}.d.ts\`), dtsContent);
+  fs.writeFileSync(path.join(componentsDistDir, `${componentName}.d.ts`), dtsContent);
 
   // Add to barrel exports
-  barrelExports.push(\`export * from './components/\${componentName}';\`);
-  barrelDtsExports.push(\`export * from './components/\${componentName}';\`);
+  barrelExports.push(`export * from './components/${componentName}';`);
+  barrelDtsExports.push(`export * from './components/${componentName}';`);
   componentNames.push(componentName);
 
-  console.log(\`  ✓ \${componentName}\`);
+  console.log(`  ✓ ${componentName}`);
 }
 
 // ============================================================================
@@ -81,11 +81,11 @@ const utilsSrc = path.join(srcDir, 'utils.ts');
 if (fs.existsSync(utilsSrc)) {
   const utilsContent = fs.readFileSync(utilsSrc, 'utf-8');
   fs.copyFileSync(utilsSrc, path.join(distDir, 'utils.ts'));
-  fs.writeFileSync(path.join(distDir, 'utils.js'), \`export * from './utils.ts';\n\`);
+  fs.writeFileSync(path.join(distDir, 'utils.js'), `export * from './utils.ts';\n`);
   fs.writeFileSync(path.join(distDir, 'utils.d.ts'), utilsContent);
 
-  barrelExports.push(\`export * from './utils';\`);
-  barrelDtsExports.push(\`export * from './utils';\`);
+  barrelExports.push(`export * from './utils';`);
+  barrelDtsExports.push(`export * from './utils';`);
 
   console.log('  ✓ utils');
 }
@@ -93,15 +93,15 @@ if (fs.existsSync(utilsSrc)) {
 // ============================================================================
 // 4. Build main index.js (SHORT EXPORTS - main entry)
 // ============================================================================
-const mainIndexJs = \`// @buni/ui - Main Entry Point (SHORT IMPORTS)
+const mainIndexJs = `// @buni/ui - Main Entry Point (SHORT IMPORTS)
 // Import styles: import '@buni/ui' or import '@buni/ui/css'
 // Import components: import { Button, Card, Input, ... } from '@buni/ui'
 
-\${barrelExports.join('\n')}
+${barrelExports.join('\n')}
 
 // Re-export tokens for convenience
 export * from '@buni/tokens';
-\`;
+`;
 
 fs.writeFileSync(path.join(distDir, 'index.js'), mainIndexJs);
 console.log('✓ Built dist/index.js (short exports)');
@@ -109,7 +109,7 @@ console.log('✓ Built dist/index.js (short exports)');
 // ============================================================================
 // 5. Build main index.d.ts
 // ============================================================================
-const mainIndexDts = \`// @buni/ui - Type Declarations (SHORT IMPORTS)
+const mainIndexDts = `// @buni/ui - Type Declarations (SHORT IMPORTS)
 
 // CSS module declarations
 declare module '*.css' {
@@ -117,14 +117,14 @@ declare module '*.css' {
   export default content;
 }
 
-\${barrelDtsExports.join('\n')}
+${barrelDtsExports.join('\n')}
 
 // Re-export tokens types
 export * from '@buni/tokens';
 
 // Auto-discovered component list
-export const COMPONENT_NAMES = \${JSON.stringify(componentNames, null, 2)} as const;
-\`;
+export const COMPONENT_NAMES = ${JSON.stringify(componentNames, null, 2)} as const;
+`;
 
 fs.writeFileSync(path.join(distDir, 'index.d.ts'), mainIndexDts);
 console.log('✓ Built dist/index.d.ts (short exports)');
@@ -132,7 +132,7 @@ console.log('✓ Built dist/index.d.ts (short exports)');
 // ============================================================================
 // 6. Generate CSS .d.ts
 // ============================================================================
-const cssDts = \`declare const stylesCss: string; export default stylesCss;\`;
+const cssDts = `declare const stylesCss: string; export default stylesCss;`;
 fs.writeFileSync(path.join(distDir, 'styles.css.d.ts'), cssDts);
 console.log('✓ Built dist/styles.css.d.ts');
 
@@ -144,30 +144,30 @@ fs.writeFileSync(path.join(pkgRoot, 'README.md'), readme);
 console.log('✓ Generated README.md');
 
 console.log('\n✅ Build complete!');
-console.log(\`📦 Output: \${distDir}\`);
-console.log(\`   - index.js / index.d.ts (MAIN - short imports)\`);
-console.log(\`   - styles.css / styles.css.d.ts (component styles)\`);
-console.log(\`   - components/ (each component: .js, .tsx, .d.ts)\`);
-console.log(\`   - utils.js / utils.d.ts (utility functions)\`);
+console.log(`📦 Output: ${distDir}`);
+console.log(`   - index.js / index.d.ts (MAIN - short imports)`);
+console.log(`   - styles.css / styles.css.d.ts (component styles)`);
+console.log(`   - components/ (each component: .js, .tsx, .d.ts)`);
+console.log(`   - utils.js / utils.d.ts (utility functions)`);
 
 // ============================================================================
 // Helpers
 // ============================================================================
-function generateComponentDts(content: string, componentName: string): string {
+function generateComponentDts(content, componentName) {
   // Extract exports from the component file
   const exports = extractExports(content);
 
-  return \`// \${componentName}.d.ts - Auto-generated
+  return `// ${componentName}.d.ts - Auto-generated
 import React from 'react';
 
-\${exports.map(e => \`export \${e}\`).join('\n')}
+${exports.map(e => `export ${e}`).join('\n')}
 
 // Default export if component is default exported
-\${content.includes('export default') ? \`declare const \${componentName}: React.ComponentType<any>; export default \${componentName};\` : ''}
-\`;
+${content.includes('export default') ? `declare const ${componentName}: React.ComponentType<any>; export default ${componentName};` : ''}
+`;
 }
 
-function extractExports(content: string): string[] {
+function extractExports(content) {
   const exports = [];
 
   // Match: export { ... } from ...
@@ -206,8 +206,8 @@ function extractExports(content: string): string[] {
   return [...new Set(exports)];
 }
 
-function generateReadme(componentNames: string[]): string {
-  return \`# @buni/ui
+function generateReadme(componentNames) {
+  return `# @buni/ui
 
 Buni Design System — React components built with Radix UI, Tailwind CSS v4 & Class Variance Authority.
 
@@ -284,11 +284,11 @@ import { Card } from '@buni/ui/Card';
 import { cn } from '@buni/ui/utils';
 \`\`\`
 
-## Available Components (\${componentNames.length} auto-discovered)
+## Available Components (${componentNames.length} auto-discovered)
 
 | Component | Description |
 |-----------|-------------|
-\${componentNames.map(name => \`| \${name} | \${getComponentDescription(name)} |\`).join('\n')}
+${componentNames.map(name => `| ${name} | ${getComponentDescription(name)} |`).join('\n')}
 
 ## Button Variants
 
@@ -341,11 +341,11 @@ New components added to \`packages/ui/src/components/\` are automatically includ
 ## License
 
 MIT
-\`;
+`;
 }
 
-function getComponentDescription(name: string): string {
-  const descriptions: Record<string, string> = {
+function getComponentDescription(name) {
+  const descriptions = {
     Button: 'Multi-variant button (primary, secondary, ghost, outline, danger, kente, link, muted)',
     Badge: 'Status badges with variants',
     Input: 'Form input & Textarea',

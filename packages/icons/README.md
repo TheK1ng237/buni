@@ -1,81 +1,142 @@
 # @buni/icons
 
-Bibliothèque d'icônes AVS avec imports simples. Deux modes d'utilisation : composants React ou classes CSS.
+African cultural icons — React components, CSS classes & SVG files for Buni Design System.
 
 ## Installation
 
 ```bash
 npm install @buni/icons
-# ou
+# or
 pnpm add @buni/icons
+# or
+yarn add @buni/icons
 ```
 
-## Utilisation avec classes CSS (recommandé)
+## Usage
 
-Importez le CSS et utilisez des classes simples :
-
-```tsx
-import '@buni/icons/icons.css';
-
-function MyComponent() {
-  return (
-    <div>
-      <i className="avs avs-person avs-lg"></i>
-      <i className="avs avs-settings avs-md text-avs-primary"></i>
-      <i className="avs avs-home"></i>
-      <i className="avs avs-search"></i>
-    </div>
-  );
-}
-```
-
-### Classes disponibles
-
-- `avs` - Classe de base (obligatoire)
-- `avs-person` - Icône personne
-- `avs-settings` - Icône paramètres
-- `avs-home` - Icône maison
-- `avs-search` - Icône recherche
-
-### Tailles
-
-- `avs-sm` - 0.875rem
-- `avs-md` - 1rem (défaut)
-- `avs-lg` - 1.25rem
-- `avs-xl` - 1.5rem
-- `avs-2xl` - 2rem
-
-## Utilisation avec composants React
-
-Importez les composants React directement :
+### 1. React Components (SHORT IMPORTS - Tree-shakeable)
 
 ```tsx
+// ✅ SHORT - Recommended
 import { Avs, AvsPerson, AvsSettings, AvsHome, AvsSearch } from '@buni/icons';
 
+// ✅ Individual (smallest bundle)
+import { Avs } from '@buni/icons/Avs';
+import { AvsPerson } from '@buni/icons/AvsPerson';
+
 function MyComponent() {
   return (
     <div>
-      <Avs className="w-6 h-6" />
-      <AvsPerson className="w-8 h-8 text-avs-primary" />
-      <AvsSettings />
-      <AvsHome />
-      <AvsSearch />
+      <Avs className="h-6 w-6 text-avs-primary" />
+      <AvsPerson size="lg" color="#C0573E" />
+      <AvsSettings className="h-8 w-8" />
     </div>
   );
 }
 ```
 
-## Icônes disponibles
+**Props for all React icons:**
+| Prop | Type | Default |
+|------|------|---------|
+| `className` | `string` | - |
+| `size` | `'sm' | 'md' | 'lg' | 'xl' | '2xl' | number` | `'md'` |
+| `color` | `string` | `'currentColor'` |
+| `...props` | `SVGProps<SVGSVGElement>` | - |
 
-- `Avs` / `avs` - Icône principale AVS
-- `AvsPerson` / `avs-person` - Icône personne
-- `AvsSettings` / `avs-settings` - Icône paramètres
-- `AvsHome` / `avs-home` - Icône maison
-- `AvsSearch` / `avs-search` - Icône recherche
+### 2. CSS Classes (Zero Dependencies)
 
-## Comparaison des approches
+```css
+@import '@buni/icons/css';
+```
 
-| Approche | Avantages | Cas d'usage |
-|----------|-----------|-------------|
-| **Classes CSS** | Plus léger, pas de JS, compatible HTML pur | Sites statiques, emails, performance |
-| **Composants React** | Props TypeScript, contrôle fin, animable | Apps React complexes, interactives |
+```html
+<i class="avs"></i>
+<i class="avs-person"></i>
+<i class="avs-settings"></i>
+<i class="avs-home"></i>
+<i class="avs-search"></i>
+
+<!-- Size variants -->
+<i class="avs avs-sm"></i>
+<i class="avs avs-md"></i>
+<i class="avs avs-lg"></i>
+<i class="avs avs-xl"></i>
+<i class="avs avs-2xl"></i>
+
+<!-- With base class -->
+<i class="buni-icon avs"></i>
+```
+
+### 3. Ndop Symbols (Cultural Symbols)
+
+```tsx
+import { ndopSymbol1, ndopSymbol2, ndopSymbol3, ndopSymbol4, ndopSymbol5 } from '@buni/icons/symbols';
+
+// As <img>
+<img src={ndopSymbol1} alt="Ndop Symbol" width="32" height="32" />
+
+// As background
+<div style={{ backgroundImage: `url(${ndopSymbol1})` }} />
+```
+
+**Available:** ndopSymbol1, ndopSymbol2, ndopSymbol3, ndopSymbol4, ndopSymbol5
+
+### 4. Cultural Heritage Assets
+
+```tsx
+import { ndopBamoum, toghuBamenda, toghuBamileke } from '@buni/icons/cultural';
+
+// Usage
+<img src={ndopBamoum} alt="Ndop Bamoum" />
+<img src={toghuBamenda} alt="Toghu Bamenda" />
+```
+
+**Available:** toghu-bamenda, toghu-bamileke, ndop-bamoum, ndop6
+
+### 5. SVG Files (Direct Import)
+
+```tsx
+import AvsSvg from '@buni/icons/svg/avs.svg';
+import PersonSvg from '@buni/icons/svg/avs-person.svg';
+
+<img src={AvsSvg} alt="AVS" width="32" height="32" />
+```
+
+## Available Icons
+
+| Name | React | CSS Class | SVG | Category |
+|------|-------|-----------|-----|----------|
+| **AVS** | `<Avs />` | `.avs` | `avs.svg` | Brand Logo |
+| **Person** | `<AvsPerson />` | `.avs-person` | `avs-person.svg` | User/Profile |
+| **Settings** | `<AvsSettings />` | `.avs-settings` | `avs-settings.svg` | Settings |
+| **Home** | `<AvsHome />` | `.avs-home` | `avs-home.svg` | Home |
+| **Search** | `<AvsSearch />` | `.avs-search` | `avs-search.svg` | Search |
+
+## Cultural Symbols (Ndop)
+
+| Symbol | Import | Origin |
+|--------|--------|--------|
+| ndopSymbol1 | `import { ndopSymbol1 } from '@buni/icons/symbols'` | Cameroun / Bamoum |
+| ndopSymbol2 | `import { ndopSymbol2 } from '@buni/icons/symbols'` | Cameroun / Bamoum |
+| ndopSymbol3 | `import { ndopSymbol3 } from '@buni/icons/symbols'` | Cameroun / Bamoum |
+| ndopSymbol4 | `import { ndopSymbol4 } from '@buni/icons/symbols'` | Cameroun / Bamoum |
+| ndopSymbol5 | `import { ndopSymbol5 } from '@buni/icons/symbols'` | Cameroun / Bamoum |
+
+## Cultural Assets
+
+| Asset | Import | Origin |
+|-------|--------|--------|
+| toghu-bamenda | `import { toghubamenda } from '@buni/icons/cultural'` | Cameroun / Bamiléké |
+| toghu-bamileke | `import { toghubamileke } from '@buni/icons/cultural'` | Cameroun / Bamiléké |
+| ndop-bamoum | `import { ndopbamoum } from '@buni/icons/cultural'` | Cameroun / Bamoum |
+| ndop6 | `import { ndop6 } from '@buni/icons/cultural'` | Cameroun / Bamoum |
+
+## Requirements
+
+- **CSS only**: Any bundler supporting CSS imports
+- **React**: React 18+ (peer dependency)
+- **SVG imports**: Vite, Webpack 5+, Next.js 13+, or compatible bundler
+
+## License
+
+MIT — Cultural heritage symbols are part of humanity's shared legacy.

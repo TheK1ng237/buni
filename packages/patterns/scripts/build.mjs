@@ -43,16 +43,16 @@ if (fs.existsSync(patternsCssSrc)) {
     "@import '@buni/patterns/tokens';"
   );
 
-  // Point CSS assets to their generated package paths.
+  // Resolve assets relative to the generated stylesheet in dist/.
   cssContent = cssContent.replace(
     /url\(['"]?\/patterns\/([^'")]+)['"]?\)/g,
     (_match, file) => {
       if (file.includes('Symbol')) {
-        return `url('@buni/patterns/symbols/${file}')`;
+        return `url('./symbols/${file}')`;
       }
 
       const directory = file === 'ndop6.svg' || file === 'ndop-bamoum.svg' ? 'svg/ndop' : 'svg';
-      return `url('@buni/patterns/${directory}/${file}')`;
+      return `url('./${directory}/${file}')`;
     }
   );
 

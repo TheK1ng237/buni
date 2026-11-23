@@ -1,296 +1,172 @@
-# @buni/patterns - African Pattern CSS Classes
+# @buni/patterns
 
-Easy-to-use African pattern CSS classes for any React project.
+African cultural patterns library — CSS classes & SVG vectors for Kente, Ndop, Bogolan, Adinkra, Wax, Kuba, Ndebele, Berber.
 
-## 🚀 Quick Start
-
-### Installation
+## Installation
 
 ```bash
 npm install @buni/patterns
+# or
+pnpm add @buni/patterns
+# or
+yarn add @buni/patterns
 ```
 
-### CSS Import Required
+## Usage
 
-For the CSS classes to work, you need to import the CSS in your global CSS file:
+### CSS Import (Recommended)
 
 ```css
-/* In your globals.css or main CSS file */
+/* Import all patterns + design tokens */
+@import '@buni/patterns';
+
+/* Or import patterns only */
 @import '@buni/patterns/css';
+
+/* Or import design tokens only */
+@import '@buni/patterns/tokens';
 ```
 
-### Basic Usage
+### HTML / JSX Usage
 
-```jsx
-import { kente, ndop, bogolan } from '@buni/patterns';
+```html
+<!-- Basic patterns (short class names) -->
+<div class="kente h-32 w-full"></div>
+<div class="ndop h-32 w-full"></div>
+<div class="bogolan h-32 w-full"></div>
+<div class="adinkra h-32 w-full"></div>
+<div class="wax h-32 w-full"></div>
+<div class="kuba h-32 w-full"></div>
+<div class="ndebele h-32 w-full"></div>
+<div class="berber h-32 w-full"></div>
 
-function App() {
-  return (
-    <div>
-      {/* Short class names are available as importable values */}
-      <div className={`${kente} h-64`} />
-      
-      {/* Pattern as section */}
-      <section className={`${ndop} min-h-64`}>
-        <h1>Content with Ndop pattern</h1>
-      </section>
-      
-      {/* Pattern with custom styles */}
-      <div 
-        className={`${bogolan} rounded-xl opacity-30`}
-      >
-        <p>Overlay content</p>
-      </div>
-    </div>
-  );
-}
+<!-- Variations -->
+<div class="kente-etoile h-32 w-full"></div>
+<div class="ndop-ceremoniel h-32 w-full"></div>
+<div class="bogolan-terre h-32 w-full"></div>
+<div class="wax-lagos h-32 w-full"></div>
 ```
 
-### Direct Tailwind Usage (Recommended)
+### SVG Import (Build tools)
 
-```jsx
-// Even simpler - use pattern classes directly with Tailwind
-<div className="ndop h-20 w-full" />
-<div className="kente h-32 w-32 rounded-full" />
-<div className="bogolan h-16 w-full opacity-20" />
+```js
+// Vite, Webpack, Next.js, etc.
+import ndopBamoum from '@buni/patterns/svg/ndop/ndop-bamoum.svg';
+import kenteRoyale from '@buni/patterns/svg/kente/kente-royale.svg';
+import toghuBamenda from '@buni/patterns/svg/toghu-bamenda.svg';
 
-// Combined with other Tailwind classes
-<section className="ndop min-h-screen relative">
-  <div className="absolute inset-0 bg-black/50" />
-  <div className="relative z-10 p-8">
-    <h1 className="text-white">Your content</h1>
-  </div>
-</section>
+// Use as <img src={ndopBamoum} /> or background-image
 ```
 
-## 🎨 Available Pattern Classes
+### Symbols (Ndop Cultural Symbols)
 
-```typescript
-import { 
-  kente, 
-  bogolan, 
-  adinkra, 
-  ndebele, 
-  ndop, 
-  wax, 
-  kuba, 
-  berber 
+```js
+import { ndopSymbol1, ndopSymbol2, ndopSymbol3, ndopSymbol4, ndopSymbol5 } from '@buni/patterns/symbols';
+```
+
+### TypeScript / Programmatic Access
+
+```ts
+import {
+  kente, ndop, bogolan,
+  PATTERN_TYPES,
+  getPatternBySlug,
+  SVG_PATTERN_REGISTRY
 } from '@buni/patterns';
+
+// Use CSS class names
+const className = kente; // "kente"
+
+// Get pattern metadata
+const pattern = getPatternBySlug('kente-asante');
+
+// Access SVG registry
+const svgUrl = SVG_PATTERN_REGISTRY['ndop-bamoum'];
 ```
 
-Available patterns:
-- `kente` - Kente patterns (Ghana)
-- `bogolan` - Bogolan patterns (Mali)
-- `adinkra` - Adinkra symbols (Ghana)
-- `ndebele` - Ndebele patterns (Zimbabwe)
-- `ndop` - Ndop patterns (Cameroon)
-- `wax` - Wax patterns (Pan-african)
-- `kuba` - Kuba patterns (DRC)
-- `berber` - Berber patterns (North Africa)
+## Available Patterns
 
-Additional variations:
-- `kenteEtoile` - Kente étoile variation
-- `ndopCeremoniel` - Ndop cérémoniel variation
-- `bogolanTerre` - Bogolan terre variation
-- `waxLagos` - Wax Lagos variation
+| Pattern | Class | Variations | Origin |
+|---------|-------|------------|--------|
+| **Kente** | `.kente` | `.kente-etoile` | Ghana / Akan |
+| **Ndop** | `.ndop` | `.ndop-ceremoniel` | Cameroon / Bamoum |
+| **Bogolan** | `.bogolan` | `.bogolan-terre` | Mali / Bambara |
+| **Adinkra** | `.adinkra` | — | Ghana / Akan |
+| **Wax** | `.wax` | `.wax-lagos` | Pan-African |
+| **Kuba** | `.kuba` | — | DRC / Kasai |
+| **Ndebele** | `.ndebele` | — | South Africa / Zimbabwe |
+| **Berber** | `.berber` | — | Morocco / Amazigh |
 
-## 🎯 Advanced Examples
-
-### Pattern Backgrounds
-
-```jsx
-function PatternBackground() {
-  return (
-    <div className="kente h-48">
-      <h1 className="text-white">Kente Background</h1>
-    </div>
-  );
-}
-
-function PatternSection() {
-  return (
-    <section className="ndop">
-      <div className="p-8">
-        <h2>Section with Ndop pattern</h2>
-        <p>Your content here</p>
-      </div>
-    </section>
-  );
-}
-
-function PatternWithOpacity() {
-  return (
-    <div className="bogolan opacity-30">
-      <p>Subtle bogolan pattern overlay</p>
-    </div>
-  );
-}
-```
-
-### Interactive Pattern Cards
-
-### Interactive Pattern Cards
-
-```jsx
-import { kente, ndop, bogolan } from '@buni/patterns';
-
-function PatternCard({ pattern, onClick }) {
-  const patternClass = {
-    KENTE: kente,
-    NDOP: ndop,
-    BOGOLAN: bogolan
-  }[pattern.type] || kente;
-
-  return (
-    <div 
-      className={`${patternClass} p-6 rounded-lg cursor-pointer hover:scale-105 transition-transform`}
-      onClick={onClick}
-    >
-      <div className="bg-white/90 backdrop-blur-sm p-4 rounded">
-        <h3 className="font-bold text-lg">{pattern.name}</h3>
-        <p className="text-sm opacity-75">{pattern.description}</p>
-      </div>
-    </div>
-  );
-}
-```
-
-### Pattern Sections
-
-```jsx
-import { kente, ndop, bogolan } from '@buni/patterns';
-
-function PatternSection({ title, type, children }) {
-  const patternClass = {
-    KENTE: kente,
-    NDOP: ndop,
-    BOGOLAN: bogolan
-  }[type] || kente;
-
-  return (
-    <section className="py-16">
-      <header 
-        className={`${patternClass} h-32 flex items-center justify-center`}
-      >
-        <h1 className="text-4xl font-bold text-white drop-shadow-lg">
-          {title}
-        </h1>
-      </header>
-      
-      <main className="container mx-auto px-4">
-        {children}
-      </main>
-    </section>
-  );
-}
-
-// Usage
-<PatternSection 
-  title="African Patterns" 
-  type="KENTE"
->
-  <p>Your content here...</p>
-</PatternSection>
-```
-
-### Pattern Overlays
-
-```jsx
-import { kente, ndop, bogolan } from '@buni/patterns';
-
-function PatternOverlay({ type, children }) {
-  const patternClass = {
-    KENTE: kente,
-    NDOP: ndop,
-    BOGOLAN: bogolan
-  }[type] || kente;
-
-  return (
-    <div className="relative">
-      <div 
-        className={`${patternClass} absolute inset-0 z-0`}
-        style={{ opacity: 0.15 }}
-      />
-      <div className="relative z-10">
-        {children}
-      </div>
-    </div>
-  );
-}
-```
-
-## 🎨 CSS Classes Reference
-
-Each pattern has a short class name for direct usage:
+## Design Tokens (via `@import '@buni/patterns/tokens'`)
 
 ```css
-.kente      /* Kente pattern - short name */
-.ndop       /* Ndop pattern - short name */
-.bogolan    /* Bogolan pattern - short name */
-.wax        /* Wax pattern - short name */
-.adinkra    /* Adinkra pattern - short name */
-.kuba       /* Kuba pattern - short name */
-.berber     /* Berber pattern - short name */
-.ndebele    /* Ndebele pattern - short name */
+@theme {
+  /* Colors */
+  --color-avs-primary: #C0573E;
+  --color-avs-secondary: #F5EBE0;
+  --color-avs-accent: #1D1D1B;
+  --color-avs-kente: #D4A017;
+  --color-avs-ndop: #4A6741;
+  --color-avs-indigo: #2A4A6B;
+  --color-avs-earth: #8B4513;
+  --color-avs-raffia: #C8A96E;
+
+  /* Light theme */
+  --color-light-bg: #FFFFFF;
+  --color-light-surface: #F9F7F4;
+  --color-light-text: #1D1D1B;
+  --color-light-border: #E5E0D8;
+
+  /* Dark theme */
+  --color-dark-bg: #0F0E0B;
+  --color-dark-surface: #1A1916;
+  --color-dark-text: #F5EBE0;
+  --color-dark-border: #28251F;
+
+  /* Typography */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', 'Helvetica Neue', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Radius */
+  --radius-avs: 0.375rem;
+  --radius-avs-lg: 1.5rem;
+  --radius-avs-xl: 2rem;
+
+  /* Shadows */
+  --shadow-avs: 3px 3px 0px 0px rgb(29 29 27 / 1);
+  --shadow-avs-md: 5px 5px 0px 0px rgb(192 87 62 / 1);
+  --shadow-avs-lg: 8px 8px 0px 0px rgb(29 29 27 / 1);
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+}
 ```
 
-The full class names are still available for backward compatibility:
+## Customization
+
+Override tokens in your CSS:
+
 ```css
-.avs-pattern-kente-royale      /* kente */
-.avs-pattern-ndop-sultan       /* ndop */
-.avs-pattern-bogolan-fanga     /* bogolan */
-.avs-pattern-wax-dakar         /* wax */
-.avs-pattern-adinkra-sankofa   /* adinkra */
-.avs-pattern-kuba-kasai        /* kuba */
-.avs-pattern-berber-amazigh    /* berber */
-.avs-pattern-ndebele-amabhaxa  /* ndebele */
+@import '@buni/patterns';
+
+@theme {
+  --color-avs-primary: #YOUR_BRAND_COLOR;
+  --color-avs-kente: #YOUR_GOLD;
+}
 ```
 
-## 🔄 TypeScript Support
+## Requirements
 
-Full TypeScript support with proper type definitions:
+- Tailwind CSS v4+
+- PostCSS (for CSS imports)
 
-```typescript
-import { kente, ndop, bogolan } from '@buni/patterns';
+## License
 
-// Fully typed imports
-const patternClass: string = kente; // Type: string
-```
+MIT — Cultural heritage patterns are part of humanity's shared legacy.
 
-## 📦 Distribution
+## Credits
 
-This package is designed for easy distribution:
-
-- **Zero dependencies** - Works with any CSS framework
-- **Tree-shakable** - Only imports what you use
-- **TypeScript first** - Full type safety
-- **Framework agnostic** - Works with Next.js, Vite, Create React App, vanilla CSS
-
-## 🌍 Cultural Context
-
-These patterns represent authentic African textile traditions:
-
-- **Kente**: Ghanaian royal weaving tradition
-- **Ndop**: Cameroonian Bamoum sacred textiles
-- **Bogolan**: Malian mud-dyed cloth tradition
-- **Adinkra**: Ghanaian symbolic stamping tradition
-- **Toghu**: Cameroonian Bamiléké prestige textiles
-
-Each pattern includes cultural context and historical significance.
-
-## 🤝 Contributing
-
-To add new patterns:
-
-1. Design the pattern with cultural authenticity
-2. Add a short class (for example `.nouveau-motif`) beside its CSS rule
-3. Add the key to `CSS_PATTERN_MAP` and export it from `css-classes.ts`
-4. For a static catalog entry, register its slug in the backend static pattern
-   registry so its view/download counters and SVG export are persisted
-5. Document the cultural significance
-
-## 📄 License
-
-All patterns are available under Creative Commons licenses (CC-BY, CC0, CC-BY-SA).
-
-Please respect the cultural origins and attribute appropriately when using these patterns.
+Patterns sourced from African cultural heritage. Built with respect for the artisans and communities who preserve these traditions.
