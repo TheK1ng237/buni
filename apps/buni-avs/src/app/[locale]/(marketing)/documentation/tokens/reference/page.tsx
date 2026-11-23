@@ -3,7 +3,27 @@
 import { DocPageTemplate } from '../../doc-page-template';
 import { useNavSpaces } from '../../nav-data';
 import { useTranslations } from '@/i18n';
+import { CodeBlock } from '../../doc-primitives';
 import { AVS_COLORS, AVS_RADIUS, AVS_SHADOW } from '@buni/tokens';
+
+function getContrastTextColor(hex: string) {
+  const channels = hex.match(/[0-9a-f]{2}/gi)?.map((channel) => parseInt(channel, 16) / 255);
+  if (!channels || channels.length !== 3) return '#1D1D1B';
+  const [redChannel, greenChannel, blueChannel] = channels;
+  if (redChannel === undefined || greenChannel === undefined || blueChannel === undefined) return '#1D1D1B';
+
+  const linearize = (channel: number) =>
+    channel <= 0.04045 ? channel / 12.92 : ((channel + 0.055) / 1.055) ** 2.4;
+  const red = linearize(redChannel);
+  const green = linearize(greenChannel);
+  const blue = linearize(blueChannel);
+  const luminance = 0.2126 * red + 0.7152 * green + 0.0722 * blue;
+  const darkLuminance = 0.2126 * linearize(29 / 255) + 0.7152 * linearize(29 / 255) + 0.0722 * linearize(27 / 255);
+  const darkContrast = (luminance + 0.05) / (darkLuminance + 0.05);
+  const lightContrast = 1.05 / (luminance + 0.05);
+
+  return darkContrast >= lightContrast ? '#1D1D1B' : '#FFFFFF';
+}
 
 export default function TokensReferencePage() {
   const t = useTranslations('documentation.tokens.reference');
@@ -44,13 +64,13 @@ export default function TokensReferencePage() {
           {/* Installation */}
           <section id="installation">
             <h2 className="text-2xl font-semibold text-avs-primary mb-4">{t('installation.title')}</h2>
-            <pre className="bg-avs-accent/5 p-4 rounded-avs overflow-x-auto"><code>{`// Installation
+            <CodeBlock id="tokens-installation" lang="bash" title={t('installation.title')} code={`# Installation
 pnpm add @buni/tokens
 
-// CSS Import (required for all packages)
+# CSS Import (required for all packages)
 @import '@buni/tokens';
 
-// Tailwind v4 Config
+# Tailwind v4 Config
 @import 'tailwindcss';
 @import '@buni/tokens';
 
@@ -59,7 +79,7 @@ pnpm add @buni/tokens
 }
 
 // JS Import (short)
-import { AVS_COLORS, AVS_RADIUS, AVS_SHADOW } from '@buni/tokens';`}</code></pre>
+import { AVS_COLORS, AVS_RADIUS, AVS_SHADOW } from '@buni/tokens';`} />
           </section>
 
           {/* Color Palette */}
@@ -79,9 +99,9 @@ import { AVS_COLORS, AVS_RADIUS, AVS_SHADOW } from '@buni/tokens';`}</code></pre
                   >
                     <div className="w-full h-20 rounded-avs mb-3 border border-primary" />
                     <div className="space-y-1">
-                      <code className="font-semibold text-avs-secondary capitalize">{name}</code>
-                      <code className="text-xs text-avs-secondary/80 font-mono">{hex}</code>
-                      <code className="text-xs text-avs-secondary/60 font-mono">var(--color-avs-{name})</code>
+                      <code className="font-semibold capitalize" style={{ color: getContrastTextColor(hex) }}>{name}</code>
+                      <code className="text-xs font-mono" style={{ color: getContrastTextColor(hex) }}>{hex}</code>
+                      <code className="text-xs font-mono" style={{ color: getContrastTextColor(hex) }}>var(--color-avs-{name})</code>
                     </div>
                   </div>
                 ))}
@@ -95,8 +115,8 @@ import { AVS_COLORS, AVS_RADIUS, AVS_SHADOW } from '@buni/tokens';`}</code></pre
                 {Object.entries(lightColors).map(([name, hex]) => (
                   <div key={name} className="surface-primary border-primary border rounded-avs p-4" style={{ backgroundColor: hex }}>
                     <div className="w-full h-20 rounded-avs mb-3 border border-primary" />
-                    <code className="text-xs font-mono text-avs-accent/70">{name}</code>
-                    <code className="text-xs font-mono text-avs-accent/60 block">{hex}</code>
+                    <code className="text-xs font-mono block" style={{ color: getContrastTextColor(hex) }}>{name}</code>
+                    <code className="text-xs font-mono block" style={{ color: getContrastTextColor(hex) }}>{hex}</code>
                   </div>
                 ))}
               </div>
@@ -109,8 +129,8 @@ import { AVS_COLORS, AVS_RADIUS, AVS_SHADOW } from '@buni/tokens';`}</code></pre
                 {Object.entries(darkColors).map(([name, hex]) => (
                   <div key={name} className="surface-primary border-primary border rounded-avs p-4" style={{ backgroundColor: hex }}>
                     <div className="w-full h-20 rounded-avs mb-3 border border-primary" />
-                    <code className="text-xs font-mono text-avs-secondary">{name}</code>
-                    <code className="text-xs font-mono text-avs-secondary/70 block">{hex}</code>
+                    <code className="text-xs font-mono block" style={{ color: getContrastTextColor(hex) }}>{name}</code>
+                    <code className="text-xs font-mono block" style={{ color: getContrastTextColor(hex) }}>{hex}</code>
                   </div>
                 ))}
               </div>
@@ -119,7 +139,7 @@ import { AVS_COLORS, AVS_RADIUS, AVS_SHADOW } from '@buni/tokens';`}</code></pre
             {/* Usage Examples */}
             <div className="space-y-4">
               <h3 className="text-lg font-medium text-avs-primary">{t('colors.usage')}</h3>
-              <pre className="bg-avs-accent/5 p-4 rounded-avs overflow-x-auto"><code>{`// CSS Variables
+              <CodeBlock id="tokens-color-usage" lang="css" code={`// CSS Variables
 :root {
   --color-avs-primary: #C0573E;
 }
@@ -141,7 +161,7 @@ import { AVS_COLORS, AVS_RADIUS, AVS_SHADOW } from '@buni/tokens';`}</code></pre
 // Dark mode automatic
 <div className="surface-primary text-primary border-primary">
   Adapts to light/dark automatically
-</div>`}</code></pre>
+</div>`} />
             </div>
           </section>
 
@@ -168,7 +188,7 @@ import { AVS_COLORS, AVS_RADIUS, AVS_SHADOW } from '@buni/tokens';`}</code></pre
               </div>
             </div>
 
-            <pre className="bg-avs-accent/5 p-4 rounded-avs overflow-x-auto mt-4"><code>{`// CSS
+            <CodeBlock id="tokens-typography" lang="css" code={`// CSS
 font-family: var(--font-display);
 font-family: var(--font-body);
 font-family: var(--font-mono);
@@ -176,7 +196,7 @@ font-family: var(--font-mono);
 // Tailwind
 <h1 className="font-display text-4xl">Titre</h1>
 <p className="font-body">Corps de texte</p>
-<code className="font-mono">code</code>`}</code></pre>
+<code className="font-mono">code</code>`} />
           </section>
 
           {/* Radius */}
@@ -223,7 +243,7 @@ font-family: var(--font-mono);
             <div className="space-y-6">
               <div>
                 <h3 className="text-lg font-medium text-avs-primary mb-3">{t('js.colors')}</h3>
-                <pre className="bg-avs-accent/5 p-4 rounded-avs overflow-x-auto"><code>{`import { AVS_COLORS, type AvsColor } from '@buni/tokens';
+                <CodeBlock id="tokens-js-colors" lang="ts" code={`import { AVS_COLORS, type AvsColor } from '@buni/tokens';
 
 AVS_COLORS.primary   // "#C0573E"
 AVS_COLORS.kente     // "#D4A017"
@@ -233,32 +253,32 @@ type AvsColor = 'primary' | 'secondary' | 'accent' | 'kente' | 'ndop' | 'indigo'
 
 // Dynamic access
 const color: AvsColor = 'kente';
-const hex = AVS_COLORS[color]; // "#D4A017"`}</code></pre>
+const hex = AVS_COLORS[color]; // "#D4A017"`} />
               </div>
 
               <div>
                 <h3 className="text-lg font-medium text-avs-primary mb-3">{t('js.radius')}</h3>
-                <pre className="bg-avs-accent/5 p-4 rounded-avs overflow-x-auto"><code>{`import { AVS_RADIUS } from '@buni/tokens';
+                <CodeBlock id="tokens-js-radius" lang="ts" code={`import { AVS_RADIUS } from '@buni/tokens';
 
 AVS_RADIUS.sm  // "0.375rem"
 AVS_RADIUS.lg  // "1.5rem"
 AVS_RADIUS.xl  // "2rem"
-AVS_RADIUS.full // "9999px"`}</code></pre>
+AVS_RADIUS.full // "9999px"`} />
               </div>
 
               <div>
                 <h3 className="text-lg font-medium text-avs-primary mb-3">{t('js.shadows')}</h3>
-                <pre className="bg-avs-accent/5 p-4 rounded-avs overflow-x-auto"><code>{`import { AVS_SHADOW } from '@buni/tokens';
+                <CodeBlock id="tokens-js-shadows" lang="ts" code={`import { AVS_SHADOW } from '@buni/tokens';
 
 AVS_SHADOW.sm  // "2px 2px 0px 0px #1D1D1B"
 AVS_SHADOW.md  // "3px 3px 0px 0px #1D1D1B"
 AVS_SHADOW.lg  // "5px 5px 0px 0px #C0573E"
-AVS_SHADOW.xl  // "8px 8px 0px 0px #1D1D1B"`}</code></pre>
+AVS_SHADOW.xl  // "8px 8px 0px 0px #1D1D1B"`} />
               </div>
 
               <div>
                 <h3 className="text-lg font-medium text-avs-primary mb-3">{t('js.utility')}</h3>
-                <pre className="bg-avs-accent/5 p-4 rounded-avs overflow-x-auto"><code>{`// Generate dynamic styles
+                <CodeBlock id="tokens-js-utility" lang="ts" code={`// Generate dynamic styles
 function getPatternStyle(colorKey: keyof typeof AVS_COLORS) {
   return {
     backgroundColor: AVS_COLORS[colorKey],
@@ -274,7 +294,7 @@ function generateTheme(primary: string, kente: string) {
   --color-avs-primary: \${primary};
   --color-avs-kente: \${kente};
 }\`;
-}`}</code></pre>
+}`} />
               </div>
             </div>
           </section>
@@ -284,7 +304,7 @@ function generateTheme(primary: string, kente: string) {
             <h2 className="text-2xl font-semibold text-avs-primary mb-4">{t('customization.title')}</h2>
             <p className="text-avs-accent/80 mb-6">{t('customization.description')}</p>
 
-            <pre className="bg-avs-accent/5 p-4 rounded-avs overflow-x-auto"><code>{`@import '@buni/tokens';
+            <CodeBlock id="tokens-customization" lang="css" code={`@import '@buni/tokens';
 
 @theme {
   /* Brand colors */
@@ -300,7 +320,7 @@ function generateTheme(primary: string, kente: string) {
   /* Custom shadows */
   --shadow-avs: 2px 2px 0px 0px #1A5C4A;
   --shadow-avs-md: 4px 4px 0px 0px #D4A017;
-}`}</code></pre>
+}`} />
           </section>
         </div>
       }

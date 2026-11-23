@@ -1211,8 +1211,11 @@
           "preview": "Preview"
         },
         "symbols": {
-          "title": "Ndop symbols",
-          "description": "Cultural symbols available as standalone SVG files."
+          "title": "Published symbols",
+          "description": "A preview of symbols published in the encyclopedia.",
+          "loadError": "The remote catalog is unavailable. Static symbols are still shown.",
+          "updating": "Updating symbols…",
+          "continueToEncyclopedia": "Continue to the symbols encyclopedia"
         },
         "cultural": {
           "title": "Cultural assets",
@@ -1529,13 +1532,19 @@
         },
         "patterns": {
           "title": "Pattern catalog",
-          "description": "Explore available patterns, their origins, and variations."
+          "description": "A preview of published patterns from the encyclopedia and static catalog.",
+          "loadError": "The remote catalog is unavailable. Static patterns are still shown.",
+          "colors": "Pattern colors",
+          "continueToEncyclopedia": "Continue to the pattern encyclopedia"
         },
         "variations": "Variations",
         "showCode": "Show code",
         "symbols": {
-          "title": "Ndop symbols",
-          "description": "Import symbols individually to use them in your interfaces."
+          "title": "Symbols",
+          "description": "A preview of published symbols from the symbols encyclopedia.",
+          "loadError": "The remote catalog is unavailable. Static symbols are still shown.",
+          "updating": "Updating symbols…",
+          "continueToEncyclopedia": "Continue to the symbols encyclopedia"
         },
         "programmatic": {
           "title": "Programmatic access",

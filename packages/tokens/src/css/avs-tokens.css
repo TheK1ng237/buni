@@ -67,17 +67,32 @@
 @layer utilities {
   /* Surface primaire — cartes, panneaux */
   .surface-primary {
-    @apply bg-light-surface dark:bg-dark-surface;
+    background-color: var(--color-light-surface);
+  }
+
+  .dark .surface-primary,
+  .dark.surface-primary {
+    background-color: var(--color-dark-surface);
   }
 
   /* Texte principal */
   .text-primary {
-    @apply text-light-text dark:text-dark-text;
+    color: var(--color-light-text);
+  }
+
+  .dark .text-primary,
+  .dark.text-primary {
+    color: var(--color-dark-text);
   }
 
   /* Bordure standard */
   .border-primary {
-    @apply border-light-border dark:border-dark-border;
+    border-color: var(--color-light-border);
+  }
+
+  .dark .border-primary,
+  .dark.border-primary {
+    border-color: var(--color-dark-border);
   }
 
   /* Ombres sombres */

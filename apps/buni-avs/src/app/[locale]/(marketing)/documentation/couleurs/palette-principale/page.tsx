@@ -32,10 +32,10 @@ function PaletteGrid() {
             </div>
           </div>
           <div className="bg-avs-secondary p-2.5">
-            <p className="font-mono text-[9px] text-avs-accent/32">{hex}</p>
+            <p className="font-mono text-[9px] text-avs-accent/70">{hex}</p>
             <p className="mt-0.5 text-[11px] font-bold text-avs-accent">{t(`${key}.label`)}</p>
-            <p className="mt-0.5 font-mono text-[8px] text-avs-accent/32">{name}</p>
-            <p className="mt-0.5 text-[8px] italic text-avs-accent/25">{t(`${key}.origin`)}</p>
+            <p className="mt-0.5 font-mono text-[8px] text-avs-accent/70">{name}</p>
+            <p className="mt-0.5 text-[8px] italic text-avs-accent/65">{t(`${key}.origin`)}</p>
           </div>
         </button>
       ))}

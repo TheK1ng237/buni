@@ -3,6 +3,7 @@
 import { DocPageTemplate } from '../doc-page-template';
 import { useNavSpaces } from '../nav-data';
 import { useTranslations } from '@/i18n';
+import { CodeBlock } from '../doc-primitives';
 import {
   Button, Card, CardHeader, CardContent, CardFooter, AvsAvatar as Avatar,
   Input, Textarea, Badge, cn, Dialog, DialogTrigger, DialogContent, DialogHeader,
@@ -76,7 +77,7 @@ export default function ComponentsPage() {
           {/* Installation */}
           <section id="installation">
             <h2 className="text-2xl font-semibold text-avs-primary mb-4">{t('installation.title')}</h2>
-            <pre className="bg-avs-accent/5 p-4 rounded-avs overflow-x-auto"><code>{`// Installation
+            <CodeBlock id="ui-installation" lang="bash" title={t('installation.title')} code={`# Installation
 pnpm add @buni/ui
 
 # Peer dependencies (required)
@@ -89,18 +90,18 @@ pnpm add react react-dom tailwindcss class-variance-authority clsx tailwind-merg
   @radix-ui/react-toggle @radix-ui/react-toggle-group @radix-ui/react-progress \\
   @radix-ui/react-label
 
-// CSS Import
+# CSS Import
 @import '@buni/ui';
 @import '@buni/tokens'; // Required
 
-// Tailwind v4 Config
+# Tailwind v4 Config
 @import 'tailwindcss';
 @import '@buni/tokens';
 @import '@buni/ui';
 
 @theme {
   --color-avs-primary: #YOUR_BRAND_COLOR;
-}`}</code></pre>
+}`} />
           </section>
 
           {/* Quick Start */}
@@ -108,7 +109,7 @@ pnpm add react react-dom tailwindcss class-variance-authority clsx tailwind-merg
             <h2 className="text-2xl font-semibold text-avs-primary mb-4">{t('quickstart.title')}</h2>
             <p className="text-avs-accent/80 mb-6">{t('quickstart.description')}</p>
 
-            <pre className="bg-avs-accent/5 p-4 rounded-avs overflow-x-auto"><code>{`// SHORT IMPORTS (recommended)
+            <CodeBlock id="ui-quickstart" lang="tsx" title={t('quickstart.title')} code={`// SHORT IMPORTS (recommended)
 import { Button, Card, CardHeader, CardContent, CardFooter, Avatar } from '@buni/ui';
 
 function Dashboard() {
@@ -126,7 +127,7 @@ function Dashboard() {
       </CardFooter>
     </Card>
   );
-}`}</code></pre>
+}`} />
 
             <div className="mt-6 p-4 surface-primary border-primary border rounded-avs">
               <Card className="w-full max-w-xs">
@@ -191,7 +192,7 @@ function Dashboard() {
                       <span>{t('showCode')}</span>
                       <svg className="w-3 h-3 transition-transform group-open:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
                     </summary>
-                    <pre className="bg-avs-accent/5 p-4 rounded-avs text-sm overflow-x-auto mt-2"><code>{component.code}</code></pre>
+                    <CodeBlock id={`component-${component.id}`} lang="tsx" title={component.name} code={component.code} />
                   </details>
                 </section>
               ))}
@@ -258,7 +259,7 @@ function Dashboard() {
               <div className="surface-primary border-primary border rounded-avs p-4">
                 <h3 className="font-semibold text-avs-primary mb-2">{t('autodiscovery.howItWorks')}</h3>
                 <p className="text-avs-accent/70 text-sm mb-4">{t('autodiscovery.explanation')}</p>
-                <pre className="bg-avs-accent/5 p-4 rounded-avs overflow-x-auto text-sm"><code>{`// 1. Create new component
+                <CodeBlock id="component-auto-discovery" lang="tsx" title="MyComponent.tsx" code={`// 1. Create new component
 // packages/ui/src/components/MyComponent.tsx
 'use client';
 import { cn } from '../utils';
@@ -281,7 +282,7 @@ export const MyComponent = ({ className, variant = 'default', ...props }: MyComp
 // Available immediately via:
 import { MyComponent } from '@buni/ui';
 // or
-import { MyComponent } from '@buni/ui/MyComponent';`}</code></pre>
+import { MyComponent } from '@buni/ui/MyComponent';`} />
               </div>
 
               <div className="surface-primary border-primary border rounded-avs p-4">

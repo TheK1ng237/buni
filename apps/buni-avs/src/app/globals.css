@@ -148,6 +148,11 @@
     line-height: 1.65;
   }
 
+  .doc-code-block > pre {
+    border: 0;
+    border-radius: 0;
+  }
+
   .doc-page-content :not(pre) > code {
     border-radius: 0.375rem;
     background: color-mix(in srgb, var(--color-avs-primary) 8%, transparent);

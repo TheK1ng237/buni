@@ -1170,8 +1170,11 @@
           "preview": "Aperçu"
         },
         "symbols": {
-          "title": "Symboles Ndop",
-          "description": "Symboles culturels disponibles en fichiers SVG indépendants."
+          "title": "Symboles publiés",
+          "description": "Aperçu de symboles publiés dans l'encyclopédie.",
+          "loadError": "Le catalogue distant est indisponible. Les symboles statiques restent affichés.",
+          "updating": "Mise à jour des symboles…",
+          "continueToEncyclopedia": "Continuer vers l'encyclopédie des symboles"
         },
         "cultural": {
           "title": "Ressources culturelles",
@@ -1488,13 +1491,19 @@
         },
         "patterns": {
           "title": "Catalogue des motifs",
-          "description": "Explorez les motifs disponibles, leurs origines et leurs variantes."
+          "description": "Un aperçu des motifs publiés, issu de l'encyclopédie et du catalogue statique.",
+          "loadError": "Le catalogue distant est indisponible. Les motifs statiques restent affichés.",
+          "colors": "Couleurs du motif",
+          "continueToEncyclopedia": "Continuer vers l'encyclopédie des motifs"
         },
         "variations": "Variantes",
         "showCode": "Afficher le code",
         "symbols": {
-          "title": "Symboles Ndop",
-          "description": "Importez les symboles séparément pour les utiliser dans vos interfaces."
+          "title": "Symboles",
+          "description": "Un aperçu des symboles publiés, issu de l'encyclopédie des symboles.",
+          "loadError": "Le catalogue distant est indisponible. Les symboles statiques restent affichés.",
+          "updating": "Mise à jour des symboles…",
+          "continueToEncyclopedia": "Continuer vers l'encyclopédie des symboles"
         },
         "programmatic": {
           "title": "Accès programmatique",

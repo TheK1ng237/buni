@@ -142,7 +142,7 @@ export function DocumentationHome() {
                     <i className={`pi pi-${space.icon}`} style={{ fontSize: '15px' }} />
                   </span>
                   <h3 className="font-display text-[15px] font-bold text-avs-accent">{space.label}</h3>
-                  <p className="mt-1 text-[12.5px] leading-relaxed text-avs-accent/45">{space.description}</p>
+                  <p className="mt-1 text-[12.5px] leading-relaxed text-avs-accent/75">{space.description}</p>
                 </Link>
               </motion.div>
             ))}
@@ -160,9 +160,9 @@ export function DocumentationHome() {
                 <li key={l.href} className="flex items-center justify-between gap-3 rounded-xl px-3 py-3 transition-colors hover:bg-avs-accent/[0.03]">
                   <div className="min-w-0">
                     <p className="truncate text-sm font-semibold text-avs-accent">{l.title}</p>
-                    <p className="text-[11px] text-avs-accent/40">{l.space}</p>
+                    <p className="text-[11px] text-avs-accent/70">{l.space}</p>
                   </div>
-                  <span className="shrink-0 font-mono text-[10px] text-avs-accent/30">{l.date}</span>
+                  <span className="shrink-0 font-mono text-[10px] text-avs-accent/70">{l.date}</span>
                 </li>
               ))}
             </ul>
@@ -175,9 +175,9 @@ export function DocumentationHome() {
                 <li key={p.href} className="flex items-center justify-between gap-3 rounded-xl px-3 py-3 transition-colors hover:bg-avs-accent/[0.03]">
                   <div className="min-w-0">
                     <p className="truncate text-sm font-semibold text-avs-accent">{p.title}</p>
-                    <p className="text-[11px] text-avs-accent/40">{p.space}</p>
+                    <p className="text-[11px] text-avs-accent/70">{p.space}</p>
                   </div>
-                  <span className="shrink-0 font-mono text-[10px] text-avs-accent/30">{p.hits} {t('views')}</span>
+                  <span className="shrink-0 font-mono text-[10px] text-avs-accent/70">{p.hits} {t('views')}</span>
                 </li>
               ))}
             </ul>
@@ -200,10 +200,10 @@ export function DocumentationHome() {
                 className="rounded-2xl border border-avs-accent/9 p-6"
               >
                 <h3 className="font-display text-base font-bold text-avs-accent">{path.title}</h3>
-                <p className="mt-1.5 text-[13px] leading-relaxed text-avs-accent/50">{path.desc}</p>
+                <p className="mt-1.5 text-[13px] leading-relaxed text-avs-accent/75">{path.desc}</p>
                 <ol className="mt-5 space-y-2">
                   {path.steps.map((s, si) => (
-                    <li key={s} className="flex items-center gap-2.5 text-[12.5px] text-avs-accent/60">
+                    <li key={s} className="flex items-center gap-2.5 text-[12.5px] text-avs-accent/80">
                       <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-avs-primary/10 font-mono text-[9px] font-bold text-avs-primary">
                         {si + 1}
                       </span>
