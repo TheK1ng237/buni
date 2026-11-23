@@ -1,40 +1,42 @@
 import { DocPageTemplate, type DocTocEntry } from '../../doc-page-template';
 import { CodeBlock } from '../../doc-primitives';
-
-const TOC: DocTocEntry[] = [
-  { id: 'choisir', label: 'Choisir un combo', level: 2 },
-  { id: 'tokens', label: 'Tokens de couleur', level: 2 },
-  { id: 'variantes', label: 'Variantes', level: 2 },
-  { id: 'composants', label: 'Composants', level: 2 },
-  { id: 'documentation', label: 'Documentation', level: 2 },
-];
+import { useTranslations } from '@/i18n';
 
 export default function DesignSystemPage() {
+  const t = useTranslations('documentation.colors.designSystem');
+  const toc: DocTocEntry[] = [
+    { id: 'choisir', label: t('toc.choose'), level: 2 },
+    { id: 'tokens', label: t('toc.tokens'), level: 2 },
+    { id: 'variantes', label: t('toc.variants'), level: 2 },
+    { id: 'composants', label: t('toc.components'), level: 2 },
+    { id: 'documentation', label: t('toc.documentation'), level: 2 },
+  ];
+
   return (
     <DocPageTemplate
-      space={{ label: 'Couleurs', color: '#C0573E', icon: 'palette' }}
-      title="Créer un Design System"
-      summary="Transformez les combos AVS en un design system cohérent pour votre application."
+      space={{ label: t('space'), color: '#C0573E', icon: 'palette' }}
+      title={t('title')}
+      summary={t('summary')}
       
       why={
         <p className="text-avs-accent/70 leading-relaxed">
-          Un design system basé sur les couleurs AVS garantit une cohérence visuelle tout en respectant l&apos;héritage culturel africain. Suivez ces étapes pour créer votre propre système.
+          {t('why')}
         </p>
       }
 
       explanation={
         <div className="space-y-6">
           <div>
-            <h3 className="font-display text-lg font-bold text-avs-accent mb-3" id="choisir">Étape 1 : Choisir un Combo Principal</h3>
+            <h3 className="font-display text-lg font-bold text-avs-accent mb-3" id="choisir">{t('choose.title')}</h3>
             <p className="text-avs-accent/70 leading-relaxed">
-              Sélectionnez un combo qui correspond à l'identité de votre marque. Par exemple, <strong>AVS Core</strong> pour une identité standard, ou <strong>Kente Asante</strong> pour une touche royale.
+              {t('choose.description')}
             </p>
           </div>
 
           <div>
-            <h3 className="font-display text-lg font-bold text-avs-accent mb-3" id="tokens">Étape 2 : Définir les Tokens de Couleur</h3>
+            <h3 className="font-display text-lg font-bold text-avs-accent mb-3" id="tokens">{t('tokens.title')}</h3>
             <p className="text-avs-accent/70 leading-relaxed mb-4">
-              Créez des tokens sémantiques basés sur les rôles :
+              {t('tokens.description')}
             </p>
             <CodeBlock 
               id="color-tokens" 
@@ -59,9 +61,9 @@ export default function DesignSystemPage() {
           </div>
 
           <div>
-            <h3 className="font-display text-lg font-bold text-avs-accent mb-3" id="variantes">Étape 3 : Créer des Variantes</h3>
+            <h3 className="font-display text-lg font-bold text-avs-accent mb-3" id="variantes">{t('variants.title')}</h3>
             <p className="text-avs-accent/70 leading-relaxed mb-4">
-              Générez des variantes de luminosité pour chaque couleur :
+              {t('variants.description')}
             </p>
             <CodeBlock 
               id="color-variants" 
@@ -83,9 +85,9 @@ export default function DesignSystemPage() {
           </div>
 
           <div>
-            <h3 className="font-display text-lg font-bold text-avs-accent mb-3" id="composants">Étape 4 : Appliquer aux Composants</h3>
+            <h3 className="font-display text-lg font-bold text-avs-accent mb-3" id="composants">{t('components.title')}</h3>
             <p className="text-avs-accent/70 leading-relaxed mb-4">
-              Utilisez les tokens dans vos composants :
+              {t('components.description')}
             </p>
             <CodeBlock 
               id="component-usage" 
@@ -118,17 +120,17 @@ export default function DesignSystemPage() {
           </div>
 
           <div>
-            <h3 className="font-display text-lg font-bold text-avs-accent mb-3" id="documentation">Étape 5 : Documentation et Maintenance</h3>
+            <h3 className="font-display text-lg font-bold text-avs-accent mb-3" id="documentation">{t('documentation.title')}</h3>
             <p className="text-avs-accent/70 leading-relaxed">
-              Documentez vos choix de couleurs avec leurs significations culturelles. Cela aide les nouveaux développeurs à comprendre le contexte et maintient la cohérence du design system.
+              {t('documentation.description')}
             </p>
           </div>
         </div>
       }
 
-      toc={TOC}
-      prev={{ href: '/documentation/couleurs/integration', title: 'Intégration' }}
-      next={{ href: '/documentation/couleurs/palette-principale', title: 'Palette Principale' }}
+      toc={toc}
+      prev={{ href: '/documentation/couleurs/integration', title: t('prev') }}
+      next={{ href: '/documentation/couleurs/palette-principale', title: t('next') }}
     />
   );
 }

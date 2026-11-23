@@ -1,43 +1,49 @@
 import type { Metadata } from 'next';
 import { DocPageTemplate, type DocTocEntry } from '../../doc-page-template';
 import { MotifSheet, type MotifData } from '../../motif-sheet';
+import { useTranslations } from '@/i18n';
 
 export const metadata: Metadata = { title: 'Kente Royale', description: 'Origine, symbolique et usages du motif Kente Royale.' };
 
-const MOTIF: MotifData = {
-  name: 'Kente Royale',
-  pattern: 'avs-pattern-kente-royale',
-  origin: 'Royaume Ashanti',
-  ethnicGroup: 'Akan',
-  country: 'Ghana',
-  region: 'Ashanti',
-  meaning: "Bandelettes tissées entrelacées, portées historiquement par la royauté Ashanti lors des cérémonies d'État.",
-  uses: ['Étoles cérémonielles', 'Tenues de mariage', 'Régalia royaux', 'Diplomatie panafricaine contemporaine'],
-  symbolism: "Chaque combinaison de couleurs et de motifs géométriques encode un proverbe ou une valeur — le kente se 'lit' autant qu'il se porte.",
-  history: "Tissé depuis le XVIIe siècle par les artisans Akan, popularisé à l'international après les indépendances africaines des années 1950-60 comme symbole panafricain.",
-  variants: [
-    { name: 'Adweneasa', pattern: 'avs-pattern-kente-royale', note: 'Motif le plus complexe, réservé aux chefs' },
-    { name: 'Oyokoman', pattern: 'avs-pattern-kente-royale', note: 'Couleurs du clan Oyoko' },
-    { name: 'Sika Fre Mogya', pattern: 'avs-pattern-kente-royale', note: "« L'argent attire le sang » — motif d'avertissement" },
-  ],
-  bibliography: [
-    { author: 'Ross, D.', work: 'Wrapped in Pride: Ghanaian Kente', year: '1998' },
-    { author: 'Boateng, B.', work: 'The Copyright Thing Doesn\u2019t Work Here', year: '2011' },
-  ],
-};
-
-const TOC: DocTocEntry[] = [{ id: 'exemples', label: 'Fiche complète', level: 2 }, { id: 'bonnes-pratiques', label: 'Bonnes pratiques', level: 2 }];
-
 export default function KenteRoyalePage() {
+  const t = useTranslations('documentation.motifs.kenteRoyale');
+  const motif: MotifData = {
+    name: t('title'),
+    pattern: 'avs-pattern-kente-royale',
+    origin: t('origin'),
+    ethnicGroup: 'Akan',
+    country: t('country'),
+    region: t('region'),
+    meaning: t('meaning'),
+    uses: [t('uses.ceremonial'), t('uses.wedding'), t('uses.regalia'), t('uses.diplomacy')],
+    symbolism: t('symbolism'),
+    history: t('history'),
+    variants: [
+      { name: 'Adweneasa', pattern: 'avs-pattern-kente-royale', note: t('variants.adweneasa') },
+      { name: 'Oyokoman', pattern: 'avs-pattern-kente-royale', note: t('variants.oyokoman') },
+      { name: 'Sika Fre Mogya', pattern: 'avs-pattern-kente-royale', note: t('variants.sikaFreMogya') },
+    ],
+    bibliography: [
+      { author: 'Ross, D.', work: 'Wrapped in Pride: Ghanaian Kente', year: '1998' },
+      { author: 'Boateng, B.', work: 'The Copyright Thing Doesn’t Work Here', year: '2011' },
+    ],
+  };
+  const toc: DocTocEntry[] = [
+    { id: 'exemples', label: t('toc.sheet'), level: 2 },
+    { id: 'bonnes-pratiques', label: t('toc.practices'), level: 2 },
+  ];
+
   return (
     <DocPageTemplate
-          space={{ label: 'Motifs', color: '#D4A017', icon: 'th-large' }}
-          title="Kente Royale"
-          summary="Le motif tissé le plus reconnu du continent — bandelettes entrelacées porteuses de sens, pas de simple décor coloré."
-          interactive={<MotifSheet motif={MOTIF} />}
-          bestPractices={<p>Utiliser en couleurs pleines (jamais désaturé) : le kente perd son sens sans son code chromatique.</p>}
-          toc={TOC}
-          prev={{ href: '/documentation/motifs/ndop-bamoum', title: 'Ndop Bamoum' }}
-          next={{ href: '/documentation/motifs/bogolan-fanga', title: 'Bogolan Fanga' }} explanation={undefined}    />
+      space={{ label: t('space'), color: '#D4A017', icon: 'th-large' }}
+      title={t('title')}
+      summary={t('summary')}
+      explanation={<p>{t('explanation')}</p>}
+      interactive={<MotifSheet motif={motif} />}
+      bestPractices={<p>{t('practice')}</p>}
+      toc={toc}
+      prev={{ href: '/documentation/motifs/ndop-bamoum', title: t('prev') }}
+      next={{ href: '/documentation/motifs/bogolan-fanga', title: t('next') }}
+    />
   );
 }

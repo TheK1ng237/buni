@@ -1,20 +1,75 @@
 {
   "name": "@buni/patterns",
-  "version": "0.0.1",
-  "private": true,
+  "version": "1.0.0",
+  "description": "African cultural patterns library — CSS classes & SVG vectors for Kente, Ndop, Bogolan, Adinkra, Wax, Kuba, Ndebele, Berber",
+  "license": "MIT",
+  "type": "module",
   "main": "./dist/index.js",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
       "default": "./dist/index.js"
     },
     "./css": {
-      "style": "./src/theme/patterns.css"
+      "style": "./dist/patterns.css",
+      "types": "./dist/patterns.css.d.ts"
+    },
+    "./tokens": {
+      "style": "./dist/tokens.css",
+      "types": "./dist/tokens.css.d.ts"
+    },
+    "./svg/*": "./dist/svg/*",
+    "./symbols/*.svg": "./dist/symbols/*.svg",
+    "./symbols": {
+      "types": "./dist/symbols.d.ts",
+      "import": "./dist/symbols.js",
+      "require": "./dist/symbols.cjs",
+      "default": "./dist/symbols.js"
     }
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "typecheck": "tsc --noEmit"
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc --noEmit",
+    "sync:backend": "node scripts/sync-from-backend.mjs",
+    "prepublishOnly": "pnpm run build"
+  },
+  "peerDependencies": {
+    "tailwindcss": ">=4.0.0"
+  },
+  "keywords": [
+    "css",
+    "patterns",
+    "african",
+    "kente",
+    "ndop",
+    "bogolan",
+    "adinkra",
+    "wax",
+    "kuba",
+    "ndebele",
+    "berber",
+    "design-system",
+    "tailwindcss",
+    "svg",
+    "cultural-heritage"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/buni/patterns.git"
+  },
+  "homepage": "https://buni.dev/patterns",
+  "bugs": {
+    "url": "https://github.com/buni/patterns/issues"
   }
 }
-
