@@ -62,7 +62,7 @@ export function ReadingProgress() {
 export function CodeBlock({ code, lang = 'tsx', id, title }: { code: string; lang?: string; id: string; title?: string }) {
   const { copied, copy } = useCopy();
   return (
-    <div className="group my-5 overflow-hidden rounded-xl" style={{ border: '1px solid rgba(255,255,255,0.06)', boxShadow: '0 8px 32px rgba(0,0,0,0.18)' }}>
+    <div className="doc-code-block group my-5 overflow-hidden rounded-xl" style={{ border: '1px solid rgba(255,255,255,0.06)', boxShadow: '0 8px 32px rgba(0,0,0,0.18)' }}>
       <div className="flex items-center justify-between px-4 py-2.5" style={{ background: 'var(--doc-code-header, #1a1a18)' }}>
         <div className="flex items-center gap-3">
           <div className="flex gap-1.5" aria-hidden>

@@ -85,12 +85,13 @@ export const LOCAL_SYMBOLS: SymbolEntry[] = PATTERNS_DOCS.flatMap((pattern) =>
 export function mergeSymbols(local: SymbolEntry[], remote: SymbolRecord[]): SymbolEntry[] {
   const merged = new Map<string, SymbolEntry>();
 
-  for (const symbol of local) {
-    merged.set(`${symbol.pattern.slug}:${normalize(symbol.name)}`, symbol);
-  }
   for (const symbol of remote) {
     const entry = mapSymbolRecord(symbol);
     merged.set(`${entry.pattern.slug}:${normalize(entry.name)}`, entry);
+  }
+  for (const symbol of local) {
+    const key = `${symbol.pattern.slug}:${normalize(symbol.name)}`;
+    if (!merged.has(key)) merged.set(key, symbol);
   }
 
   return Array.from(merged.values());

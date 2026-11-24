@@ -1,19 +1,61 @@
 {
   "name": "@buni/tokens",
-  "version": "0.0.1",
-  "private": true,
+  "version": "1.0.0",
+  "description": "Buni Design System — Design tokens (colors, typography, spacing, shadows, radius) for Tailwind CSS v4",
+  "license": "MIT",
+  "type": "module",
   "main": "./dist/index.js",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
-  ".": {
-    "types": "./dist/index.d.ts",
-    "default": "./dist/index.js"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.js"
+    },
+    "./css": {
+      "style": "./dist/tokens.css",
+      "types": "./dist/tokens.css.d.ts"
+    },
+    "./js": {
+      "types": "./dist/tokens.d.ts",
+      "import": "./dist/tokens.js",
+      "require": "./dist/tokens.cjs",
+      "default": "./dist/tokens.js"
+    }
   },
-  "./css": "./dist/index.css"
-},
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "tsc && mkdir -p dist/css && cp src/css/*.css dist/css/ && cp src/index.css dist/",
-    "typecheck": "tsc --noEmit"
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "pnpm run build"
+  },
+  "peerDependencies": {
+    "tailwindcss": ">=4.0.0"
+  },
+  "keywords": [
+    "design-tokens",
+    "tailwindcss",
+    "css-variables",
+    "design-system",
+    "buni",
+    "african",
+    "colors",
+    "typography"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/buni/tokens.git"
+  },
+  "homepage": "https://buni.dev/tokens",
+  "bugs": {
+    "url": "https://github.com/buni/tokens/issues"
   }
 }
-

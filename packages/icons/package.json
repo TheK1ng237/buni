@@ -1,18 +1,72 @@
 {
   "name": "@buni/icons",
-  "version": "0.0.1",
-  "private": true,
-  "main": "./src/index.ts",
-  "types": "./src/index.ts",
+  "version": "1.0.0",
+  "description": "African cultural icons — React components, CSS classes & SVG files for Buni Design System",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./src/index.ts",
-      "default": "./src/index.ts"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.js"
     },
-    "./icons.css": "./src/icons.css"
+    "./css": {
+      "style": "./dist/icons.css",
+      "types": "./dist/icons.css.d.ts"
+    },
+    "./symbols": {
+      "types": "./dist/symbols.d.ts",
+      "import": "./dist/symbols.js",
+      "require": "./dist/symbols.cjs",
+      "default": "./dist/symbols.js"
+    },
+    "./cultural": {
+      "types": "./dist/cultural.d.ts",
+      "import": "./dist/cultural.js",
+      "require": "./dist/cultural.cjs",
+      "default": "./dist/cultural.js"
+    }
   },
-  "scripts": { "typecheck": "tsc --noEmit" },
-  "dependencies": {
-    "react": "^18.0.0"
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "pnpm run build"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react": { "optional": true },
+    "react-dom": { "optional": true }
+  },
+  "keywords": [
+    "icons",
+    "react",
+    "svg",
+    "african",
+    "buni",
+    "design-system",
+    "cultural-heritage",
+    "symbols"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/buni/icons.git"
+  },
+  "homepage": "https://buni.dev/icons",
+  "bugs": {
+    "url": "https://github.com/buni/icons/issues"
   }
 }

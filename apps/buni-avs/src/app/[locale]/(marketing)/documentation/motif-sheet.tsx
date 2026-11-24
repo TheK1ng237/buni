@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useTranslations } from '@/i18n';
 
 export interface MotifData {
   name: string;
@@ -18,16 +19,11 @@ export interface MotifData {
   bibliography: { author: string; work: string; year: string }[];
 }
 
-const TABS = [
-  { id: 'identite',    label: 'Identité' },
-  { id: 'symbolique',  label: 'Symbolique' },
-  { id: 'histoire',    label: 'Histoire' },
-  { id: 'variantes',   label: 'Variantes' },
-  { id: 'bibliographie', label: 'Bibliographie' },
-] as const;
+const TAB_IDS = ['identite', 'symbolique', 'histoire', 'variantes', 'bibliographie'] as const;
 
 export function MotifSheet({ motif }: { motif: MotifData }) {
-  const [tab, setTab] = useState<(typeof TABS)[number]['id']>('identite');
+  const t = useTranslations('documentation.motifSheet');
+  const [tab, setTab] = useState<(typeof TAB_IDS)[number]>('identite');
 
   return (
     <div className="overflow-hidden rounded-2xl border border-avs-accent/9">
@@ -45,15 +41,15 @@ export function MotifSheet({ motif }: { motif: MotifData }) {
 
       {/* ── Tabs ─────────────────────────────────────────────────────── */}
       <div className="flex gap-1 overflow-x-auto border-b border-avs-accent/9 bg-avs-secondary px-3 pt-2">
-        {TABS.map((t) => (
+        {TAB_IDS.map((id) => (
           <button
-            key={t.id}
-            onClick={() => setTab(t.id)}
+            key={id}
+            onClick={() => setTab(id)}
             className={`shrink-0 rounded-t-lg px-3.5 py-2.5 text-[13px] font-semibold transition-colors ${
-              tab === t.id ? 'border-b-2 border-avs-primary text-avs-primary' : 'text-avs-accent/40 hover:text-avs-accent/70'
+              tab === id ? 'border-b-2 border-avs-primary text-avs-primary' : 'text-avs-accent/65 hover:text-avs-accent'
             }`}
           >
-            {t.label}
+            {t(`tabs.${id}`)}
           </button>
         ))}
       </div>
@@ -64,21 +60,21 @@ export function MotifSheet({ motif }: { motif: MotifData }) {
           <div className="grid gap-6 sm:grid-cols-2">
             <dl className="space-y-4 text-sm">
               {[
-                ['Ethnie', motif.ethnicGroup],
-                ['Pays', motif.country],
-                ['Région', motif.region],
+                [t('identity.ethnicGroup'), motif.ethnicGroup],
+                [t('identity.country'), motif.country],
+                [t('identity.region'), motif.region],
               ].map(([k, v]) => (
                 <div key={k}>
-                  <dt className="font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-avs-accent/32">{k}</dt>
+                  <dt className="font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-avs-accent/65">{k}</dt>
                   <dd className="mt-0.5 text-avs-accent">{v}</dd>
                 </div>
               ))}
             </dl>
             <div>
-              <p className="font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-avs-accent/32">Utilisations</p>
+              <p className="font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-avs-accent/65">{t('identity.uses')}</p>
               <ul className="mt-2 space-y-1.5">
                 {motif.uses.map((u) => (
-                  <li key={u} className="flex gap-2 text-sm text-avs-accent/60">
+                  <li key={u} className="flex gap-2 text-sm text-avs-accent/80">
                     <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-avs-primary" aria-hidden />
                     {u}
                   </li>
@@ -89,14 +85,14 @@ export function MotifSheet({ motif }: { motif: MotifData }) {
         )}
 
         {tab === 'symbolique' && (
-          <div className="max-w-2xl space-y-4 text-sm leading-relaxed text-avs-accent/60">
-            <p><span className="font-semibold text-avs-accent">Signification — </span>{motif.meaning}</p>
-            <p><span className="font-semibold text-avs-accent">Symbolique — </span>{motif.symbolism}</p>
+          <div className="max-w-2xl space-y-4 text-sm leading-relaxed text-avs-accent/75">
+            <p><span className="font-semibold text-avs-accent">{t('meaning')} — </span>{motif.meaning}</p>
+            <p><span className="font-semibold text-avs-accent">{t('symbolism')} — </span>{motif.symbolism}</p>
           </div>
         )}
 
         {tab === 'histoire' && (
-          <p className="max-w-2xl text-sm leading-relaxed text-avs-accent/60">{motif.history}</p>
+          <p className="max-w-2xl text-sm leading-relaxed text-avs-accent/75">{motif.history}</p>
         )}
 
         {tab === 'variantes' && (
@@ -106,7 +102,7 @@ export function MotifSheet({ motif }: { motif: MotifData }) {
                 <div className={`${v.pattern} h-20`} />
                 <div className="p-3">
                   <p className="text-sm font-bold text-avs-accent">{v.name}</p>
-                  <p className="mt-0.5 text-[11px] text-avs-accent/40">{v.note}</p>
+                  <p className="mt-0.5 text-[11px] text-avs-accent/70">{v.note}</p>
                 </div>
               </div>
             ))}
@@ -114,7 +110,7 @@ export function MotifSheet({ motif }: { motif: MotifData }) {
         )}
 
         {tab === 'bibliographie' && (
-          <ol className="space-y-2.5 text-sm text-avs-accent/60">
+          <ol className="space-y-2.5 text-sm text-avs-accent/75">
             {motif.bibliography.map((b) => (
               <li key={`${b.author}-${b.year}`} className="border-l-2 border-avs-accent/10 pl-3">
                 {b.author} — <em>{b.work}</em> ({b.year})

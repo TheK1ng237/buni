@@ -1,31 +1,33 @@
 import { DocPageTemplate, type DocTocEntry } from '../../doc-page-template';
 import { CodeBlock } from '../../doc-primitives';
-
-const TOC: DocTocEntry[] = [
-  { id: 'css', label: 'Variables CSS', level: 2 },
-  { id: 'tailwind', label: 'Tailwind v4', level: 2 },
-  { id: 'json', label: 'JSON', level: 2 },
-];
+import { useTranslations } from '@/i18n';
 
 export default function IntegrationPage() {
+  const t = useTranslations('documentation.colors.integration');
+  const toc: DocTocEntry[] = [
+    { id: 'css', label: t('toc.css'), level: 2 },
+    { id: 'tailwind', label: t('toc.tailwind'), level: 2 },
+    { id: 'json', label: t('toc.json'), level: 2 },
+  ];
+
   return (
     <DocPageTemplate
-      space={{ label: 'Couleurs', color: '#C0573E', icon: 'palette' }}
-      title="Intégration des Couleurs"
-      summary="Le color picker AVS offre trois formats d'export pour intégrer facilement les couleurs dans votre projet."
+      space={{ label: t('space'), color: '#C0573E', icon: 'palette' }}
+      title={t('title')}
+      summary={t('summary')}
       
       why={
         <p className="text-avs-accent/70 leading-relaxed">
-          Que vous utilisiez des variables CSS natives, Tailwind CSS v4, ou JavaScript/TypeScript, le color picker AVS vous fournit le format adapté à votre workflow.
+          {t('why')}
         </p>
       }
 
       explanation={
         <div className="space-y-6">
           <div>
-            <h3 className="font-display text-lg font-bold text-avs-accent mb-3" id="css">Variables CSS</h3>
+            <h3 className="font-display text-lg font-bold text-avs-accent mb-3" id="css">{t('css.title')}</h3>
             <p className="text-avs-accent/70 leading-relaxed mb-4">
-              Exportez en CSS pour utiliser les variables CSS natives :
+              {t('css.description')}
             </p>
             <CodeBlock 
               id="css-variables" 
@@ -47,9 +49,9 @@ export default function IntegrationPage() {
           </div>
 
           <div>
-            <h3 className="font-display text-lg font-bold text-avs-accent mb-3" id="tailwind">Tailwind CSS v4</h3>
+            <h3 className="font-display text-lg font-bold text-avs-accent mb-3" id="tailwind">{t('tailwind.title')}</h3>
             <p className="text-avs-accent/70 leading-relaxed mb-4">
-              Avec Tailwind CSS v4, utilisez les variables CSS natives dans votre fichier CSS :
+              {t('tailwind.description')}
             </p>
             <CodeBlock 
               id="tailwind-v4-config" 
@@ -66,15 +68,15 @@ export default function IntegrationPage() {
 
 /* Utilisation */
 <button class="bg-avs-primary text-avs-secondary">
-  Cliquez-moi
+${t('clickMe')}
 </button>`}
             />
           </div>
 
           <div>
-            <h3 className="font-display text-lg font-bold text-avs-accent mb-3" id="json">JSON pour JavaScript/TypeScript</h3>
+            <h3 className="font-display text-lg font-bold text-avs-accent mb-3" id="json">{t('json.title')}</h3>
             <p className="text-avs-accent/70 leading-relaxed mb-4">
-              Exportez en JSON pour utiliser dans votre code JS/TS :
+              {t('json.description')}
             </p>
             <CodeBlock 
               id="json-export" 
@@ -111,9 +113,9 @@ const primaryColor = colors.primary.hex;`}
         </div>
       }
 
-      toc={TOC}
-      prev={{ href: '/documentation/couleurs/color-picker', title: 'Color Picker' }}
-      next={{ href: '/documentation/couleurs/design-system', title: 'Design System' }}
+      toc={toc}
+      prev={{ href: '/documentation/couleurs/color-picker', title: t('prev') }}
+      next={{ href: '/documentation/couleurs/design-system', title: t('next') }}
     />
   );
 }

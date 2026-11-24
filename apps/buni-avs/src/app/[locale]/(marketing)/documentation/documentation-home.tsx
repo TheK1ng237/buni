@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { useTranslations } from '@/i18n';
+import { useLocale, useTranslations } from '@/i18n';
 
 import { CommandPalette } from './command-palette';
 import { useNavSpaces } from './nav-data';
@@ -10,19 +10,38 @@ import { Route } from 'next';
 
 export function DocumentationHome() {
   const t = useTranslations('documentation.home');
+  const { locale } = useLocale();
   const NAV_SPACES = useNavSpaces();
 
-  const LATEST = [
-    { title: 'Ndop Bamoum', space: 'Motifs', date: '28 juin 2026' },
-    { title: 'Référence des tokens v1.2', space: 'Design Tokens', date: '24 juin 2026' },
-    { title: 'Checklist WCAG', space: 'Accessibilité', date: '19 juin 2026' },
-  ];
+  const latest = [
+    { spaceSlug: 'motifs', pageSlug: 'ndop-bamoum', date: '2026-06-28' },
+    { spaceSlug: 'tokens', pageSlug: 'reference', date: '2026-06-24' },
+    { spaceSlug: 'accessibilite', pageSlug: 'checklist', date: '2026-06-19' },
+  ].map(({ spaceSlug, pageSlug, date }) => {
+    const space = NAV_SPACES.find((item) => item.slug === spaceSlug);
+    const page = space?.pages.find((item) => item.slug === pageSlug);
+    return {
+      href: `/documentation/${spaceSlug}/${pageSlug}`,
+      title: page?.title ?? pageSlug,
+      space: space?.label ?? spaceSlug,
+      date: new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'long' }).format(new Date(`${date}T12:00:00`)),
+    };
+  });
 
-  const POPULAR = [
-    { title: 'Installation', space: 'Commencer', hits: '12,4k' },
-    { title: 'Palette principale', space: 'Couleurs', hits: '9,1k' },
-    { title: 'Bouton', space: 'Composants', hits: '7,8k' },
-  ];
+  const popular = [
+    { spaceSlug: 'commencer', pageSlug: 'installation', hits: '12,4k' },
+    { spaceSlug: 'couleurs', pageSlug: 'palette-principale', hits: '9,1k' },
+    { spaceSlug: 'composants', pageSlug: 'bouton', hits: '7,8k' },
+  ].map(({ spaceSlug, pageSlug, hits }) => {
+    const space = NAV_SPACES.find((item) => item.slug === spaceSlug);
+    const page = space?.pages.find((item) => item.slug === pageSlug);
+    return {
+      href: `/documentation/${spaceSlug}/${pageSlug}`,
+      title: page?.title ?? pageSlug,
+      space: space?.label ?? spaceSlug,
+      hits,
+    };
+  });
 
   const PATHS = [
     { 
@@ -123,7 +142,7 @@ export function DocumentationHome() {
                     <i className={`pi pi-${space.icon}`} style={{ fontSize: '15px' }} />
                   </span>
                   <h3 className="font-display text-[15px] font-bold text-avs-accent">{space.label}</h3>
-                  <p className="mt-1 text-[12.5px] leading-relaxed text-avs-accent/45">{space.description}</p>
+                  <p className="mt-1 text-[12.5px] leading-relaxed text-avs-accent/75">{space.description}</p>
                 </Link>
               </motion.div>
             ))}
@@ -137,13 +156,13 @@ export function DocumentationHome() {
           <motion.div {...reveal}>
             <h2 className="font-display mb-5 text-lg font-bold text-avs-accent">{t('latestAdditions')}</h2>
             <ul className="space-y-1">
-              {LATEST.map((l) => (
-                <li key={l.title} className="flex items-center justify-between gap-3 rounded-xl px-3 py-3 transition-colors hover:bg-avs-accent/[0.03]">
+              {latest.map((l) => (
+                <li key={l.href} className="flex items-center justify-between gap-3 rounded-xl px-3 py-3 transition-colors hover:bg-avs-accent/[0.03]">
                   <div className="min-w-0">
                     <p className="truncate text-sm font-semibold text-avs-accent">{l.title}</p>
-                    <p className="text-[11px] text-avs-accent/40">{l.space}</p>
+                    <p className="text-[11px] text-avs-accent/70">{l.space}</p>
                   </div>
-                  <span className="shrink-0 font-mono text-[10px] text-avs-accent/30">{l.date}</span>
+                  <span className="shrink-0 font-mono text-[10px] text-avs-accent/70">{l.date}</span>
                 </li>
               ))}
             </ul>
@@ -152,13 +171,13 @@ export function DocumentationHome() {
           <motion.div {...reveal}>
             <h2 className="font-display mb-5 text-lg font-bold text-avs-accent">{t('popularResources')}</h2>
             <ul className="space-y-1">
-              {POPULAR.map((p) => (
-                <li key={p.title} className="flex items-center justify-between gap-3 rounded-xl px-3 py-3 transition-colors hover:bg-avs-accent/[0.03]">
+              {popular.map((p) => (
+                <li key={p.href} className="flex items-center justify-between gap-3 rounded-xl px-3 py-3 transition-colors hover:bg-avs-accent/[0.03]">
                   <div className="min-w-0">
                     <p className="truncate text-sm font-semibold text-avs-accent">{p.title}</p>
-                    <p className="text-[11px] text-avs-accent/40">{p.space}</p>
+                    <p className="text-[11px] text-avs-accent/70">{p.space}</p>
                   </div>
-                  <span className="shrink-0 font-mono text-[10px] text-avs-accent/30">{p.hits} {t('views')}</span>
+                  <span className="shrink-0 font-mono text-[10px] text-avs-accent/70">{p.hits} {t('views')}</span>
                 </li>
               ))}
             </ul>
@@ -181,10 +200,10 @@ export function DocumentationHome() {
                 className="rounded-2xl border border-avs-accent/9 p-6"
               >
                 <h3 className="font-display text-base font-bold text-avs-accent">{path.title}</h3>
-                <p className="mt-1.5 text-[13px] leading-relaxed text-avs-accent/50">{path.desc}</p>
+                <p className="mt-1.5 text-[13px] leading-relaxed text-avs-accent/75">{path.desc}</p>
                 <ol className="mt-5 space-y-2">
                   {path.steps.map((s, si) => (
-                    <li key={s} className="flex items-center gap-2.5 text-[12.5px] text-avs-accent/60">
+                    <li key={s} className="flex items-center gap-2.5 text-[12.5px] text-avs-accent/80">
                       <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-avs-primary/10 font-mono text-[9px] font-bold text-avs-primary">
                         {si + 1}
                       </span>

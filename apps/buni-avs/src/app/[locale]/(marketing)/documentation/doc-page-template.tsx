@@ -37,11 +37,11 @@ const reveal = {
 
 function Block({ id, heading, children }: { id: string; heading: string; children: React.ReactNode }) {
   return (
-    <motion.section {...reveal} id={id} aria-labelledby={`${id}-h`} className="scroll-mt-24 py-10 first:pt-0" style={{ borderTop: '1px solid var(--doc-border, rgba(29,29,27,0.09))' }}>
+    <motion.section {...reveal} id={id} aria-labelledby={`${id}-h`} className="doc-page-section scroll-mt-24 py-8 first:pt-0 sm:py-10" style={{ borderTop: '1px solid var(--doc-border, rgba(29,29,27,0.09))' }}>
       <h2 id={`${id}-h`} className="font-display mb-4 text-xl font-bold text-avs-accent" style={{ letterSpacing: '-0.01em', fontFamily: 'var(--font-display, Georgia, serif)' }}>
         {heading}
       </h2>
-      <div className="avs-prose">{children}</div>
+      <div className="doc-page-content avs-prose">{children}</div>
     </motion.section>
   );
 }
@@ -53,7 +53,8 @@ export function DocPageTemplate({
   const activeHeading = useActiveHeading(toc);
 
   return (
-    <article className="min-w-0 flex-1 px-6 py-10 lg:px-12 bg-avs-secondary">
+    <article className="doc-page min-w-0 flex-1 bg-avs-secondary px-5 py-8 sm:px-8 sm:py-10 lg:px-12">
+      <div className="mx-auto w-full max-w-5xl">
 
       {/* ── Hero ─────────────────────────────────────────────────────── */}
       <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}>
@@ -71,12 +72,29 @@ export function DocPageTemplate({
       </motion.div>
 
       {/* ── Résumé ───────────────────────────────────────────────────── */}
-      <motion.p {...reveal} className="mt-5 max-w-2xl text-[15px] leading-relaxed text-avs-accent/52" >
+      <motion.p {...reveal} className="mt-5 max-w-2xl text-[15px] leading-7 text-avs-accent/65">
         {summary}
       </motion.p>
 
+      {toc.length > 0 && (
+        <nav aria-label={t('onThisPage')} className="doc-page-toc my-8 flex gap-2 overflow-x-auto pb-2">
+          {toc.map((entry) => (
+            <a
+              key={entry.id}
+              href={`#${entry.id}`}
+              aria-current={activeHeading === entry.id ? 'location' : undefined}
+              className="shrink-0 rounded-full border px-3 py-1.5 text-xs font-medium transition-colors"
+            >
+              {entry.label}
+            </a>
+          ))}
+        </nav>
+      )}
+
       {why && <Block id="pourquoi" heading={t('whyImportant')}>{why}</Block>}
-      <Block id="explication" heading={t('explanation')}>{explanation}</Block>
+      <Block id="explication" heading={t('explanation')}>
+        <div className="doc-page-content">{explanation}</div>
+      </Block>
       {interactive && <Block id="exemples" heading={t('interactiveExamples')}>{interactive}</Block>}
       {useCases && <Block id="cas-usage" heading={t('useCases')}>{useCases}</Block>}
       {bestPractices && <Block id="bonnes-pratiques" heading={t('bestPractices')}>{bestPractices}</Block>}
@@ -105,7 +123,7 @@ export function DocPageTemplate({
       )}
 
       {/* ── Navigation vers la suite ─────────────────────────────────── */}
-      <div className="mt-14 flex items-center justify-between gap-4 pt-8" style={{ borderTop: '1px solid var(--doc-border, rgba(29,29,27,0.09))' }}>
+      <div className="mt-12 flex items-center justify-between gap-4 pt-7" style={{ borderTop: '1px solid var(--doc-border, rgba(29,29,27,0.09))' }}>
         {prev ? (
           <Link href={prev.href as Route} className="group flex max-w-[45%] items-center gap-2.5 rounded-xl border px-4 py-3 text-sm font-semibold transition-all duration-200" style={{ borderColor: 'var(--doc-border, rgba(29,29,27,0.09))', color: 'var(--doc-muted, rgba(29,29,27,0.52))' }} onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--doc-primary, #C0573E)'; e.currentTarget.style.color = 'var(--doc-primary, #C0573E)'; }} onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--doc-border, rgba(29,29,27,0.09))'; e.currentTarget.style.color = 'var(--doc-muted, rgba(29,29,27,0.52))'; }}>
             <i className="pi pi-arrow-left shrink-0" style={{ fontSize: '13px' }} />
@@ -118,6 +136,7 @@ export function DocPageTemplate({
             <i className="pi pi-arrow-right shrink-0" style={{ fontSize: '13px' }} />
           </Link>
         )}
+      </div>
       </div>
     </article>
   );

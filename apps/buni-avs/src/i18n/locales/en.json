@@ -844,311 +844,6 @@
       "copied": "Link copied"
     }
   },
-  "colors": {
-    "hero": {
-      "label": "Color Picker",
-      "title": "African Color Combos",
-      "description": "Choose a color combination inspired by African textiles and pigments, and see it applied live on interface examples. Export in CSS, JSON or Tailwind."
-    },
-    "stats": {
-      "combos": "combos",
-      "colors": "colors",
-      "regions": "regions",
-      "cultures": "cultures",
-      "formats": "formats"
-    },
-    "filters": {
-      "label": "Filter by region, culture or theme",
-      "selectCombo": "Select a combo",
-      "filtered": "({count} filtered)",
-      "reset": "Reset filters"
-    },
-    "createCombo": "Create a combo",
-    "culturalContextLabel": "Cultural Context",
-    "region": "Region",
-    "culture": "Culture",
-    "theme": "Theme",
-    "combosData": {
-      "avs-core": {
-        "name": "AVS Core",
-        "origin": "AVS Standard",
-        "description": "The official combination of the African Visual Standard — terracotta, natural linen, and obsidian.",
-        "colors": {
-          "primary": { "name": "avs-primary", "meaning": "Burnt earth — warmth, energy, identity", "origin": "Yoruba pottery" },
-          "secondary": { "name": "avs-secondary", "meaning": "Natural linen — rest, clarity, neutrality", "origin": "Fulani fabric" },
-          "accent": { "name": "avs-accent", "meaning": "Obsidian — depth, authority, night", "origin": "Kenya basalt" },
-          "neutral": { "name": "avs-mist", "meaning": "Lagoon mist — serenity, horizon", "origin": "Cotonou lagoon" }
-        }
-      },
-      "kente": {
-        "name": "Kente Asante",
-        "origin": "Ghana",
-        "description": "Combo extracted from the royal Akan fabric — royal gold, sacred black, blood red.",
-        "colors": {
-          "primary": { "name": "kente-gold", "meaning": "Royal gold — wealth, royalty, sun", "origin": "Asante silk thread" },
-          "secondary": { "name": "kente-ivory", "meaning": "Ivory — ritual purity, soft light", "origin": "Bleached cotton" },
-          "accent": { "name": "kente-black", "meaning": "Maturity black — wisdom, cosmic energy", "origin": "Charcoal ink" },
-          "neutral": { "name": "kente-red", "meaning": "Blood red — sacrifice, courage, ancestors", "origin": "Ferruginous ochre" }
-        }
-      },
-      "ndop": {
-        "name": "Ndop Bamoum",
-        "origin": "Cameroon",
-        "description": "Deep shades of the sacred Bamoum fabric — cosmic indigo, raffia gold, ritual ivory.",
-        "colors": {
-          "primary": { "name": "ndop-indigo", "meaning": "Cosmic indigo — primordial waters, infinity", "origin": "Foumban indigo" },
-          "secondary": { "name": "ndop-ivory", "meaning": "Ivory — purity, peace, ancestors", "origin": "Vegetable ivory" },
-          "accent": { "name": "ndop-raffia", "meaning": "Raffia gold — natural wealth, sun", "origin": "Palm fiber" },
-          "neutral": { "name": "ndop-nile", "meaning": "Nile water — soothing, fluidity, life", "origin": "Foumban pigment" }
-        }
-      },
-      "earth": {
-        "name": "African Earths",
-        "origin": "Pan-African",
-        "description": "Ochers, siennas and mineral earths extracted from the continent's natural pigments.",
-        "colors": {
-          "primary": { "name": "earth-sienna", "meaning": "Burnt sienna — fertile soil, grounding", "origin": "Sahel clay" },
-          "secondary": { "name": "earth-sand", "meaning": "Golden sand — Sahara, journey, openness", "origin": "Saharan dunes" },
-          "accent": { "name": "earth-baobab", "meaning": "Baobab bark — endurance, memory", "origin": "Baobab wood" },
-          "neutral": { "name": "earth-clay", "meaning": "Pale clay — softness, construction, hearth", "origin": "Sahel laterite" }
-        }
-      },
-      "mali-mud": {
-        "name": "Bogolan Mali",
-        "origin": "Mali",
-        "description": "Shades of Bogolan earth — brown clay, vegetable black, yellow ochre, white kaolin.",
-        "colors": {
-          "primary": { "name": "mud-clay", "meaning": "Raw clay — authenticity, tradition", "origin": "Niger mud" },
-          "secondary": { "name": "mud-kaolin", "meaning": "Kaolin — purity, spiritual protection", "origin": "White clay" },
-          "accent": { "name": "mud-black", "meaning": "Vegetable black — mystery, ancestry", "origin": "Neem leaves" },
-          "neutral": { "name": "mud-ochre", "meaning": "Yellow ochre — sun, prosperity", "origin": "Sahel earth" }
-        }
-      },
-      "ethiopia": {
-        "name": "Ancient Ethiopia",
-        "origin": "Ethiopia",
-        "description": "Colors of historical Ethiopia — imperial gold, earth green, courage red.",
-        "colors": {
-          "primary": { "name": "ethiopia-gold", "meaning": "Imperial gold — wealth, divinity", "origin": "Solomon's crown" },
-          "secondary": { "name": "ethiopia-green", "meaning": "Earth green — fertility, hope", "origin": "Fertile land" },
-          "accent": { "name": "ethiopia-red", "meaning": "Courage red — sacrifice, strength", "origin": "Martyrs' blood" },
-          "neutral": { "name": "ethiopia-cream", "meaning": "Cream — peace, light", "origin": "Natural limestone" }
-        }
-      },
-      "zulu-beads": {
-        "name": "Zulu Beads",
-        "origin": "South Africa",
-        "description": "Traditional Zulu bead palette — sky blue communication, red love, black marriage.",
-        "colors": {
-          "primary": { "name": "zulu-blue", "meaning": "Sky blue — communication, loyalty", "origin": "Glass beads" },
-          "secondary": { "name": "zulu-white", "meaning": "Pure white — spirituality, clarity", "origin": "Seashell" },
-          "accent": { "name": "zulu-red", "meaning": "Passion red — love, intensity", "origin": "Red ochre" },
-          "neutral": { "name": "zulu-black", "meaning": "Union black — commitment, marriage", "origin": "Wood charcoal" }
-        }
-      },
-      "sahara-sunset": {
-        "name": "Sahara Sunset",
-        "origin": "Sahara",
-        "description": "The golden colors of the desert at dusk — burnt orange, ochre, sand, night violet.",
-        "colors": {
-          "primary": { "name": "sunset-orange", "meaning": "Burnt orange — fire, passion, desert", "origin": "Sunlit sand" },
-          "secondary": { "name": "sunset-sand", "meaning": "Golden sand — dunes, journey, infinity", "origin": "Sahara erg" },
-          "accent": { "name": "sunset-purple", "meaning": "Night violet — mystery, stars", "origin": "Night sky" },
-          "neutral": { "name": "sunset-ochre", "meaning": "Warm ochre — earth, grounding", "origin": "Natural pigment" }
-        }
-      },
-      "congo-river": {
-        "name": "Congo River",
-        "origin": "DRC",
-        "description": "The deep waters of the Congo River — intense blue, forest green, wet earth, moss.",
-        "colors": {
-          "primary": { "name": "congo-blue", "meaning": "Deep blue — powerful waters", "origin": "Congo River" },
-          "secondary": { "name": "congo-green", "meaning": "Forest green — biodiversity, life", "origin": "Equatorial forest" },
-          "accent": { "name": "congo-brown", "meaning": "Wet earth — soil richness", "origin": "River bank" },
-          "neutral": { "name": "congo-moss", "meaning": "Moss — growth, freshness", "origin": "Undergrowth" }
-        }
-      },
-      "masai-red": {
-        "name": "Maasai Red",
-        "origin": "Kenya/Tanzania",
-        "description": "The emblematic color of the Maasai — ochre red, milk white, ash black, burnt earth.",
-        "colors": {
-          "primary": { "name": "masai-red", "meaning": "Ochre red — courage, protection", "origin": "Natural ochre" },
-          "secondary": { "name": "masai-white", "meaning": "Milk white — peace, milk, prosperity", "origin": "Cow milk" },
-          "accent": { "name": "masai-black", "meaning": "Ash black — resilience, strength", "origin": "Fire ash" },
-          "neutral": { "name": "masai-earth", "meaning": "Burnt earth — ancestral connection", "origin": "Dry savanna" }
-        }
-      },
-      "nubian-gold": {
-        "name": "Nubian Gold",
-        "origin": "Sudan",
-        "description": "The golden heritage of ancient Nubia — royal gold, lapis lazuli blue, obsidian black, ivory.",
-        "colors": {
-          "primary": { "name": "nubian-gold", "meaning": "Royal gold — splendor, divinity", "origin": "Nubian mines" },
-          "secondary": { "name": "nubian-lapis", "meaning": "Lapis lazuli — wisdom, sky", "origin": "Ancient Afghanistan" },
-          "accent": { "name": "nubian-black", "meaning": "Obsidian — eternity, mystery", "origin": "Volcano" },
-          "neutral": { "name": "nubian-ivory", "meaning": "Ivory — purity, luxury", "origin": "Elephant" }
-        }
-      },
-      "senegal-wax": {
-        "name": "Senegalese Wax",
-        "origin": "Senegal",
-        "description": "The vibrant colors of Senegalese Wax fabric — electric orange, turquoise, lemon yellow, white.",
-        "colors": {
-          "primary": { "name": "wax-orange", "meaning": "Electric orange — energy, joy", "origin": "Industrial dye" },
-          "secondary": { "name": "wax-turquoise", "meaning": "Turquoise — freshness, ocean", "origin": "Synthetic pigment" },
-          "accent": { "name": "wax-yellow", "meaning": "Lemon yellow — sun, vitality", "origin": "Turmeric" },
-          "neutral": { "name": "wax-white", "meaning": "Pure white — clarity, modernity", "origin": "Cotton" }
-        }
-      },
-      "ivory-coast": {
-        "name": "Ivory Coast",
-        "origin": "Ivory Coast",
-        "description": "The colors of Ivory Coast — orange, white, green, national symbols.",
-        "colors": {
-          "primary": { "name": "ivory-orange", "meaning": "National orange — wealth, earth", "origin": "National flag" },
-          "secondary": { "name": "ivory-white", "meaning": "Peace white — harmony, purity", "origin": "National flag" },
-          "accent": { "name": "ivory-green", "meaning": "Hope green — future, growth", "origin": "National flag" },
-          "neutral": { "name": "ivory-gold", "meaning": "Prosperity gold — economy, abundance", "origin": "Natural resources" }
-        }
-      },
-      "ghana-adinkra": {
-        "name": "Ghana Adinkra",
-        "origin": "Ghana",
-        "description": "Adinkra symbols on black fabric — deep black, blood red, kaolin white, royal gold.",
-        "colors": {
-          "primary": { "name": "adinkra-black", "meaning": "Deep black — wisdom, ancestors", "origin": "Badie bark" },
-          "secondary": { "name": "adinkra-red", "meaning": "Blood red — sacrifice, courage", "origin": "Red ochre" },
-          "accent": { "name": "adinkra-gold", "meaning": "Royal gold — wealth, royalty", "origin": "Dust gold" },
-          "neutral": { "name": "adinkra-white", "meaning": "Kaolin white — purity, spirituality", "origin": "White clay" }
-        }
-      },
-      "namibia-desert": {
-        "name": "Namib Desert",
-        "origin": "Namibia",
-        "description": "The shades of the Namib desert — sand ochre, veld pink, mountain violet, sky blue.",
-        "colors": {
-          "primary": { "name": "namib-sand", "meaning": "Golden sand — dunes, eternity", "origin": "Namib Desert" },
-          "secondary": { "name": "namib-pink", "meaning": "Veld pink — sunsets", "origin": "Flowering veld" },
-          "accent": { "name": "namib-purple", "meaning": "Mountain violet — depth, mystery", "origin": "Mountains" },
-          "neutral": { "name": "namib-sky", "meaning": "Sky blue — horizon, infinity", "origin": "Desert sky" }
-        }
-      },
-      "madagascar-spice": {
-        "name": "Madagascar Spices",
-        "origin": "Madagascar",
-        "description": "The colors of Malagasy spices — cinnamon, vanilla, pepper, clove.",
-        "colors": {
-          "primary": { "name": "spice-cinnamon", "meaning": "Cinnamon — warmth, comfort", "origin": "Cinnamon bark" },
-          "secondary": { "name": "spice-vanilla", "meaning": "Vanilla — softness, luxury", "origin": "Vanilla pod" },
-          "accent": { "name": "spice-pepper", "meaning": "Black pepper — intensity, character", "origin": "Black pepper" },
-          "neutral": { "name": "spice-clove", "meaning": "Clove — wealth, aroma", "origin": "Clove" }
-        }
-      },
-      "seigensha-warm": {
-        "name": "Warm Contrast",
-        "origin": "Seigensha · Combinations",
-        "description": "Warm harmony from the Color Combination Dictionary — Etruscan red, Nile blue, golden sulfin.",
-        "colors": {
-          "primary": { "name": "sg-etruscan", "meaning": "Etruscan red — strength, fire, character", "origin": "Dict. comb. #025" },
-          "secondary": { "name": "sg-nile-blue", "meaning": "Nile blue — rest, water, serene horizon", "origin": "Dict. comb. #025" },
-          "accent": { "name": "sg-golden", "meaning": "Golden yellow — light, warmth, harvest", "origin": "Dict. comb. #026" },
-          "neutral": { "name": "sg-sulphine", "meaning": "Sulphine yellow — brightness, vitality, savanna", "origin": "Dict. comb. #065" }
-        }
-      },
-      "seigensha-deep": {
-        "name": "Depth & Contrast",
-        "origin": "Seigensha · Combinations",
-        "description": "Tonal depth from the Seigensha Dictionary — sacred olive, night violet, yellow ochre, chartreuse.",
-        "colors": {
-          "primary": { "name": "sg-olive", "meaning": "Olive green — maturity, grounding, balance", "origin": "Dict. comb. #066" },
-          "secondary": { "name": "sg-ocher", "meaning": "Olive ochre — dry heat, steppe, sun", "origin": "Dict. comb. #066" },
-          "accent": { "name": "sg-violet-nuit", "meaning": "Night violet — cosmos, mystery, infinity", "origin": "Dict. comb. #106" },
-          "neutral": { "name": "sg-chartreuse", "meaning": "Chartreuse green — freshness, nature, hope", "origin": "Dict. comb. #289" }
-        }
-      }
-    },
-    "culturalContext": {
-      "west-africa": {
-        "description": "Region rich in textile traditions, from Yoruba pottery to Akan Kente fabric.",
-        "significance": "Cradle of ancient civilizations, known for its symbolic textiles and natural pigments."
-      },
-      "central-africa": {
-        "description": "Land of the Bamoum and Kongo kingdoms, with indigo dyes and sacred fabrics.",
-        "significance": "Region of deep spirituality, where colors carry ritual and ancestral meanings."
-      },
-      "east-africa": {
-        "description": "From imperial Ethiopia to Maasai cultures, palette of red earths and historical gold.",
-        "significance": "Crossroads of ancient civilizations, with millennia-old artistic traditions."
-      },
-      "southern-africa": {
-        "description": "San art, Zulu beads, and Namib desert shades — unique artistic expressions.",
-        "significance": "Region of extraordinary cultural diversity, with the world's oldest rock art."
-      },
-      "north-africa": {
-        "description": "Saharan deserts, Tuareg and Nubian cultures — gold, lapis lazuli, and sand shades.",
-        "significance": "Land of caravans and Berber civilizations, with a rich artistic heritage."
-      },
-      "pan-african": {
-        "description": "Colors transcending borders, uniting the continent through shared natural pigments.",
-        "significance": "Expression of African unity through universal continent shades."
-      },
-      "international": {
-        "description": "Modern combinations inspired by the African palette, adapted to contemporary design.",
-        "significance": "Fusion between African heritage and international design standards."
-      }
-    },
-    "swatchLibrary": {
-      "terre": {
-        "label": "Earth & Ochre",
-        "swatches": [
-          { "name": "Terracotta", "meaning": "Burnt earth, warmth" },
-          { "name": "Sienna", "meaning": "Fertile soil, grounding" },
-          { "name": "Ochre", "meaning": "Grazing light" },
-          { "name": "Baobab", "meaning": "Bark, endurance" },
-          { "name": "Sand", "meaning": "Sahara, openness" },
-          { "name": "Clay", "meaning": "Softness, hearth" }
-        ]
-      },
-      "indigo": {
-        "label": "Indigo & Blue",
-        "swatches": [
-          { "name": "Cosmic indigo", "meaning": "Primordial waters" },
-          { "name": "Royal blue", "meaning": "Authority, sky" },
-          { "name": "Nile blue", "meaning": "Rest, horizon" },
-          { "name": "Antwarp", "meaning": "Clarity, confidence" },
-          { "name": "Lagoon mist", "meaning": "Serenity" }
-        ]
-      },
-      "or": {
-        "label": "Gold & Yellow",
-        "swatches": [
-          { "name": "Royal gold", "meaning": "Wealth, royalty" },
-          { "name": "Raffia", "meaning": "Natural wealth" },
-          { "name": "Golden yellow", "meaning": "Light, harvest" },
-          { "name": "Sulphine", "meaning": "Brightness, savanna" },
-          { "name": "Olive ochre", "meaning": "Dry heat" }
-        ]
-      },
-      "vert": {
-        "label": "Green",
-        "swatches": [
-          { "name": "Forest green", "meaning": "Growth, life" },
-          { "name": "Olive", "meaning": "Maturity, balance" },
-          { "name": "Chartreuse", "meaning": "Freshness, hope" }
-        ]
-      },
-      "neutre": {
-        "label": "Neutrals",
-        "swatches": [
-          { "name": "Obsidian", "meaning": "Depth, authority" },
-          { "name": "Natural linen", "meaning": "Rest, clarity" },
-          { "name": "Night violet", "meaning": "Cosmos, mystery" },
-          { "name": "Etruscan", "meaning": "Strength, character" }
-        ]
-      }
-    }
-  },
   "documentation": {
     "metadata": {
       "title": "Documentation",
@@ -1336,7 +1031,302 @@
         }
       }
     },
+    "motifSheet": {
+      "tabs": {
+        "identite": "Identity",
+        "symbolique": "Symbolism",
+        "histoire": "History",
+        "variantes": "Variants",
+        "bibliographie": "Bibliography"
+      },
+      "identity": {
+        "ethnicGroup": "Cultural group",
+        "country": "Country",
+        "region": "Region",
+        "uses": "Uses"
+      },
+      "meaning": "Meaning",
+      "symbolism": "Symbolism"
+    },
+    "tokens": {
+      "reference": {
+        "metadata": {
+          "title": "Token Reference - AVS Documentation",
+          "description": "Complete reference of AVS design tokens."
+        },
+        "title": "Token Reference",
+        "summary": "Complete list of design tokens used in AVS: colors, spacing, typography, etc.",
+        "installation": {
+          "title": "Installation and imports"
+        },
+        "colors": {
+          "title": "Color palette",
+          "description": "AVS colors are available as CSS variables and Tailwind tokens.",
+          "main": "Main colors",
+          "light": "Light theme",
+          "dark": "Dark theme",
+          "usage": "Usage examples"
+        },
+        "typography": {
+          "title": "Typography",
+          "description": "Three type families cover headings, body text, and code.",
+          "display": "Headings and brand elements",
+          "body": "Body text and interfaces",
+          "mono": "Code and technical values"
+        },
+        "radius": {
+          "title": "Border radii"
+        },
+        "shadows": {
+          "title": "Shadows"
+        },
+        "js": {
+          "title": "JavaScript API",
+          "description": "Import typed values to build dynamic interfaces.",
+          "colors": "Colors",
+          "radius": "Radii",
+          "shadows": "Shadows",
+          "utility": "Dynamic styles"
+        },
+        "customization": {
+          "title": "Customization",
+          "description": "Override tokens in your theme to adapt AVS to your brand."
+        },
+        "toc": {
+          "installation": "Installation",
+          "colors": "Colors",
+          "typography": "Typography",
+          "radius": "Radii",
+          "shadows": "Shadows",
+          "js": "JavaScript API",
+          "customization": "Customization"
+        }
+      }
+    },
+    "composants": {
+      "title": "Components",
+      "summary": "Explore AVS interface components, their variants, and how to use them.",
+      "installation": {
+        "title": "Installation"
+      },
+      "quickstart": {
+        "title": "Quick start",
+        "description": "Import the components you need and compose your interface."
+      },
+      "components": {
+        "title": "Component library",
+        "description": "Components available in the @buni/ui package."
+      },
+      "button": {
+        "description": "Accessible buttons with multiple variants and sizes."
+      },
+      "card": {
+        "description": "A container for grouping content and related actions."
+      },
+      "avatar": {
+        "description": "A compact representation of a person or account."
+      },
+      "input": {
+        "description": "Text fields and text areas for forms."
+      },
+      "badge": {
+        "description": "A compact label for displaying a status or category."
+      },
+      "dialog": {
+        "description": "A modal window for a task or information that needs attention."
+      },
+      "showCode": "Show code",
+      "reference": {
+        "title": "Component reference",
+        "description": "Main components exported by the package.",
+        "component": "Component",
+        "import": "Import",
+        "descriptionColumn": "Description"
+      },
+      "autodiscovery": {
+        "title": "Automatic discovery",
+        "description": "Components in the package are detected and included during the build.",
+        "howItWorks": "How it works",
+        "explanation": "The build script scans the component directory and generates the required exports.",
+        "requirements": "Requirements",
+        "req1": "The component must be in the package source directory.",
+        "req2": "The file must use the .tsx extension.",
+        "req3": "Exports must be declared in the file.",
+        "req4": "Run the build again after adding a component."
+      },
+      "toc": {
+        "installation": "Installation",
+        "quickstart": "Quick start",
+        "components": "Components",
+        "reference": "Reference",
+        "autodiscovery": "Automatic discovery"
+      }
+    },
+    "icones": {
+      "catalogue": {
+        "metadata": {
+          "title": "Icon Catalog - AVS Documentation",
+          "description": "Iconographic set consistent with the AVS standard."
+        },
+        "title": "Icon Catalog",
+        "summary": "Complete catalog of icons designed to match the African Visual Standard.",
+        "avs": {
+          "desc": "Primary symbol of the AVS identity."
+        },
+        "person": {
+          "desc": "Profile or person icon."
+        },
+        "settings": {
+          "desc": "Settings and configuration icon."
+        },
+        "home": {
+          "desc": "Navigation icon linking to the home page."
+        },
+        "search": {
+          "desc": "Search icon."
+        },
+        "categories": {
+          "brand": "Brand",
+          "navigation": "Navigation",
+          "ui": "Interface"
+        },
+        "installation": {
+          "title": "Installation and imports"
+        },
+        "react": {
+          "title": "React components",
+          "description": "Use icons as React components and customize their size, color, and attributes."
+        },
+        "examples": {
+          "basic": "Basic usage",
+          "sizes": "Available sizes",
+          "colors": "Colors",
+          "interactive": "Interactive preview"
+        },
+        "css": {
+          "title": "CSS classes",
+          "description": "Use icons without React, directly in your HTML.",
+          "basic": "Basic usage",
+          "sizes": "Size variants",
+          "preview": "Preview"
+        },
+        "symbols": {
+          "title": "Published symbols",
+          "description": "A preview of symbols published in the encyclopedia.",
+          "loadError": "The remote catalog is unavailable. Static symbols are still shown.",
+          "updating": "Updating symbols…",
+          "continueToEncyclopedia": "Continue to the symbols encyclopedia"
+        },
+        "cultural": {
+          "title": "Cultural assets",
+          "description": "Documented motifs and symbols available as SVG resources."
+        },
+        "svg": {
+          "title": "Import SVG files",
+          "description": "Import SVG files directly in compatible build tools."
+        },
+        "props": {
+          "title": "Props reference",
+          "prop": "Prop",
+          "type": "Type",
+          "default": "Default",
+          "description": "Description"
+        },
+        "toc": {
+          "installation": "Installation",
+          "react": "React components",
+          "css": "CSS classes",
+          "symbols": "Symbols",
+          "cultural": "Cultural assets",
+          "svg": "SVG import",
+          "props": "Props"
+        }
+      }
+    },
+    "svg": {
+      "export": {
+        "metadata": {
+          "title": "SVG Export Guide - AVS Documentation",
+          "description": "Guide for exporting high-fidelity SVG files."
+        },
+        "title": "SVG Export Guide",
+        "summary": "How to export and integrate high-fidelity SVG source files."
+      }
+    },
+    "typographie": {
+      "echelle": {
+        "metadata": {
+          "title": "Typographic Scale - AVS Documentation",
+          "description": "Scale, families, and typography usage."
+        },
+        "title": "Typographic Scale",
+        "summary": "The typographic scale system used in AVS for consistent hierarchy."
+      }
+    },
+    "accessibilite": {
+      "checklist": {
+        "metadata": {
+          "title": "WCAG Checklist - AVS Documentation",
+          "description": "Contrasts, focus, keyboard navigation."
+        },
+        "title": "WCAG Checklist",
+        "summary": "Accessibility checklist based on WCAG guidelines for AVS components."
+      }
+    },
+    "api": {
+      "reference": {
+        "metadata": {
+          "title": "API Reference - AVS Documentation",
+          "description": "Programmatic access to the AVS standard."
+        },
+        "title": "API Reference",
+        "summary": "Complete API documentation for programmatic access to AVS resources."
+      }
+    },
+    "guides": {
+      "integrationNextjs": {
+        "metadata": {
+          "title": "Next.js Integration - AVS Documentation",
+          "description": "Step-by-step tutorial to integrate AVS in Next.js."
+        },
+        "title": "Next.js Integration",
+        "summary": "Complete guide to integrating AVS into a Next.js project."
+      }
+    },
+    "etudes-culturelles": {},
+    "exemples": {
+      "showcase": {
+        "metadata": {
+          "title": "Showcase - AVS Documentation",
+          "description": "Real projects built with AVS."
+        },
+        "title": "Showcase",
+        "summary": "Gallery of real projects built using the African Visual Standard."
+      }
+    },
+    "ressources": {
+      "telechargements": {
+        "metadata": {
+          "title": "Downloads - AVS Documentation",
+          "description": "Source files, kits, bibliography."
+        },
+        "title": "Downloads",
+        "summary": "Complete kits for Figma, exported palettes and complete project bibliography.",
+        "explanation": "Each file below is versioned and dated — check the latest update before production integration.",
+        "downloads": {
+          "figma": "AVS Figma Kit",
+          "palettes": "Complete palettes",
+          "bibliography": "Complete bibliography",
+          "patterns": "Vector patterns (complete set)"
+        },
+        "toc": {
+          "files": "Files"
+        },
+        "prev": "Examples"
+      }
+    },
     "template": {
+      "onThisPage": "On this page",
       "whyImportant": "Why this topic is important",
       "explanation": "Explanation",
       "interactiveExamples": "Interactive examples",
@@ -1467,10 +1457,26 @@
       "summary": "Each pattern, color and token carries consultable provenance metadata at all times.",
       "explanation": {
         "table": {
-          "source_ethnie": { "type": "string", "default": "—", "desc": "Origin ethnic group" },
-          "source_pays": { "type": "string", "default": "—", "desc": "Documented country" },
-          "artisan_verifie": { "type": "boolean", "default": "false", "desc": "Validation by a field artisan" },
-          "licence": { "type": "string", "default": "'CC BY 4.0'", "desc": "License applicable to the resource" }
+          "source_ethnie": {
+            "type": "string",
+            "default": "—",
+            "desc": "Origin ethnic group"
+          },
+          "source_pays": {
+            "type": "string",
+            "default": "—",
+            "desc": "Documented country"
+          },
+          "artisan_verifie": {
+            "type": "boolean",
+            "default": "false",
+            "desc": "Validation by a field artisan"
+          },
+          "licence": {
+            "type": "string",
+            "default": "'CC BY 4.0'",
+            "desc": "License applicable to the resource"
+          }
         }
       },
       "useCases": "Display automatic credit in an interface, generate project bibliography, audit pattern usage.",
@@ -1489,80 +1495,234 @@
         },
         "title": "Patterns",
         "summary": "African patterns generated entirely in CSS — no images, no SVG. Instant use via className.",
+        "kente": {
+          "origin": "Akan, Ghana",
+          "description": "Colorful woven strips that express prestige and identity."
+        },
+        "ndop": {
+          "origin": "Bamum, Cameroon",
+          "description": "A geometric pattern associated with ceremonial textiles."
+        },
+        "bogolan": {
+          "origin": "Bambara, Mali",
+          "description": "Patterns created with fermented mud and natural dyes."
+        },
+        "adinkra": {
+          "origin": "Akan, Ghana",
+          "description": "Visual symbols conveying proverbs and shared values."
+        },
+        "wax": {
+          "origin": "West Africa",
+          "description": "Expressive textile prints with vivid colors and motifs."
+        },
+        "kuba": {
+          "origin": "Kuba Kingdom, DRC",
+          "description": "Geometric compositions inspired by raffia textiles."
+        },
+        "ndebele": {
+          "origin": "Southern Africa",
+          "description": "Painted geometry with crisp shapes and contrasting colors."
+        },
+        "berber": {
+          "origin": "Amazigh, North Africa",
+          "description": "Symbolic motifs drawn from Amazigh textile traditions."
+        },
+        "installation": {
+          "title": "Installation"
+        },
+        "patterns": {
+          "title": "Pattern catalog",
+          "description": "A preview of published patterns from the encyclopedia and static catalog.",
+          "loadError": "The remote catalog is unavailable. Static patterns are still shown.",
+          "colors": "Pattern colors",
+          "continueToEncyclopedia": "Continue to the pattern encyclopedia"
+        },
+        "variations": "Variations",
+        "showCode": "Show code",
+        "symbols": {
+          "title": "Symbols",
+          "description": "A preview of published symbols from the symbols encyclopedia.",
+          "loadError": "The remote catalog is unavailable. Static symbols are still shown.",
+          "updating": "Updating symbols…",
+          "continueToEncyclopedia": "Continue to the symbols encyclopedia"
+        },
+        "programmatic": {
+          "title": "Programmatic access",
+          "description": "Access the catalog and SVG files from JavaScript or TypeScript.",
+          "getPattern": "Find a pattern",
+          "svgRegistry": "SVG registry",
+          "types": "Available types"
+        },
+        "customization": {
+          "title": "Customization",
+          "description": "Adapt colors and styles to your visual identity."
+        },
+        "svg": {
+          "title": "Using SVG files",
+          "description": "Import an SVG directly or use it as a background image."
+        },
         "toc": {
           "why": "Why this topic is important",
-          "explanation": "Explanation"
+          "explanation": "Explanation",
+          "installation": "Installation",
+          "patterns": "Pattern catalog",
+          "symbols": "Symbols",
+          "programmatic": "Programmatic access",
+          "customization": "Customization",
+          "svg": "SVG files"
         }
-      }
-    },
-    "tokens": {
-      "reference": {
-        "metadata": {
-          "title": "Token Reference - AVS Documentation",
-          "description": "Complete reference of AVS design tokens."
+      },
+      "bogolanFanga": {
+        "space": "Patterns",
+        "title": "Bogolan Fanga",
+        "summary": "A fermented-mud dye tradition rendered as a graphic pattern, with forms that carry protective meaning.",
+        "explanation": "Bogolan is cotton cloth dyed with fermented mud baths and plant decoctions. Its geometric patterns are built through resist techniques and carry meanings connected to protection and everyday life.",
+        "origin": "Bambara tradition",
+        "ethnicGroup": "Bambara",
+        "country": "Mali",
+        "region": "San, Ségou",
+        "meaning": "Cotton cloth dyed with fermented mud, historically worn by hunters as spiritual protection.",
+        "uses": {
+          "hunting": "Hunters' clothing",
+          "contemporary": "Contemporary decorative textiles",
+          "rites": "Women's rites of passage"
         },
-        "title": "Token Reference",
-        "summary": "Complete list of design tokens used in AVS: colors, spacing, typography, etc."
-      }
-    },
-    "icones": {
-      "catalogue": {
-        "metadata": {
-          "title": "Icon Catalog - AVS Documentation",
-          "description": "Iconographic set consistent with the AVS standard."
+        "symbolism": "Brown and ochre geometric motifs represent protective symbols passed from mother to daughter during dyeing.",
+        "history": "The technique has been documented for centuries. Malian cooperatives standardized and promoted it internationally from the 1970s onward.",
+        "variants": {
+          "classic": {
+            "title": "Classic Bogolan",
+            "note": "Ochre background with brown motifs"
+          },
+          "reverse": {
+            "title": "Inverted Bogolan",
+            "note": "Brown background with light motifs"
+          }
         },
-        "title": "Icon Catalog",
-        "summary": "Complete catalog of icons designed to match the African Visual Standard."
-      }
-    },
-    "svg": {
-      "export": {
-        "metadata": {
-          "title": "SVG Export Guide - AVS Documentation",
-          "description": "Guide for exporting high-fidelity SVG files."
+        "toc": "Full profile",
+        "prev": "Kente Royale",
+        "next": "Main palette"
+      },
+      "kenteRoyale": {
+        "space": "Patterns",
+        "title": "Kente Royale",
+        "summary": "An iconic woven textile: its strips and colors tell a story rather than serving as simple decoration.",
+        "explanation": "Kente is made from narrow strips woven separately and then joined. Its compositions and names convey proverbs, values, and social references within Akan communities.",
+        "origin": "Ashanti Kingdom",
+        "country": "Ghana",
+        "region": "Ashanti",
+        "meaning": "Interwoven strips historically worn by Ashanti royalty during state ceremonies.",
+        "uses": {
+          "ceremonial": "Ceremonial cloth",
+          "wedding": "Wedding attire",
+          "regalia": "Royal regalia",
+          "diplomacy": "Contemporary Pan-African diplomacy"
         },
-        "title": "SVG Export Guide",
-        "summary": "How to export and integrate high-fidelity SVG source files."
-      }
-    },
-    "typographie": {
-      "echelle": {
-        "metadata": {
-          "title": "Typographic Scale - AVS Documentation",
-          "description": "Scale, families, and typography usage."
+        "symbolism": "Each combination of colors and geometric motifs expresses a proverb or value. Kente is read as much as it is worn.",
+        "history": "Woven by Akan artisans since the 17th century, kente gained international visibility after African independence movements in the 1950s and 1960s as a Pan-African symbol.",
+        "variants": {
+          "adweneasa": "A particularly complex motif historically associated with chiefs",
+          "oyokoman": "Colors associated with the Oyoko clan",
+          "sikaFreMogya": "“Money attracts blood”: a cautionary motif"
         },
-        "title": "Typographic Scale",
-        "summary": "The typographic scale system used in AVS for consistent hierarchy."
-      }
-    },
-    "accessibilite": {
-      "checklist": {
-        "metadata": {
-          "title": "WCAG Checklist - AVS Documentation",
-          "description": "Contrasts, focus, keyboard navigation."
+        "practice": "Preserve the original colors: kente loses some of its meaning when its color code is desaturated.",
+        "toc": {
+          "sheet": "Full profile",
+          "practices": "Best practices"
         },
-        "title": "WCAG Checklist",
-        "summary": "Accessibility checklist based on WCAG guidelines for AVS components."
-      }
-    },
-    "api": {
-      "reference": {
-        "metadata": {
-          "title": "API Reference - AVS Documentation",
-          "description": "Programmatic access to the AVS standard."
+        "prev": "Ndop Bamoum",
+        "next": "Bogolan Fanga"
+      },
+      "ndopBamoum": {
+        "space": "Patterns",
+        "title": "Ndop Bamoum",
+        "summary": "A concentric-circle motif from the Bamum Kingdom, documented and vectorized for thoughtful use in your projects.",
+        "origin": "Bamum Kingdom",
+        "ethnicGroup": "Bamum",
+        "country": "Cameroon",
+        "region": "West Region, Foumban",
+        "meaning": "A grid of concentric circles associated with royal regalia and ceremonial textiles of the Bamum Kingdom.",
+        "uses": {
+          "court": "Royal court hangings",
+          "ceremonial": "Ceremonial textiles",
+          "manuscripts": "Bamum manuscript bindings",
+          "architecture": "Architectural decoration at the Foumban Palace"
         },
-        "title": "API Reference",
-        "summary": "Complete API documentation for programmatic access to AVS resources."
-      }
-    },
-    "guides": {
-      "integrationNextjs": {
-        "metadata": {
-          "title": "Next.js Integration - AVS Documentation",
-          "description": "Step-by-step tutorial to integrate AVS in Next.js."
+        "symbolism": "Each circle represents a level of power, from the king (Mfon) to the community. Repetition evokes dynastic continuity.",
+        "history": "The motif is documented from the reign of King Njoya in the late 19th century, when the Shümom script was also codified. Court weavers transmitted it orally before written sources appeared in the 1980s.",
+        "variants": {
+          "royal": {
+            "title": "Royal Ndop",
+            "note": "Associated with court textiles"
+          },
+          "civil": {
+            "title": "Civil Ndop",
+            "note": "Simplified variant for everyday use"
+          },
+          "funeral": {
+            "title": "Funerary Ndop",
+            "note": "Reversed circles associated with mourning rites"
+          }
         },
-        "title": "Next.js Integration",
-        "summary": "Complete guide to integrating AVS into a Next.js project."
+        "toc": {
+          "explanation": "Explanation",
+          "examples": "Interactive examples",
+          "practices": "Best practices",
+          "references": "Cultural references",
+          "downloads": "Downloads"
+        },
+        "why": "Ndop is often reused and sometimes misattributed in so-called “African-inspired” web design. Citing its provenance supports thoughtful use rather than generic decoration.",
+        "explanation": "The CSS token reproduces the royal motif's circle grid, vectorized from archival textile pieces",
+        "practiceTitle": "Best practice",
+        "practice": "Reserve this motif for contexts related to authority or ceremony; avoid using it as generic decoration.",
+        "bestPractices": {
+          "opacity": "Use it at low opacity (8% maximum) as a background texture without reducing legibility.",
+          "credit": "Credit its source as “Ndop Bamoum, Cameroon” visibly in your project."
+        },
+        "pitfalls": {
+          "civil": "Do not confuse it with Civil Ndop, which has fewer restrictions on use.",
+          "colors": "Avoid recoloring it far from its original indigo and ochre palette."
+        },
+        "culturalReferences": "Visit Cultural Studies to learn more about the Bamum Kingdom and the Shümom script.",
+        "downloadSvg": "Ndop Bamoum — SVG file",
+        "downloadPalette": "Ndop Bamoum — palette",
+        "prev": "Kente Royale",
+        "next": "Bogolan Fanga"
+      },
+      "useCode": {
+        "space": "Patterns",
+        "title": "Using patterns in your code",
+        "summary": "Integrate AVS patterns with @buni/patterns: import the stylesheet, then apply pattern classes like any other Tailwind class.",
+        "why": "Pattern classes can be combined directly with Tailwind utilities to control size, opacity, and layout.",
+        "installation": "Installation",
+        "cssImport": "Import the CSS stylesheet",
+        "cssImportDescription": "Add this line to your global stylesheet (globals.css):",
+        "tailwind": "Direct use with Tailwind (recommended)",
+        "tailwindDescription": "Apply pattern classes directly in your markup:",
+        "optionalImport": "JavaScript import (optional)",
+        "optionalImportDescription": "You can also import the class names from the package:",
+        "availableClasses": "Available classes",
+        "classes": {
+          "kente": "Kente pattern (Ghana)",
+          "bogolan": "Bogolan pattern (Mali)",
+          "adinkra": "Adinkra symbols (Ghana)",
+          "ndebele": "Ndebele pattern (Zimbabwe)",
+          "ndop": "Ndop pattern (Cameroon)",
+          "wax": "Wax pattern (pan-African)",
+          "kuba": "Kuba pattern (DR Congo)",
+          "berber": "Berber pattern (North Africa)"
+        },
+        "customization": "Customize with Tailwind",
+        "bestPractices": {
+          "performance": "Performance: prefer an opacity of 0.1 to 0.3 for a subtle effect.",
+          "accessibility": "Accessibility: keep a solid fallback color beneath the pattern.",
+          "mobile": "Mobile: reduce opacity or disable patterns when needed to preserve legibility.",
+          "contrast": "Contrast: check that text remains legible over the pattern.",
+          "css": "CSS only: these patterns are generated in CSS and require no image downloads."
+        },
+        "completeExample": "Complete @buni/patterns example",
+        "prev": "Introduction",
+        "next": "Ndop Bamoum"
       }
     },
     "etudesCulturelles": {
@@ -1575,38 +1735,145 @@
         "summary": "Cultural study of wax patterns across the African continent."
       }
     },
-    "exemples": {
-      "showcase": {
-        "metadata": {
-          "title": "Showcase - AVS Documentation",
-          "description": "Real projects built with AVS."
+    "colors": {
+      "colorPicker": {
+        "space": "Colors",
+        "title": "AVS Color Picker",
+        "summary": "The AVS picker organizes predefined and customizable African color palettes for your projects.",
+        "why": "Explore, filter, and create combinations inspired by traditional textiles, then export them in the format you need.",
+        "structure": {
+          "title": "Data structure",
+          "description": "Palettes are stored in"
         },
-        "title": "Showcase",
-        "summary": "Gallery of real projects built using the African Visual Standard."
-      }
-    },
-    "ressources": {
-      "telechargements": {
-        "metadata": {
-          "title": "Downloads - AVS Documentation",
-          "description": "Source files, kits, bibliography."
+        "filtering": {
+          "title": "Filters",
+          "description": "Filter palettes by three criteria:",
+          "region": "Region",
+          "regionValues": "West, Central, East, Southern, or North Africa, and Pan-African",
+          "culture": "Culture",
+          "cultureValues": "Yoruba, Akan, Bamum, Maasai, Zulu, and others",
+          "theme": "Theme",
+          "themeValues": "Classic, Royal, Nature, Textile, or Historical"
         },
-        "title": "Downloads",
-        "summary": "Complete kits for Figma, exported palettes and complete project bibliography.",
-        "explanation": "Each file below is versioned and dated — check the latest update before production integration.",
-        "downloads": {
-          "figma": "AVS Figma Kit",
-          "palettes": "Complete palettes",
-          "bibliography": "Complete bibliography",
-          "patterns": "Vector patterns (complete set)"
+        "custom": {
+          "title": "Create a custom palette",
+          "before": "The",
+          "after": "component lets you compose a palette from color families: earth and ochre, indigo and blue, gold and yellow, green, and neutrals."
         },
         "toc": {
-          "files": "Files"
+          "structure": "Data structure",
+          "filtering": "Filters",
+          "custom": "Custom palette"
         },
-        "prev": "Examples"
-      }
-    },
-    "colors": {
+        "prev": "Introduction",
+        "next": "Integration"
+      },
+      "designSystem": {
+        "space": "Colors",
+        "title": "Create a design system",
+        "summary": "Turn AVS palettes into a consistent design system for your application.",
+        "why": "A design system built around AVS colors supports visual consistency while respecting their cultural context.",
+        "choose": {
+          "title": "Step 1: choose a primary palette",
+          "description": "Choose a palette that fits your brand, such as AVS Core for a neutral identity or Kente Asante for a regal touch."
+        },
+        "tokens": {
+          "title": "Step 2: define color tokens",
+          "description": "Create semantic tokens based on each color's role:"
+        },
+        "variants": {
+          "title": "Step 3: create variants",
+          "description": "Create several lightness levels for each color:"
+        },
+        "components": {
+          "title": "Step 4: apply tokens to components",
+          "description": "Reuse tokens in your components:"
+        },
+        "documentation": {
+          "title": "Step 5: document and maintain",
+          "description": "Record color choices and their cultural meaning to preserve context and keep the system consistent."
+        },
+        "toc": {
+          "choose": "Choose a palette",
+          "tokens": "Color tokens",
+          "variants": "Variants",
+          "components": "Components",
+          "documentation": "Documentation"
+        },
+        "prev": "Integration",
+        "next": "Main palette"
+      },
+      "integration": {
+        "space": "Colors",
+        "title": "Integrating colors",
+        "summary": "The AVS picker offers three export formats to easily add colors to your project.",
+        "why": "Whether you use CSS variables, Tailwind CSS v4, or JavaScript/TypeScript, choose the format that fits your workflow.",
+        "css": {
+          "title": "CSS variables",
+          "description": "Export colors as native CSS variables:"
+        },
+        "tailwind": {
+          "title": "Tailwind CSS v4",
+          "description": "With Tailwind CSS v4, define variables in your CSS file:"
+        },
+        "json": {
+          "title": "JSON for JavaScript and TypeScript",
+          "description": "Export colors as JSON to use them in your code:"
+        },
+        "toc": {
+          "css": "CSS variables",
+          "tailwind": "Tailwind CSS v4",
+          "json": "JSON"
+        },
+        "clickMe": "Click me",
+        "prev": "Color picker",
+        "next": "Design system"
+      },
+      "palette": {
+        "space": "Colors",
+        "title": "Main palette",
+        "summary": "Eight colors derived from natural pigments and dyes, each documented with its provenance.",
+        "copyHex": "Copy HEX code",
+        "copied": "Copied!",
+        "primary": {
+          "label": "Burnt earth",
+          "origin": "Yoruba pottery"
+        },
+        "secondary": {
+          "label": "Natural linen",
+          "origin": "Fulani textile"
+        },
+        "accent": {
+          "label": "Obsidian",
+          "origin": "Kenyan basalt"
+        },
+        "kente": {
+          "label": "Kente gold",
+          "origin": "Asante silk"
+        },
+        "ndop": {
+          "label": "Bamileke green",
+          "origin": "Plant pigments"
+        },
+        "indigo": {
+          "label": "Bogolan blue",
+          "origin": "Bambara dye"
+        },
+        "earth": {
+          "label": "Savanna ochre",
+          "origin": "Sahel clay"
+        },
+        "raffia": {
+          "label": "Natural raffia",
+          "origin": "Palm fiber"
+        },
+        "toc": {
+          "palette": "Main palette",
+          "css": "CSS variables"
+        },
+        "prev": "Bogolan Fanga",
+        "next": "Design tokens"
+      },
       "introduction": {
         "metadata": {
           "title": "Introduction to AVS Colors",
