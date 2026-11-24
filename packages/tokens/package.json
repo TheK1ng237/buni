@@ -1,5 +1,5 @@
 {
-  "name": "@buni/tokens",
+  "name": "@buni-design/tokens",
   "version": "1.0.0",
   "description": "Buni Design System — Design tokens (colors, typography, spacing, shadows, radius) for Tailwind CSS v4",
   "license": "MIT",

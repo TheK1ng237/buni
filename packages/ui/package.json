@@ -1,5 +1,5 @@
 {
-  "name": "@buni/ui",
+  "name": "@buni-design/ui",
   "version": "1.0.0",
   "description": "Buni Design System — React components built with Radix UI, Tailwind CSS v4 & Class Variance Authority",
   "license": "MIT",
