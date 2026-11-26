@@ -15,17 +15,10 @@ on:
           - minor
           - major
         default: 'patch'
-      force:
-        description: 'Force publish even if no changes'
-        required: false
-        type: boolean
-        default: false
-
   push:
     branches: [main]
     paths:
       - 'packages/ui/**'
-      - '.github/workflows/publish-ui.yml'
 
 jobs:
   build-and-publish:
@@ -60,11 +53,11 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-        working-directory: ./buni
+        working-directory: .
 
       - name: Build @buni-design/ui
-        run: pnpm run build --filter @buni-design/ui
-        working-directory: ./buni
+        run: pnpm --filter @buni-design/ui run build
+        working-directory: .
 
       - name: Verify dist contents
         run: |
@@ -72,59 +65,40 @@ jobs:
           ls -la packages/ui/dist/
           echo ""
           echo "📄 Components: $(find packages/ui/dist/components -name '*.js' | wc -l)"
-        working-directory: ./buni
-
-      - name: Check for changes
-        id: changes
-        if: github.event_name == 'push'
-        run: |
-          if git diff --quiet packages/ui/dist/; then
-            echo "changed=false" >> $GITHUB_OUTPUT
-          else
-            echo "changed=true" >> $GITHUB_OUTPUT
-          fi
-        working-directory: ./buni
+        working-directory: .
 
       - name: Determine version bump
         id: version
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             echo "bump=${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
-          elif [ "${{ steps.changes.outputs.changed }}" = "true" ]; then
-            echo "bump=patch" >> $GITHUB_OUTPUT
           else
-            echo "bump=none" >> $GITHUB_OUTPUT
+            echo "bump=patch" >> $GITHUB_OUTPUT
           fi
 
       - name: Publish to npm
-        if: steps.version.outputs.bump != 'none' || github.event.inputs.force == 'true'
+        if: steps.version.outputs.bump != ''
         run: |
           cd packages/ui
-          if [ "${{ steps.version.outputs.bump }}" != "none" ]; then
-            npm version ${{ steps.version.outputs.bump }} --no-git-tag-version --workspaces=false
-          fi
+          npm version ${{ steps.version.outputs.bump }} --no-git-tag-version --workspaces=false
           npm publish --access public --provenance
-        working-directory: ./buni
+        working-directory: .
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Commit and push version bump
-        if: steps.version.outputs.bump != 'none' || github.event.inputs.force == 'true'
+        if: steps.version.outputs.bump != ''
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add packages/ui/package.json packages/ui/dist/
+          git add packages/ui/package.json
           git commit -m "chore: publish @buni-design/ui update [skip ci]"
           git push
-        working-directory: ./buni
+        working-directory: .
 
       - name: Notify completion
-        if: always()
+        if: success()
         run: |
-          if [ "${{ steps.version.outputs.bump }}" != "none" ] || [ "${{ github.event.inputs.force }}" = "true" ]; then
-            echo "✅ @buni-design/ui published successfully!"
-            echo "📦 New version: $(cat packages/ui/package.json | jq -r .version)"
-          else
-            echo "ℹ️ No changes to publish"
-          fi
-        working-directory: ./buni
+          echo "✅ @buni-design/ui published successfully!"
+          echo "📦 New version: $(cat packages/ui/package.json | jq -r .version)"
+        working-directory: .
