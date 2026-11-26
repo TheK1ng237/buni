@@ -1,4 +1,4 @@
-# @buni/icons-data
+# @buni-design/icons-data
 
 Source de données de BUNI-ICON Core 60.
 

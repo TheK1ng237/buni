@@ -13,7 +13,7 @@ const componentsDir = path.join(srcDir, 'components');
 const distDir = path.join(pkgRoot, 'dist');
 const componentsDistDir = path.join(distDir, 'components');
 
-console.log('🔨 Building @buni/ui...\n');
+console.log('🔨 Building @buni-design/ui...\n');
 
 // Clean and create dist
 if (fs.existsSync(distDir)) {
@@ -25,12 +25,12 @@ fs.mkdirSync(componentsDistDir, { recursive: true });
 // ============================================================================
 // 1. Build styles.css (imports tokens + component styles)
 // ============================================================================
-const stylesCss = `/* @buni/ui - Component Styles
- * Import: @import '@buni/ui/styles.css' or @import '@buni/ui/css'
- * Requires: @import '@buni/tokens'; (for design tokens)
+const stylesCss = `/* @buni-design/ui - Component Styles
+ * Import: @import '@buni-design/ui/styles.css' or @import '@buni-design/ui/css'
+ * Requires: @import '@buni-design/tokens'; (for design tokens)
  */
 
-@import '@buni/tokens';
+@import '@buni-design/tokens';
 `;
 
 fs.writeFileSync(path.join(distDir, 'styles.css'), stylesCss);
@@ -93,14 +93,14 @@ if (fs.existsSync(utilsSrc)) {
 // ============================================================================
 // 4. Build main index.js (SHORT EXPORTS - main entry)
 // ============================================================================
-const mainIndexJs = `// @buni/ui - Main Entry Point (SHORT IMPORTS)
-// Import styles: import '@buni/ui' or import '@buni/ui/css'
-// Import components: import { Button, Card, Input, ... } from '@buni/ui'
+const mainIndexJs = `// @buni-design/ui - Main Entry Point (SHORT IMPORTS)
+// Import styles: import '@buni-design/ui' or import '@buni-design/ui/css'
+// Import components: import { Button, Card, Input, ... } from '@buni-design/ui'
 
 ${barrelExports.join('\n')}
 
 // Re-export tokens for convenience
-export * from '@buni/tokens';
+export * from '@buni-design/tokens';
 `;
 
 fs.writeFileSync(path.join(distDir, 'index.js'), mainIndexJs);
@@ -109,7 +109,7 @@ console.log('✓ Built dist/index.js (short exports)');
 // ============================================================================
 // 5. Build main index.d.ts
 // ============================================================================
-const mainIndexDts = `// @buni/ui - Type Declarations (SHORT IMPORTS)
+const mainIndexDts = `// @buni-design/ui - Type Declarations (SHORT IMPORTS)
 
 // CSS module declarations
 declare module '*.css' {
@@ -120,7 +120,7 @@ declare module '*.css' {
 ${barrelDtsExports.join('\n')}
 
 // Re-export tokens types
-export * from '@buni/tokens';
+export * from '@buni-design/tokens';
 
 // Auto-discovered component list
 export const COMPONENT_NAMES = ${JSON.stringify(componentNames, null, 2)} as const;
@@ -207,18 +207,18 @@ function extractExports(content) {
 }
 
 function generateReadme(componentNames) {
-  return `# @buni/ui
+  return `# @buni-design/ui
 
 Buni Design System — React components built with Radix UI, Tailwind CSS v4 & Class Variance Authority.
 
 ## Installation
 
 \`\`\`bash
-npm install @buni/ui
+npm install @buni-design/ui
 # or
-pnpm add @buni/ui
+pnpm add @buni-design/ui
 # or
-yarn add @buni/ui
+yarn add @buni-design/ui
 
 # Peer dependencies (required)
 pnpm add react react-dom tailwindcss class-variance-authority clsx tailwind-merge lucide-react \\
@@ -236,16 +236,16 @@ pnpm add react react-dom tailwindcss class-variance-authority clsx tailwind-merg
 ### 1. Import Styles
 
 \`\`\`css
-@import '@buni/ui';
-@import '@buni/tokens'; /* Required for design tokens */
+@import '@buni-design/ui';
+@import '@buni-design/tokens'; /* Required for design tokens */
 \`\`\`
 
 ### 2. Tailwind CSS v4 Config
 
 \`\`\`css
 @import 'tailwindcss';
-@import '@buni/tokens';
-@import '@buni/ui';
+@import '@buni-design/tokens';
+@import '@buni-design/ui';
 
 @theme {
   --color-avs-primary: #YOUR_BRAND_COLOR;
@@ -256,7 +256,7 @@ pnpm add react react-dom tailwindcss class-variance-authority clsx tailwind-merg
 
 \`\`\`tsx
 // ✅ SHORT - Recommended
-import { Button, Card, CardHeader, CardContent, CardFooter, Avatar } from '@buni/ui';
+import { Button, Card, CardHeader, CardContent, CardFooter, Avatar } from '@buni-design/ui';
 
 function MyComponent() {
   return (
@@ -279,9 +279,9 @@ function MyComponent() {
 ### 4. Individual Imports (Smallest Bundle)
 
 \`\`\`tsx
-import { Button } from '@buni/ui/Button';
-import { Card } from '@buni/ui/Card';
-import { cn } from '@buni/ui/utils';
+import { Button } from '@buni-design/ui/Button';
+import { Card } from '@buni-design/ui/Card';
+import { cn } from '@buni-design/ui/utils';
 \`\`\`
 
 ## Available Components (${componentNames.length} auto-discovered)
@@ -310,16 +310,16 @@ ${componentNames.map(name => `| ${name} | ${getComponentDescription(name)} |`).j
 <Button size="icon">🔍</Button>
 \`\`\`
 
-## Design Tokens (from @buni/tokens)
+## Design Tokens (from @buni-design/tokens)
 
-All components use these tokens via Tailwind CSS v4. See \`@buni/tokens\` for full list.
+All components use these tokens via Tailwind CSS v4. See \`@buni-design/tokens\` for full list.
 
 ## Utility Functions
 
 \`\`\`ts
-import { cn } from '@buni/ui';
+import { cn } from '@buni-design/ui';
 // or
-import { cn } from '@buni/ui/utils';
+import { cn } from '@buni-design/ui/utils';
 
 cn('base-class', condition && 'conditional-class', 'another-class');
 \`\`\`

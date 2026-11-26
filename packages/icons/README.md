@@ -1,15 +1,15 @@
-# @buni/icons
+# @buni-design/icons
 
 African cultural icons — React components, CSS classes & SVG files for Buni Design System.
 
 ## Installation
 
 ```bash
-npm install @buni/icons
+npm install @buni-design/icons
 # or
-pnpm add @buni/icons
+pnpm add @buni-design/icons
 # or
-yarn add @buni/icons
+yarn add @buni-design/icons
 ```
 
 ## Usage
@@ -18,11 +18,11 @@ yarn add @buni/icons
 
 ```tsx
 // ✅ SHORT - Recommended
-import { Avs, AvsPerson, AvsSettings, AvsHome, AvsSearch } from '@buni/icons';
+import { Avs, AvsPerson, AvsSettings, AvsHome, AvsSearch } from '@buni-design/icons';
 
 // ✅ Individual (smallest bundle)
-import { Avs } from '@buni/icons/Avs';
-import { AvsPerson } from '@buni/icons/AvsPerson';
+import { Avs } from '@buni-design/icons/Avs';
+import { AvsPerson } from '@buni-design/icons/AvsPerson';
 
 function MyComponent() {
   return (
@@ -46,7 +46,7 @@ function MyComponent() {
 ### 2. CSS Classes (Zero Dependencies)
 
 ```css
-@import '@buni/icons/css';
+@import '@buni-design/icons/css';
 ```
 
 ```html
@@ -70,7 +70,7 @@ function MyComponent() {
 ### 3. Ndop Symbols (Cultural Symbols)
 
 ```tsx
-import { ndopSymbol1, ndopSymbol2, ndopSymbol3, ndopSymbol4, ndopSymbol5 } from '@buni/icons/symbols';
+import { ndopSymbol1, ndopSymbol2, ndopSymbol3, ndopSymbol4, ndopSymbol5 } from '@buni-design/icons/symbols';
 
 // As <img>
 <img src={ndopSymbol1} alt="Ndop Symbol" width="32" height="32" />
@@ -84,7 +84,7 @@ import { ndopSymbol1, ndopSymbol2, ndopSymbol3, ndopSymbol4, ndopSymbol5 } from 
 ### 4. Cultural Heritage Assets
 
 ```tsx
-import { ndopBamoum, toghuBamenda, toghuBamileke } from '@buni/icons/cultural';
+import { ndopBamoum, toghuBamenda, toghuBamileke } from '@buni-design/icons/cultural';
 
 // Usage
 <img src={ndopBamoum} alt="Ndop Bamoum" />
@@ -96,8 +96,8 @@ import { ndopBamoum, toghuBamenda, toghuBamileke } from '@buni/icons/cultural';
 ### 5. SVG Files (Direct Import)
 
 ```tsx
-import AvsSvg from '@buni/icons/svg/avs.svg';
-import PersonSvg from '@buni/icons/svg/avs-person.svg';
+import AvsSvg from '@buni-design/icons/svg/avs.svg';
+import PersonSvg from '@buni-design/icons/svg/avs-person.svg';
 
 <img src={AvsSvg} alt="AVS" width="32" height="32" />
 ```
@@ -116,20 +116,20 @@ import PersonSvg from '@buni/icons/svg/avs-person.svg';
 
 | Symbol | Import | Origin |
 |--------|--------|--------|
-| ndopSymbol1 | `import { ndopSymbol1 } from '@buni/icons/symbols'` | Cameroun / Bamoum |
-| ndopSymbol2 | `import { ndopSymbol2 } from '@buni/icons/symbols'` | Cameroun / Bamoum |
-| ndopSymbol3 | `import { ndopSymbol3 } from '@buni/icons/symbols'` | Cameroun / Bamoum |
-| ndopSymbol4 | `import { ndopSymbol4 } from '@buni/icons/symbols'` | Cameroun / Bamoum |
-| ndopSymbol5 | `import { ndopSymbol5 } from '@buni/icons/symbols'` | Cameroun / Bamoum |
+| ndopSymbol1 | `import { ndopSymbol1 } from '@buni-design/icons/symbols'` | Cameroun / Bamoum |
+| ndopSymbol2 | `import { ndopSymbol2 } from '@buni-design/icons/symbols'` | Cameroun / Bamoum |
+| ndopSymbol3 | `import { ndopSymbol3 } from '@buni-design/icons/symbols'` | Cameroun / Bamoum |
+| ndopSymbol4 | `import { ndopSymbol4 } from '@buni-design/icons/symbols'` | Cameroun / Bamoum |
+| ndopSymbol5 | `import { ndopSymbol5 } from '@buni-design/icons/symbols'` | Cameroun / Bamoum |
 
 ## Cultural Assets
 
 | Asset | Import | Origin |
 |-------|--------|--------|
-| toghu-bamenda | `import { toghubamenda } from '@buni/icons/cultural'` | Cameroun / Bamiléké |
-| toghu-bamileke | `import { toghubamileke } from '@buni/icons/cultural'` | Cameroun / Bamiléké |
-| ndop-bamoum | `import { ndopbamoum } from '@buni/icons/cultural'` | Cameroun / Bamoum |
-| ndop6 | `import { ndop6 } from '@buni/icons/cultural'` | Cameroun / Bamoum |
+| toghu-bamenda | `import { toghubamenda } from '@buni-design/icons/cultural'` | Cameroun / Bamiléké |
+| toghu-bamileke | `import { toghubamileke } from '@buni-design/icons/cultural'` | Cameroun / Bamiléké |
+| ndop-bamoum | `import { ndopbamoum } from '@buni-design/icons/cultural'` | Cameroun / Bamoum |
+| ndop6 | `import { ndop6 } from '@buni-design/icons/cultural'` | Cameroun / Bamoum |
 
 ## Requirements
 

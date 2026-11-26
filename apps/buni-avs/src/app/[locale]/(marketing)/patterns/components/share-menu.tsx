@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { motion } from 'framer-motion';
-import { useToast } from '@buni/ui';
+import { useToast } from '@buni-design/ui';
 import { useLocale, useTranslations } from '@/i18n';
 import type { Pattern } from '@/features/patterns/types';
 

@@ -1,9 +1,9 @@
 // ONLY UI / FORM CONFIG (no domain duplication)
 
-import { REGIONS, PATTERN_TYPES, PatternOrigin, PatternSymbolism, PatternColor, PatternSymbol } from '@buni/patterns';
+import { REGIONS, PATTERN_TYPES, PatternOrigin, PatternSymbolism, PatternColor, PatternSymbol } from '@buni-design/patterns';
 
 // ─────────────────────────────────────────────────────────────
-// REGIONS & TYPES (re-exported from @buni/patterns)
+// REGIONS & TYPES (re-exported from @buni-design/patterns)
 // ─────────────────────────────────────────────────────────────
 
 export { REGIONS, PATTERN_TYPES };

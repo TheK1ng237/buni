@@ -32,7 +32,7 @@ import {
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { useAuth, useLogout } from '@buni/auth';
-import { Comingsoon } from '@buni/ui';
+import { Comingsoon } from '@buni-design/ui';
 import { useTheme, ThemeToggle } from '@buni/theme';
 import { useTranslations, LocaleToggle, locales } from '@/i18n';
 import { Route } from 'next';

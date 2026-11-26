@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // packages/patterns/scripts/build.mjs
-// Build script for @buni/patterns - generates dist/ with CSS, SVG, symbols, and TypeScript types
+// Build script for @buni-design/patterns - generates dist/ with CSS, SVG, symbols, and TypeScript types
 
 import fs from 'fs';
 import path from 'path';
@@ -14,7 +14,7 @@ const distDir = path.join(pkgRoot, 'dist');
 const svgDistDir = path.join(distDir, 'svg');
 const symbolsDistDir = path.join(distDir, 'symbols');
 
-console.log('🔨 Building @buni/patterns...\n');
+console.log('🔨 Building @buni-design/patterns...\n');
 
 // Clean and create dist
 if (fs.existsSync(distDir)) {
@@ -40,7 +40,7 @@ if (fs.existsSync(patternsCssSrc)) {
   );
   cssContent = cssContent.replace(
     /@import\s+['"]\.\.\/\.\.\/tokens\/src\/css\/avs-tokens\.css['"];/g,
-    "@import '@buni/patterns/tokens';"
+    "@import '@buni-design/patterns/tokens';"
   );
 
   // Resolve assets relative to the generated stylesheet in dist/.
@@ -122,10 +122,10 @@ if (fs.existsSync(ndopDir)) {
 // ============================================================================
 // 5. Build index.js (SHORT EXPORTS - main entry)
 // ============================================================================
-const indexJs = `// @buni/patterns - Main Entry Point (SHORT IMPORTS)
-// Import CSS: import '@buni/patterns' or import '@buni/patterns/css'
-// Import Tokens: import '@buni/patterns/tokens'
-// Import Symbols: import { ndopSymbol1, ndopSymbol2 } from '@buni/patterns/symbols'
+const indexJs = `// @buni-design/patterns - Main Entry Point (SHORT IMPORTS)
+// Import CSS: import '@buni-design/patterns' or import '@buni-design/patterns/css'
+// Import Tokens: import '@buni-design/patterns/tokens'
+// Import Symbols: import { ndopSymbol1, ndopSymbol2 } from '@buni-design/patterns/symbols'
 
 // CSS is imported via "style" export in package.json
 // Re-export all TypeScript utilities
@@ -165,8 +165,8 @@ const symbolsIndexJs = symbolFiles
   .join('\n');
 
 fs.writeFileSync(path.join(distDir, 'symbols.js'),
-`// @buni/patterns/symbols - Ndop Symbol SVG Imports
-// Usage: import { ndopSymbol1, ndopSymbol2 } from '@buni/patterns/symbols'
+`// @buni-design/patterns/symbols - Ndop Symbol SVG Imports
+// Usage: import { ndopSymbol1, ndopSymbol2 } from '@buni-design/patterns/symbols'
 
 ${symbolsIndexJs}
 `);
@@ -179,7 +179,7 @@ const symbolsIndexDts = symbolFiles
   .join('\n');
 
 fs.writeFileSync(path.join(distDir, 'symbols.d.ts'),
-`// @buni/patterns/symbols - Type Declarations
+`// @buni-design/patterns/symbols - Type Declarations
 
 ${symbolsIndexDts}
 `);
@@ -189,7 +189,7 @@ console.log(`✓ Built dist/symbols.js + symbols.d.ts (${symbolFiles.length} sym
 // ============================================================================
 // 7. Build TypeScript declaration file
 // ============================================================================
-const indexDts = `// @buni/patterns - Type Declarations (SHORT IMPORTS)
+const indexDts = `// @buni-design/patterns - Type Declarations (SHORT IMPORTS)
 
 // CSS module declarations
 declare module '*.css' {
@@ -282,18 +282,18 @@ console.log(`✓ Generated ${patternSvgFiles.length + symbolFiles.length} SVG .d
 // ============================================================================
 // 11. Create README for npm
 // ============================================================================
-const readme = `# @buni/patterns
+const readme = `# @buni-design/patterns
 
 African cultural patterns library — CSS classes & SVG vectors for Kente, Ndop, Bogolan, Adinkra, Wax, Kuba, Ndebele, Berber.
 
 ## Installation
 
 \`\`\`bash
-npm install @buni/patterns
+npm install @buni-design/patterns
 # or
-pnpm add @buni/patterns
+pnpm add @buni-design/patterns
 # or
-yarn add @buni/patterns
+yarn add @buni-design/patterns
 \`\`\`
 
 ## Usage
@@ -302,13 +302,13 @@ yarn add @buni/patterns
 
 \`\`\`css
 /* Import all patterns + design tokens */
-@import '@buni/patterns';
+@import '@buni-design/patterns';
 
 /* Or import patterns only */
-@import '@buni/patterns/css';
+@import '@buni-design/patterns/css';
 
 /* Or import design tokens only */
-@import '@buni/patterns/tokens';
+@import '@buni-design/patterns/tokens';
 \`\`\`
 
 ### HTML / JSX Usage
@@ -335,9 +335,9 @@ yarn add @buni/patterns
 
 \`\`\`js
 // Vite, Webpack, Next.js, etc.
-import ndopBamoum from '@buni/patterns/svg/ndop/ndop-bamoum.svg';
-import kenteRoyale from '@buni/patterns/svg/kente/kente-royale.svg';
-import toghuBamenda from '@buni/patterns/svg/toghu-bamenda.svg';
+import ndopBamoum from '@buni-design/patterns/svg/ndop/ndop-bamoum.svg';
+import kenteRoyale from '@buni-design/patterns/svg/kente/kente-royale.svg';
+import toghuBamenda from '@buni-design/patterns/svg/toghu-bamenda.svg';
 
 // Use as <img src={ndopBamoum} /> or background-image
 \`\`\`
@@ -345,7 +345,7 @@ import toghuBamenda from '@buni/patterns/svg/toghu-bamenda.svg';
 ### Symbols (Ndop Cultural Symbols)
 
 \`\`\`js
-import { ndopSymbol1, ndopSymbol2, ndopSymbol3, ndopSymbol4, ndopSymbol5 } from '@buni/patterns/symbols';
+import { ndopSymbol1, ndopSymbol2, ndopSymbol3, ndopSymbol4, ndopSymbol5 } from '@buni-design/patterns/symbols';
 \`\`\`
 
 ### TypeScript / Programmatic Access
@@ -356,7 +356,7 @@ import {
   PATTERN_TYPES,
   getPatternBySlug,
   SVG_PATTERN_REGISTRY
-} from '@buni/patterns';
+} from '@buni-design/patterns';
 
 // Use CSS class names
 const className = kente; // "kente"
@@ -381,7 +381,7 @@ const svgUrl = SVG_PATTERN_REGISTRY['ndop-bamoum'];
 | **Ndebele** | \`.ndebele\` | — | South Africa / Zimbabwe |
 | **Berber** | \`.berber\` | — | Morocco / Amazigh |
 
-## Design Tokens (via \`@import '@buni/patterns/tokens'\`)
+## Design Tokens (via \`@import '@buni-design/patterns/tokens'\`)
 
 \`\`\`css
 @theme {
@@ -434,7 +434,7 @@ const svgUrl = SVG_PATTERN_REGISTRY['ndop-bamoum'];
 Override tokens in your CSS:
 
 \`\`\`css
-@import '@buni/patterns';
+@import '@buni-design/patterns';
 
 @theme {
   --color-avs-primary: #YOUR_BRAND_COLOR;

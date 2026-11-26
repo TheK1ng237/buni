@@ -15,7 +15,7 @@ import {
 import { ArrowRight, Check, Command, Copy, MoveDown } from 'lucide-react';
 import { useTranslations } from '@/i18n';
 import { useTheme } from 'next-themes';
-import { PATTERN_CATALOG } from '@buni/patterns';
+import { PATTERN_CATALOG } from '@buni-design/patterns';
 import { formatNumber } from '@buni/utils';
 import { usePlatformStats } from '@/features/analytics/hooks/usePlatformStats';
 

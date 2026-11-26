@@ -58,16 +58,16 @@ export default function MotifsPage() {
           <section id="installation">
             <h2 className="text-2xl font-semibold text-avs-primary mb-4">{t('installation.title')}</h2>
             <CodeBlock id="patterns-installation" lang="bash" title={t('installation.title')} code={`# Installation
-pnpm add @buni/patterns
+pnpm add @buni-design/patterns
 
 # CSS Import (recommended)
-@import '@buni/patterns';
+@import '@buni-design/patterns';
 
 # Or patterns only
-@import '@buni/patterns/css';
+@import '@buni-design/patterns/css';
 
 # Or tokens only
-@import '@buni/patterns/tokens';
+@import '@buni-design/patterns/tokens';
 
 # Usage in JSX
 <div className="kente h-32 w-full" />
@@ -165,7 +165,7 @@ pnpm add @buni/patterns
             <div className="space-y-6">
               <div>
                 <h3 className="text-lg font-medium text-avs-primary mb-3">{t('programmatic.getPattern')}</h3>
-                <CodeBlock id="patterns-catalog-api" lang="ts" code={`import { getPatternBySlug, getPatternsByType, getFeaturedPatterns } from '@buni/patterns';
+                <CodeBlock id="patterns-catalog-api" lang="ts" code={`import { getPatternBySlug, getPatternsByType, getFeaturedPatterns } from '@buni-design/patterns';
 
 // Get single pattern
 const kentePattern = getPatternBySlug('kente-asante');
@@ -180,7 +180,7 @@ const featured = getFeaturedPatterns();`} />
 
               <div>
                 <h3 className="text-lg font-medium text-avs-primary mb-3">{t('programmatic.svgRegistry')}</h3>
-                <CodeBlock id="patterns-svg-registry" lang="ts" code={`import { SVG_PATTERN_REGISTRY, getSvgPattern } from '@buni/patterns';
+                <CodeBlock id="patterns-svg-registry" lang="ts" code={`import { SVG_PATTERN_REGISTRY, getSvgPattern } from '@buni-design/patterns';
 
 // Get SVG path
 const ndopSvg = SVG_PATTERN_REGISTRY['ndop-bamoum'];
@@ -192,7 +192,7 @@ const kenteSvg = getSvgPattern('kente-royale');`} />
 
               <div>
                 <h3 className="text-lg font-medium text-avs-primary mb-3">{t('programmatic.types')}</h3>
-                <CodeBlock id="patterns-types" lang="ts" code={`import type { PatternType, PatternCssClass, PatternStatus } from '@buni/patterns';
+                <CodeBlock id="patterns-types" lang="ts" code={`import type { PatternType, PatternCssClass, PatternStatus } from '@buni-design/patterns';
 
 // Types disponibles
 type PatternType = 'kente' | 'bogolan' | 'adinkra' | 'ndebele' | 'ndop' | 'wax' | 'kuba' | 'berber';
@@ -207,7 +207,7 @@ type PatternStatus = 'published' | 'draft' | 'review';`} />
             <h2 className="text-2xl font-semibold text-avs-primary mb-4">{t('customization.title')}</h2>
             <p className="text-avs-accent/80 mb-6">{t('customization.description')}</p>
 
-            <CodeBlock id="patterns-customization" lang="css" code={`@import '@buni/patterns';
+            <CodeBlock id="patterns-customization" lang="css" code={`@import '@buni-design/patterns';
 
 @theme {
   /* Override pattern colors */

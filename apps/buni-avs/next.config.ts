@@ -8,13 +8,13 @@ const apiOrigin = (process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000')
 const config: NextConfig = {
   output: 'standalone',
   transpilePackages: [
-    '@buni/ui',
+    '@buni-design/ui',
     '@buni/theme',
     '@buni/auth',
-    '@buni/patterns',
+    '@buni-design/patterns',
     '@buni/api',
-    '@buni/tokens',
-    '@buni/icons',
+    '@buni-design/tokens',
+    '@buni-design/icons',
     '@buni/config',
     '@buni/analytics',
     '@buni/utils',

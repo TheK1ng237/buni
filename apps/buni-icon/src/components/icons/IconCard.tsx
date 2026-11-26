@@ -3,8 +3,8 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { BuniIcon } from '@buni/icon-react';
-import type { BuniIconMeta } from '@buni/icons-data';
-import { useToast } from '@buni/ui';
+import type { BuniIconMeta } from '@buni-design/icons-data';
+import { useToast } from '@buni-design/ui';
 import { Copy, Check, ArrowRight } from 'lucide-react';
 import { getIconPattern } from '@/lib/pattern-map';
 

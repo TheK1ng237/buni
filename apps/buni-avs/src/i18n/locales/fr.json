@@ -1074,7 +1074,7 @@
       },
       "components": {
         "title": "Bibliothèque de composants",
-        "description": "Composants disponibles dans le package @buni/ui."
+        "description": "Composants disponibles dans le package @buni-design/ui."
       },
       "button": {
         "description": "Boutons accessibles avec plusieurs variantes et tailles."
@@ -1651,7 +1651,7 @@
       "useCode": {
         "space": "Motifs",
         "title": "Utiliser les motifs dans votre code",
-        "summary": "Intégrez les motifs AVS avec @buni/patterns : importez la feuille de style, puis appliquez les classes comme toute autre classe Tailwind.",
+        "summary": "Intégrez les motifs AVS avec @buni-design/patterns : importez la feuille de style, puis appliquez les classes comme toute autre classe Tailwind.",
         "why": "Les classes de motifs peuvent être combinées directement avec les utilitaires Tailwind pour contrôler la taille, l'opacité et la disposition.",
         "installation": "Installation",
         "cssImport": "Importer la feuille CSS",
@@ -1679,7 +1679,7 @@
           "contrast": "Contraste : vérifiez la lisibilité du texte placé sur le motif.",
           "css": "CSS uniquement : ces motifs sont générés en CSS et ne nécessitent pas de chargement d'images."
         },
-        "completeExample": "Exemple complet avec @buni/patterns",
+        "completeExample": "Exemple complet avec @buni-design/patterns",
         "prev": "Introduction",
         "next": "Ndop Bamoum"
       }

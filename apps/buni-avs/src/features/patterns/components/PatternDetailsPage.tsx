@@ -20,13 +20,13 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { formatNumber } from '@buni/utils';
-import { useToast } from '@buni/ui';
+import { useToast } from '@buni-design/ui';
 
 import { usePattern } from '../hooks/usePatterns';
 import { patternRepository } from '../repositories/pattern.repository';
 import { saveBlob } from '../utils/css-pattern-svg';
 import { PatternAdminActions } from './PatternAdminActions';
-import { CSS_PATTERN_MAP } from '@buni/patterns';
+import { CSS_PATTERN_MAP } from '@buni-design/patterns';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // CONFIGURATION DES SECTIONS

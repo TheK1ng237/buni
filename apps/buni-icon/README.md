@@ -15,7 +15,7 @@ pnpm --filter @buni/buni-icon build
 
 Les 60 SVG utilisés par l’application et la bibliothèque sont maintenus dans `packages/icons-data/src/svg/interface/`, avec leurs métadonnées dans `packages/icons-data/src/meta/`. La référence Core 60 et ses aperçus sont dans `packages/icons-data/docs/core-60/`. Le script de build génère le catalogue, les données Iconify et les exports du composant React.
 
-Les motifs textiles `@buni/patterns` restent intégrés à l’identité visuelle : filigrane et bordures des cartes, aperçu interactif de l’accueil, ainsi que motif et palette personnalisables dans chaque fiche. Les associations d’affichage sont définies dans `src/lib/pattern-map.ts`.
+Les motifs textiles `@buni-design/patterns` restent intégrés à l’identité visuelle : filigrane et bordures des cartes, aperçu interactif de l’accueil, ainsi que motif et palette personnalisables dans chaque fiche. Les associations d’affichage sont définies dans `src/lib/pattern-map.ts`.
 
 ```tsx
 import { BuniIcon } from '@buni/icon-react';

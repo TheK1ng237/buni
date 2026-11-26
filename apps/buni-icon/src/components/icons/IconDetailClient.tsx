@@ -3,7 +3,7 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { useTranslations } from '@/i18n';
-import type { BuniIconMeta } from '@buni/icons-data';
+import type { BuniIconMeta } from '@buni-design/icons-data';
 import { BuniIcon } from '@buni/icon-react';
 import { ExportShadcnTabs } from '@/components/icons/ExportShadcnTabs';
 import { IconCard } from '@/components/icons/IconCard';

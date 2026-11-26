@@ -8,11 +8,11 @@ import { ShareMenu } from './share-menu';
 import { LicenseBadge } from './license-badge';
 import { MetaChip } from './meta-chip';
 import { downloadPattern } from '@/features/patterns/usecases/download-pattern.usecase';
-import { useToast, BuniLoader } from '@buni/ui';
+import { useToast, BuniLoader } from '@buni-design/ui';
 import { formatNumber } from '@buni/utils';
 
 import { patternRepository } from '@/features/patterns/repositories/pattern.repository';
-import { PATTERN_CATALOG } from '@buni/patterns';
+import { PATTERN_CATALOG } from '@buni-design/patterns';
 import { saveBlob } from '@/features/patterns/utils/css-pattern-svg';
 
 const SECTIONS = [

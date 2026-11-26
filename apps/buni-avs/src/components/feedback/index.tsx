@@ -2,7 +2,7 @@
 
 import React, { Component, type ErrorInfo, type ReactNode } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { cn } from '@buni/ui';
+import { cn } from '@buni-design/ui';
 
 // =============================================================================
 // ALERT — messages d'état inline

@@ -11,7 +11,7 @@ import {
 import { useAuth, useLogout } from '@buni/auth';
 import { useTranslations } from '@/i18n';
 import { timeAgo, formatNumber, formatDate } from '@buni/utils';
-import { KpiCard, KpiCardProps } from '@buni/ui';
+import { KpiCard, KpiCardProps } from '@buni-design/ui';
 import { useTheme } from 'next-themes';
 
 import { Route } from 'next';
@@ -19,7 +19,7 @@ import { DashboardStats, UserPattern, DashboardActivity, dashboardService } from
 import { userService } from '@/features/user/services/user.service';
 import ViewerDashboard from './viewer-dashboard';
 import CuratorModal from '@/components/curator-modal';
-import { CSS_PATTERN_MAP } from '@buni/patterns';
+import { CSS_PATTERN_MAP } from '@buni-design/patterns';
 import { PatternThumbnail } from '@/features/patterns/components/PatternThumbnail';
 
 // ─────────────────────────────────────────────────────────────────────────────

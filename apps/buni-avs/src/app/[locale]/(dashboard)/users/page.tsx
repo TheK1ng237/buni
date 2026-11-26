@@ -7,7 +7,7 @@ import { useAuth } from '@buni/auth';
 import { useTranslations } from '@/i18n';
 import { userService } from '@/features/user/services/user.service';
 import { formatNumber } from '@buni/utils';
-import { KpiCard, KpiCardProps } from '@buni/ui';
+import { KpiCard, KpiCardProps } from '@buni-design/ui';
 import type { UserDto } from '@/features/user/types';
 
 type ViewMode = 'table' | 'grid';

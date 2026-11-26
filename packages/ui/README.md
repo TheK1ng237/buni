@@ -1,15 +1,15 @@
-# @buni/ui
+# @buni-design/ui
 
 Buni Design System — React components built with Radix UI, Tailwind CSS v4 & Class Variance Authority.
 
 ## Installation
 
 ```bash
-npm install @buni/ui
+npm install @buni-design/ui
 # or
-pnpm add @buni/ui
+pnpm add @buni-design/ui
 # or
-yarn add @buni/ui
+yarn add @buni-design/ui
 
 # Peer dependencies (required)
 pnpm add react react-dom tailwindcss class-variance-authority clsx tailwind-merge lucide-react \
@@ -27,16 +27,16 @@ pnpm add react react-dom tailwindcss class-variance-authority clsx tailwind-merg
 ### 1. Import Styles
 
 ```css
-@import '@buni/ui';
-@import '@buni/tokens'; /* Required for design tokens */
+@import '@buni-design/ui';
+@import '@buni-design/tokens'; /* Required for design tokens */
 ```
 
 ### 2. Tailwind CSS v4 Config
 
 ```css
 @import 'tailwindcss';
-@import '@buni/tokens';
-@import '@buni/ui';
+@import '@buni-design/tokens';
+@import '@buni-design/ui';
 
 @theme {
   --color-avs-primary: #YOUR_BRAND_COLOR;
@@ -47,7 +47,7 @@ pnpm add react react-dom tailwindcss class-variance-authority clsx tailwind-merg
 
 ```tsx
 // ✅ SHORT - Recommended
-import { Button, Card, CardHeader, CardContent, CardFooter, Avatar } from '@buni/ui';
+import { Button, Card, CardHeader, CardContent, CardFooter, Avatar } from '@buni-design/ui';
 
 function MyComponent() {
   return (
@@ -70,9 +70,9 @@ function MyComponent() {
 ### 4. Individual Imports (Smallest Bundle)
 
 ```tsx
-import { Button } from '@buni/ui/Button';
-import { Card } from '@buni/ui/Card';
-import { cn } from '@buni/ui/utils';
+import { Button } from '@buni-design/ui/Button';
+import { Card } from '@buni-design/ui/Card';
+import { cn } from '@buni-design/ui/utils';
 ```
 
 ## Available Components (23 auto-discovered)
@@ -123,16 +123,16 @@ import { cn } from '@buni/ui/utils';
 <Button size="icon">🔍</Button>
 ```
 
-## Design Tokens (from @buni/tokens)
+## Design Tokens (from @buni-design/tokens)
 
-All components use these tokens via Tailwind CSS v4. See `@buni/tokens` for full list.
+All components use these tokens via Tailwind CSS v4. See `@buni-design/tokens` for full list.
 
 ## Utility Functions
 
 ```ts
-import { cn } from '@buni/ui';
+import { cn } from '@buni-design/ui';
 // or
-import { cn } from '@buni/ui/utils';
+import { cn } from '@buni-design/ui/utils';
 
 cn('base-class', condition && 'conditional-class', 'another-class');
 ```

@@ -6,7 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useAuth } from '@buni/auth';
 import { useTranslations } from '@/i18n';
 import { formatNumber, timeAgo } from '@buni/utils';
-import { KpiCard } from '@buni/ui';
+import { KpiCard } from '@buni-design/ui';
 import { 
   Activity, Download, Eye, Heart, MessageSquare, 
   Clock, Filter, TrendingUp, ArrowUpRight, 

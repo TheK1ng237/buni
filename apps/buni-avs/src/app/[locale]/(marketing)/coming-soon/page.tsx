@@ -153,7 +153,7 @@ export default function BuniComingSoonPage() {
   };
 
   const copyCommand = () => {
-    navigator.clipboard.writeText('npm i @buni/tokens');
+    navigator.clipboard.writeText('npm i @buni-design/tokens');
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -204,7 +204,7 @@ export default function BuniComingSoonPage() {
             title="Copier la commande de tokens"
           >
             <i className={`pi ${copied ? 'pi-check text-[#D4A017]' : 'pi-copy text-[#C8A96E]'}`} style={{ fontSize: '12px' }} />
-            <span className="hidden md:inline">npm i @buni/tokens</span>
+            <span className="hidden md:inline">npm i @buni-design/tokens</span>
             <span className="md:hidden">npm i</span>
           </button>
         </motion.div>

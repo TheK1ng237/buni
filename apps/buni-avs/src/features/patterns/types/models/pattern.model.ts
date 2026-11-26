@@ -6,7 +6,7 @@ import type {
   PatternSymbol,
   ArtisanQuote,
   PatternLicense,
-} from '@buni/patterns';
+} from '@buni-design/patterns';
 
 import type {
   PatternStatus,

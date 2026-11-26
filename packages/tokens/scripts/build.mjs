@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // packages/tokens/scripts/build.mjs
-// Build script for @buni/tokens - generates dist/ with CSS tokens, JS/TS exports
+// Build script for @buni-design/tokens - generates dist/ with CSS tokens, JS/TS exports
 
 import fs from 'fs';
 import path from 'path';
@@ -12,7 +12,7 @@ const srcDir = path.join(pkgRoot, 'src');
 const cssDir = path.join(srcDir, 'css');
 const distDir = path.join(pkgRoot, 'dist');
 
-console.log('🔨 Building @buni/tokens...\n');
+console.log('🔨 Building @buni-design/tokens...\n');
 
 // Clean and create dist
 if (fs.existsSync(distDir)) {
@@ -28,8 +28,8 @@ const tokensCssDest = path.join(distDir, 'tokens.css');
 
 if (fs.existsSync(tokensCssSrc)) {
   let cssContent = fs.readFileSync(tokensCssSrc, 'utf-8');
-  cssContent = `/* @buni/tokens - Design Tokens for Tailwind CSS v4
- * Import: @import '@buni/tokens' or @import '@buni/tokens/css'
+  cssContent = `/* @buni-design/tokens - Design Tokens for Tailwind CSS v4
+ * Import: @import '@buni-design/tokens' or @import '@buni-design/tokens/css'
  */\n\n` + cssContent;
   fs.writeFileSync(tokensCssDest, cssContent);
   console.log('✓ Built dist/tokens.css');
@@ -60,9 +60,9 @@ if (fs.existsSync(tokensJsSrc)) {
 // ============================================================================
 // 3. Build main index.js (SHORT EXPORTS)
 // ============================================================================
-const mainIndexJs = `// @buni/tokens - Main Entry Point (SHORT IMPORTS)
-// Import CSS: import '@buni/tokens' or import '@buni/tokens/css'
-// Import JS tokens: import { AVS_COLORS, AVS_RADIUS, AVS_SHADOW } from '@buni/tokens'
+const mainIndexJs = `// @buni-design/tokens - Main Entry Point (SHORT IMPORTS)
+// Import CSS: import '@buni-design/tokens' or import '@buni-design/tokens/css'
+// Import JS tokens: import { AVS_COLORS, AVS_RADIUS, AVS_SHADOW } from '@buni-design/tokens'
 
 // CSS is imported via "style" export in package.json
 // Re-export JS tokens
@@ -75,7 +75,7 @@ console.log('✓ Built dist/index.js');
 // ============================================================================
 // 4. Build main index.d.ts
 // ============================================================================
-const mainIndexDts = `// @buni/tokens - Type Declarations (SHORT IMPORTS)
+const mainIndexDts = `// @buni-design/tokens - Type Declarations (SHORT IMPORTS)
 
 // CSS module declarations
 declare module '*.css' {
@@ -109,18 +109,18 @@ console.log('✓ Built CSS .d.ts files');
 // ============================================================================
 // 6. Generate README for npm
 // ============================================================================
-const readme = `# @buni/tokens
+const readme = `# @buni-design/tokens
 
 Buni Design System — Design tokens (colors, typography, spacing, shadows, radius) for Tailwind CSS v4.
 
 ## Installation
 
 \`\`\`bash
-npm install @buni/tokens
+npm install @buni-design/tokens
 # or
-pnpm add @buni/tokens
+pnpm add @buni-design/tokens
 # or
-yarn add @buni/tokens
+yarn add @buni-design/tokens
 \`\`\`
 
 ## Usage
@@ -128,14 +128,14 @@ yarn add @buni/tokens
 ### CSS Import (Recommended)
 
 \`\`\`css
-@import '@buni/tokens';
+@import '@buni-design/tokens';
 \`\`\`
 
 ### Tailwind CSS v4 Config
 
 \`\`\`css
 @import 'tailwindcss';
-@import '@buni/tokens';
+@import '@buni-design/tokens';
 
 @theme {
   --color-avs-primary: #YOUR_BRAND_COLOR;
@@ -145,7 +145,7 @@ yarn add @buni/tokens
 ### JavaScript/TypeScript Import (SHORT)
 
 \`\`\`ts
-import { AVS_COLORS, AVS_RADIUS, AVS_SHADOW, type AvsColor } from '@buni/tokens';
+import { AVS_COLORS, AVS_RADIUS, AVS_SHADOW, type AvsColor } from '@buni-design/tokens';
 
 const primaryColor = AVS_COLORS.primary; // "#C0573E"
 const borderRadius = AVS_RADIUS.md; // "0.375rem"
@@ -231,7 +231,7 @@ AVS_SHADOW = { sm, md, lg, xl } as const;
 ## Customization
 
 \`\`\`css
-@import '@buni/tokens';
+@import '@buni-design/tokens';
 
 @theme {
   --color-avs-primary: #YOUR_BRAND_COLOR;

@@ -1,14 +1,14 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Button } from '@buni/ui';
-import { Input } from '@buni/ui';
+import { Button } from '@buni-design/ui';
+import { Input } from '@buni-design/ui';
 import Link from 'next/link';
 import type { Route } from 'next';
 import { useLogin } from '../hooks/useLogin';
 import { useGoogleLogin } from '../hooks/useGoogleLogin';
 import { useGithubLogin } from '../hooks/useGithubLogin';
-import { useToast, BuniLoader } from '@buni/ui';
+import { useToast, BuniLoader } from '@buni-design/ui';
 import { GoogleLoginButton } from '@buni/auth';
 import { useTheme } from 'next-themes';
 

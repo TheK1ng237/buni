@@ -14,11 +14,11 @@ import {
   Download,
   Coffee,
 } from 'lucide-react';
-import { cn } from '@buni/ui';
+import { cn } from '@buni-design/ui';
 import { Route } from 'next';
 import { HeroSection } from '../../components/layout/HeroSection';
 import { useTranslations } from '@/i18n';
-import { PATTERN_CATALOG } from '@buni/patterns';
+import { PATTERN_CATALOG } from '@buni-design/patterns';
 import { formatNumber } from '@buni/utils';
 import { usePlatformStats } from '@/features/analytics/hooks/usePlatformStats';
 

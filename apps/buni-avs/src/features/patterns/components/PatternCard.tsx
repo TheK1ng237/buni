@@ -7,7 +7,7 @@ import { formatNumber } from '@buni/utils';
 
 import type { Pattern } from '../types';
 import { Badge, cn } from '@/components/ui';
-import { CSS_PATTERN_MAP } from '@buni/patterns';
+import { CSS_PATTERN_MAP } from '@buni-design/patterns';
 import { Route } from 'next';
 
 

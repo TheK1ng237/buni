@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ICONS_BY_SLUG, ICONS_CATALOG, type BuniIconMeta } from '@buni/icons-data';
+import { ICONS_BY_SLUG, ICONS_CATALOG, type BuniIconMeta } from '@buni-design/icons-data';
 
 export type BuniIconSlug =
   | 'home'
@@ -103,7 +103,7 @@ export const BuniIcon = React.forwardRef<SVGSVGElement, BuniIconProps>(
 BuniIcon.displayName = 'BuniIcon';
 
 // Re-exports
-export { ICONS_CATALOG, ICONS_BY_SLUG, type BuniIconMeta } from '@buni/icons-data';
+export { ICONS_CATALOG, ICONS_BY_SLUG, type BuniIconMeta } from '@buni-design/icons-data';
 
 // Helper d'export format
 export function getIconifyName(slug: string): string {

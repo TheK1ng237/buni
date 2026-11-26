@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { PatternForm } from './PatternForm';
 import { loadPattern } from '../usecases/load-pattern.usecase';
-import type { Pattern } from '@buni/patterns';
+import type { Pattern } from '@buni-design/patterns';
 
 interface PatternEditPageProps {
   slug: string;

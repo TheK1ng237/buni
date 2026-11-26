@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { ICONS_CATALOG } from '@buni/icons-data';
+import { ICONS_CATALOG } from '@buni-design/icons-data';
 import { BuniIcon } from '@buni/icon-react';
 import Link from 'next/link';
 

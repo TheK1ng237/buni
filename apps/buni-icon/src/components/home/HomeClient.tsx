@@ -11,10 +11,10 @@ import {
   Check,
 } from 'lucide-react';
 import { useTranslations, useLocale } from '@/i18n';
-import { ICONS_CATALOG, type BuniIconMeta } from '@buni/icons-data';
+import { ICONS_CATALOG, type BuniIconMeta } from '@buni-design/icons-data';
 import { BuniIcon } from '@buni/icon-react';
 import { IconCard } from '@/components/icons/IconCard';
-import { useToast } from '@buni/ui';
+import { useToast } from '@buni-design/ui';
 import { getIconPattern } from '@/lib/pattern-map';
 
 interface HeroPairing {

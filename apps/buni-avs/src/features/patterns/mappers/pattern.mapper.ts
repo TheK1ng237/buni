@@ -14,7 +14,7 @@ import {
   PatternOrigin,
   PatternSymbolism,
   PatternSymbol,
-} from '@buni/patterns';
+} from '@buni-design/patterns';
 import type { UploadablePatternSymbol } from '../types/uploads/pattern.upload';
 
 // ─────────────────────────────────────────────────────────────────────────────

@@ -3,8 +3,8 @@
    Design System BUNI & AVS
    ============================================================ */
 
-@import '@buni/tokens/css';
-@import '@buni/patterns/css';
+@import '@buni-design/tokens/css';
+@import '@buni-design/patterns/css';
 @import 'tailwindcss';
 @import 'primeicons/primeicons.css';
 

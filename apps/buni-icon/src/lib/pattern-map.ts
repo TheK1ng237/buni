@@ -1,4 +1,4 @@
-import { PATTERN_CATALOG } from '@buni/patterns';
+import { PATTERN_CATALOG } from '@buni-design/patterns';
 
 export type PatternMeta = (typeof PATTERN_CATALOG)[number];
 

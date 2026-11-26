@@ -5,11 +5,11 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
 const config: NextConfig = {
   transpilePackages: [
-    '@buni/ui',
+    '@buni-design/ui',
     '@buni/theme',
-    '@buni/patterns',
-    '@buni/tokens',
-    '@buni/icons-data',
+    '@buni-design/patterns',
+    '@buni-design/tokens',
+    '@buni-design/icons-data',
     '@buni/icon-react',
     '@buni/config',
     '@buni/utils',

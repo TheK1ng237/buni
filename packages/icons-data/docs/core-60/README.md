@@ -5,7 +5,7 @@ African Iconographic Design System, version 0.2
 
 ## Rôle dans le dépôt
 
-Ce dossier contient la référence de conception complète et les aperçus de la collection. Les 60 SVG sont utilisés par `@buni/icons-data` ; les sources actives et leurs métadonnées se trouvent dans [`../../src/svg/interface/`](../../src/svg/interface/) et [`../../src/meta/`](../../src/meta/).
+Ce dossier contient la référence de conception complète et les aperçus de la collection. Les 60 SVG sont utilisés par `@buni-design/icons-data` ; les sources actives et leurs métadonnées se trouvent dans [`../../src/svg/interface/`](../../src/svg/interface/) et [`../../src/meta/`](../../src/meta/).
 
 ## Spécifications
 

@@ -1,4 +1,4 @@
-import { PATTERN_CATALOG, type Pattern } from '@buni/patterns';
+import { PATTERN_CATALOG, type Pattern } from '@buni-design/patterns';
 
 /**
  * Pattern documentation data.
@@ -499,7 +499,7 @@ export const PATTERNS_DOCS: Pattern[] = PATTERN_CATALOG.map((catalogPattern) => 
       usage: 'À documenter',
     },
     symbols: [],
-    sources: ['Catalogue de motifs @buni/patterns.'],
+    sources: ['Catalogue de motifs @buni-design/patterns.'],
     downloads: 0,
     views: 0,
     featured: false,

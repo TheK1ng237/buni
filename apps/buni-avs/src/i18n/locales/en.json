@@ -1115,7 +1115,7 @@
       },
       "components": {
         "title": "Component library",
-        "description": "Components available in the @buni/ui package."
+        "description": "Components available in the @buni-design/ui package."
       },
       "button": {
         "description": "Accessible buttons with multiple variants and sizes."
@@ -1692,7 +1692,7 @@
       "useCode": {
         "space": "Patterns",
         "title": "Using patterns in your code",
-        "summary": "Integrate AVS patterns with @buni/patterns: import the stylesheet, then apply pattern classes like any other Tailwind class.",
+        "summary": "Integrate AVS patterns with @buni-design/patterns: import the stylesheet, then apply pattern classes like any other Tailwind class.",
         "why": "Pattern classes can be combined directly with Tailwind utilities to control size, opacity, and layout.",
         "installation": "Installation",
         "cssImport": "Import the CSS stylesheet",
@@ -1720,7 +1720,7 @@
           "contrast": "Contrast: check that text remains legible over the pattern.",
           "css": "CSS only: these patterns are generated in CSS and require no image downloads."
         },
-        "completeExample": "Complete @buni/patterns example",
+        "completeExample": "Complete @buni-design/patterns example",
         "prev": "Introduction",
         "next": "Ndop Bamoum"
       }

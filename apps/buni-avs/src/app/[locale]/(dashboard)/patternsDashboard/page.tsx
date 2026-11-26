@@ -26,12 +26,12 @@ import {
   Loader2,
 } from 'lucide-react';
 import { formatDate, formatNumber } from '@buni/utils';
-import { KpiCard, useToast } from '@buni/ui';
+import { KpiCard, useToast } from '@buni-design/ui';
 import { useAuth } from '@buni/auth';
 import { useTranslations } from '@/i18n';
 
 import { Route } from 'next';
-import type { Pattern, PatternStatus, PatternSymbol } from '@buni/patterns';
+import type { Pattern, PatternStatus, PatternSymbol } from '@buni-design/patterns';
 import {
   useFeaturePattern,
   useUnfeaturePattern,

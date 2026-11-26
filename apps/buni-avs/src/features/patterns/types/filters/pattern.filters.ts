@@ -1,4 +1,4 @@
-import { PatternType, RegionType } from "@buni/patterns";
+import { PatternType, RegionType } from "@buni-design/patterns";
 
 
 export interface PatternFilters {

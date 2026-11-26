@@ -4,7 +4,7 @@ import { DocPageTemplate } from '../../doc-page-template';
 import { useNavSpaces } from '../../nav-data';
 import { useTranslations } from '@/i18n';
 import { CodeBlock } from '../../doc-primitives';
-import { AVS_COLORS, AVS_RADIUS, AVS_SHADOW } from '@buni/tokens';
+import { AVS_COLORS, AVS_RADIUS, AVS_SHADOW } from '@buni-design/tokens';
 
 function getContrastTextColor(hex: string) {
   const channels = hex.match(/[0-9a-f]{2}/gi)?.map((channel) => parseInt(channel, 16) / 255);
@@ -65,21 +65,21 @@ export default function TokensReferencePage() {
           <section id="installation">
             <h2 className="text-2xl font-semibold text-avs-primary mb-4">{t('installation.title')}</h2>
             <CodeBlock id="tokens-installation" lang="bash" title={t('installation.title')} code={`# Installation
-pnpm add @buni/tokens
+pnpm add @buni-design/tokens
 
 # CSS Import (required for all packages)
-@import '@buni/tokens';
+@import '@buni-design/tokens';
 
 # Tailwind v4 Config
 @import 'tailwindcss';
-@import '@buni/tokens';
+@import '@buni-design/tokens';
 
 @theme {
   --color-avs-primary: #YOUR_BRAND_COLOR;
 }
 
 // JS Import (short)
-import { AVS_COLORS, AVS_RADIUS, AVS_SHADOW } from '@buni/tokens';`} />
+import { AVS_COLORS, AVS_RADIUS, AVS_SHADOW } from '@buni-design/tokens';`} />
           </section>
 
           {/* Color Palette */}
@@ -243,7 +243,7 @@ font-family: var(--font-mono);
             <div className="space-y-6">
               <div>
                 <h3 className="text-lg font-medium text-avs-primary mb-3">{t('js.colors')}</h3>
-                <CodeBlock id="tokens-js-colors" lang="ts" code={`import { AVS_COLORS, type AvsColor } from '@buni/tokens';
+                <CodeBlock id="tokens-js-colors" lang="ts" code={`import { AVS_COLORS, type AvsColor } from '@buni-design/tokens';
 
 AVS_COLORS.primary   // "#C0573E"
 AVS_COLORS.kente     // "#D4A017"
@@ -258,7 +258,7 @@ const hex = AVS_COLORS[color]; // "#D4A017"`} />
 
               <div>
                 <h3 className="text-lg font-medium text-avs-primary mb-3">{t('js.radius')}</h3>
-                <CodeBlock id="tokens-js-radius" lang="ts" code={`import { AVS_RADIUS } from '@buni/tokens';
+                <CodeBlock id="tokens-js-radius" lang="ts" code={`import { AVS_RADIUS } from '@buni-design/tokens';
 
 AVS_RADIUS.sm  // "0.375rem"
 AVS_RADIUS.lg  // "1.5rem"
@@ -268,7 +268,7 @@ AVS_RADIUS.full // "9999px"`} />
 
               <div>
                 <h3 className="text-lg font-medium text-avs-primary mb-3">{t('js.shadows')}</h3>
-                <CodeBlock id="tokens-js-shadows" lang="ts" code={`import { AVS_SHADOW } from '@buni/tokens';
+                <CodeBlock id="tokens-js-shadows" lang="ts" code={`import { AVS_SHADOW } from '@buni-design/tokens';
 
 AVS_SHADOW.sm  // "2px 2px 0px 0px #1D1D1B"
 AVS_SHADOW.md  // "3px 3px 0px 0px #1D1D1B"
@@ -304,7 +304,7 @@ function generateTheme(primary: string, kente: string) {
             <h2 className="text-2xl font-semibold text-avs-primary mb-4">{t('customization.title')}</h2>
             <p className="text-avs-accent/80 mb-6">{t('customization.description')}</p>
 
-            <CodeBlock id="tokens-customization" lang="css" code={`@import '@buni/tokens';
+            <CodeBlock id="tokens-customization" lang="css" code={`@import '@buni-design/tokens';
 
 @theme {
   /* Brand colors */

@@ -38,11 +38,11 @@ Le middleware ne reconnaissait donc pas cette route comme une route protégée, 
 **PatternForm.tsx :**
 ```typescript
 // Avant :
-import {CSS_PATTERN_MAP, FALLBACK_PATTERN_CSS } from '@buni/patterns';
+import {CSS_PATTERN_MAP, FALLBACK_PATTERN_CSS } from '@buni-design/patterns';
 import {  FORM_STEPS } from '../constants/pattern.constants';
 
 // Après :
-import {CSS_PATTERN_MAP, FALLBACK_PATTERN_CSS } from '@buni/patterns';
+import {CSS_PATTERN_MAP, FALLBACK_PATTERN_CSS } from '@buni-design/patterns';
 import { FORM_STEPS } from '../constants/pattern.constants';
 ```
 
@@ -50,11 +50,11 @@ import { FORM_STEPS } from '../constants/pattern.constants';
 ```typescript
 // Avant :
 import type { Step1Data, FieldErrors } from '../../types';
-import { PATTERN_TYPES, REGIONS,  } from '@buni/patterns';
+import { PATTERN_TYPES, REGIONS,  } from '@buni-design/patterns';
 
 // Après :
 import type { Step1Data, FieldErrors } from '../../types';
-import { PATTERN_TYPES, REGIONS } from '@buni/patterns';
+import { PATTERN_TYPES, REGIONS } from '@buni-design/patterns';
 ```
 
 #### 2. Correction du middleware pour gérer les préfixes de locale

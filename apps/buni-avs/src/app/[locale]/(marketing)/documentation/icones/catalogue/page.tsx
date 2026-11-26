@@ -8,7 +8,7 @@ import Link from 'next/link';
 import type { Route } from 'next';
 import { LOCAL_SYMBOLS } from '@/features/symbols/data/symbol.mapper';
 import { useSymbols } from '@/features/symbols/hooks/useSymbols';
-import { Avs, AvsPerson, AvsSettings, AvsHome, AvsSearch } from '@buni/icons';
+import { Avs, AvsPerson, AvsSettings, AvsHome, AvsSearch } from '@buni-design/icons';
 
 export default function CataloguePage() {
   const t = useTranslations('documentation.icones.catalogue');
@@ -37,16 +37,16 @@ export default function CataloguePage() {
           <section id="installation">
             <h2 className="text-2xl font-semibold text-avs-primary mb-4">{t('installation.title')}</h2>
             <CodeBlock id="icons-installation" lang="bash" title={t('installation.title')} code={`# Installation
-pnpm add @buni/icons
+pnpm add @buni-design/icons
 
 # CSS (for class-based usage)
-@import '@buni/icons/css';
+@import '@buni-design/icons/css';
 
 # React (short imports - recommended)
-import { Avs, AvsPerson, AvsSettings, AvsHome, AvsSearch } from '@buni/icons';
+import { Avs, AvsPerson, AvsSettings, AvsHome, AvsSearch } from '@buni-design/icons';
 
 # SVG assets
-import AvsSvg from '@buni/icons/svg/avs.svg';`} />
+import AvsSvg from '@buni-design/icons/svg/avs.svg';`} />
           </section>
 
           {/* React Components */}
@@ -110,7 +110,7 @@ import AvsSvg from '@buni/icons/svg/avs.svg';`} />
             <div className="space-y-6">
               <div>
                 <h3 className="text-lg font-medium text-avs-primary mb-3">{t('css.basic')}</h3>
-                <CodeBlock id="icons-css-basic" lang="html" code={`@import '@buni/icons/css';
+                <CodeBlock id="icons-css-basic" lang="html" code={`@import '@buni-design/icons/css';
 
 <i class="avs"></i>
 <i class="avs-person"></i>
@@ -186,8 +186,8 @@ import AvsSvg from '@buni/icons/svg/avs.svg';`} />
             <h2 className="text-2xl font-semibold text-avs-primary mb-4">{t('svg.title')}</h2>
             <p className="text-avs-accent/80 mb-6">{t('svg.description')}</p>
 
-            <CodeBlock id="icons-svg-import" lang="tsx" code={`import AvsSvg from '@buni/icons/svg/avs.svg';
-import PersonSvg from '@buni/icons/svg/avs-person.svg';
+            <CodeBlock id="icons-svg-import" lang="tsx" code={`import AvsSvg from '@buni-design/icons/svg/avs.svg';
+import PersonSvg from '@buni-design/icons/svg/avs-person.svg';
 
 // As <img>
 <img src={AvsSvg} alt="AVS" width="32" height="32" />

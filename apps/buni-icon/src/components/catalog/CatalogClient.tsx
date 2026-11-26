@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useTranslations, useLocale } from '@/i18n';
-import { ICONS_CATALOG } from '@buni/icons-data';
+import { ICONS_CATALOG } from '@buni-design/icons-data';
 import { IconCard } from '@/components/icons/IconCard';
 import { IconFilters } from '@/components/icons/IconFilters';
 

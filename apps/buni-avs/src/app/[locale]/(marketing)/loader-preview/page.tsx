@@ -1,4 +1,4 @@
-import { BuniLoader } from '@buni/ui';
+import { BuniLoader } from '@buni-design/ui';
 
 export default function LoaderPreviewPage() {
   return (

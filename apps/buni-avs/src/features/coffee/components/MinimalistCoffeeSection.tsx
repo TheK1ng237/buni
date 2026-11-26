@@ -20,7 +20,7 @@ import { usePayment } from '../payment/hooks/usePayment';
 import { PaymentModal } from '../payment/components/PaymentModal';
 import { CommunityGivingAnimation } from './CommunityGivingAnimation';
 import { CoffeePouringAnimation } from './CoffeePouringAnimation';
-import { Button, Input } from '@buni/ui';
+import { Button, Input } from '@buni-design/ui';
 import { useTranslations } from 'next-intl';
 
 export function MinimalistCoffeeSection() {

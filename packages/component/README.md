@@ -1,6 +1,6 @@
 # @buni/component
 
-Package d'alias pour @buni/ui avec imports simplifiés.
+Package d'alias pour @buni-design/ui avec imports simplifiés.
 
 ## Installation
 
@@ -31,7 +31,7 @@ function MyComponent() {
 
 ## Composants disponibles
 
-Tous les composants de @buni/ui sont disponibles :
+Tous les composants de @buni-design/ui sont disponibles :
 
 - `Button` - Bouton avec variants
 - `Card` - Carte conteneur
@@ -49,4 +49,4 @@ Tous les composants de @buni/ui sont disponibles :
 - `Skeleton` - Skeleton loader
 - Et bien plus...
 
-Consultez la documentation de @buni/ui pour plus de détails sur chaque composant.
+Consultez la documentation de @buni-design/ui pour plus de détails sur chaque composant.

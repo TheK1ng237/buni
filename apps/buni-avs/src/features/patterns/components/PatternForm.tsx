@@ -14,11 +14,11 @@ import {
 } from 'lucide-react';
 import { useState } from 'react';
 
-import { BuniLoader, useToast } from '@buni/ui';
+import { BuniLoader, useToast } from '@buni-design/ui';
 import { useAuth } from '@buni/auth';
-import { CSS_PATTERN_MAP, FALLBACK_PATTERN_CSS } from '@buni/patterns';
+import { CSS_PATTERN_MAP, FALLBACK_PATTERN_CSS } from '@buni-design/patterns';
 import { FORM_STEPS } from '../constants/pattern.constants';
-import type { Pattern } from '@buni/patterns';
+import type { Pattern } from '@buni-design/patterns';
 import type { PatternStatus } from '../types';
 
 import { Step1 } from './steps/step1';

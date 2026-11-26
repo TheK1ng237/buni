@@ -1,15 +1,15 @@
-# @buni/tokens
+# @buni-design/tokens
 
 Buni Design System — Design tokens (colors, typography, spacing, shadows, radius) for Tailwind CSS v4.
 
 ## Installation
 
 ```bash
-npm install @buni/tokens
+npm install @buni-design/tokens
 # or
-pnpm add @buni/tokens
+pnpm add @buni-design/tokens
 # or
-yarn add @buni/tokens
+yarn add @buni-design/tokens
 ```
 
 ## Usage
@@ -17,14 +17,14 @@ yarn add @buni/tokens
 ### CSS Import (Recommended)
 
 ```css
-@import '@buni/tokens';
+@import '@buni-design/tokens';
 ```
 
 ### Tailwind CSS v4 Config
 
 ```css
 @import 'tailwindcss';
-@import '@buni/tokens';
+@import '@buni-design/tokens';
 
 @theme {
   --color-avs-primary: #YOUR_BRAND_COLOR;
@@ -34,7 +34,7 @@ yarn add @buni/tokens
 ### JavaScript/TypeScript Import (SHORT)
 
 ```ts
-import { AVS_COLORS, AVS_RADIUS, AVS_SHADOW, type AvsColor } from '@buni/tokens';
+import { AVS_COLORS, AVS_RADIUS, AVS_SHADOW, type AvsColor } from '@buni-design/tokens';
 
 const primaryColor = AVS_COLORS.primary; // "#C0573E"
 const borderRadius = AVS_RADIUS.md; // "0.375rem"
@@ -120,7 +120,7 @@ AVS_SHADOW = { sm, md, lg, xl } as const;
 ## Customization
 
 ```css
-@import '@buni/tokens';
+@import '@buni-design/tokens';
 
 @theme {
   --color-avs-primary: #YOUR_BRAND_COLOR;

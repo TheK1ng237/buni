@@ -4,7 +4,7 @@
 
 /**
  * Classes CSS individuelles pour chaque motif
- * Utilisation: import { kente, ndop, bogolan } from '@buni/patterns';
+ * Utilisation: import { kente, ndop, bogolan } from '@buni-design/patterns';
  * 
  * NOTE: Ces classes correspondent aux alias courts dans patterns.css
  * Vous pouvez utiliser directement className="kente h-20 w-full" dans votre code

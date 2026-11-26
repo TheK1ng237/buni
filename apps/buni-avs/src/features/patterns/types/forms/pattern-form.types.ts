@@ -1,4 +1,4 @@
-import { RegionType, PatternType, PatternColor, ArtisanQuote, PatternSymbolism } from "@buni/patterns";
+import { RegionType, PatternType, PatternColor, ArtisanQuote, PatternSymbolism } from "@buni-design/patterns";
 import { UploadablePatternSymbol } from "../uploads/pattern.upload";
 import { LicenseType, SymbolUsageType } from "../../constants/pattern.constants";
 

@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { ICONS_BY_SLUG, ICONS_CATALOG, type BuniIconMeta } from '@buni/icons-data';
+import { ICONS_BY_SLUG, ICONS_CATALOG, type BuniIconMeta } from '@buni-design/icons-data';
 import { IconDetailClient } from '@/components/icons/IconDetailClient';
 
 export default async function IconDetailPage({

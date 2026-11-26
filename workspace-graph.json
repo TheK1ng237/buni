@@ -338,12 +338,12 @@
           "implicitDependencies": []
         }
       },
-      "@buni/patterns": {
-        "name": "@buni/patterns",
+      "@buni-design/patterns": {
+        "name": "@buni-design/patterns",
         "type": "lib",
         "data": {
           "root": "packages/patterns",
-          "name": "@buni/patterns",
+          "name": "@buni-design/patterns",
           "projectType": "library",
           "tags": [
             "npm:private"
@@ -355,7 +355,7 @@
               ]
             },
             "js": {
-              "packageName": "@buni/patterns",
+              "packageName": "@buni-design/patterns",
               "packageVersion": "0.0.1",
               "packageExports": {
                 ".": {
@@ -441,12 +441,12 @@
           "implicitDependencies": []
         }
       },
-      "@buni/tokens": {
-        "name": "@buni/tokens",
+      "@buni-design/tokens": {
+        "name": "@buni-design/tokens",
         "type": "lib",
         "data": {
           "root": "packages/tokens",
-          "name": "@buni/tokens",
+          "name": "@buni-design/tokens",
           "projectType": "library",
           "tags": [
             "npm:private"
@@ -458,7 +458,7 @@
               ]
             },
             "js": {
-              "packageName": "@buni/tokens",
+              "packageName": "@buni-design/tokens",
               "packageVersion": "0.0.1",
               "packageExports": {
                 ".": {
@@ -514,12 +514,12 @@
           "implicitDependencies": []
         }
       },
-      "@buni/icons": {
-        "name": "@buni/icons",
+      "@buni-design/icons": {
+        "name": "@buni-design/icons",
         "type": "lib",
         "data": {
           "root": "packages/icons",
-          "name": "@buni/icons",
+          "name": "@buni-design/icons",
           "projectType": "library",
           "tags": [
             "npm:private"
@@ -531,7 +531,7 @@
               ]
             },
             "js": {
-              "packageName": "@buni/icons",
+              "packageName": "@buni-design/icons",
               "packageVersion": "0.0.1",
               "packageExports": {
                 ".": {
@@ -1072,12 +1072,12 @@
           "implicitDependencies": []
         }
       },
-      "@buni/ui": {
-        "name": "@buni/ui",
+      "@buni-design/ui": {
+        "name": "@buni-design/ui",
         "type": "lib",
         "data": {
           "root": "packages/ui",
-          "name": "@buni/ui",
+          "name": "@buni-design/ui",
           "projectType": "library",
           "tags": [
             "npm:private"
@@ -1089,7 +1089,7 @@
               ]
             },
             "js": {
-              "packageName": "@buni/ui",
+              "packageName": "@buni-design/ui",
               "packageVersion": "0.0.1",
               "packageExports": {
                 ".": {
@@ -1131,14 +1131,14 @@
       "@buni/component": [
         {
           "source": "@buni/component",
-          "target": "@buni/ui",
+          "target": "@buni-design/ui",
           "type": "static"
         }
       ],
-      "@buni/patterns": [],
+      "@buni-design/patterns": [],
       "@buni/config": [],
-      "@buni/tokens": [],
-      "@buni/icons": [],
+      "@buni-design/tokens": [],
+      "@buni-design/icons": [],
       "@buni/theme": [],
       "@buni/utils": [],
       "@buni/auth": [],
@@ -1166,7 +1166,7 @@
         },
         {
           "source": "buni-avs",
-          "target": "@buni/patterns",
+          "target": "@buni-design/patterns",
           "type": "static"
         },
         {
@@ -1176,12 +1176,12 @@
         },
         {
           "source": "buni-avs",
-          "target": "@buni/tokens",
+          "target": "@buni-design/tokens",
           "type": "static"
         },
         {
           "source": "buni-avs",
-          "target": "@buni/ui",
+          "target": "@buni-design/ui",
           "type": "static"
         },
         {
@@ -1198,9 +1198,9 @@
         }
       ],
       "@buni/cli": [],
-      "@buni/ui": [
+      "@buni-design/ui": [
         {
-          "source": "@buni/ui",
+          "source": "@buni-design/ui",
           "target": "@buni/utils",
           "type": "static"
         }

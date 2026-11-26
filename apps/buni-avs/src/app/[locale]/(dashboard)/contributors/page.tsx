@@ -10,7 +10,7 @@ import {
 import { useAuth } from '@buni/auth';
 import { useTranslations } from '@/i18n';
 import { userService } from '@/features/user/services/user.service';
-import { KpiCard } from '@buni/ui';
+import { KpiCard } from '@buni-design/ui';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // TYPES

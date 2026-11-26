@@ -8,7 +8,7 @@ import {
   Button, Card, CardHeader, CardContent, CardFooter, AvsAvatar as Avatar,
   Input, Textarea, Badge, cn, Dialog, DialogTrigger, DialogContent, DialogHeader,
   DialogTitle, DialogDescription, DialogBody, DialogFooter,
-} from '@buni/ui';
+} from '@buni-design/ui';
 
 export default function ComponentsPage() {
   const t = useTranslations('documentation.composants');
@@ -78,7 +78,7 @@ export default function ComponentsPage() {
           <section id="installation">
             <h2 className="text-2xl font-semibold text-avs-primary mb-4">{t('installation.title')}</h2>
             <CodeBlock id="ui-installation" lang="bash" title={t('installation.title')} code={`# Installation
-pnpm add @buni/ui
+pnpm add @buni-design/ui
 
 # Peer dependencies (required)
 pnpm add react react-dom tailwindcss class-variance-authority clsx tailwind-merge lucide-react \\
@@ -91,13 +91,13 @@ pnpm add react react-dom tailwindcss class-variance-authority clsx tailwind-merg
   @radix-ui/react-label
 
 # CSS Import
-@import '@buni/ui';
-@import '@buni/tokens'; // Required
+@import '@buni-design/ui';
+@import '@buni-design/tokens'; // Required
 
 # Tailwind v4 Config
 @import 'tailwindcss';
-@import '@buni/tokens';
-@import '@buni/ui';
+@import '@buni-design/tokens';
+@import '@buni-design/ui';
 
 @theme {
   --color-avs-primary: #YOUR_BRAND_COLOR;
@@ -110,7 +110,7 @@ pnpm add react react-dom tailwindcss class-variance-authority clsx tailwind-merg
             <p className="text-avs-accent/80 mb-6">{t('quickstart.description')}</p>
 
             <CodeBlock id="ui-quickstart" lang="tsx" title={t('quickstart.title')} code={`// SHORT IMPORTS (recommended)
-import { Button, Card, CardHeader, CardContent, CardFooter, Avatar } from '@buni/ui';
+import { Button, Card, CardHeader, CardContent, CardFooter, Avatar } from '@buni-design/ui';
 
 function Dashboard() {
   return (
@@ -280,9 +280,9 @@ export const MyComponent = ({ className, variant = 'default', ...props }: MyComp
 
 // 2. That's it! Auto-discovered on next build
 // Available immediately via:
-import { MyComponent } from '@buni/ui';
+import { MyComponent } from '@buni-design/ui';
 // or
-import { MyComponent } from '@buni/ui/MyComponent';`} />
+import { MyComponent } from '@buni-design/ui/MyComponent';`} />
               </div>
 
               <div className="surface-primary border-primary border rounded-avs p-4">

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // packages/icons/scripts/build.mjs
-// Build script for @buni/icons - generates dist/ with React components, CSS, SVG files, symbols, and cultural assets
+// Build script for @buni-design/icons - generates dist/ with React components, CSS, SVG files, symbols, and cultural assets
 
 import fs from 'fs';
 import path from 'path';
@@ -17,7 +17,7 @@ const svgDistDir = path.join(distDir, 'svg');
 const symbolsDistDir = path.join(distDir, 'symbols');
 const culturalDistDir = path.join(distDir, 'cultural');
 
-console.log('🔨 Building @buni/icons...\n');
+console.log('🔨 Building @buni-design/icons...\n');
 
 // Clean and create dist
 if (fs.existsSync(distDir)) {
@@ -100,8 +100,8 @@ const iconsCssDest = path.join(distDir, 'icons.css');
 if (fs.existsSync(iconsCssSrc)) {
   let cssContent = fs.readFileSync(iconsCssSrc, 'utf-8');
 
-  cssContent = `/* @buni/icons - CSS Icon Classes
- * Import: @import '@buni/icons/css';
+  cssContent = `/* @buni-design/icons - CSS Icon Classes
+ * Import: @import '@buni-design/icons/css';
  * Usage: <i class="avs"></i> or <i class="buni-icon avs"></i>
  * Size variants: .avs-sm, .avs-md, .avs-lg, .avs-xl, .avs-2xl
  */\n\n` + cssContent;
@@ -171,8 +171,8 @@ const symbolsIndexJs = symbolFiles
   .join('\n');
 
 fs.writeFileSync(path.join(distDir, 'symbols.js'),
-`// @buni/icons/symbols - Ndop Symbol SVG Imports
-// Usage: import { ndopSymbol1, ndopSymbol2 } from '@buni/icons/symbols'
+`// @buni-design/icons/symbols - Ndop Symbol SVG Imports
+// Usage: import { ndopSymbol1, ndopSymbol2 } from '@buni-design/icons/symbols'
 
 ${symbolsIndexJs}
 `);
@@ -185,7 +185,7 @@ const symbolsIndexDts = symbolFiles
   .join('\n');
 
 fs.writeFileSync(path.join(distDir, 'symbols.d.ts'),
-`// @buni/icons/symbols - Type Declarations
+`// @buni-design/icons/symbols - Type Declarations
 
 ${symbolsIndexDts}
 `);
@@ -203,8 +203,8 @@ const culturalIndexJs = culturalFiles
   .join('\n');
 
 fs.writeFileSync(path.join(distDir, 'cultural.js'),
-`// @buni/icons/cultural - Cultural Heritage SVG Assets
-// Usage: import { ndopBamoum, toghuBamenda, toghuBamileke } from '@buni/icons/cultural'
+`// @buni-design/icons/cultural - Cultural Heritage SVG Assets
+// Usage: import { ndopBamoum, toghuBamenda, toghuBamileke } from '@buni-design/icons/cultural'
 
 ${culturalIndexJs}
 `);
@@ -217,7 +217,7 @@ const culturalIndexDts = culturalFiles
   .join('\n');
 
 fs.writeFileSync(path.join(distDir, 'cultural.d.ts'),
-`// @buni/icons/cultural - Type Declarations
+`// @buni-design/icons/cultural - Type Declarations
 
 ${culturalIndexDts}
 `);
@@ -227,12 +227,12 @@ console.log(`✓ Built dist/cultural.js + cultural.d.ts (${culturalFiles.length}
 // ============================================================================
 // 8. Build main index.js (SHORT EXPORTS - no react/ in path)
 // ============================================================================
-const mainIndexJs = `// @buni/icons - Main Entry Point (SHORT IMPORTS)
-// Import CSS: import '@buni/icons/css'
-// Import React Icons: import { Avs, AvsPerson, AvsSettings, AvsHome, AvsSearch } from '@buni/icons'
-// Import Symbols: import { ndopSymbol1, ndopSymbol2 } from '@buni/icons/symbols'
-// Import Cultural: import { ndopBamoum, toghuBamenda } from '@buni/icons/cultural'
-// Import SVG: import AvsSvg from '@buni/icons/svg/avs.svg'
+const mainIndexJs = `// @buni-design/icons - Main Entry Point (SHORT IMPORTS)
+// Import CSS: import '@buni-design/icons/css'
+// Import React Icons: import { Avs, AvsPerson, AvsSettings, AvsHome, AvsSearch } from '@buni-design/icons'
+// Import Symbols: import { ndopSymbol1, ndopSymbol2 } from '@buni-design/icons/symbols'
+// Import Cultural: import { ndopBamoum, toghuBamenda } from '@buni-design/icons/cultural'
+// Import SVG: import AvsSvg from '@buni-design/icons/svg/avs.svg'
 
 // React Icons (main export)
 export { Avs, AvsPerson, AvsSettings, AvsHome, AvsSearch } from './react/index.js';
@@ -250,7 +250,7 @@ console.log('✓ Built dist/index.js (short exports)');
 // ============================================================================
 // 9. Build main index.d.ts
 // ============================================================================
-const mainIndexDts = `// @buni/icons - Type Declarations (SHORT IMPORTS)
+const mainIndexDts = `// @buni-design/icons - Type Declarations (SHORT IMPORTS)
 
 // CSS module declarations
 declare module '*.css' {
@@ -388,18 +388,18 @@ function generateReadme(symbolFiles, culturalFiles) {
   const symbolNames = symbolFiles.map(f => f.replace('.svg', '')).join(', ');
   const culturalNames = culturalFiles.map(f => f.replace('.svg', '')).join(', ');
 
-  return `# @buni/icons
+  return `# @buni-design/icons
 
 African cultural icons — React components, CSS classes & SVG files for Buni Design System.
 
 ## Installation
 
 \`\`\`bash
-npm install @buni/icons
+npm install @buni-design/icons
 # or
-pnpm add @buni/icons
+pnpm add @buni-design/icons
 # or
-yarn add @buni/icons
+yarn add @buni-design/icons
 \`\`\`
 
 ## Usage
@@ -408,11 +408,11 @@ yarn add @buni/icons
 
 \`\`\`tsx
 // ✅ SHORT - Recommended
-import { Avs, AvsPerson, AvsSettings, AvsHome, AvsSearch } from '@buni/icons';
+import { Avs, AvsPerson, AvsSettings, AvsHome, AvsSearch } from '@buni-design/icons';
 
 // ✅ Individual (smallest bundle)
-import { Avs } from '@buni/icons/Avs';
-import { AvsPerson } from '@buni/icons/AvsPerson';
+import { Avs } from '@buni-design/icons/Avs';
+import { AvsPerson } from '@buni-design/icons/AvsPerson';
 
 function MyComponent() {
   return (
@@ -436,7 +436,7 @@ function MyComponent() {
 ### 2. CSS Classes (Zero Dependencies)
 
 \`\`\`css
-@import '@buni/icons/css';
+@import '@buni-design/icons/css';
 \`\`\`
 
 \`\`\`html
@@ -460,7 +460,7 @@ function MyComponent() {
 ### 3. Ndop Symbols (Cultural Symbols)
 
 \`\`\`tsx
-import { ndopSymbol1, ndopSymbol2, ndopSymbol3, ndopSymbol4, ndopSymbol5 } from '@buni/icons/symbols';
+import { ndopSymbol1, ndopSymbol2, ndopSymbol3, ndopSymbol4, ndopSymbol5 } from '@buni-design/icons/symbols';
 
 // As <img>
 <img src={ndopSymbol1} alt="Ndop Symbol" width="32" height="32" />
@@ -474,7 +474,7 @@ import { ndopSymbol1, ndopSymbol2, ndopSymbol3, ndopSymbol4, ndopSymbol5 } from 
 ### 4. Cultural Heritage Assets
 
 \`\`\`tsx
-import { ndopBamoum, toghuBamenda, toghuBamileke } from '@buni/icons/cultural';
+import { ndopBamoum, toghuBamenda, toghuBamileke } from '@buni-design/icons/cultural';
 
 // Usage
 <img src={ndopBamoum} alt="Ndop Bamoum" />
@@ -486,8 +486,8 @@ import { ndopBamoum, toghuBamenda, toghuBamileke } from '@buni/icons/cultural';
 ### 5. SVG Files (Direct Import)
 
 \`\`\`tsx
-import AvsSvg from '@buni/icons/svg/avs.svg';
-import PersonSvg from '@buni/icons/svg/avs-person.svg';
+import AvsSvg from '@buni-design/icons/svg/avs.svg';
+import PersonSvg from '@buni-design/icons/svg/avs-person.svg';
 
 <img src={AvsSvg} alt="AVS" width="32" height="32" />
 \`\`\`
@@ -506,13 +506,13 @@ import PersonSvg from '@buni/icons/svg/avs-person.svg';
 
 | Symbol | Import | Origin |
 |--------|--------|--------|
-${symbolFiles.map(f => '| ' + f.replace('.svg', '') + ' | `import { ' + f.replace('.svg', '').replace(/[-]/g, '') + " } from '@buni/icons/symbols'` | Cameroun / Bamoum |").join('\n')}
+${symbolFiles.map(f => '| ' + f.replace('.svg', '') + ' | `import { ' + f.replace('.svg', '').replace(/[-]/g, '') + " } from '@buni-design/icons/symbols'` | Cameroun / Bamoum |").join('\n')}
 
 ## Cultural Assets
 
 | Asset | Import | Origin |
 |-------|--------|--------|
-${culturalFiles.map(f => '| ' + f.replace('.svg', '') + ' | `import { ' + f.replace('.svg', '').replace(/[-]/g, '') + " } from '@buni/icons/cultural'` | " + (f.includes('toghu') ? 'Cameroun / Bamiléké' : 'Cameroun / Bamoum') + ' |').join('\n')}
+${culturalFiles.map(f => '| ' + f.replace('.svg', '') + ' | `import { ' + f.replace('.svg', '').replace(/[-]/g, '') + " } from '@buni-design/icons/cultural'` | " + (f.includes('toghu') ? 'Cameroun / Bamiléké' : 'Cameroun / Bamoum') + ' |').join('\n')}
 
 ## Requirements
 

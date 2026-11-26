@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
     console.log(`📥 Received pattern event: ${event} for ${slug}`);
 
     // 2. Trigger sync script
-    const result = await execAsync('pnpm run sync:backend --filter @buni/patterns', {
+    const result = await execAsync('pnpm run sync:backend --filter @buni-design/patterns', {
       cwd: process.cwd(),
       env: {
         ...process.env,
@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
     if (result.stderr) console.error('Sync stderr:', result.stderr);
 
     // 3. Trigger build
-    const buildResult = await execAsync('pnpm run build --filter @buni/patterns', {
+    const buildResult = await execAsync('pnpm run build --filter @buni-design/patterns', {
       cwd: process.cwd(),
     });
 
@@ -113,7 +113,7 @@ async function publishToNpm() {
     console.log('Published:', publishOutput);
 
     // Commit and push
-    await execAsync('git add package.json dist/ && git commit -m "chore: publish @buni/patterns update [skip ci]" && git push', {
+    await execAsync('git add package.json dist/ && git commit -m "chore: publish @buni-design/patterns update [skip ci]" && git push', {
       cwd: process.cwd(),
     });
   } catch (error) {

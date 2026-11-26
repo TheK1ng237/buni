@@ -1,4 +1,4 @@
-import type { PatternSymbol, PatternType } from '@buni/patterns';
+import type { PatternSymbol, PatternType } from '@buni-design/patterns';
 
 export interface SymbolRecord extends PatternSymbol {
   id: string;

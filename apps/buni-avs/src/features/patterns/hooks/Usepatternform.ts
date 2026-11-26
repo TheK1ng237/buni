@@ -2,7 +2,7 @@ import { useState, useCallback, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import type { ZodSchema } from 'zod';
 import { z } from 'zod';
-import { useToast } from '@buni/ui';
+import { useToast } from '@buni-design/ui';
 
 import { Step1Schema, Step2Schema, Step3Schema } from '../schemas/create-pattern.schema';
 import { createPattern, CreatePatternError } from '../usecases/create-pattern.usecase';
@@ -11,7 +11,7 @@ import { updatePattern, UpdatePatternError } from '../usecases/update-pattern.us
 import { DEFAULT_COLORS, DEFAULT_SYMBOL } from '../constants/pattern.constants';
 
 import type { FieldErrors, Step1Data, Step2Data, Step3Data } from '../types';
-import type { Pattern, PatternColor, PatternSymbol } from '@buni/patterns';
+import type { Pattern, PatternColor, PatternSymbol } from '@buni-design/patterns';
 import type { Route } from 'next';
 
 // ─────────────────────────────────────────────────────────────────────────────

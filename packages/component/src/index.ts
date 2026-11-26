@@ -1,1 +1,1 @@
-export * from '@buni/ui';
+export * from '@buni-design/ui';

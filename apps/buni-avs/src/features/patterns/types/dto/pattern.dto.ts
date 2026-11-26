@@ -7,7 +7,7 @@ import type {
   PatternType,
   ArtisanQuote,
   PatternOrigin,
-} from '@buni/patterns';
+} from '@buni-design/patterns';
 
 // ─────────────────────────────────────────────────────────────
 // BACKEND DTO

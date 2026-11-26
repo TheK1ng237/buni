@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // packages/patterns/scripts/sync-from-backend.mjs
-// Sync patterns from avs-backend to @buni/patterns package
+// Sync patterns from avs-backend to @buni-design/patterns package
 // Run this after publishing a new pattern in the backend admin
 
 import fs from 'fs';
@@ -531,7 +531,7 @@ async function syncFromBackend() {
     }
 
     // Generate CSS for each pattern
-    let cssOutput = '/* @buni/patterns - Auto-generated from backend */\n\n';
+    let cssOutput = '/* @buni-design/patterns - Auto-generated from backend */\n\n';
     const catalogEntries = [];
     const svgRegistry = {};
 
@@ -564,7 +564,7 @@ async function syncFromBackend() {
     console.log(`\n✅ Generated ${patternsCssPath}`);
 
     // Update catalog.ts
-    const catalogTs = `// @buni/patterns - Pattern Catalog (Auto-generated from backend)
+    const catalogTs = `// @buni-design/patterns - Pattern Catalog (Auto-generated from backend)
 // DO NOT EDIT MANUALLY - Run 'pnpm run sync:backend' to update
 
 export interface PatternCatalogEntry {
@@ -605,7 +605,7 @@ export function getAllPatterns(): PatternCatalogEntry[] {
     console.log(`✅ Generated ${path.join(pkgRoot, 'src/catalog.ts')}`);
 
     // Update svg.registry.ts
-    const svgRegistryTs = `// @buni/patterns - SVG Pattern Registry (Auto-generated from backend)
+    const svgRegistryTs = `// @buni-design/patterns - SVG Pattern Registry (Auto-generated from backend)
 // DO NOT EDIT MANUALLY - Run 'pnpm run sync:backend' to update
 
 export const SVG_PATTERN_REGISTRY: Record<string, string> = ${JSON.stringify(svgRegistry, null, 2)};
@@ -624,7 +624,7 @@ export function getAllSvgPatterns(): Record<string, string> {
 
     // Update css-classes.ts with new patterns
     const cssClasses = [...new Set(catalogEntries.map(e => e.cssClass))];
-    const cssClassesTs = `// @buni/patterns - CSS Classes (Auto-generated from backend)
+    const cssClassesTs = `// @buni-design/patterns - CSS Classes (Auto-generated from backend)
 // DO NOT EDIT MANUALLY - Run 'pnpm run sync:backend' to update
 
 export const kente = 'kente';

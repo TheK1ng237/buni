@@ -19,14 +19,14 @@ export default function UtiliserPatternsCode() {
             id="install-patterns"
             lang="bash"
             title={t('installation')}
-            code={`npm install @buni/patterns
-yarn add @buni/patterns
-pnpm add @buni/patterns`}
+            code={`npm install @buni-design/patterns
+yarn add @buni-design/patterns
+pnpm add @buni-design/patterns`}
           />
 
           <h3 className="mb-3 text-lg font-bold">{t('cssImport')}</h3>
           <p className="mb-4">{t('cssImportDescription')}</p>
-          <CodeBlock id="css-import" lang="css" code={`@import '@buni/patterns/css';`} />
+          <CodeBlock id="css-import" lang="css" code={`@import '@buni-design/patterns/css';`} />
 
           <h3 className="mb-3 text-lg font-bold">{t('tailwind')}</h3>
           <p className="mb-4">{t('tailwindDescription')}</p>
@@ -50,7 +50,7 @@ pnpm add @buni/patterns`}
           <CodeBlock
             id="import-patterns"
             lang="tsx"
-            code={`import { kente, ndop, bogolan } from '@buni/patterns';
+            code={`import { kente, ndop, bogolan } from '@buni-design/patterns';
 
 <div className={\`\${kente} h-48\`} />
 <section className={ndop}>

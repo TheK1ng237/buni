@@ -1,5 +1,5 @@
 {
-  "name": "@buni/tokens",
+  "name": "@buni-design/tokens",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/tokens/src",
   "projectType": "library",

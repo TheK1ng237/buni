@@ -1,9 +1,9 @@
 'use client';
 
 import * as React from 'react';
-import type { BuniIconMeta } from '@buni/icons-data';
+import type { BuniIconMeta } from '@buni-design/icons-data';
 import { getIconifyName, getJsxSnippet } from '@buni/icon-react';
-import { useToast } from '@buni/ui';
+import { useToast } from '@buni-design/ui';
 import { Copy, Check, Download, Terminal, Code2, FileCode, FileJson, Image as ImageIcon } from 'lucide-react';
 
 interface ExportShadcnTabsProps {

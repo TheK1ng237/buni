@@ -15,11 +15,11 @@
     
     "forceConsistentCasingInFileNames": true,
     "paths": {
-      "@buni/ui": ["./packages/ui/src/index.ts"],
-      "@buni/tokens": ["./packages/tokens/src/index.ts"],
-      "@buni/patterns": ["./packages/patterns/src/index.ts"],
-      "@buni/icons": ["./packages/icons/src/index.ts"],
-      "@buni/icons-data": ["./packages/icons-data/src/index.ts"],
+      "@buni-design/ui": ["./packages/ui/src/index.ts"],
+      "@buni-design/tokens": ["./packages/tokens/src/index.ts"],
+      "@buni-design/patterns": ["./packages/patterns/src/index.ts"],
+      "@buni-design/icons": ["./packages/icons/src/index.ts"],
+      "@buni-design/icons-data": ["./packages/icons-data/src/index.ts"],
       "@buni/icon-react": ["./packages/icon-react/src/index.tsx"],
       "@buni/auth": ["./packages/auth/src/index.ts"],
       "@buni/api": ["./packages/api/src/index.ts"],

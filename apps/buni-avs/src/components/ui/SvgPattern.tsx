@@ -23,7 +23,7 @@ import {
   SVG_REGISTRY,
   getSvgMeta,
   type SvgPatternKey,
-} from '@buni/patterns';
+} from '@buni-design/patterns';
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 interface SvgPatternProps {

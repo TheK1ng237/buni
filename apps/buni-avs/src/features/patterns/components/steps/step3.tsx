@@ -3,7 +3,7 @@
 import { Check, Upload, X } from 'lucide-react';
 import { Field, StepTitle, AddRowBtn } from '../Patternform.primitives';
 import { FieldErrors, Step3Data } from '../../types';
-import { PatternColor, PatternSymbol } from '@buni/patterns';
+import { PatternColor, PatternSymbol } from '@buni-design/patterns';
 import { useTranslations } from '@/i18n';
 
 interface Step3Props {
